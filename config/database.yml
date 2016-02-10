@@ -1,0 +1,75 @@
+# ================= postgres
+# sudo -i -u postgres
+# psql
+# CREATE USER r5blog PASSWORD 'r5blog'; | DROP USER r5blog;
+# CREATE DATABASE r5blog_development; | DROP DATABASE r5blog_development;
+# CREATE DATABASE r5blog_production; | DROP DATABASE r5blog_production;
+# CREATE DATABASE r5blog_test; | DROP DATABASE r5blog_test;
+# GRANT ALL PRIVILEGES ON DATABASE r5blog_development to r5blog; | REVOKE ALL ON DATABASE r5blog_development FROM r5blog;
+# GRANT ALL PRIVILEGES ON DATABASE r5blog_production to r5blog; | REVOKE ALL ON DATABASE r5blog_production FROM r5blog;
+# GRANT ALL PRIVILEGES ON DATABASE r5blog_test to r5blog; | REVOKE ALL ON DATABASE r5blog_test FROM r5blog;
+# ALTER USER r5blog WITH SUPERUSER;
+
+
+#default: &default
+#  adapter: postgresql
+#  host: localhost
+#  port: 5432
+#  username: r5blog
+#  password: r5blog
+#  encoding: unicode
+#  pool: 5
+#  database: r5blog_production
+#  timeout: 5000
+
+# ============= mysql
+# MySQL.  Versions 5.0+ are recommended.
+#
+# Install the MYSQL driver
+#   gem install mysql2
+#
+# Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+#
+
+# CREATE USER 'r5blog'@'localhost' IDENTIFIED BY 'r5blog';
+# CREATE DATABASE r5blog_development;
+# CREATE DATABASE r5blog_production;
+# CREATE DATABASE r5blog_test;
+# GRANT ALL PRIVILEGES ON r5blog_development.* TO 'r5blog'@'localhost';
+# GRANT ALL PRIVILEGES ON r5blog_production.* TO 'r5blog'@'localhost';
+# GRANT ALL PRIVILEGES ON r5blog_test.* TO 'r5blog'@'localhost';
+
+default: &default
+  adapter: mysql2
+  host: <%= ENV['DB_HOST'] %>
+  encoding: utf8
+  pool: 5
+  port: <%= ENV['DB_PORT'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
+#  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+
+
+test:
+  <<: *default
+
+# On Heroku and other platform providers, you may have a full connection URL
+# available as an environment variable. For example:
+#
+#   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
+#
+# You can use this database configuration with:
+#
+#   production:
+#     url: <%= ENV['DATABASE_URL'] %>
+#
+production:
+  <<: *default
