@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 # Shim to load enviroment varibles from .env file
 gem 'dotenv-rails', groups: [:development, :test, :production], :require => 'dotenv/rails-now'
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+gem 'coffee-rails', '~> 4.1.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.beta2', '< 5.1'
 # Use mysql as the database for Active Record
@@ -24,7 +28,7 @@ gem 'redis', '~> 3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # gem 'byebug'
 end
 
 group :development do
