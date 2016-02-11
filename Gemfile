@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # Shim to load enviroment varibles from .env file
-gem 'dotenv-rails', groups: [:development, :test, :production], :require => 'dotenv/rails-now'
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Authentication
@@ -44,6 +45,9 @@ group :development do
   gem 'web-console', '~> 3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # silence sprockets verbosity
+  gem 'quiet_assets'
+  gem 'mailcatcher', '~> 0.6.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

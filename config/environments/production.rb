@@ -67,7 +67,8 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   # In production, :host should be set to the actual host of your application.
-  config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'], port: ENV['APPLICATION_PORT'] }
+  config.action_mailer.default_url_options = { host: ENV['HOST'], port: ENV['PORT'] }
+  config.action_mailer.smtp_settings = { :address => ENV['SMTP_HOST'], :port => ENV['SMTP_PORT'] }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

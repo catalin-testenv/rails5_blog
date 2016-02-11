@@ -26,7 +26,8 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'], port: ENV['APPLICATION_PORT'] }
+  config.action_mailer.default_url_options = { host: ENV['HOST'], port: ENV['PORT'] }
+  config.action_mailer.smtp_settings = { :address => ENV['SMTP_HOST'], :port => ENV['SMTP_PORT'] }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -56,4 +57,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # related to quiet_assets gem
+  # uncomment this when temporarily need to disable quite_assets silencer
+  # config.quiet_assets = false
 end
