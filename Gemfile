@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'dotenv-rails', groups: [:development, :test, :production], :require => 'dotenv/rails-now'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
+# Authentication
+gem 'devise', '>= 4.0.0.rc1', '< 4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.beta2', '< 5.1'
