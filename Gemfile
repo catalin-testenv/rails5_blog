@@ -47,7 +47,6 @@ group :development do
   gem 'spring'
   # silence sprockets verbosity
   gem 'quiet_assets'
-  gem 'mailcatcher', '~> 0.6.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
