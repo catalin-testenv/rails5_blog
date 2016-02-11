@@ -61,4 +61,6 @@ Rails.application.configure do
   # related to quiet_assets gem
   # uncomment this when temporarily need to disable quite_assets silencer
   # config.quiet_assets = false
+
+  config.i18n.fallbacks = false
 end
