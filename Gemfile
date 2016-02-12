@@ -7,6 +7,9 @@ gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Authentication
 gem 'devise', '>= 4.0.0.rc1', '< 4.1'
+# Omniauth gems
+# https://github.com/zquestz/omniauth-google-oauth2
+gem 'omniauth-google-oauth2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 5.0.0.beta2', '< 5.1'
