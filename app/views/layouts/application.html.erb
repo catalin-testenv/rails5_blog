@@ -12,10 +12,10 @@
   <body>
     <% if controller_name != 'sessions' %>
       <% unless user_signed_in? %>
-          <%= link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2) %>
+          <%# link_to 'Sign in with Google', user_omniauth_authorize_path(:google_oauth2) %>
       <% else %>
           <p><%= current_user.name %><%= image_tag current_user.image %></p>
-          <%= link_to 'Sign out', destroy_user_session_path %>
+          <%= link_to 'Sign out',  destroy_user_session_path, method: :delete %>
       <% end %>
     <% end %>
     <p class="notice"><%= notice %></p>

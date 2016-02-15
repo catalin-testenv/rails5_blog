@@ -1,5 +1,4 @@
-class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+class Admin::ArticlesController < Admin::AdminController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -33,8 +32,8 @@ class ArticlesController < ApplicationController
     authorize @article
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
+        format.html { redirect_to admin_article_path(@article), notice: 'Article was successfully created.' }
+        format.json { render :show, status: :created, location: admin_article_path(@article) }
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -48,8 +47,8 @@ class ArticlesController < ApplicationController
     authorize @article
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
+        format.html { redirect_to admin_article_path(@article), notice: 'Article was successfully updated.' }
+        format.json { render :show, status: :ok, location: admin_article_path(@article) }
       else
         format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -63,7 +62,7 @@ class ArticlesController < ApplicationController
     authorize @article
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to admin_articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

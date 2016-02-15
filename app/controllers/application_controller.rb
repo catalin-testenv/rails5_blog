@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
     controller.is_a? DeviseController
   end
 
-  after_action :verify_policy_scoped, only: :index
+  after_action :verify_policy_scoped,
+               except: [:show, :new, :edit,
+                        :create, :update, :destroy]
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
