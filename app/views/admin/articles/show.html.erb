@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
-
+<h1><%= resource_view_show_message resource_instance: @resource %></h1>
 <p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+  <strong><%= Article.human_attribute_name(:title).humanize %>:</strong>
+  <%= @resource.title %>
 </p>
 
-<%= link_to 'Edit', edit_admin_article_path(@article) %> |
-<%= link_to 'Back', admin_articles_path %>
+<%= link_to edit_message, edit_admin_article_path(@resource) %> |
+<%= link_to back_message, admin_articles_path %>

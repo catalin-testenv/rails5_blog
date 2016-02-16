@@ -1,9 +1,8 @@
-# TODO: add device view localizations ~ add Oauth providers images
-# TODO: add localizations to Article
 
 class ApplicationController < ActionController::Base
 
   include Pundit
+  include CommonMessages
 
   # before_action :authenticate_user!
   before_action :set_locale
@@ -32,7 +31,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:alert] = 'You are not authorized to perform this action.'
+    flash[:alert] = authorization_failure_message
     redirect_to(request.referrer || root_path)
   end
 end

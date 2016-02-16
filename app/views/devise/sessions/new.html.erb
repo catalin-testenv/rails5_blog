@@ -1,7 +1,7 @@
-<h2>Log in</h2>
+<h2><%= sign_in_message %></h2>
 
 <% if devise_mapping.omniauthable? %>
     <% resource_class.omniauth_providers.each do |provider| %>
-        <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        <%= link_to image_tag("omniauth_providers/#{provider}.jpg", size: '46x46', alt: 'Google'), omniauth_authorize_path(resource_name, provider) %><br />
     <% end %>
 <% end %>

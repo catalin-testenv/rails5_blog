@@ -1,0 +1,20 @@
+en:
+  # Attributes names common to most models
+  attributes:
+    created_at: "Created at"
+    updated_at: "Updated at"
+
+  # Default error messages
+  errors:
+    messages:
+      required: "must exist"
+      taken: "has already been taken"
+
+  # Active Record models configuration
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "Cannot delete record because a dependent %{record} exists"
+          has_many: "Cannot delete record because dependent %{record} exist"

@@ -1,42 +1,44 @@
 class Admin::ArticlesController < Admin::AdminController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
   def index
     authorize Article
-    @articles = policy_scope(Article.all)
+    @resource_list = policy_scope(Article.all)
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
-    authorize @article
+    authorize @resource
   end
 
   # GET /articles/new
   def new
-    @article = Article.new
-    authorize @article
+    @resource = Article.new
+    authorize @resource
   end
 
   # GET /articles/1/edit
   def edit
-    authorize @article
+    authorize @resource
   end
 
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
-    authorize @article
+    @resource = Article.new(resource_params)
+    authorize @resource
     respond_to do |format|
-      if @article.save
-        format.html { redirect_to admin_article_path(@article), notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: admin_article_path(@article) }
+      if @resource.save
+        format.html { redirect_to admin_article_path(@resource),
+                                  notice: resource_creation_success_message(resource_instance: @resource) }
       else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.html {
+          flash.now[:alert] = resource_creation_failed_message(resource_instance: @resource)
+          render :new
+        }
       end
     end
   end
@@ -44,14 +46,16 @@ class Admin::ArticlesController < Admin::AdminController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
-    authorize @article
+    authorize @resource
     respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to admin_article_path(@article), notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: admin_article_path(@article) }
+      if @resource.update(resource_params)
+        format.html { redirect_to admin_article_path(@resource), notice: resource_update_success_message(resource_instance: @resource) }
       else
-        format.html { render :edit }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        # @resource.errors[:base] << 'some error' << 'some other error'
+        format.html {
+          flash.now[:alert] = resource_update_failed_message(resource_instance: @resource)
+          render :edit
+        }
       end
     end
   end
@@ -59,22 +63,21 @@ class Admin::ArticlesController < Admin::AdminController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    authorize @article
-    @article.destroy
+    authorize @resource
+    @resource.destroy
     respond_to do |format|
-      format.html { redirect_to admin_articles_url, notice: 'Article was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to admin_articles_url, notice: resource_destroy_success_message(resource_instance: @resource) }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
+    def set_resource
+      @resource = Article.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
+    def resource_params
       params.require(:article).permit(:title)
     end
 end

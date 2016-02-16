@@ -1,0 +1,56 @@
+"ro":
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a minute[RO]"
+      less_than_x_seconds:
+        one:   "less than 1 second[RO]"
+        other: "less than %{count} seconds[RO]"
+      x_seconds:
+        one:   "1 second[RO]"
+        other: "%{count} seconds[RO]"
+      less_than_x_minutes:
+        one:   "less than a minute[RO]"
+        other: "less than %{count} minutes[RO]"
+      x_minutes:
+        one:   "1 minute[RO]"
+        other: "%{count} minutes[RO]"
+      about_x_hours:
+        one:   "about 1 hour[RO]"
+        other: "about %{count} hours[RO]"
+      x_days:
+        one:   "1 day[RO]"
+        other: "%{count} days[RO]"
+      about_x_months:
+        one:   "about 1 month[RO]"
+        other: "about %{count} months[RO]"
+      x_months:
+        one:   "1 month[RO]"
+        other: "%{count} months[RO]"
+      about_x_years:
+        one:   "about 1 year[RO]"
+        other: "about %{count} years[RO]"
+      over_x_years:
+        one:   "over 1 year[RO]"
+        other: "over %{count} years[RO]"
+      almost_x_years:
+        one:   "almost 1 year[RO]"
+        other: "almost %{count} years[RO]"
+    prompts:
+      year:   "Year[RO]"
+      month:  "Month[RO]"
+      day:    "Day[RO]"
+      hour:   "Hour[RO]"
+      minute: "Minute[RO]"
+      second: "Seconds[RO]"
+
+  helpers:
+    select:
+      # Default value for :prompt => true in FormOptionsHelper
+      prompt: "Please select[RO]"
+
+    # Default translation keys for submit and button FormHelper
+    submit:
+      create: 'Creeaza %{model}'
+      update: 'Actualizeaza %{model}'
+      submit: 'Salveaza %{model}'

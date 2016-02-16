@@ -19,5 +19,35 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+# https://github.com/rails/rails/blob/master/activemodel/lib/active_model/locale/en.yml
+# https://github.com/rails/rails/blob/master/activerecord/lib/active_record/locale/en.yml
+
 en:
-  hello: "Hello world"
+  authorization:
+    failure: 'You are not authorized to perform this action.'
+  default: 'DEFAULT'
+  default_ok: 'OK'
+  default_nok: 'NOK'
+  sign_in: 'sign in'
+  sign_out: 'sign out'
+  show: 'show'
+  edit: 'edit'
+  destroy: 'destroy'
+  back: 'back'
+  are_you_sure: 'Are you sure?'
+  error: 'error'
+
+  # ---------------- RESOURCE
+
+  resource_view_listing: 'listing %{resource}'
+  resource_view_editing: 'editing %{resource}: %{resource_name}'
+  resource_view_new: 'new %{resource}'
+  resource_view_show: 'showing %{resource}: %{resource_name}'
+  resource_view_form_general_error: '%{errors_num} prohibited this %{resource} from being saved'
+
+  resource_creation_success: '%{resource} %{resource_name} created.'
+  resource_creation_failed: 'could not create %{resource} %{resource_name}.'
+  resource_update_success: '%{resource} %{resource_name} updated.'
+  resource_update_failed: 'could not update %{resource} %{resource_name}.'
+  resource_destroy_success: '%{resource} %{resource_name} destroyed.'
+  resource_destroy_failed: 'could not destroy %{resource} %{resource_name}.'

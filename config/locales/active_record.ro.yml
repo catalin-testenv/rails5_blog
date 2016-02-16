@@ -1,0 +1,20 @@
+ro:
+  # Attributes names common to most models
+  attributes:
+    created_at: "Created at[RO]"
+    updated_at: "Updated at[RO]"
+
+  # Default error messages
+  errors:
+    messages:
+      required: "must exist[RO]"
+      taken: "has already been taken[RO]"
+
+  # Active Record models configuration
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Validation failed: %{errors}[RO]"
+        restrict_dependent_destroy:
+          has_one: "Cannot delete record because a dependent %{record} exists[RO]"
+          has_many: "Cannot delete record because dependent %{record} exist[RO]"

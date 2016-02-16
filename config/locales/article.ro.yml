@@ -1,0 +1,9 @@
+ro:
+  activerecord:
+    models:
+      article:
+        one: 'Articol'
+        other: 'Articole'
+    attributes:
+      article:
+        title: 'Titlu'

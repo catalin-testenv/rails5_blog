@@ -1,6 +1,6 @@
-<h1>Editing Article</h1>
+<h1><%= resource_view_editing_message resource_instance: @resource %></h1>
 
-<%= render 'form', article: @article %>
+<%= render 'form', resource: @resource %>
 
-<%= link_to 'Show', admin_article_path(@article) %> |
-<%= link_to 'Back', admin_articles_path %>
+<%= link_to show_message, admin_article_path(@resource) %> |
+<%= link_to back_message, admin_articles_path %>

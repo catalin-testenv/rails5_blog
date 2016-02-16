@@ -1,20 +1,20 @@
-<h1>Articles</h1>
+<h1><%= resource_view_listing_message resource: Article, count: 2 %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th><%= Article.human_attribute_name(:title).humanize %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @articles.each do |article| %>
+    <% @resource_list.each do |resource| %>
       <tr>
-        <td><%= article.title %></td>
-        <td><%= link_to 'Show', admin_article_path(article) %></td>
-        <td><%= link_to 'Edit', edit_admin_article_path(article) %></td>
-        <td><%= link_to 'Destroy', admin_article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= resource.title %></td>
+        <td><%= link_to show_message, admin_article_path(resource) %></td>
+        <td><%= link_to edit_message, edit_admin_article_path(resource) %></td>
+        <td><%= link_to destroy_message, admin_article_path(resource), method: :delete, data: { confirm: are_you_sure_message } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Article', new_admin_article_path %>
+<%= link_to resource_view_new_message(resource: Article), new_admin_article_path %>
