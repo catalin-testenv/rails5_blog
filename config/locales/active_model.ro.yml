@@ -13,11 +13,11 @@ ro:
       confirmation: "doesn't match %{attribute}[RO]"
       accepted: "must be accepted[RO]"
       empty: "can't be empty[RO]"
-      blank: "can't be blank[RO]"
+      blank: "este obligatoriu"
       present: "must be blank[RO]"
       too_long:
-        one: "is too long (maximum is 1 character)[RO]"
-        other: "is too long (maximum is %{count} characters)[RO]"
+        one: "depaseste maximum permis de 1 caracter"
+        other: "depaseste maximum permis de %{count} caractere"
       too_short:
         one: "is too short (minimum is 1 character)[RO]"
         other: "is too short (minimum is %{count} characters)[RO]"

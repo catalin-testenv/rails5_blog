@@ -78,6 +78,6 @@ class Admin::ArticlesController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:article).permit(:title)
+      params.require(:article).permit(:title, :meta_description, :excerpt, :content)
     end
 end

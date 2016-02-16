@@ -7,3 +7,6 @@ en:
     attributes:
       article:
         title: 'Title'
+        content: 'Content'
+        meta_description: 'Meta Description'
+        excerpt: 'Excerpt'

@@ -7,3 +7,6 @@ ro:
     attributes:
       article:
         title: 'Titlu'
+        content: 'Continut'
+        meta_description: 'Meta Descriere'
+        excerpt: 'Rezumat'
