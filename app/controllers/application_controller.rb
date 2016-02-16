@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include CommonMessages
 
   # before_action :authenticate_user!
-  before_action :set_locale
+  before_action :set_locale, :add_theme_support
 
   after_action :verify_authorized, unless: -> (controller) do
     controller.is_a? DeviseController
@@ -24,14 +24,25 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  def set_locale
-    I18n.locale = ENV['APP_LOCALE']
+  def get_locale
+    @_locale ||= ENV['APP_LOCALE']
   end
 
   private
+
+  def set_locale
+    I18n.locale = get_locale
+  end
 
   def user_not_authorized
     flash[:alert] = authorization_failure_message
     redirect_to(request.referrer || root_path)
   end
+
+  def add_theme_support
+    @current_theme = ENV['APP_THEME']
+    append_view_path(File.join(Rails.root, "app/themes/#{@current_theme}"))
+    append_view_path(File.join(Rails.root, 'app/themes/base'))
+  end
+
 end
