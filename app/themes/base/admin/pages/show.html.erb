@@ -1,3 +1,11 @@
+<% content_for :css do %>
+    <%= @resource.meta_css.html_safe %>
+<% end %>
+
+<% content_for :js do %>
+    <%= @resource.meta_js.html_safe %>
+<% end %>
+
 <h1><%= resource_view_show_message resource_instance: @resource %></h1>
 
 <p>
@@ -38,7 +46,7 @@
 </p>
 <p>
   <strong><%= Page.human_attribute_name(:content).humanize %>:</strong>
-  <%= evaluate(@resource.content) %>
+  <%= evaluate(@resource.content).html_safe %>
 </p>
 
 
