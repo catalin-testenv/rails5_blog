@@ -9,6 +9,30 @@
   <%= @resource.meta_description %>
 </p>
 <p>
+  <strong><%= Page.human_attribute_name(:meta_css).humanize %>:</strong>
+  <%= @resource.meta_css %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:meta_js).humanize %>:</strong>
+  <%= @resource.meta_js %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:is_main_nav).humanize %>:</strong>
+  <%= @resource.is_main_nav %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:is_commentable).humanize %>:</strong>
+  <%= @resource.is_commentable %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:published).humanize %>:</strong>
+  <%= @resource.published %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:max_comments).humanize %>:</strong>
+  <%= @resource.max_comments %>
+</p>
+<p>
   <strong><%= Page.human_attribute_name(:excerpt).humanize %>:</strong>
   <%= @resource.excerpt %>
 </p>

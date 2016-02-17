@@ -8,5 +8,11 @@ en:
       page:
         title: 'Title'
         content: 'Content'
-        meta_description: 'Meta Description'
+        meta_description: 'Meta description'
+        meta_css: 'Meta CSS'
+        meta_js: 'Meta JavaScript'
+        is_main_nav: 'Included in main navigation'
+        is_commentable: 'Accepts comments'
+        published: 'Published'
+        max_comments: 'Max comments allowed'
         excerpt: 'Excerpt'

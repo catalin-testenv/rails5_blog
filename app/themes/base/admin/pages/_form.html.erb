@@ -20,6 +20,30 @@
     <%= f.text_area :meta_description %>
   </div>
   <div class="field">
+    <%= f.label :meta_css %>
+    <%= f.text_area :meta_css %>
+  </div>
+  <div class="field">
+    <%= f.label :meta_js %>
+    <%= f.text_area :meta_js %>
+  </div>
+  <div class="field">
+    <%= f.label :is_main_nav %>
+    <%= f.check_box :is_main_nav %>
+  </div>
+  <div class="field">
+    <%= f.label :is_commentable %>
+    <%= f.check_box :is_commentable %>
+  </div>
+  <div class="field">
+    <%= f.label :published %>
+    <%= f.check_box :published %>
+  </div>
+  <div class="field">
+    <%= f.label :max_comments %>
+    <%= f.text_field :max_comments %>
+  </div>
+  <div class="field">
     <%= f.label :excerpt %>
     <%= f.text_area :excerpt %>
   </div>

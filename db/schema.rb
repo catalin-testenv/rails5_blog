@@ -11,15 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217081031) do
+ActiveRecord::Schema.define(version: 20160217091019) do
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "title",                             null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.text     "content",          limit: 16777215, null: false
+    t.string   "title",                                             null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.text     "content",          limit: 16777215,                 null: false
     t.text     "meta_description", limit: 255
     t.text     "excerpt",          limit: 255
+    t.text     "meta_css",         limit: 16777215
+    t.text     "meta_js",          limit: 16777215
+    t.boolean  "is_main_nav",                       default: false, null: false
+    t.boolean  "is_commentable",                    default: false, null: false
+    t.integer  "max_comments",                      default: 50,    null: false
+    t.boolean  "published",                         default: false, null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

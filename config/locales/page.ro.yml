@@ -8,5 +8,11 @@ ro:
       page:
         title: 'Titlu'
         content: 'Continut'
-        meta_description: 'Meta Descriere'
+        meta_description: 'Meta descriere'
+        meta_css: 'Meta CSS'
+        meta_js: 'Meta JavaScript'
+        is_main_nav: 'Inclusa in meniul principal'
+        is_commentable: 'Accepta commentarii'
+        published: 'Publicata'
+        max_comments: 'Numarul maxim de comentarii acceptate'
         excerpt: 'Rezumat'
