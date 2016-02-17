@@ -9,6 +9,10 @@
 <h1><%= resource_view_show_message resource_instance: @resource %></h1>
 
 <p>
+  <strong><%= Page.human_attribute_name(:id).humanize %>:</strong>
+  <%= @resource.id %>
+</p>
+<p>
   <strong><%= Page.human_attribute_name(:title).humanize %>:</strong>
   <%= @resource.title %>
 </p>
@@ -35,6 +39,10 @@
 <p>
   <strong><%= Page.human_attribute_name(:published).humanize %>:</strong>
   <%= @resource.published %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:root_page).humanize %>:</strong>
+  <%= @resource.root_page %>
 </p>
 <p>
   <strong><%= Page.human_attribute_name(:max_comments).humanize %>:</strong>

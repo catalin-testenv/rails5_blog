@@ -16,3 +16,4 @@ en:
         published: 'Published'
         max_comments: 'Max comments allowed'
         excerpt: 'Excerpt'
+        root_page: 'Landing page'

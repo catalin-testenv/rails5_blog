@@ -10,4 +10,8 @@ class PagePolicy < ApplicationPolicy
     ctrl.is_a?(Admin::AdminController) && user && user.admin? ||
           !ctrl.is_a?(Admin::AdminController)
   end
+
+  def root?
+    true
+  end
 end

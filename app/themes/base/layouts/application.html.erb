@@ -21,6 +21,10 @@
     <% end %>
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>
+    <% pages_for_main_menu.each do |page| %>
+      <%= link_to page[:title], page[:path] %>
+    <% end %>
     <%= yield %>
   </body>
+
 </html>

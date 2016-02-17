@@ -16,3 +16,4 @@ ro:
         published: 'Publicata'
         max_comments: 'Numarul maxim de comentarii acceptate'
         excerpt: 'Rezumat'
+        root_page: 'Pagina principala'

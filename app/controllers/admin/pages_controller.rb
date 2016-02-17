@@ -76,6 +76,6 @@ class Admin::PagesController < Admin::AdminController
     params.require(:page).permit(:title, :content,
                                  :meta_description, :excerpt,
                                  :meta_css, :meta_js, :is_main_nav,
-                                 :is_commentable, :max_comments, :published)
+                                 :is_commentable, :max_comments, :published, :root_page)
   end
 end
