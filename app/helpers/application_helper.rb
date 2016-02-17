@@ -11,4 +11,8 @@ module ApplicationHelper
   def new_session_path(scope)
     new_user_session_path
   end
+
+  def evaluate(data)
+    ERB.new(data).result(binding)
+  end
 end

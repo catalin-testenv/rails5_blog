@@ -1,11 +1,11 @@
 ro:
   activerecord:
     models:
-      article:
-        one: 'Articol'
-        other: 'Articole'
+      page:
+        one: 'Pagina'
+        other: 'Pagini'
     attributes:
-      article:
+      page:
         title: 'Titlu'
         content: 'Continut'
         meta_description: 'Meta Descriere'

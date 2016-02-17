@@ -1,4 +1,4 @@
-class Article < ApplicationRecord
+class Page < ApplicationRecord
 
   MAX_META = 150
 

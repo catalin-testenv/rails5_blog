@@ -1,11 +1,11 @@
 en:
   activerecord:
     models:
-      article:
-        one: 'Article'
-        other: 'Articles'
+      page:
+        one: 'Page'
+        other: 'Pages'
     attributes:
-      article:
+      page:
         title: 'Title'
         content: 'Content'
         meta_description: 'Meta Description'

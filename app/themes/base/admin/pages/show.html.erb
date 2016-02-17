@@ -1,0 +1,22 @@
+<h1><%= resource_view_show_message resource_instance: @resource %></h1>
+
+<p>
+  <strong><%= Page.human_attribute_name(:title).humanize %>:</strong>
+  <%= @resource.title %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:meta_description).humanize %>:</strong>
+  <%= @resource.meta_description %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:excerpt).humanize %>:</strong>
+  <%= @resource.excerpt %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:content).humanize %>:</strong>
+  <%= evaluate(@resource.content) %>
+</p>
+
+
+<%= link_to edit_message, edit_admin_page_path(@resource) %> |
+<%= link_to back_message, admin_pages_path %>
