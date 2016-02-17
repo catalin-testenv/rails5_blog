@@ -1,29 +1,29 @@
 class Admin::PagesController < Admin::AdminController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
-  # GET /pages
+  # GET /admin/pages
   def index
     authorize Page
     @resource_list = policy_scope(Page.all)
   end
 
-  # GET /pages/1
+  # GET /admin/pages/1
   def show
     authorize @resource
   end
 
-  # GET /pages/new
+  # GET /admin/pages/new
   def new
     @resource = Page.new
     authorize @resource
   end
 
-  # GET /pages/1/edit
+  # GET /admin/pages/1/edit
   def edit
     authorize @resource
   end
 
-  # POST /pages
+  # POST /admin/pages
   def create
     @resource = Page.new(resource_params)
     authorize @resource
@@ -40,7 +40,7 @@ class Admin::PagesController < Admin::AdminController
     end
   end
 
-  # PATCH/PUT /pages/1
+  # PATCH/PUT /admin/pages/1
   def update
     authorize @resource
     respond_to do |format|
@@ -56,7 +56,7 @@ class Admin::PagesController < Admin::AdminController
     end
   end
 
-  # DELETE /pages/1
+  # DELETE /admin/pages/1
   def destroy
     authorize @resource
     @resource.destroy
@@ -66,16 +66,16 @@ class Admin::PagesController < Admin::AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_resource
-      @resource = Page.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_resource
+    @resource = Page.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def resource_params
-      params.require(:page).permit(:title, :content,
-                                   :meta_description, :excerpt,
-                                   :meta_css, :meta_js, :is_main_nav,
-                                   :is_commentable, :max_comments, :published)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def resource_params
+    params.require(:page).permit(:title, :content,
+                                 :meta_description, :excerpt,
+                                 :meta_css, :meta_js, :is_main_nav,
+                                 :is_commentable, :max_comments, :published)
+  end
 end

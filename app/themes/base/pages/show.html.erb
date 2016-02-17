@@ -1,0 +1,15 @@
+<% content_for :css do %>
+    <%= @resource.meta_css.html_safe %>
+<% end %>
+
+<% content_for :js do %>
+    <%= @resource.meta_js.html_safe %>
+<% end %>
+
+<h1><%= @resource.title %></h1>
+
+<p>
+  <%= evaluate(@resource.content).html_safe %>
+</p>
+
+

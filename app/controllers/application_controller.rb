@@ -1,4 +1,13 @@
 
+class UserContext
+  attr_reader :user, :ctrl
+
+  def initialize(user, ctrl)
+    @user = user
+    @ctrl   = ctrl
+  end
+end
+
 class ApplicationController < ActionController::Base
 
   include Pundit
@@ -26,6 +35,11 @@ class ApplicationController < ActionController::Base
 
   def get_locale
     @_locale ||= ENV['APP_LOCALE']
+  end
+
+  # https://github.com/elabs/pundit#additional-context
+  def pundit_user
+    UserContext.new(current_user, self)
   end
 
   private
