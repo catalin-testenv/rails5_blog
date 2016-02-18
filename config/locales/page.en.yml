@@ -6,7 +6,7 @@ en:
         other: 'Pages'
     attributes:
       page:
-        title: 'Title'
+        name: 'Title'
         content: 'Content'
         meta_description: 'Meta description'
         meta_css: 'Meta CSS'
@@ -17,3 +17,5 @@ en:
         max_comments: 'Max comments allowed'
         excerpt: 'Excerpt'
         root_page: 'Landing page'
+        parent_id: 'Category ID'
+        ordering: 'Ordering'

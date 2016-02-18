@@ -73,9 +73,11 @@ class Admin::PagesController < Admin::AdminController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:page).permit(:title, :content,
+    params.require(:page).permit(:name, :content,
                                  :meta_description, :excerpt,
                                  :meta_css, :meta_js, :is_main_nav,
-                                 :is_commentable, :max_comments, :published, :root_page)
+                                 :is_commentable, :max_comments, :published, :root_page,
+                                 :parent_id, :ordering
+                                  )
   end
 end

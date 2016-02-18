@@ -19,11 +19,11 @@
           <%= link_to sign_out_message,  destroy_user_session_path, method: :delete %>
       <% end %>
     <% end %>
-    <p id="notice"><%= notice %></p>
-    <p id="alert"><%= alert %></p>
-    <% pages_for_main_menu.each do |page| %>
-      <%= link_to page[:title], page[:path] %>
-    <% end %>
+    <% if notice %><p id="notice"><%= notice %></p><% end %>
+    <% if alert %><p id="alert"><%= alert %></p><% end %>
+    <div class="navigation clearfix">
+      <%= page_categories_menu_html.html_safe %>
+    </div>
     <%= yield %>
   </body>
 

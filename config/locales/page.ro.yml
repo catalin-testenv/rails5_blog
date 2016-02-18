@@ -6,7 +6,7 @@ ro:
         other: 'Pagini'
     attributes:
       page:
-        title: 'Titlu'
+        name: 'Titlu'
         content: 'Continut'
         meta_description: 'Meta descriere'
         meta_css: 'Meta CSS'
@@ -17,3 +17,5 @@ ro:
         max_comments: 'Numarul maxim de comentarii acceptate'
         excerpt: 'Rezumat'
         root_page: 'Pagina principala'
+        parent_id: 'Categorie ID'
+        ordering: 'Ordonare'

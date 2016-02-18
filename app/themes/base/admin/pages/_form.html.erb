@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :meta_description %>
@@ -46,6 +46,14 @@
   <div class="field">
     <%= f.label :max_comments %>
     <%= f.text_field :max_comments %>
+  </div>
+  <div class="field">
+    <%= f.label :parent_id %>
+    <%= f.select :parent_id, options_for_select(page_categories_all.collect {|p| [ p.name, p.id ] }.unshift(['root', 0]), :selected => resource.parent_id), {}, { :class => '' } %>
+  </div>
+  <div class="field">
+    <%= f.label :ordering %>
+    <%= f.text_field :ordering %>
   </div>
   <div class="field">
     <%= f.label :excerpt %>

@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218090214) do
+ActiveRecord::Schema.define(version: 20160218145534) do
+
+  create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string  "name"
+    t.integer "parent_id", default: 0, null: false
+    t.integer "ordering",  default: 0, null: false
+  end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "title",                                             null: false
+    t.string   "name",                                              null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.text     "content",          limit: 16777215,                 null: false
@@ -26,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160218090214) do
     t.boolean  "is_commentable",                    default: false, null: false
     t.integer  "max_comments",                      default: 50,    null: false
     t.boolean  "published",                         default: false, null: false
+    t.integer  "parent_id",                         default: 0,     null: false
+    t.integer  "ordering",                          default: 0,     null: false
   end
 
   create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

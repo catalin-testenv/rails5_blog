@@ -3,11 +3,14 @@ class Page < ApplicationRecord
   MAX_META = 150
   SETTINGS_ROOT_PAGE = 'root_page'
 
-  validates :title, presence: true
+  belongs_to :page_category, foreign_key: 'parent_id', required: false
+
+  validates :name, presence: true
   validates :content, presence: true
   validates :meta_description, length: { maximum: MAX_META }
   validates :excerpt, length: { maximum: MAX_META }
 
+  default_scope { order(:parent_id, :ordering) }
   scope :published, -> { where(published: true) }
   scope :for_main_menu, -> { published.where(is_main_nav: true) }
 
@@ -40,11 +43,11 @@ class Page < ApplicationRecord
   end
 
   def to_name
-    title
+    name
   end
 
   def to_param
-    "#{id}-#{title.parameterize}"
+    "#{id}-#{name.parameterize}"
   end
 
 end

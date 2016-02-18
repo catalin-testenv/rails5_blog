@@ -87,3 +87,18 @@ div {
 label {
   display: block;
 }
+
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+.navigation > ul > li {
+  padding: 10px;
+  float: left;
+  list-style-position: inside;
+}
+.navigation ul {
+  margin: 0px 5px 0px 20px;
+  padding: 0px;
+}

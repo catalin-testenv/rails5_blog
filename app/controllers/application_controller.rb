@@ -1,4 +1,6 @@
 
+# TODO: add 'root' to localizations and update page views
+
 class UserContext
   attr_reader :user, :ctrl
 

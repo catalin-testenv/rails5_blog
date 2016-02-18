@@ -13,8 +13,8 @@
   <%= @resource.id %>
 </p>
 <p>
-  <strong><%= Page.human_attribute_name(:title).humanize %>:</strong>
-  <%= @resource.title %>
+  <strong><%= Page.human_attribute_name(:name).humanize %>:</strong>
+  <%= @resource.name %>
 </p>
 <p>
   <strong><%= Page.human_attribute_name(:meta_description).humanize %>:</strong>
@@ -47,6 +47,14 @@
 <p>
   <strong><%= Page.human_attribute_name(:max_comments).humanize %>:</strong>
   <%= @resource.max_comments %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:parent_id).humanize %>:</strong>
+  <%= @resource.page_category.try(:name) || 'root' %>
+</p>
+<p>
+  <strong><%= Page.human_attribute_name(:ordering).humanize %>:</strong>
+  <%= @resource.ordering %>
 </p>
 <p>
   <strong><%= Page.human_attribute_name(:excerpt).humanize %>:</strong>

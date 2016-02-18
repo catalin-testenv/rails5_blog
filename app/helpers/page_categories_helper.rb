@@ -1,0 +1,64 @@
+module PageCategoriesHelper
+
+  def page_categories_all
+    PageCategory.all
+  end
+
+  def page_categories_menu
+    # we re-sort items to mix ordering between Page and PageCategory
+    ids = {}
+    (PageCategory.all + Page.all)
+    .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
+    .map.with_object([]) do |item, arr|
+      # if item is Page let value be its path
+      # else (item is a PageCategory) let value be an array
+      # - where children (Page || PageCategory) may leave
+      obj = {item.name => item.is_a?(PageCategory) ? [] : item.root_page? ? root_path: page_path(item)}
+      # if item is PageCategory keep a reference of obj at hand
+      # to be able - later - to append obj to its children ([])
+      ids[item.id] = obj if item.is_a?(PageCategory)
+      if item.parent_id == 0
+        # insert in arr only top level items (Page || PageCategory)
+        arr << obj
+      else
+        # insert obj into its parent_id children
+        ids[item.parent_id].values[0] << obj
+      end
+    end
+=begin
+    # example return
+    [
+      {gallery: [
+        {photoshop: []},
+        {illustrator: []},
+        {other_stuff: '/some/page'}
+      ]},
+      {articles: [
+        {movies: [
+          {comedy: [
+            {black_comedy: '/some/page'},
+            {white_comedy: '/some/page'}
+          ]}
+        ]}
+      ]}
+    ]
+=end
+  end
+
+  def page_categories_menu_html(arr=page_categories_menu)
+    html = ''
+    html << '<ul>'
+    arr.each do |obj|
+      name = obj.keys[0]
+      children = obj[name]
+      if children.is_a? String
+        html << "<li><a href='#{children}' class='page'>#{name}</a></li>"
+      else
+        html << "<li><span class='page_category'>#{name}</span>#{page_categories_menu_html(children)}</li>"
+      end
+    end
+    html << '</ul>'
+    html
+  end
+
+end
