@@ -1,7 +1,7 @@
 class Page < ApplicationRecord
 
   MAX_META = 150
-  ADMIN_SETTINGS_ROOT_PAGE = 'root_page'
+  SETTINGS_ROOT_PAGE = 'root_page'
 
   validates :title, presence: true
   validates :content, presence: true
@@ -17,7 +17,7 @@ class Page < ApplicationRecord
   end
 
   def self.root_page
-    find_by id: Admin::Settings.find_by(key: ADMIN_SETTINGS_ROOT_PAGE).try(:val).to_i
+    find_by id: Settings.find_by(key: SETTINGS_ROOT_PAGE).try(:val).to_i
   end
 
   def root_page
@@ -29,7 +29,7 @@ class Page < ApplicationRecord
   end
 
   def root_page=(set_as_root)
-    entry = Admin::Settings.find_or_create_by(key: ADMIN_SETTINGS_ROOT_PAGE)
+    entry = Settings.find_or_create_by(key: SETTINGS_ROOT_PAGE)
     entry.update({val: if set_as_root == '1'
                          id # set ourselves as root page
                        elsif id == entry.val.to_i # if we're editing ourselves

@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217124530) do
-
-  create_table "admin_settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "key"
-    t.text   "val", limit: 65535
-  end
+ActiveRecord::Schema.define(version: 20160218090214) do
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title",                                             null: false
@@ -31,6 +26,11 @@ ActiveRecord::Schema.define(version: 20160217124530) do
     t.boolean  "is_commentable",                    default: false, null: false
     t.integer  "max_comments",                      default: 50,    null: false
     t.boolean  "published",                         default: false, null: false
+  end
+
+  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "key"
+    t.text   "val", limit: 65535
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
