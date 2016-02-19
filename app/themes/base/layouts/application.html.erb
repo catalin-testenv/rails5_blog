@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Blog</title>
+    <title><%= content_for?(:title) ? yield(:title) : 'Untitled' %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
     <style><%= yield :css %></style>
     <script><%= yield :js %></script>
   </head>
@@ -15,14 +17,14 @@
     <% if controller_name != 'sessions' %>
       <% unless user_signed_in? %>
       <% else %>
-          <p><%= current_user.name %><%= image_tag current_user.image %></p>
+          <p><%= current_user.name %><%= image_tag current_user.image, size: '46x46' %></p>
           <%= link_to sign_out_message,  destroy_user_session_path, method: :delete %>
       <% end %>
     <% end %>
     <% if notice %><p id="notice"><%= notice %></p><% end %>
     <% if alert %><p id="alert"><%= alert %></p><% end %>
     <div class="navigation clearfix">
-      <%= page_categories_menu_html.html_safe %>
+      <%= page_categories_menu_html_foundation_6.html_safe %>
     </div>
     <%= yield %>
   </body>

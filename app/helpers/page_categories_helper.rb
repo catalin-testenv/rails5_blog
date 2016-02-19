@@ -7,7 +7,7 @@ module PageCategoriesHelper
   def page_categories_menu
     # we re-sort items to mix ordering between Page and PageCategory
     ids = {}
-    (PageCategory.all + Page.all)
+    (PageCategory.all + Page.for_main_menu)
     .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
     .map.with_object([]) do |item, arr|
       # if item is Page let value be its path
@@ -45,16 +45,16 @@ module PageCategoriesHelper
 =end
   end
 
-  def page_categories_menu_html(arr=page_categories_menu)
+  def page_categories_menu_html_foundation_6(arr=page_categories_menu, _count=0)
     html = ''
-    html << '<ul>'
+    html << (_count == 0 ? '<ul class="dropdown menu" data-dropdown-menu>' : '<ul class="menu">')
     arr.each do |obj|
       name = obj.keys[0]
       children = obj[name]
       if children.is_a? String
         html << "<li><a href='#{children}' class='page'>#{name}</a></li>"
       else
-        html << "<li><span class='page_category'>#{name}</span>#{page_categories_menu_html(children)}</li>"
+        html << "<li><a href='#' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(children, _count+1)}</li>"
       end
     end
     html << '</ul>'

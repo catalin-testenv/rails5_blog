@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require foundation
+//= require cable
+
+// foundation was copied from main distribution to javascripts
+$(function(){ $(document).foundation(); });
