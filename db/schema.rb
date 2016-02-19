@@ -13,13 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20160218145534) do
 
-  create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
     t.integer "parent_id", default: 0, null: false
     t.integer "ordering",  default: 0, null: false
   end
 
-  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                                              null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
@@ -36,12 +36,12 @@ ActiveRecord::Schema.define(version: 20160218145534) do
     t.integer  "ordering",                          default: 0,     null: false
   end
 
-  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "key"
     t.text   "val", limit: 65535
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",      default: "", null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
