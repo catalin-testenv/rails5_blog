@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = authorization_failure_message
-    redirect_to(request.referrer || root_path)
+    redirect_to(current_user ? root_path : new_user_session_path)
   end
 
   def add_theme_support
