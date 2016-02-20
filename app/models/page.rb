@@ -1,5 +1,7 @@
 class Page < ApplicationRecord
 
+  attr_reader :wants_to_be_root_page
+
   MAX_META = 150
   SETTINGS_ROOT_PAGE = 'root_page'
 
@@ -9,6 +11,10 @@ class Page < ApplicationRecord
   validates :content, presence: true
   validates :meta_description, length: { maximum: MAX_META }
   validates :excerpt, length: { maximum: MAX_META }
+
+  after_create do |record|
+    record.wants_to_be_root_page && record.root_page = true
+  end
 
   default_scope { order(:parent_id, :ordering) }
   scope :published, -> { where(published: true) }
@@ -32,14 +38,19 @@ class Page < ApplicationRecord
   end
 
   def root_page=(set_as_root)
-    entry = Settings.find_or_create_by(key: SETTINGS_ROOT_PAGE)
-    entry.update({val: if set_as_root == '1'
-                         id # set ourselves as root page
-                       elsif id == entry.val.to_i # if we're editing ourselves
-                         -1 # let root page be none
-                       else
-                         entry.val # let root page be as before
-                       end})
+    set_as_root = set_as_root.to_bool
+    unless id
+      @wants_to_be_root_page = set_as_root
+    else
+      entry = Settings.find_or_create_by(key: SETTINGS_ROOT_PAGE)
+      entry.update({val: if set_as_root
+                           id # set ourselves as root page
+                         elsif id == entry.val.to_i # if we're editing ourselves
+                           -1 # let root page be none
+                         else
+                           entry.val # let root page be as before
+                         end})
+    end
   end
 
   def to_name
