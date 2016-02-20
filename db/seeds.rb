@@ -48,8 +48,8 @@ page_21 = Page.create(name: 'movie 8 comedy no category', content: 'movie 8', pa
 page_22 = Page.create(name: 'about movies', content: 'about movies', page_category: categ_1, published: true, is_main_nav: true)
 page_23 = Page.create(name: 'page 1', content: 'page 1', published: true, is_main_nav: true, root_page: '1')
 # page_23.update(root_page: '1')
-page_24 = Page.create(name: 'page 2', content: 'page 2', published: true, is_main_nav: true)
-
+page_24 = Page.create(name: 'page 2', content: 'page 2', published: true, is_main_nav: true, root_page: '0')
+# page_24.update(root_page: '0')
 
 
 

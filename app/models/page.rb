@@ -1,9 +1,6 @@
 class Page < ApplicationRecord
 
-  attr_reader :wants_to_be_root_page
-
   MAX_META = 150
-  SETTINGS_ROOT_PAGE = 'root_page'
 
   belongs_to :page_category, foreign_key: 'parent_id', required: false
 
@@ -11,10 +8,6 @@ class Page < ApplicationRecord
   validates :content, presence: true
   validates :meta_description, length: { maximum: MAX_META }
   validates :excerpt, length: { maximum: MAX_META }
-
-  after_create do |record|
-    record.wants_to_be_root_page && record.root_page = true
-  end
 
   default_scope { order(:parent_id, :ordering) }
   scope :published, -> { where(published: true) }
@@ -26,31 +19,19 @@ class Page < ApplicationRecord
   end
 
   def self.root_page
-    find_by id: Settings.find_by(key: SETTINGS_ROOT_PAGE).try(:val).to_i
-  end
-
-  def root_page
-    id == self.class.root_page.try(:id)
-  end
-
-  def root_page?
-    root_page
+    find_by root_page: true
   end
 
   def root_page=(set_as_root)
     set_as_root = set_as_root.to_bool
-    unless id
-      @wants_to_be_root_page = set_as_root
-    else
-      entry = Settings.find_or_create_by(key: SETTINGS_ROOT_PAGE)
-      entry.update({val: if set_as_root
-                           id # set ourselves as root page
-                         elsif id == entry.val.to_i # if we're editing ourselves
-                           -1 # let root page be none
-                         else
-                           entry.val # let root page be as before
-                         end})
+    found_root_page = Page.root_page
+    current_root_page_id = found_root_page.try(:id)
+    if current_root_page_id && set_as_root
+      if id.nil? || id && current_root_page_id != id
+        found_root_page.update(root_page: false)
+      end
     end
+    super
   end
 
   def to_name
