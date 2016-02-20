@@ -1,9 +1,9 @@
 <% content_for :css do %>
-    <%= @resource.meta_css.html_safe %>
+    <%= @resource.meta_css.try(:html_safe) %>
 <% end %>
 
 <% content_for :js do %>
-    <%= @resource.meta_js.html_safe %>
+    <%= @resource.meta_js.try(:html_safe) %>
 <% end %>
 
 <h1><%= resource_view_show_message resource_instance: @resource %></h1>
