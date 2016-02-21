@@ -14,19 +14,84 @@
   </head>
 
   <body>
-    <% if controller_name != 'sessions' %>
-      <% unless user_signed_in? %>
-      <% else %>
-          <p><%= current_user.name %><%= image_tag current_user.image, size: '46x46' %></p>
-          <%= link_to sign_out_message,  destroy_user_session_path, method: :delete %>
-      <% end %>
-    <% end %>
-    <% if notice %><p id="notice"><%= notice %></p><% end %>
-    <% if alert %><p id="alert"><%= alert %></p><% end %>
-    <div class="navigation clearfix">
-      <%= page_categories_menu_html_foundation_6.html_safe %>
+
+    <!-- top bar -->
+    <div class="row"  id="top-bar" data-sticky-container>
+      <div class="column row sticky" data-options='marginTop:0;stickyOn:small' data-sticky >
+
+        <div class="title-bar clearfix"  data-responsive-toggle="main-menu" data-hide-for="large">
+          <button class="menu-icon" type="button" data-toggle></button>
+          <div class="title-bar-title"><%= menu_message %></div>
+          <div class="small-6 column float-right">
+            <% unless user_signed_in? %>
+                <%= link_to sign_in_message, new_user_session_path, class: 'float-right' %>
+            <% else %>
+                <%= link_to destroy_user_session_path, method: :delete, class: 'float-right',
+                            data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
+                    <%= image_tag current_user.image, size: '24x24', alt: current_user.name, title: current_user.name %>
+                    <%= sign_out_message %>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="top-bar-left medium-12 large-9 columns"  id="main-menu">
+          <%= page_categories_menu_html_foundation_6(options: {
+              wrapper_ul_class: 'dropdown menu show-for-large',
+              wrapper_ul_data: 'data-dropdown-menu data-options=""',
+              inner_ul_class: 'menu',
+              inner_ul_data: ''
+          }).html_safe %>
+
+          <%= page_categories_menu_html_foundation_6(options: {
+              wrapper_ul_class: 'vertical menu hide-for-large',
+              wrapper_ul_data: 'data-accordion-menu data-options="multiOpen: false"',
+              inner_ul_class: 'menu vertical nested',
+              inner_ul_data: ''
+          }).html_safe %>
+        </div>
+
+        <div class="top-bar-right medium-12 large-3 columns">
+          <ul class="menu align-right show-for-large">
+            <% if controller_name != 'sessions' %>
+                <% unless user_signed_in? %>
+                    <li>
+                      <%= link_to sign_in_message, new_user_session_path %>
+                    </li>
+                <% else %>
+                    <li>
+                      <%= link_to sign_out_message, destroy_user_session_path, method: :delete,
+                                  data: { confirm: "#{current_user.name} #{are_you_sure_message}" } %>
+                    </li>
+                    <li>
+                      <%= image_tag current_user.image, size: '38x38', alt: current_user.name, title: current_user.name %>
+                    </li>
+                <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+      </div>
     </div>
-    <%= yield %>
+    <!-- /top bar -->
+
+    <!-- notice/alert -->
+    <div class="row">
+      <div class="large-12 columns">
+        <% if notice %><p><%= notice %></p><% end %>
+        <% if alert %><p><%= alert %></p><% end %>
+      </div>
+    </div>
+    <!-- /notice/alert -->
+
+    <!-- main -->
+    <div class="row">
+      <div class="large-12 columns">
+        <%= yield %>
+      </div>
+    </div>
+    <!-- main -->
+
   </body>
 
 </html>

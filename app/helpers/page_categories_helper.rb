@@ -45,16 +45,25 @@ module PageCategoriesHelper
 =end
   end
 
-  def page_categories_menu_html_foundation_6(arr=page_categories_menu, _count=0)
+  def page_categories_menu_html_foundation_6(arr: page_categories_menu,
+                                             options: {},
+                                             _count: 0)
+    defaults = {wrapper_ul_class: 'dropdown menu',
+                wrapper_ul_data: 'data-dropdown-menu',
+                inner_ul_class: 'menu',
+                inner_ul_data: ''}
+    options = defaults.merge options
     html = ''
-    html << (_count == 0 ? '<ul class="dropdown menu" data-dropdown-menu>' : '<ul class="menu">')
+    html << (_count == 0 ?
+        "<ul class='#{options[:wrapper_ul_class]}' #{options[:wrapper_ul_data]}>" :
+        "<ul class='#{options[:inner_ul_class]}'   #{options[:inner_ul_data]}>")
     arr.each do |obj|
       name = obj.keys[0]
       children = obj[name]
       if children.is_a? String
         html << "<li><a href='#{children}' class='page'>#{name}</a></li>"
       else
-        html << "<li><a href='#' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(children, _count+1)}</li>"
+        html << "<li><a href='#' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(arr: children, options: options, _count: _count+1)}</li>"
       end
     end
     html << '</ul>'

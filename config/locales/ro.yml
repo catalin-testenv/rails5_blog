@@ -36,6 +36,7 @@ ro:
   back: 'inapoi'
   are_you_sure: 'Esti sigur?'
   error: 'eroare'
+  menu: 'meniu'
 
   # ---------------- STANDARD_RESOURCE
 

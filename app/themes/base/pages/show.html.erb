@@ -1,3 +1,7 @@
+<% content_for :title do %>
+    <%= @resource.name %>
+<% end %>
+
 <% content_for :css do %>
     <%= @resource.meta_css.try(:html_safe) %>
 <% end %>
