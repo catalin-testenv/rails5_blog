@@ -20,6 +20,19 @@ $dropdownmenu-border: 1px solid transparent;
   background-color: $transparent-black;
 }
 
+// sizes
+
+.menu > li > img {
+  height: 38px;
+  width: 38px;
+}
+.title-bar img {
+  height: 42px;
+  width: 42px;
+  margin-top: -11px;
+  margin-bottom: -9px;
+}
+
 //@import 'debug';
 
 @import 'foundation';

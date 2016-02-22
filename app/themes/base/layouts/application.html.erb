@@ -32,7 +32,7 @@
         <% else %>
             <%= link_to destroy_user_session_path, method: :delete, class: 'float-right',
                         data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
-                <%= image_tag current_user.image, size: '24x24', alt: current_user.name, title: current_user.name %>
+                <%= image_tag current_user.image, alt: current_user.name, title: current_user.name %>
                 <%= sign_out_message %>
             <% end %>
         <% end %>
@@ -75,7 +75,7 @@
                 <% else %>
                     <li><%= link_to sign_out_message, destroy_user_session_path, method: :delete,
                             data: { confirm: "#{current_user.name} #{are_you_sure_message}" } %></li>
-                    <li><%= image_tag current_user.image, size: '38x38', alt: current_user.name, title: current_user.name %></li>
+                    <li><%= image_tag current_user.image, alt: current_user.name, title: current_user.name %></li>
                 <% end %>
             <% end %>
           </ul>
