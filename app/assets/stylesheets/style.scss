@@ -1,18 +1,32 @@
 
-//@import 'debug';
+// colors
 
-//$primary-color: olive ;
+$transparent-black: rgba(0, 0, 0, 0.9);
+$transparent-black-2: rgba(0, 0, 0, 0.95);
+
+
+// backgrounds
+
+$titlebar-background: $transparent-black-2;
+
+$dropdownmenu-background: $transparent-black;
+$dropdownmenu-border: 1px solid transparent;
+
+[data-accordion-menu] {
+  background-color: $transparent-black ;
+}
+
+#large-main-menu  {
+  background-color: $transparent-black;
+}
+
+//@import 'debug';
 
 @import 'foundation';
 
 @include foundation-everything;
 
-.menu {
-  background-color: rgba(255, 255, 255, 0.9);
-}
-//#top-bar, #top-bar .sticky {
-//  background-color: rgba(255, 255, 255, 1);
-//}
+
 
 
 

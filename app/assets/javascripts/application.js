@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+// https://github.com/zurb/foundation-sites | bower install foundation-sites
 //= require foundation
+// http://stickyjs.com/ | https://github.com/garand/sticky
+//= require jquery.sticky
 //= require cable
 
-// foundation was copied from main distribution to javascripts
 $(function(){ $(document).foundation(); });
