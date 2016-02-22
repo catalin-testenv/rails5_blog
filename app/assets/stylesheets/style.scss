@@ -5,7 +5,7 @@ $transparent-black: rgba(0, 0, 0, 0.9);
 $transparent-black-2: rgba(0, 0, 0, 0.95);
 
 
-// backgrounds
+// colors
 
 $titlebar-background: $transparent-black-2;
 
@@ -20,6 +20,10 @@ $dropdownmenu-border: 1px solid transparent;
   background-color: $transparent-black;
 }
 
+.menu li.active > a{
+  color: red;
+}
+
 // sizes
 
 .menu > li > img {
@@ -32,6 +36,7 @@ $dropdownmenu-border: 1px solid transparent;
   margin-top: -10px;
   margin-bottom: -8px;
 }
+
 
 //@import 'debug';
 

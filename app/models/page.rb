@@ -1,5 +1,7 @@
 class Page < ApplicationRecord
 
+  attr_accessor :active
+
   MAX_META = 150
 
   belongs_to :page_category, foreign_key: 'parent_id', required: false
