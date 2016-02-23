@@ -15,9 +15,7 @@
 
   <body>
 
-    <div class="row">
-      <div class="column show-for-medium" style="height: 200px; background-color: rgba(100,100,100,0.4);">
-      </div>
+    <div style="height: 200px; background-color: rgba(100,100,100,0.4);">
     </div>
 
     <!-- top bar -->
@@ -33,6 +31,7 @@
             <%= link_to destroy_user_session_path, method: :delete, class: 'float-right',
                         data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
                 <%= image_tag current_user.image, alt: current_user.name, title: current_user.name %>
+                &nbsp;&nbsp;
                 <%= sign_out_message %>
             <% end %>
         <% end %>
@@ -43,16 +42,12 @@
     <!-- main menu (small|large)  -->
     <!-- small displays on small and medium and is non sticky -->
     <div id="small-main-menu" class="hide-for-large">
-      <div class="row">
-        <div class="column">
-          <%= page_categories_menu_html_foundation_6(options: {
-              wrapper_ul_class: 'vertical menu hide-for-large',
-              wrapper_ul_data: 'data-accordion-menu data-options="multiOpen: false"',
-              inner_ul_class: 'menu vertical nested',
-              inner_ul_data: ''
-          }).html_safe %>
-        </div>
-      </div>
+      <%= page_categories_menu_html_foundation_6(options: {
+          wrapper_ul_class: 'vertical menu hide-for-large',
+          wrapper_ul_data: 'data-accordion-menu data-options="multiOpen: false"',
+          inner_ul_class: 'menu vertical nested',
+          inner_ul_data: ''
+      }).html_safe %>
     </div>
     <!-- /small displays on small and medium and is non sticky -->
 

@@ -1,46 +1,67 @@
 
-// colors
+//@import 'debug';
+
+@import 'foundation';
 
 $transparent-black: rgba(0, 0, 0, 0.9);
 $transparent-black-2: rgba(0, 0, 0, 0.95);
 
-
-// colors
+// ==================== main menu
 
 $titlebar-background: $transparent-black-2;
 
 $dropdownmenu-background: $transparent-black;
-$dropdownmenu-border: 1px solid transparent;
+$dropdownmenu-border: 1px solid black;
+
+$accordionmenu-arrow-color: white;
+$dropdownmenu-arrow-color: white;
 
 [data-accordion-menu] {
   background-color: $transparent-black ;
 }
 
+#large-main-menu > .row > .columns {
+  padding-left: 0px;
+}
+
 #large-main-menu  {
+  //border-top: 1px solid #c1c1c1;
   background-color: $transparent-black;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, .5);
+}
+.title-bar {
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, .5);
 }
 
+.title-bar a,
+.menu li > a{
+  color: white;
+}
+.menu li > a:hover{
+  color: $primary-color;
+}
 .menu li.active > a{
-  color: red;
+  color: $primary-color;
 }
-
-// sizes
 
 .menu > li > img {
-  height: 38px;
-  width: 38px;
+  height: 36px;
+  width: 36px;
+  margin-top: 1px;
 }
 .title-bar img {
-  height: 41px;
-  width: 41px;
+  height: 39px;
+  width: 39px;
   margin-top: -10px;
-  margin-bottom: -8px;
+  margin-bottom: -9px;
 }
 
+// =================== bradcrumbs
 
-//@import 'debug';
+ul.breadcrumbs {
+  margin-top: 7px;
+}
 
-@import 'foundation';
 
 @include foundation-everything;
 
