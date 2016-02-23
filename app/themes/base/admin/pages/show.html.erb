@@ -22,11 +22,15 @@
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:meta_css).humanize %>:</strong>
-  <pre class="codeview css"><%= @resource.meta_css %></pre>
+  <div class="ace_code_editor_container">
+    <pre id="ace_editor_css"><%= @resource.meta_css %></pre>
+  </div>
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:meta_js).humanize %>:</strong>
-  <pre class="codeview javascript"><%= @resource.meta_js %></pre>
+  <div class="ace_code_editor_container">
+    <pre id="ace_editor_js" ><%= @resource.meta_js %></pre>
+  </div>
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:is_main_nav).humanize %>:</strong>

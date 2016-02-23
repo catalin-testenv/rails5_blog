@@ -83,6 +83,22 @@ ul.breadcrumbs {
   margin-bottom: 15px;
 }
 
+// =================== ace editors
+
+.ace_code_editor_container {
+  position: relative;
+  height: 500px;
+}
+.ace_code_editor_container #ace_editor_js,
+.ace_code_editor_container #ace_editor_css {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+
 
 @include foundation-everything;
 
