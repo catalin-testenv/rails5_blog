@@ -91,8 +91,22 @@
     <!-- notice/alert -->
     <div class="row">
       <div class="large-12 columns">
-        <% if notice %><p><%= notice %></p><% end %>
-        <% if alert %><p><%= alert %></p><% end %>
+        <% if notice %>
+            <div class="callout small success" data-closable>
+              <h5><%= notice %></h5>
+              <button class="close-button" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        <% end %>
+        <% if alert %>
+            <div class="callout small alert" data-closable>
+              <h5><%= alert %></h5>
+              <button class="close-button" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        <% end %>
       </div>
     </div>
     <!-- /notice/alert -->
