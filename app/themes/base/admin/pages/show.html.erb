@@ -8,63 +8,64 @@
 
 <h1><%= resource_view_show_message resource_instance: @resource %></h1>
 
-<p>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:id).humanize %>:</strong>
-  <%= @resource.id %>
-</p>
-<p>
+  <span><%= @resource.id %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:name).humanize %>:</strong>
-  <%= @resource.name %>
-</p>
-<p>
+  <span><%= @resource.name %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:meta_description).humanize %>:</strong>
-  <%= @resource.meta_description %>
-</p>
-<p>
+  <div><%= @resource.meta_description %></div>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:meta_css).humanize %>:</strong>
-  <%= @resource.meta_css %>
-</p>
-<p>
+  <pre class="codeview css"><%= @resource.meta_css %></pre>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:meta_js).humanize %>:</strong>
-  <%= @resource.meta_js %>
-</p>
-<p>
+  <pre class="codeview javascript"><%= @resource.meta_js %></pre>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:is_main_nav).humanize %>:</strong>
   <%= @resource.is_main_nav %>
-</p>
-<p>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:is_commentable).humanize %>:</strong>
-  <%= @resource.is_commentable %>
-</p>
-<p>
+  <span><%= @resource.is_commentable %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:published).humanize %>:</strong>
-  <%= @resource.published %>
-</p>
-<p>
+  <span><%= @resource.published %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:root_page).humanize %>:</strong>
-  <%= @resource.root_page %>
-</p>
-<p>
+  <span><%= @resource.root_page %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:max_comments).humanize %>:</strong>
-  <%= @resource.max_comments %>
-</p>
-<p>
+  <span><%= @resource.max_comments %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:parent_id).humanize %>:</strong>
-  <%= @resource.page_category.try(:name) || 'root' %>
-</p>
-<p>
+  <span><%= @resource.page_category.try(:name) || 'root' %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:ordering).humanize %>:</strong>
-  <%= @resource.ordering %>
-</p>
-<p>
+  <span><%= @resource.ordering %></span>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:excerpt).humanize %>:</strong>
-  <%= @resource.excerpt %>
-</p>
-<p>
+  <div><%= @resource.excerpt %></div>
+</div>
+<div class="show_page_details">
   <strong><%= Page.human_attribute_name(:content).humanize %>:</strong>
-  <%= evaluate(@resource.content).html_safe %>
-</p>
+  <div><%= evaluate(@resource.content).html_safe %></div>
+</div>
 
-
-<%= link_to edit_message, edit_admin_page_path(@resource) %> |
-<%= link_to back_message, admin_pages_path %>
+<div class="show_page_details">
+  <%= link_to edit_message, edit_admin_page_path(@resource) %> |
+  <%= link_to back_message, admin_pages_path %>
+</div>

@@ -16,6 +16,8 @@
 //= require foundation
 // http://stickyjs.com/ | https://github.com/garand/sticky
 //= require jquery.sticky
+// http://www.gerd-tentler.de/tools/codeview/
+//= require codeview
 //= require cable
 
 $(function(){ $(document).foundation(); });
