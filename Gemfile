@@ -40,6 +40,10 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# allow assets be precompiled +without cache busting
+# https://github.com/alexspeller/non-stupid-digest-assets
+# gem "non-stupid-digest-assets"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
@@ -52,6 +56,13 @@ group :development do
   gem 'spring'
   # silence sprockets verbosity
   gem 'quiet_assets'
+end
+
+group :production do
+  # for some 3rd party libs we need to redirect
+  # FROM non digested/cache_busted assets links TO digested/cache_busted assets links
+  # https://github.com/sikachu/sprockets-redirect
+  gem 'sprockets-redirect'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
