@@ -79,8 +79,15 @@ ul.breadcrumbs {
 }
 
 // =================== show_page_details
-.show_page_details {
-  margin-bottom: 15px;
+.form-zone-wrapper {
+  margin-bottom: 1rem;
+}
+
+// ================== code editor zone
+
+.code-editor-container .tabs-panel {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 @include foundation-everything;

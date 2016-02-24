@@ -11,37 +11,43 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.label :name do |e| %>
+          <%= e.object.class.human_attribute_name(:name) %>
+          <%= f.text_field :name %>
+      <% end %>
     </div>
 
-    <ul class="tabs" data-tabs>
-      <li class="tabs-title is-active"><a href="#panel1" aria-selected="true"><%= f.object.class.human_attribute_name(:meta_description) %></a></li>
-      <li class="tabs-title"><a href="#panel2"><%= f.object.class.human_attribute_name(:excerpt) %></a></li>
-    </ul>
-    <div class="tabs-content" data-tabs-content>
-      <div class="tabs-panel is-active" id="panel1">
-        <%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %>      </div>
-      <div class="tabs-panel" id="panel2">
-        <%= f.text_area :excerpt, data: {'code-editor': '{"language":"html_ruby"}'} %>      </div>
+    <div class="form-zone-wrapper">
+      <ul class="tabs" data-tabs>
+        <li class="tabs-title is-active"><a href="#meta_description" aria-selected="true"><%= f.object.class.human_attribute_name(:meta_description) %></a></li>
+        <li class="tabs-title"><a href="#excerpt"><%= f.object.class.human_attribute_name(:excerpt) %></a></li>
+      </ul>
+      <div class="tabs-content code-editor-container" data-tabs-content>
+        <div class="tabs-panel is-active" id="meta_description">
+          <%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %>
+        </div>
+        <div class="tabs-panel" id="excerpt">
+          <%= f.text_area :excerpt, data: {'code-editor': '{"language":"html_ruby"}'} %>
+        </div>
+      </div>
     </div>
 
-    <!--<div class="field">-->
-      <!--<%= f.label :meta_description %>-->
-      <!--<%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %>-->
-    <!--</div>-->
-    <!--<div class="field">-->
-      <!--<%= f.label :excerpt %>-->
-      <!--<%= f.text_area :excerpt, data: {'code-editor': '{"language":"html_ruby"}'} %>-->
-    <!--</div>-->
-    <div class="field">
-      <%= f.label :meta_css %>
-      <%= f.text_area :meta_css, data: {'code-editor': '{"language":"css"}'} %>
+    <div class="form-zone-wrapper">
+      <ul class="tabs" data-tabs>
+        <li class="tabs-title is-active"><a href="#meta_css" aria-selected="true"><%= f.object.class.human_attribute_name(:meta_css) %></a></li>
+        <li class="tabs-title"><a href="#meta_js"><%= f.object.class.human_attribute_name(:meta_js) %></a></li>
+      </ul>
+      <div class="tabs-content code-editor-container" data-tabs-content>
+        <div class="tabs-panel is-active" id="meta_css">
+          <%= f.text_area :meta_css, data: {'code-editor': '{"language":"css"}'} %>
+        </div>
+        <div class="tabs-panel" id="meta_js">
+          <%= f.text_area :meta_js, data: {'code-editor': '{"language":"javascript"}'} %>
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :meta_js %>
-      <%= f.text_area :meta_js, data: {'code-editor': '{"language":"javascript"}'} %>
-    </div>
+
+
     <div class="field">
       <%= f.label :is_main_nav %>
       <%= f.check_box :is_main_nav %>
@@ -55,15 +61,15 @@
       <% end %>
     </div>
 
-    <div class="field">
+    <div class="">
       <%= f.label :published %>
       <%= f.check_box :published %>
     </div>
-    <div class="field">
+    <div class="">
       <%= f.label :root_page %>
       <%= f.check_box :root_page %>
     </div>
-    <div class="field">
+    <div class="">
       <%= f.label :max_comments %>
       <%= f.text_field :max_comments %>
     </div>
