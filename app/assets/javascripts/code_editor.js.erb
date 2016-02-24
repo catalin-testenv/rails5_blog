@@ -1,4 +1,9 @@
+
+console.log('<%= Rails.env %>');
+console.log('<%= Rails.application.config.assets.prefix %>');
+
 $(function () {
+
 
 //    ace.config.setDefaultValue('session', 'useWorker', false);
   ace.config.set('modePath', '<%= Rails.application.config.assets.prefix %>/ace/');
