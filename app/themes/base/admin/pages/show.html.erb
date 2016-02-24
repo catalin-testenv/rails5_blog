@@ -58,7 +58,7 @@
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:excerpt).humanize %>:</strong>
-  <div><%= @resource.excerpt %></div>
+  <div><%= evaluate(@resource.excerpt).html_safe %></div>
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:content).humanize %>:</strong>

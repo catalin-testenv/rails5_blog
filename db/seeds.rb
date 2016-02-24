@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-content = <<END.gsub(/\s+/, " ").strip
+content = <<END
 <h2>The standard Lorem Ipsum passage, used since the 1500s</h2>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -63,7 +63,9 @@ page_19 = Page.create(name: 'gallery 12', content: content, page_category: categ
 page_20 = Page.create(name: 'gallery 13', content: content, page_category: categ_11, published: true, is_main_nav: true)
 page_21 = Page.create(name: 'movie 8 comedy no category', content: content, page_category: categ_2, published: true, is_main_nav: true)
 page_22 = Page.create(name: 'about movies', content: content, page_category: categ_1, published: true, is_main_nav: true)
-page_23 = Page.create(name: 'page 1', content: content, published: true, is_main_nav: true, root_page: '1')
+page_23 = Page.create(name: 'page 1', content: content, published: true, is_main_nav: true, root_page: '1',
+                      meta_css: 'h6 {color:green;}', meta_js: 'function f() {} f();', meta_description: 'description',
+                      excerpt: '<strong>excerpt</strong>')
 # page_23.update(root_page: '1')
 page_24 = Page.create(name: 'page 2', content: content, published: true, is_main_nav: true, root_page: '0')
 # page_24.update(root_page: '0')
