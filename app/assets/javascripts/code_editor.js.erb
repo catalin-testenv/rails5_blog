@@ -1,0 +1,53 @@
+$(function () {
+
+//    ace.config.setDefaultValue('session', 'useWorker', false);
+  ace.config.set('modePath', '<%= Rails.application.config.assets.prefix %>/ace/');
+  ace.config.set('themePath', '<%= Rails.application.config.assets.prefix %>/ace/');
+  ace.config.set('workerPath', '<%= Rails.application.config.assets.prefix %>/ace/');
+//  ace.require("ace/ext/language_tools");
+
+//  https://github.com/ajaxorg/ace/wiki/Configuring-Ace
+//  https://ace.c9.io/build/kitchen-sink.html
+  $('[data-code-editor]').each(function () {
+    var $this = $(this);
+    var options = {
+      theme: 'chrome',
+      language: 'javascript',
+      wrap: true,
+      maxLines: 100,
+    };
+    var params = $this.data('code-editor') || {};
+    var options = $.extend({}, options, params);
+
+    var readOnly = ['TEXTAREA'].indexOf(this.nodeName) === -1;
+
+    var editDiv = $('<div>', {
+      'class': $this.attr('class')
+    }).insertBefore($this);
+
+    $this.css('display', 'none'); // ?
+
+    var editor = ace.edit(editDiv[0]);
+    editor.$blockScrolling = Infinity; // to disable a deprecation warning
+    editor.setTheme('ace/theme/' + options['theme']);
+    editor.getSession().setMode('ace/mode/' + options['language']);
+    //  editor.resize();
+    editor.setOptions({
+      showPrintMargin: false,
+      maxLines: options['maxLines'],
+      wrap: options['wrap'],
+      readOnly: readOnly,
+      highlightActiveLine: !readOnly,
+      showFoldWidgets: !readOnly
+//    enableBasicAutocompletion: true,
+//    enableSnippets: false,
+//    enableLiveAutocompletion: false
+    });
+
+    editor.getSession().setValue(readOnly ? $this.html() : $this.val());
+    !readOnly && editor.getSession().on('change', function () {
+      $this.val(editor.getSession().getValue());
+    });
+  });
+});
+

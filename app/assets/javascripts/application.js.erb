@@ -24,6 +24,7 @@
 // https://github.com/ajaxorg/ace-builds
 //= require ace/ace
 //= // require ace/ext-language_tools
+//= require code_editor
 // ============== /ace editor
 
 //= require cable
@@ -31,37 +32,3 @@
 $(function(){ $(document).foundation(); });
 
 // ========= ace editors
-$(function(){
-//    ace.config.setDefaultValue('session', 'useWorker', false);
-    ace.config.set('modePath', '<%= Rails.application.config.assets.prefix %>/ace/');
-    ace.config.set('themePath', '<%= Rails.application.config.assets.prefix %>/ace/');
-    ace.config.set('workerPath', '<%= Rails.application.config.assets.prefix %>/ace/');
-//    ace.require("ace/ext/language_tools");
-
-    var ace_editor_js = ace.edit('ace_editor_js');
-    ace_editor_js.$blockScrolling = Infinity; // to disable a deprecation warning
-    ace_editor_js.setTheme('ace/theme/monokai');
-    ace_editor_js.getSession().setMode('ace/mode/javascript');
-//    ace_editor_js.setReadOnly(true);
-//    ace_editor_js.resize();
-//    ace_editor_js.setOptions({
-//        enableBasicAutocompletion: true,
-//        enableSnippets: false,
-//        enableLiveAutocompletion: false
-//    });
-
-
-    var ace_editor_css = ace.edit('ace_editor_css');
-    ace_editor_css.$blockScrolling = Infinity; // to disable a deprecation warning
-    ace_editor_css.setTheme('ace/theme/monokai');
-    ace_editor_css.getSession().setMode('ace/mode/css');
-//    ace_editor_css.setReadOnly(true);
-//    ace_editor_css.resize();
-//    ace_editor_css.setOptions({
-//        enableBasicAutocompletion: true,
-//        enableSnippets: false,
-//        enableLiveAutocompletion: false
-//    });
-
-});
-

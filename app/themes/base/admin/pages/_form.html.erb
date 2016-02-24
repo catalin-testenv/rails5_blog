@@ -17,24 +17,29 @@
   </div>
   <div class="field">
     <%= f.label :meta_description %>
-    <%= f.text_area :meta_description %>
+    <%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %>
   </div>
   <div class="field">
     <%= f.label :meta_css %>
-    <%= f.text_area :meta_css %>
+    <%= f.text_area :meta_css, data: {'code-editor': '{"language":"css"}'} %>
   </div>
   <div class="field">
     <%= f.label :meta_js %>
-    <%= f.text_area :meta_js %>
+    <%= f.text_area :meta_js, data: {'code-editor': '{"language":"javascript"}'} %>
   </div>
   <div class="field">
     <%= f.label :is_main_nav %>
     <%= f.check_box :is_main_nav %>
   </div>
-  <div class="field">
-    <%= f.label :is_commentable %>
-    <%= f.check_box :is_commentable %>
+
+  <span><%= f.object.class.human_attribute_name(:is_commentable) %></span>
+  <div class="switch">
+    <%= f.check_box :is_commentable, class: 'switch-input' %>
+    <%= f.label :is_commentable, class: 'switch-paddle' do |e| %>
+        <span class="show-for-sr"><%= e.object.class.human_attribute_name(:is_commentable) %></span>
+    <% end %>
   </div>
+
   <div class="field">
     <%= f.label :published %>
     <%= f.check_box :published %>
@@ -57,11 +62,11 @@
   </div>
   <div class="field">
     <%= f.label :excerpt %>
-    <%= f.text_area :excerpt %>
+    <%= f.text_area :excerpt, data: {'code-editor': '{"language":"html_ruby"}'} %>
   </div>
   <div class="field">
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, data: {'code-editor': '{"language":"html_ruby"}'} %>
   </div>
 
   <div class="actions">

@@ -22,15 +22,11 @@
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:meta_css).humanize %>:</strong>
-  <div class="ace_code_editor_container">
-    <pre id="ace_editor_css"><%= @resource.meta_css %></pre>
-  </div>
+  <pre data-code-editor='{"language": "css"}'><%= @resource.meta_css %></pre>
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:meta_js).humanize %>:</strong>
-  <div class="ace_code_editor_container">
-    <pre id="ace_editor_js" ><%= @resource.meta_js %></pre>
-  </div>
+  <pre data-code-editor='{"language": "javascript"}'><%= @resource.meta_js %></pre>
 </div>
 <div class="show_page_details">
   <strong><%= Page.human_attribute_name(:is_main_nav).humanize %>:</strong>
