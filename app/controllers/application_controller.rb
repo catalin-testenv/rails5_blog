@@ -1,6 +1,14 @@
 
 # TODO: let user be able to share article on social sites
+# TODO: show formatted code on client
 # TODO: check how to generate code view from server # http://pygments.org/docs/
+# TODO: add TinyMCE option
+# TODO: implement comments
+# TODO: make blog real
+# TODO: implement layout regions
+# TODO: make unittests
+# TODO: add assets manager as an engine preferably
+# TODO: make easy to backup/load/save entire site (db/assets)
 
 class UserContext
   attr_reader :user, :ctrl
