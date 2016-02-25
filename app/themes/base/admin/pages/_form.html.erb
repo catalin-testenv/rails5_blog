@@ -108,7 +108,7 @@
       <div class="large-4 small-6 columns">
         <%= f.label :parent_id do |e| %>
             <span><%= e.object.class.human_attribute_name(:parent_id) %></span>
-            <%= f.select :parent_id, options_for_select(page_categories_all.collect { |p| [p.name, p.id] }.unshift(['root', 0]), :selected => resource.parent_id), {}, {:class => ''} %>
+            <%= f.select :parent_id, options_for_select(page_categories_all.collect { |p| [p.name, p.id] }.unshift([I18n.t('root'), 0]), :selected => resource.parent_id), {}, {:class => ''} %>
         <% end %>
       </div>
       <div class="large-4 small-6 columns">

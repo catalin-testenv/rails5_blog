@@ -1,5 +1,4 @@
 
-# TODO: add 'root' to localizations and update page views
 # TODO: let user be able to share article on social sites
 # TODO: check how to generate code view from server # http://pygments.org/docs/
 

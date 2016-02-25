@@ -37,6 +37,7 @@ en:
   are_you_sure: 'Are you sure?'
   error: 'error'
   menu: 'menu'
+  root: 'root'
 
   # ---------------- RESOURCE
 

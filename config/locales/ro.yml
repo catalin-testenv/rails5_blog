@@ -37,6 +37,7 @@ ro:
   are_you_sure: 'Esti sigur?'
   error: 'eroare'
   menu: 'meniu'
+  root: 'radacina'
 
   # ---------------- STANDARD_RESOURCE
 
