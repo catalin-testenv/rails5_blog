@@ -1,3 +1,7 @@
+<% content_for :title do %>
+    <%= resource_view_new_message resource_instance: @resource %>
+<% end %>
+
 <h1><%= resource_view_new_message resource_instance: @resource %></h1>
 
 <%= render 'form', resource: @resource %>
