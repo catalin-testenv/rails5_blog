@@ -9,6 +9,8 @@
 # TODO: make unittests
 # TODO: add assets manager as an engine preferably
 # TODO: make easy to backup/load/save entire site (db/assets)
+# TODO: add help sections / document what helpers are available
+# TODO: improve UI
 
 class UserContext
   attr_reader :user, :ctrl
