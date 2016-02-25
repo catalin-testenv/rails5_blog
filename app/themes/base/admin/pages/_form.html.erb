@@ -1,7 +1,8 @@
 <%= form_for([:admin, resource]) do |f| %>
+
     <% if resource.errors.any? %>
         <div class="callout small alert">
-          <h4><%= resource_view_form_general_error_message resource: Page, errors_num: resource.errors_num %>:</h4>
+          <h5><%= resource_view_form_general_error_message resource: Page, errors_num: resource.errors_num %>:</h5>
           <ul>
             <% resource.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -10,19 +11,22 @@
         </div>
     <% end %>
 
-    <div class="field">
+    <div>
       <%= f.label :name do |e| %>
-          <%= e.object.class.human_attribute_name(:name) %>
+          <span><%= e.object.class.human_attribute_name(:name) %></span>
           <%= f.text_field :name %>
+      <% end %>
+      <% f.object.errors[:name].each do |e|%>
+          <p class="input-error-description"><%= f.object.class.human_attribute_name(:name) %> <%= e %></p>
       <% end %>
     </div>
 
-    <div class="form-zone-wrapper">
+    <div>
       <ul class="tabs" data-tabs>
         <li class="tabs-title is-active"><a href="#meta_description" aria-selected="true"><%= f.object.class.human_attribute_name(:meta_description) %></a></li>
         <li class="tabs-title"><a href="#excerpt"><%= f.object.class.human_attribute_name(:excerpt) %></a></li>
       </ul>
-      <div class="tabs-content code-editor-container" data-tabs-content>
+      <div class="tabs-content code-editor-container form-zone-wrapper" data-tabs-content>
         <div class="tabs-panel is-active" id="meta_description">
           <%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %>
         </div>
@@ -30,6 +34,12 @@
           <%= f.text_area :excerpt, data: {'code-editor': '{"language":"html_ruby"}'} %>
         </div>
       </div>
+      <% f.object.errors[:meta_description].each do |e|%>
+          <p class="input-error-description"> <%= f.object.class.human_attribute_name(:meta_description) %> <%= e %></p>
+      <% end %>
+      <% f.object.errors[:excerpt].each do |e|%>
+          <p class="input-error-description"> <%= f.object.class.human_attribute_name(:excerpt) %> <%= e %></p>
+      <% end %>
     </div>
 
     <div class="form-zone-wrapper">
@@ -47,47 +57,83 @@
       </div>
     </div>
 
-
-    <div class="field">
-      <%= f.label :is_main_nav %>
-      <%= f.check_box :is_main_nav %>
+    <div class="row">
+      <div class="large-3 small-6 columns">
+        <%= f.label :is_main_nav do |e| %>
+          <span><%= e.object.class.human_attribute_name(:is_main_nav) %></span>
+          <div class="switch">
+            <%= f.check_box :is_main_nav, class: 'switch-input' %>
+            <%= f.label :is_main_nav, class: 'switch-paddle' do |e| %>
+                <span class="show-for-sr"><%= e.object.class.human_attribute_name(:is_main_nav) %></span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="large-3 small-6 columns">
+        <%= f.label :is_commentable do |e| %>
+          <span><%= e.object.class.human_attribute_name(:is_commentable) %></span>
+          <div class="switch">
+            <%= f.check_box :is_commentable, class: 'switch-input' %>
+            <%= f.label :is_commentable, class: 'switch-paddle' do |e| %>
+                <span class="show-for-sr"><%= e.object.class.human_attribute_name(:is_commentable) %></span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="large-3 small-6 columns">
+        <%= f.label :published do |e| %>
+          <span><%= e.object.class.human_attribute_name(:published) %></span>
+          <div class="switch">
+            <%= f.check_box :published, class: 'switch-input' %>
+            <%= f.label :published, class: 'switch-paddle' do |e| %>
+                <span class="show-for-sr"><%= e.object.class.human_attribute_name(:published) %></span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="large-3 small-6 end columns">
+        <%= f.label :root_page do |e| %>
+          <span><%= e.object.class.human_attribute_name(:root_page) %></span>
+          <div class="switch">
+            <%= f.check_box :root_page, class: 'switch-input' %>
+            <%= f.label :root_page, class: 'switch-paddle' do |e| %>
+                <span class="show-for-sr"><%= e.object.class.human_attribute_name(:root_page) %></span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-    <span><%= f.object.class.human_attribute_name(:is_commentable) %></span>
-    <div class="switch">
-      <%= f.check_box :is_commentable, class: 'switch-input' %>
-      <%= f.label :is_commentable, class: 'switch-paddle' do |e| %>
-          <span class="show-for-sr"><%= e.object.class.human_attribute_name(:is_commentable) %></span>
+    <div class="row">
+      <div class="large-4 small-6 columns">
+        <%= f.label :parent_id do |e| %>
+            <span><%= e.object.class.human_attribute_name(:parent_id) %></span>
+            <%= f.select :parent_id, options_for_select(page_categories_all.collect { |p| [p.name, p.id] }.unshift(['root', 0]), :selected => resource.parent_id), {}, {:class => ''} %>
+        <% end %>
+      </div>
+      <div class="large-4 small-6 columns">
+        <%= f.label :ordering do |e| %>
+            <span><%= e.object.class.human_attribute_name(:ordering) %></span>
+            <%= f.number_field :ordering %>
+        <% end %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :max_comments do |e| %>
+            <span><%= e.object.class.human_attribute_name(:max_comments) %></span>
+            <%= f.number_field :max_comments %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-zone-wrapper">
+      <%= f.label :content do |e| %>
+          <span><%= e.object.class.human_attribute_name(:content) %></span>
       <% end %>
-    </div>
-
-    <div class="">
-      <%= f.label :published %>
-      <%= f.check_box :published %>
-    </div>
-    <div class="">
-      <%= f.label :root_page %>
-      <%= f.check_box :root_page %>
-    </div>
-    <div class="">
-      <%= f.label :max_comments %>
-      <%= f.text_field :max_comments %>
-    </div>
-    <div class="field">
-      <%= f.label :parent_id %>
-      <%= f.select :parent_id, options_for_select(page_categories_all.collect { |p| [p.name, p.id] }.unshift(['root', 0]), :selected => resource.parent_id), {}, {:class => ''} %>
-    </div>
-    <div class="field">
-      <%= f.label :ordering %>
-      <%= f.text_field :ordering %>
-    </div>
-
-    <div class="field">
-      <%= f.label :content %>
       <%= f.text_area :content, data: {'code-editor': '{"language":"html_ruby"}'} %>
     </div>
 
-    <div class="actions">
-      <%= f.submit %>
+    <div>
+      <%= f.submit class: 'button', style: 'width: 100%;' %>
     </div>
+
 <% end %>

@@ -82,20 +82,16 @@
     <!-- /main menu (small|large) -->
     <!-- /top bar -->
 
-    <div class="row">
-      <div class="column">
-        <%= breadcrumb.html_safe %>
-      </div>
-    </div>
+    <div class="v-space-20"></div>
 
-    <!-- notice/alert -->
+    <!-- notice|alert -->
     <div class="row">
       <div class="large-12 columns">
         <% if notice %>
             <div class="callout small success" data-closable>
               <h5><%= notice %></h5>
               <button class="close-button" type="button" data-close>
-                <span aria-hidden="true">&times;</span>
+                <i class="fi-x-circle"></i>
               </button>
             </div>
         <% end %>
@@ -103,7 +99,7 @@
             <div class="callout small alert" data-closable>
               <h5><%= alert %></h5>
               <button class="close-button" type="button" data-close>
-                <span aria-hidden="true">&times;</span>
+                <i class="fi-x-circle"></i>
               </button>
             </div>
         <% end %>
