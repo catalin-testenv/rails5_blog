@@ -6,66 +6,91 @@
     <%= @resource.meta_js.try(:html_safe) %>
 <% end %>
 
-<h1><%= resource_view_show_message resource_instance: @resource %></h1>
+<h4><%= resource_view_show_message resource_instance: @resource %></h4>
 
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:id).humanize %>:</strong>
+<div class="zone-wrapper">
+  <span class="show-details-key"><%= Page.human_attribute_name(:id).humanize %>:</span>
   <span><%= @resource.id %></span>
 </div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:name).humanize %>:</strong>
+
+<div class="zone-wrapper">
+  <span class="show-details-key"><%= Page.human_attribute_name(:name).humanize %>:</span>
   <span><%= @resource.name %></span>
 </div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:meta_description).humanize %>:</strong>
-  <div><%= @resource.meta_description %></div>
+
+<div>
+  <ul class="tabs" data-tabs>
+    <li class="tabs-title is-active"><a href="#meta_description" aria-selected="true"><%= Page.human_attribute_name(:meta_description) %></a></li>
+    <li class="tabs-title"><a href="#excerpt"><%= Page.human_attribute_name(:excerpt) %></a></li>
+  </ul>
+  <div class="tabs-content code-editor-container zone-wrapper" data-tabs-content>
+    <div class="tabs-panel is-active" id="meta_description">
+      <pre data-code-editor='{"language":"text"}'><%= @resource.meta_description %></pre>
+    </div>
+    <div class="tabs-panel" id="excerpt">
+      <pre data-code-editor='{"language":"text"}'><%= @resource.excerpt %></pre>
+    </div>
+  </div>
 </div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:meta_css).humanize %>:</strong>
-  <pre data-code-editor='{"language": "css"}'><%= @resource.meta_css %></pre>
+
+<div>
+  <ul class="tabs" data-tabs>
+    <li class="tabs-title is-active"><a href="#meta_css" aria-selected="true"><%= Page.human_attribute_name(:meta_css) %></a></li>
+    <li class="tabs-title"><a href="#meta_js"><%= Page.human_attribute_name(:meta_js) %></a></li>
+  </ul>
+  <div class="tabs-content code-editor-container zone-wrapper" data-tabs-content>
+    <div class="tabs-panel is-active" id="meta_css">
+      <pre data-code-editor='{"language":"text"}'><%= @resource.meta_css %></pre>
+    </div>
+    <div class="tabs-panel" id="meta_js">
+      <pre data-code-editor='{"language":"text"}'><%= @resource.meta_js %></pre>
+    </div>
+  </div>
 </div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:meta_js).humanize %>:</strong>
-  <pre data-code-editor='{"language": "javascript"}'><%= @resource.meta_js %></pre>
+
+<div class="row zone-wrapper">
+  <div class="large-3 small-6 columns">
+    <span class="show-details-key"><%= Page.human_attribute_name(:is_main_nav).humanize %></span>
+    <div><%= content_tag(:span, nil, class: @resource.is_main_nav ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
+  </div>
+  <div class="large-3 small-6 columns">
+    <span class="show-details-key"><%= Page.human_attribute_name(:is_commentable).humanize %></span>
+    <div><%= content_tag(:span, nil, class: @resource.is_commentable ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
+  </div>
+  <div class="large-3 small-6 columns">
+    <span class="show-details-key"><%= Page.human_attribute_name(:published).humanize %></span>
+    <div><%= content_tag(:span, nil, class: @resource.published ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
+  </div>
+  <div class="large-3 small-6 end columns">
+    <span class="show-details-key"><%= Page.human_attribute_name(:root_page).humanize %></span>
+    <div><%= content_tag(:span, nil, class: @resource.root_page ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
+  </div>
 </div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:is_main_nav).humanize %>:</strong>
-  <%= @resource.is_main_nav %>
+
+<hr />
+
+<div class="row zone-wrapper">
+  <div class="large-4 small-6 columns">
+    <span class="show-details-key"><%= Page.human_attribute_name(:parent_id).humanize %></span>
+    <div><span><%= @resource.page_category.try(:name) || I18n.t('root') %></span></div>
+  </div>
+  <div class="large-4 small-6 columns">
+    <span class="show-details-key"><%= Page.human_attribute_name(:ordering).humanize %></span>
+    <div><span><%= @resource.ordering%></span></div>
+  </div>
+  <div class="large-4 columns">
+    <span class="show-details-key"><%= Page.human_attribute_name(:max_comments).humanize %></span>
+    <div><span><%= @resource.max_comments%></span></div>
+  </div>
 </div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:is_commentable).humanize %>:</strong>
-  <span><%= @resource.is_commentable %></span>
-</div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:published).humanize %>:</strong>
-  <span><%= @resource.published %></span>
-</div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:root_page).humanize %>:</strong>
-  <span><%= @resource.root_page %></span>
-</div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:max_comments).humanize %>:</strong>
-  <span><%= @resource.max_comments %></span>
-</div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:parent_id).humanize %>:</strong>
-  <span><%= @resource.page_category.try(:name) || I18n.t('root') %></span>
-</div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:ordering).humanize %>:</strong>
-  <span><%= @resource.ordering %></span>
-</div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:excerpt).humanize %>:</strong>
-  <div><%= evaluate(@resource.excerpt).html_safe %></div>
-</div>
-<div class="show_page_details">
-  <strong><%= Page.human_attribute_name(:content).humanize %>:</strong>
+
+<hr />
+
+<div class="zone-wrapper">
   <div><%= evaluate(@resource.content).html_safe %></div>
 </div>
 
-<div class="show_page_details">
+<div class="zone-wrapper">
   <%= link_to edit_message, edit_admin_page_path(@resource) %> |
   <%= link_to back_message, admin_pages_path %>
 </div>

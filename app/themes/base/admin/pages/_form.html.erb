@@ -26,7 +26,7 @@
         <li class="tabs-title is-active"><a href="#meta_description" aria-selected="true"><%= f.object.class.human_attribute_name(:meta_description) %></a></li>
         <li class="tabs-title"><a href="#excerpt"><%= f.object.class.human_attribute_name(:excerpt) %></a></li>
       </ul>
-      <div class="tabs-content code-editor-container form-zone-wrapper" data-tabs-content>
+      <div class="tabs-content code-editor-container zone-wrapper" data-tabs-content>
         <div class="tabs-panel is-active" id="meta_description">
           <%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %>
         </div>
@@ -42,7 +42,7 @@
       <% end %>
     </div>
 
-    <div class="form-zone-wrapper">
+    <div class="zone-wrapper">
       <ul class="tabs" data-tabs>
         <li class="tabs-title is-active"><a href="#meta_css" aria-selected="true"><%= f.object.class.human_attribute_name(:meta_css) %></a></li>
         <li class="tabs-title"><a href="#meta_js"><%= f.object.class.human_attribute_name(:meta_js) %></a></li>
@@ -125,7 +125,7 @@
       </div>
     </div>
 
-    <div class="form-zone-wrapper">
+    <div class="zone-wrapper">
       <%= f.label :content do |e| %>
           <span><%= e.object.class.human_attribute_name(:content) %></span>
       <% end %>
