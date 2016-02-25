@@ -28,7 +28,7 @@
       <pre data-code-editor='{"language":"text"}'><%= @resource.meta_description %></pre>
     </div>
     <div class="tabs-panel" id="excerpt">
-      <pre data-code-editor='{"language":"text"}'><%= @resource.excerpt %></pre>
+      <pre data-code-editor='{"language":"text"}'><%= @resource.excerpt.html_safe %></pre>
     </div>
   </div>
 </div>
