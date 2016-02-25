@@ -133,6 +133,17 @@ $main-menu-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .7);
   color: gray;
 }
 
+// ======================== header
+
+#site-header {
+  background-color: lightgray;
+}
+
+// ======================== footer
+
+#site-footer {
+  background-color: lightgray;
+}
 
 @include foundation-everything;
 

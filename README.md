@@ -23,9 +23,13 @@ Things you may want to cover:
 
 * ...
 
+Guidelines:
+    The user should be able to edit header, footer, sidebars without touching theme
+
 Helpers:
     foundation provided css/js
     controller helpers:
         PageCategoriesHelper
+        LayoutRegionsHelper
     js: 
         data-code-editor='{"language":"javascript"}'

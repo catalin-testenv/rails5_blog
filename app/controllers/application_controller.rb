@@ -17,6 +17,7 @@
 # TODO: improve UI
 # TODO: check ENV hanging (assets precompile) when switching envs
 # TODO: add plugins/utils: contact_form, ...
+# TODO: add quotes module
 
 class UserContext
   attr_reader :user, :ctrl

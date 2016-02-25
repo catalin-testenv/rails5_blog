@@ -19,7 +19,8 @@
     <div id="site-header">
       <div class="row">
         <div class="column">
-          <%= yield :header %>
+          hardcoded content here
+          <%= get_content_for 'header' %>
         </div>
       </div>
     </div>
@@ -129,7 +130,7 @@
     <div id="site-footer">
       <div class="row">
         <div class="column">
-          <%= yield :footer %>
+          <%= get_content_for 'footer' %>
         </div>
       </div>
     </div>
