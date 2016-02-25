@@ -2,5 +2,7 @@
 
 <%= render 'form', resource: @resource %>
 
-<%= link_to show_message, admin_page_path(@resource) %> |
-<%= link_to back_message, admin_pages_path %>
+<div class="zone-wrapper">
+  <%= link_to show_message, admin_page_path(@resource) %> |
+  <%= link_to back_message, admin_pages_path %>
+</div>
