@@ -1,16 +1,22 @@
 
+
+# TODO: add page_category editor
+# TODO: add more omniauth providers
 # TODO: let user be able to share article on social sites
-# TODO: show formatted code on client
+# TODO: show formatted code on client - almost done
 # TODO: check how to generate code view from server # http://pygments.org/docs/
 # TODO: add TinyMCE option
 # TODO: implement comments
 # TODO: make blog real
 # TODO: implement layout regions
 # TODO: make unittests
-# TODO: add assets manager as an engine preferably
+# TODO: add assets manager as an engine preferably + stuff(gallery, carousel)
 # TODO: make easy to backup/load/save entire site (db/assets)
+# TODO: automate as much as possible when deploying/installing
 # TODO: add help sections / document what helpers are available
 # TODO: improve UI
+# TODO: check ENV hanging (assets precompile) when switching envs
+# TODO: add plugins/utils: contact_form, ...
 
 class UserContext
   attr_reader :user, :ctrl

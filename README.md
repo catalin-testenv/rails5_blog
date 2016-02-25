@@ -22,3 +22,10 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Helpers:
+    foundation provided css/js
+    controller helpers:
+        PageCategoriesHelper
+    js: 
+        data-code-editor='{"language":"javascript"}'
