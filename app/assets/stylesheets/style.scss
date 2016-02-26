@@ -42,7 +42,7 @@ $main-menu-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .7);
   background-color: $transparent-black ;
 }
 
-.no-js .title-bar, .no-js [data-accordion-menu], .no-js [data-dropdown-menu] {
+.no-js .title-bar, .no-js [data-accordion-menu] ul, .no-js [data-dropdown-menu] ul {
   display: none;
 }
 
