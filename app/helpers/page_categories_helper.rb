@@ -83,6 +83,7 @@ module PageCategoriesHelper
                 inner_ul_data: ''}
     options = defaults.merge options
     html = ''
+    return html if arr.length == 0
     html << (_count == 0 ?
         "<ul class='#{options[:wrapper_ul_class]}' #{options[:wrapper_ul_data]}>" :
         "<ul class='#{options[:inner_ul_class]}'   #{options[:inner_ul_data]}>")

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :pages, only: [:show]
+  resources :page_categories, only: [:show]
 
   root to: 'pages#root'
 
