@@ -37,16 +37,16 @@ module PageCategoriesHelper
 
   # @return Array: array of objects, each object being a tree
   # example [
-  #   {name: gallery, children: [
-  #       {name: 'photoshop', children: []},
-  #       {name: 'illustrator', children: []},
-  #       {name: 'other_stuff', children: '/some/page'}
+  #   {name: gallery, link: '/some/path', children: [ # PageCategory
+  #       {name: 'photoshop', link: '/some/path', children: []}, # PageCategory
+  #       {name: 'illustrator', link: '/some/path', children: []}, # PageCategory
+  #       {name: 'other_stuff', link: '/some/path', children: nil} # Page
   #   ]},
-  #   {name: 'articles', active: true, children: [
-  #       {name: 'movies', active: true, children: [
-  #           {name: 'comedy', active: true, children: [
-  #               {name: 'black_comedy', active: true, children: '/some/page'},
-  #               {name: 'white_comedy', children: '/some/page'}
+  #   {name: 'articles', active: true, link: '/some/path', children: [ # PageCategory
+  #       {name: 'movies', active: true, link: '/some/path', children: [ # PageCategory
+  #           {name: 'comedy', active: true, link: '/some/path', children: [ # PageCategory
+  #               {name: 'black_comedy', active: true, link: '/some/path', children: nil}, # Page
+  #               {name: 'white_comedy', link: '/some/path', children: nil} # Page
   #           ]}
   #       ]}
   #   ]}
@@ -59,7 +59,9 @@ module PageCategoriesHelper
       # if item is Page let value be its path
       # else (item is a PageCategory) let value be an array
       # - where children (Page || PageCategory) may leave
-      obj = {name: item.name, active: item.active, children: item.is_a?(PageCategory) ? [] : item.root_page? ? root_path: page_path(item)}
+      obj = {name: item.name, active: item.active,
+             link: item.is_a?(PageCategory) ? page_category_path(item) : item.root_page? ? root_path: page_path(item),
+             children: item.is_a?(PageCategory) ? [] : nil}
       # if item is PageCategory keep a reference of obj at hand
       # to be able - later - to append obj to its children ([])
       ids[item.id] = obj if item.is_a?(PageCategory)
@@ -89,12 +91,13 @@ module PageCategoriesHelper
         "<ul class='#{options[:inner_ul_class]}'   #{options[:inner_ul_data]}>")
     arr.each do |obj|
       name = obj[:name]
+      link = obj[:link]
       children = obj[:children]
       active = 'active' if obj[:active]
-      if children.is_a? String
-        html << "<li class='#{active}'><a href='#{children}' class='page'>#{name}</a></li>"
+      unless children
+        html << "<li class='#{active}'><a href='#{link}' class='page'>#{name}</a></li>"
       else
-        html << "<li class='#{active}'><a href='#' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(arr: children, options: options, _count: _count+1)}</li>"
+        html << "<li class='#{active}'><a href='#{link}' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(arr: children, options: options, _count: _count+1)}</li>"
       end
     end
     html << '</ul>'

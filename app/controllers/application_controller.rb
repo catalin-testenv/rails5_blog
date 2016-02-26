@@ -1,5 +1,6 @@
 
-
+# TODO: what should be displayed in a page category view ?
+# TODO: make possible to extract menu between levels (if one needs separate sub-menus)
 # TODO: add page_category editor
 # TODO: add more omniauth providers
 # TODO: let user be able to share article on social sites

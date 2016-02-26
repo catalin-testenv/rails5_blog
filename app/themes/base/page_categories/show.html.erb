@@ -1,0 +1,14 @@
+
+<h1><%= @resource.name %></h1>
+
+<% if @resource.pages.count > 0  %>
+    <ul>
+      <% (@resource.pages).each do |page| %>
+        <li><%= page.name %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+
+
+
