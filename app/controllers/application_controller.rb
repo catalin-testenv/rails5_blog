@@ -4,7 +4,7 @@
 # TODO: add more omniauth providers
 # TODO: let user be able to share article on social sites
 # TODO: show formatted code on client - almost done
-# TODO: check how to generate code view from server # http://pygments.org/docs/
+# TODO: check how to generate code view from server # http://pygments.org/docs/ | https://github.com/jneen/rouge
 # TODO: add TinyMCE option
 # TODO: implement comments
 # TODO: make blog real

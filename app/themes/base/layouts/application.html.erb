@@ -15,126 +15,23 @@
 
   <body>
 
-    <!-- header -->
-    <div id="site-header">
-      <div class="row">
-        <div class="column">
-          hardcoded content here
-          <%= get_content_for 'header' %>
-        </div>
-      </div>
-    </div>
-    <!-- /header -->
+    <%= render 'before_site_header' %>
 
-    <!-- main menu -->
-    <div id="main-menu">
-      <!-- mobile bar -->
-      <div class="title-bar clearfix"  data-responsive-toggle="small-main-menu" data-hide-for="large">
-        <button class="menu-icon" type="button" data-toggle></button>
-        <div class="title-bar-title"><%= menu_message %></div>
-        <div class="small-6 column float-right">
-          <% unless user_signed_in? %>
-              <%= link_to sign_in_message, new_user_session_path, class: 'float-right' %>
-          <% else %>
-              <%= link_to destroy_user_session_path, method: :delete, class: 'float-right',
-                          data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
-                  <%= image_tag current_user.image, alt: current_user.name, title: current_user.name %>
-                  &nbsp;&nbsp;
-                  <%= sign_out_message %>
-              <% end %>
-          <% end %>
-        </div>
-      </div>
-      <!-- /mobile bar -->
+    <%= render 'site_header' %>
 
-      <!-- menu (small|large)  -->
-      <!-- small displays on small and medium and is non sticky -->
-      <div id="small-main-menu" class="hide-for-large">
-        <%= page_categories_menu_html_foundation_6(options: {
-            wrapper_ul_class: 'vertical menu hide-for-large',
-            wrapper_ul_data: 'data-accordion-menu data-options="multiOpen: false"',
-            inner_ul_class: 'menu vertical nested',
-            inner_ul_data: ''
-        }).html_safe %>
-      </div>
-      <!-- /small displays on small and medium and is non sticky -->
+    <%= render 'before_site_main_navigation' %>
 
-      <!-- large displays on large and is sticky -->
-      <div id="large-main-menu" class="show-for-large">
-        <div class="row">
-          <div class="large-9 columns">
-            <%= page_categories_menu_html_foundation_6(options: {
-                wrapper_ul_class: 'dropdown menu show-for-large',
-                wrapper_ul_data: 'data-dropdown-menu data-options=""',
-                inner_ul_class: 'menu',
-                inner_ul_data: ''
-            }).html_safe %>
-          </div>
-          <div class="large-3 columns">
-            <ul class="menu align-right">
-              <% if controller_name != 'sessions' %>
-                  <% unless user_signed_in? %>
-                      <li><%= link_to sign_in_message, new_user_session_path %></li>
-                  <% else %>
-                      <li><%= link_to sign_out_message, destroy_user_session_path, method: :delete,
-                              data: { confirm: "#{current_user.name} #{are_you_sure_message}" } %></li>
-                      <li><%= image_tag current_user.image, alt: current_user.name, title: current_user.name %></li>
-                  <% end %>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <script>$("#large-main-menu").sticky({topSpacing:0});</script>
-      <!-- /large displays on large and is sticky -->
-      <!-- /menu (small|large) -->
-    </div>
-    <!-- /main menu -->
+    <%= render 'site_main_navigation' %>
 
-    <div class="v-space-20"></div>
+    <%= render 'notice_alert' %>
 
-    <!-- notice|alert -->
-    <div class="row">
-      <div class="column">
-        <% if notice %>
-            <div class="callout small success" data-closable>
-              <h5><%= notice %></h5>
-              <button class="close-button" type="button" data-close>
-                <i class="fi-x-circle"></i>
-              </button>
-            </div>
-        <% end %>
-        <% if alert %>
-            <div class="callout small alert" data-closable>
-              <h5><%= alert %></h5>
-              <button class="close-button" type="button" data-close>
-                <i class="fi-x-circle"></i>
-              </button>
-            </div>
-        <% end %>
-      </div>
-    </div>
-    <!-- /notice/alert -->
+    <%= render 'before_site_content' %>
 
-    <!-- main content -->
-    <div id="main-content">
-      <div class="row">
-        <div class="column">
-          <%= yield %>
-        </div>
-      </div>
-    </div>
-    <!-- /main content-->
+    <%= render 'site_content' %>
 
-    <!-- footer -->
-    <div id="site-footer">
-      <div class="row">
-        <div class="column">
-          <%= get_content_for 'footer' %>
-        </div>
-      </div>
-    </div>
-    <!-- /footer -->
+    <%= render 'before_site_footer' %>
+
+    <%= render 'site_footer' %>
 
   </body>
 
