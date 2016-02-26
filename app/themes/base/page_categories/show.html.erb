@@ -1,13 +1,15 @@
 
 <h1><%= @resource.name %></h1>
 
-<% if @resource.pages.count > 0  %>
-    <ul>
-      <% (@resource.pages).each do |page| %>
-        <li><%= page.name %></li>
-      <% end %>
-    </ul>
-<% end %>
+<%= page_categories_menu_html_foundation_6(
+        arr: (@resource.pages + @resource.children),
+        options: {
+            wrapper_ul_class: '',
+            wrapper_ul_data: '',
+            inner_ul_class: '',
+            inner_ul_data: ''
+        }).html_safe %>
+
 
 
 
