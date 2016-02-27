@@ -46,7 +46,11 @@ Help:
     will list excerpts for 'movie_1' and 'movie_2'
     If 'movie_3' would be added under 'movies' and would be published and included in main nav,
     then 'movies' will not be clickable but will expand to 'movie_3', so we could not be able
-    to reach 'movie_1' and 'movie_2' in any way.
+    to reach 'movie_1' and 'movie_2' from main nav.
+    
+    TL;DR: 
+        in code: category_is_expandable_in_main_nav = (item.has_subcategories? || item.has_nav_pages?)
+        A PageCategory will expand if it contains at least one sub-category or at least one Page that should be visible in main nav.
     
     
 

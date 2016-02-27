@@ -25,7 +25,7 @@ module PageCategoriesHelper
      .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
   end
 
-  def breadcrumbs
+  def breadcrumbs(all_links = true)
     current_item_id = _current_item_id
     sorted_pages_and_categories = _sorted_pages_and_categories
     non_nav_page = sorted_pages_and_categories.find{ |p| p.id == current_item_id } ? nil : Page.find_by_id(current_item_id)
@@ -38,15 +38,19 @@ module PageCategoriesHelper
     .map do |item|
       {name: item.name,
        path: if item.is_a?(PageCategory)
-               category_is_expandable_in_main_nav = (item.has_subcategories? || item.has_nav_pages?)
-               category_is_expandable_in_main_nav ? nil : page_category_path(item)
+               unless all_links
+                 category_is_expandable_in_main_nav = (item.has_subcategories? || item.has_nav_pages?)
+                 category_is_expandable_in_main_nav ? nil : page_category_path(item)
+               else
+                 page_category_path(item)
+               end
               else
                 item.root_page? ? root_path : page_path(item)
               end
       }
     end
     .each.with_index do |item, i|
-      if i == items.length - 1 || item[:path].nil?
+      if item[:path].nil? || !all_links && i == items.length - 1
         html << "<li>#{item[:name]}</li>"
       else
         html << "<li><a href='#{item[:path]}'>#{item[:name]}</a></li>"
@@ -120,7 +124,7 @@ module PageCategoriesHelper
       children = obj[:children]
       active = 'active' if obj[:active]
       if children.nil? || children.length == 0
-        # make clickable either a Page either a PageCategory with no menu children
+        # make clickable either a Page either a PageCategory with no nav children
         html << "<li class='#{active}'><a href='#{link}' class='page'>#{name}</a></li>"
       else
         html << "<li class='#{active}'><a href='javascript:void(0);' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(arr: children, options: options, _count: _count+1)}</li>"
