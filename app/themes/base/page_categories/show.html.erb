@@ -1,11 +1,16 @@
 
 <h1><%= @resource.name %></h1>
 
-<% @resource.pages.each do |page| %>
+<% @resource.children.each do |item| %>
     <div>
-      <h3><%= page.name %></h3>
-      <div><%= page.excerpt.html_safe %></div>
-      <p><%= link_to I18n.t('read_more'), page_path(page) %></p>
+      <% if item.is_a? Page %>
+          <h3><%= item.name %></h3>
+          <div><%= item.excerpt.html_safe %></div>
+          <p><%= link_to I18n.t('read_more'), page_path(item) %></p>
+      <% else %>
+          <h3><%= link_to item.name, page_category_path(item) %></h3>
+      <% end %>
+
     </div>
 <% end %>
 

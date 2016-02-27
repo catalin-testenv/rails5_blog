@@ -31,7 +31,7 @@ Help:
     If a PageCategory has children consisting in other PageCategories or Pages included in main nav 
     it will not be clickable but will expand to its children
     
-    If a PageCategory has children consisting in only 0 or more Pages children
+    If a PageCategory has children consisting in only 0 or more Pages
     NOT included in main nav, it will be clickable and the page that opens will display 
     the list of Pages
     

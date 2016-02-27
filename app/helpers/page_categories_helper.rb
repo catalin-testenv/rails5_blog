@@ -38,7 +38,7 @@ module PageCategoriesHelper
     .map do |item|
       {name: item.name,
        path: if item.is_a?(PageCategory)
-               category_is_expandable_in_main_nav = (item.has_sub_categories? || item.has_nav_pages?)
+               category_is_expandable_in_main_nav = (item.has_subcategories? || item.has_nav_pages?)
                category_is_expandable_in_main_nav ? nil : page_category_path(item)
               else
                 item.root_page? ? root_path : page_path(item)
