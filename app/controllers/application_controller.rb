@@ -1,5 +1,5 @@
 
-# TODO: what should be displayed in a page category view ?
+# TODO: maybe we should be able to make any PageCategory clickable | what should be displayed in a page category view ????
 # TODO: make possible to extract menu between levels (if one needs separate sub-menus)
 # TODO: add page_category editor
 # TODO: add more omniauth providers
@@ -7,8 +7,12 @@
 # TODO: show formatted code on client - almost done
 # TODO: check how to generate code view from server # http://pygments.org/docs/ | https://github.com/jneen/rouge
 # TODO: add TinyMCE option
+# TODO: in UI be able to switch between site view and admin view
+# TODO: there should be a settings controller/model for some general customizations
 # TODO: implement comments
+# TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: make blog real
+# TODO: move page content/js/css into separate table
 # TODO: implement layout regions
 # TODO: make unittests
 # TODO: add assets manager as an engine preferably + stuff(gallery, carousel)
@@ -16,9 +20,11 @@
 # TODO: automate as much as possible when deploying/installing
 # TODO: add help sections / document what helpers are available
 # TODO: improve UI
+# TODO: try ui-kit and use it in UI
 # TODO: check ENV hanging (assets precompile) when switching envs
 # TODO: add plugins/utils: contact_form, ...
 # TODO: add quotes module
+# TODO: check mouse events (for: menu, tabs, ...) behaviour on tablets/phones
 
 class UserContext
   attr_reader :user, :ctrl

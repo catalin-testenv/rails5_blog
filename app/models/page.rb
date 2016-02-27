@@ -3,6 +3,7 @@ class Page < ApplicationRecord
   attr_accessor :active
 
   MAX_META = 150
+  EXCERPT_LENGTH = 100
 
   belongs_to :page_category, foreign_key: 'parent_id', required: false
 
@@ -34,6 +35,12 @@ class Page < ApplicationRecord
       end
     end
     super
+  end
+
+  def excerpt
+    res = super
+    return res if res && res.length > 0
+    content[0..EXCERPT_LENGTH]
   end
 
   def to_name

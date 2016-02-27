@@ -1,14 +1,13 @@
 
 <h1><%= @resource.name %></h1>
 
-<%= page_categories_menu_html_foundation_6(
-        arr: (@resource.pages + @resource.children),
-        options: {
-            wrapper_ul_class: '',
-            wrapper_ul_data: '',
-            inner_ul_class: '',
-            inner_ul_data: ''
-        }).html_safe %>
+<% @resource.pages.each do |page| %>
+    <div>
+      <h3><%= page.name %></h3>
+      <div><%= page.excerpt.html_safe %></div>
+      <p><%= link_to I18n.t('read_more'), page_path(page) %></p>
+    </div>
+<% end %>
 
 
 

@@ -38,6 +38,7 @@ ro:
   error: 'eroare'
   menu: 'meniu'
   root: 'radacina'
+  read_more: 'citeste tot articolul'
 
   # ---------------- STANDARD_RESOURCE
 

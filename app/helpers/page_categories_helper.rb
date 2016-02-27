@@ -1,31 +1,56 @@
 module PageCategoriesHelper
 
+  def _current_item_id
+    (request.env['PATH_INFO'].split('/')[-1] || Page.root_page.to_param).to_i
+  end
+
   def _sorted_pages_and_categories
-    current_item_id = (request.env['PATH_INFO'].split('/')[-1] || Page.root_page.to_param).to_i
+    current_item_id = _current_item_id
+    page_categories_all = PageCategory.all
+    nav_pages = Page.for_main_menu
+    # try first to get current_page from nav pages then from non nav pages in case we are viewing a non nav page
+    # current_item_id might not even be related to a Page, so current_page might end up being nil
+    current_page = (nav_pages.find{ |p| p.id == current_item_id } || Page.find_by_id(current_item_id))
 
-    # we re-sort items to mix ordering between Page and PageCategory
-    sorted_items = (PageCategory.all + Page.for_main_menu)
-                       .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
-
-    # mark active items
-    sorted_items.reverse_each do |item|
+    # mark active items for navigation
+    (page_categories_all + (current_page ? [current_page] : [])).reverse_each do |item|
       if item.id == current_item_id
         item.active = true
         current_item_id = item.parent_id
       end
     end
 
-    sorted_items
+    # we re-sort items to mix ordering between Page and PageCategory
+    (page_categories_all + nav_pages)
+     .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
   end
 
-  def breadcrumb
+  def breadcrumbs
+    current_item_id = _current_item_id
+    sorted_pages_and_categories = _sorted_pages_and_categories
+    non_nav_page = sorted_pages_and_categories.find{ |p| p.id == current_item_id } ? nil : Page.find_by_id(current_item_id)
+    non_nav_page && non_nav_page.active = true
+    items = (sorted_pages_and_categories + (non_nav_page ? [non_nav_page] : [])).select(&:active)
+
     html ='<nav aria-label="You are here:" role="navigation"><ul class="breadcrumbs">'
 
-    _sorted_pages_and_categories
-    .select(&:active)
-    .map { |item| {name: item.name, path: item.is_a?(PageCategory) ? nil : item.root_page? ? root_path: page_path(item)} }
-    .each do |item|
-      html << "<li>#{item[:name]}</li>"
+    items
+    .map do |item|
+      {name: item.name,
+       path: if item.is_a?(PageCategory)
+               category_is_expandable_in_main_nav = (item.has_sub_categories? || item.has_nav_pages?)
+               category_is_expandable_in_main_nav ? nil : page_category_path(item)
+              else
+                item.root_page? ? root_path : page_path(item)
+              end
+      }
+    end
+    .each.with_index do |item, i|
+      if i == items.length - 1 || item[:path].nil?
+        html << "<li>#{item[:name]}</li>"
+      else
+        html << "<li><a href='#{item[:path]}'>#{item[:name]}</a></li>"
+      end
     end
 
     html << '</ul></nav>'
@@ -94,10 +119,11 @@ module PageCategoriesHelper
       link = obj[:link]
       children = obj[:children]
       active = 'active' if obj[:active]
-      unless children
+      if children.nil? || children.length == 0
+        # make clickable either a Page either a PageCategory with no menu children
         html << "<li class='#{active}'><a href='#{link}' class='page'>#{name}</a></li>"
       else
-        html << "<li class='#{active}'><a href='#{link}' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(arr: children, options: options, _count: _count+1)}</li>"
+        html << "<li class='#{active}'><a href='javascript:void(0);' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(arr: children, options: options, _count: _count+1)}</li>"
       end
     end
     html << '</ul>'
