@@ -1,4 +1,5 @@
 
+# TODO: should be excluded from PageCategory show listing those pages for main nav?
 # TODO: ensure that ordering is respected in menu and in listings
 # TODO: maybe we should be able to make any PageCategory clickable | what should be displayed in a page category view ????
 # TODO: make possible to extract menu between levels (if one needs separate sub-menus)
