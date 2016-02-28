@@ -11,11 +11,21 @@
  * It is generally better to create a new file per style scope.
  *  // http://fontawesome.io/examples/
  *  // http://fontawesome.io/icons/
+ *
  *= require font-awesome/css/font-awesome
- *  // http://zurb.com/playground/foundation-icon-fonts-3#customize
+ * // http://zurb.com/playground/foundation-icon-fonts-3#customize
  *= require foundation-icon-font-3/foundation-icons/foundation-icons
+ *
+ * ------choose style and UI framework
+ *
+ * ----------- foundation 6
+
  *= require framework_foundation
+ *
+ * ----------- uikit
  *= // require framework_uikit
+ *
+ * ------/choose an UI framework
  */
 
 //@import 'debug';
