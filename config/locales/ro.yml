@@ -39,6 +39,8 @@ ro:
   menu: 'meniu'
   root: 'radacina'
   read_more: 'citeste tot articolul'
+  administration: 'administrare'
+  view_site: 'vizualizeaza site-ul'
 
   # ---------------- STANDARD_RESOURCE
 

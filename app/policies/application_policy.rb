@@ -1,4 +1,7 @@
 class ApplicationPolicy
+
+  include ControllerDependentPolicy
+
   attr_reader :user, :record, :ctrl
 
   def initialize(user_context, record)

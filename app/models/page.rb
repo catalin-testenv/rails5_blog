@@ -40,7 +40,7 @@ class Page < ApplicationRecord
   def excerpt
     res = super
     return res if res && res.length > 0
-    content[0..EXCERPT_LENGTH]
+    content.truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
   end
 
   def to_name

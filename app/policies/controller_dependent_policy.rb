@@ -7,8 +7,13 @@
 # We injected controller into UserContext in ApplicationController (as suggested in Pundit documentation)
 
 module ControllerDependentPolicy
-  def admin_and_admin_controller_or_not_admin_controller
-    ctrl.is_a?(Admin::AdminController) && user && user.admin? ||
-        !ctrl.is_a?(Admin::AdminController)
+
+  def admin_and_admin_controller
+    ctrl.is_a?(Admin::AdminController) && user && user.admin?
   end
+
+  def admin_and_admin_controller_or_not_admin_controller
+    admin_and_admin_controller || !ctrl.is_a?(Admin::AdminController)
+  end
+
 end

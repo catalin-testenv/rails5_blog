@@ -39,6 +39,8 @@ en:
   menu: 'menu'
   root: 'root'
   read_more: 'read more'
+  administration: 'administration'
+  view_site: 'view site'
 
   # ---------------- RESOURCE
 

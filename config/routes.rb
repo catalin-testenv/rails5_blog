@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root to: 'home#home'
     resources :pages
   end
 
