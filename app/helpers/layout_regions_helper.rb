@@ -7,7 +7,7 @@ module LayoutRegionsHelper
 
   # TODO: fake
   def some_helper
-    breadcrumbs
+    'helper content'
   end
 
 end
