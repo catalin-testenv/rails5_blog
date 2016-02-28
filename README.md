@@ -21,7 +21,14 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Third party included libs
+    font awesome (4.5.0) https://fortawesome.github.io/Font-Awesome/
+    foundation sites 6 (6.2.0) https://github.com/zurb/foundation-sites | bower install foundation-sites
+    foundation icon fonts 3 http://zurb.com/playground/foundation-icon-fonts-3
+    ace code editor (1.2.3) https://github.com/ajaxorg/ace-builds
+    sticky (1.0.3) http://stickyjs.com/ | https://github.com/garand/sticky
+    bower-uikit (2.25.0) https://github.com/uikit/bower-uikit
+    
 
 Help:
     
