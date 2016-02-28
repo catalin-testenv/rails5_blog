@@ -9,12 +9,12 @@
 # TODO: show formatted code on client - almost done
 # TODO: check how to generate code view from server # http://pygments.org/docs/ | https://github.com/jneen/rouge
 # TODO: add TinyMCE option
-# TODO: in UI be able to switch between site view and admin view
+# TODO: populate admin#home with useful stuff
 # TODO: there should be a settings controller/model for some general customizations
 # TODO: implement comments
 # TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: make blog real
-# TODO: move page content/js/css into separate table
+# TODO: move page content/js/css into separate table for performance reasons
 # TODO: implement layout regions
 # TODO: make unittests
 # TODO: add assets manager as an engine preferably + stuff(gallery, carousel)
