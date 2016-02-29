@@ -10,92 +10,78 @@
     <%= @resource.meta_js.try(:html_safe) %>
 <% end %>
 
-<h4><%= resource_view_show_message resource_instance: @resource %></h4>
+<h4><%= resource_view_show_message resource_instance: @resource %> <span>[id&lt;<%= @resource.id %>&gt;]</span></h4>
 
-<div class="zone-wrapper">
-  <span class="show-details-key"><%= Page.human_attribute_name(:id).humanize %>:</span>
-  <span><%= @resource.id %></span>
-</div>
-
-<div class="zone-wrapper">
-  <span class="show-details-key"><%= Page.human_attribute_name(:name).humanize %>:</span>
-  <span><%= @resource.name %></span>
+<div>
+  <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
+    <li><%= link_to edit_message, edit_admin_page_path(@resource) %></li>
+    <li><%= link_to back_message, admin_pages_path %></li>
+  </ul>
 </div>
 
 <div>
-  <ul class="tabs" data-tabs>
-    <li class="tabs-title is-active"><a href="#meta_description" aria-selected="true"><%= Page.human_attribute_name(:meta_description) %></a></li>
-    <li class="tabs-title"><a href="#excerpt"><%= Page.human_attribute_name(:excerpt) %></a></li>
+  <ul class="uk-tab" data-uk-tab="{connect:'#my-id'}">
+    <li class="uk-active"><a href=""><%= Page.human_attribute_name(:meta_description) %></a></li>
+    <li><a href=""><%= Page.human_attribute_name(:excerpt) %></a></li>
+    <li><a href="" ><%= Page.human_attribute_name(:meta_css) %></a></li>
+    <li><a href=""><%= Page.human_attribute_name(:meta_js) %></a></li>
   </ul>
-  <div class="tabs-content code-editor-container zone-wrapper" data-tabs-content>
-    <div class="tabs-panel is-active" id="meta_description">
-      <pre data-code-editor='{"language":"text"}'><%= @resource.meta_description %></pre>
-    </div>
-    <div class="tabs-panel" id="excerpt">
-      <pre data-code-editor='{"language":"text"}'><%= @resource.excerpt.html_safe %></pre>
-    </div>
-  </div>
+  <ul id="my-id" class="uk-switcher uk-margin">
+    <li><pre data-code-editor='{"language":"text"}'><%= @resource.meta_description %></pre></li>
+    <li><pre data-code-editor='{"language":"text"}'><%= @resource.excerpt.html_safe %></pre></li>
+    <li><pre data-code-editor='{"language":"text"}'><%= @resource.meta_css %></pre></li>
+    <li><pre data-code-editor='{"language":"text"}'><%= @resource.meta_js %></pre></li>
+  </ul>
 </div>
 
-<div>
-  <ul class="tabs" data-tabs>
-    <li class="tabs-title is-active"><a href="#meta_css" aria-selected="true"><%= Page.human_attribute_name(:meta_css) %></a></li>
-    <li class="tabs-title"><a href="#meta_js"><%= Page.human_attribute_name(:meta_js) %></a></li>
-  </ul>
-  <div class="tabs-content code-editor-container zone-wrapper" data-tabs-content>
-    <div class="tabs-panel is-active" id="meta_css">
-      <pre data-code-editor='{"language":"text"}'><%= @resource.meta_css %></pre>
-    </div>
-    <div class="tabs-panel" id="meta_js">
-      <pre data-code-editor='{"language":"text"}'><%= @resource.meta_js %></pre>
-    </div>
-  </div>
-</div>
+<hr class="uk-grid-divider" />
 
-<div class="row zone-wrapper">
-  <div class="large-3 small-6 columns">
+<div class="uk-grid uk-grid-small uk-grid-divider" data-uk-grid-margin>
+  <div class="uk-width-large-1-4 uk-width-1-2">
+    <%= content_tag(:span, nil, class: @resource.is_main_nav ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %>
     <span class="show-details-key"><%= Page.human_attribute_name(:is_main_nav).humanize %></span>
-    <div><%= content_tag(:span, nil, class: @resource.is_main_nav ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
   </div>
-  <div class="large-3 small-6 columns">
+  <div class="uk-width-large-1-4 uk-width-1-2">
+    <%= content_tag(:span, nil, class: @resource.is_commentable ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %>
     <span class="show-details-key"><%= Page.human_attribute_name(:is_commentable).humanize %></span>
-    <div><%= content_tag(:span, nil, class: @resource.is_commentable ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
   </div>
-  <div class="large-3 small-6 columns">
+  <div class="uk-width-large-1-4 uk-width-1-2">
+    <%= content_tag(:span, nil, class: @resource.published ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %>
     <span class="show-details-key"><%= Page.human_attribute_name(:published).humanize %></span>
-    <div><%= content_tag(:span, nil, class: @resource.published ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
   </div>
-  <div class="large-3 small-6 end columns">
+  <div class="uk-width-large-1-4 uk-width-1-2">
+    <%= content_tag(:span, nil, class: @resource.root_page ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %>
     <span class="show-details-key"><%= Page.human_attribute_name(:root_page).humanize %></span>
-    <div><%= content_tag(:span, nil, class: @resource.root_page ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %></div>
   </div>
 </div>
 
-<hr />
+<hr class="uk-grid-divider">
 
-<div class="row zone-wrapper">
-  <div class="large-4 small-6 columns">
-    <span class="show-details-key"><%= Page.human_attribute_name(:parent_id).humanize %></span>
-    <div><span><%= @resource.page_category.try(:name) || I18n.t('root') %></span></div>
+<div class="uk-grid uk-grid-small uk-grid-divider" data-uk-grid-margin>
+  <div class="uk-width-large-1-4 uk-width-1-2">
+    <span class="show-details-key"><%= Page.human_attribute_name(:parent_id).humanize %></span>:
+    <i><%= @resource.page_category.try(:name) || I18n.t('root') %></i>
   </div>
-  <div class="large-4 small-6 columns">
-    <span class="show-details-key"><%= Page.human_attribute_name(:ordering).humanize %></span>
-    <div><span><%= @resource.ordering%></span></div>
+  <div class="uk-width-large-1-4 uk-width-1-2">
+    <span class="show-details-key"><%= Page.human_attribute_name(:ordering).humanize %></span>:
+    <i><%= @resource.ordering%></i>
   </div>
-  <div class="large-4 columns">
-    <span class="show-details-key"><%= Page.human_attribute_name(:max_comments).humanize %></span>
-    <div><span><%= @resource.max_comments%></span></div>
+  <div class="uk-width-large-1-4 uk-width-1-2">
+    <span class="show-details-key"><%= Page.human_attribute_name(:max_comments).humanize %></span>:
+    <i><%= @resource.max_comments%></i>
   </div>
 </div>
 
-<hr />
+<hr class="uk-grid-divider" />
 
-<div class="zone-wrapper">
+<div>
   <div><%= evaluate(@resource.content).html_safe %></div>
 </div>
 
+<hr class="uk-grid-divider" />
+
 <div>
-  <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-link-unmuted">
+  <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
     <li><%= link_to edit_message, edit_admin_page_path(@resource) %></li>
     <li><%= link_to back_message, admin_pages_path %></li>
   </ul>

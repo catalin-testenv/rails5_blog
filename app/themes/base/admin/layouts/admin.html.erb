@@ -19,14 +19,14 @@
   <body>
 
     <div class="uk-container uk-container-center">
-      <div class="uk-grid uk-grid-small">
+      <div class="uk-grid uk-grid-small" data-uk-grid-margin>
 
         <!-- admin-toggle -->
         <div class="uk-width-medium-1-1">
           <div id="admin-toggle">
             <% if current_user && current_user.admin? %>
                 <% if controller.is_a? Admin::AdminController  %>
-                    <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-link-unmuted">
+                    <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-margin-bottom-remove uk-link-unmuted">
                       <li><%= link_to I18n.t('view_site').camelize, root_path %></li>
                       <li><%= link_to I18n.t('administration').camelize, admin_root_path %></li>
                     </ul>
@@ -41,37 +41,33 @@
         <!-- /admin-toggle -->
 
         <!-- admin-main-navigation -->
-        <div class="uk-width-medium-1-4">
+        <div class="uk-width-medium-1-5">
           <div id="admin-main-navigation">
             <%= render 'admin/partials/admin_main_navigation' %>
           </div>
         </div>
         <!-- /admin-main-navigation -->
 
-        <div class="uk-width-medium-3-4">
+        <div class="uk-width-medium-4-5">
           <!-- admin-notice-alert -->
           <div id="admin-notice-alert">
             <% if notice %>
-                <div class="callout small success" data-closable>
-                  <h5><%= notice %></h5>
-                  <button class="close-button" type="button" data-close>
-                    <i class="fi-x-circle"></i>
-                  </button>
+                <div class="uk-alert uk-alert-success" data-uk-alert>
+                  <a href="" class="uk-alert-close uk-close"></a>
+                  <p><%= notice %></p>
                 </div>
             <% end %>
             <% if alert %>
-                <div class="callout small alert" data-closable>
-                  <h5><%= alert %></h5>
-                  <button class="close-button" type="button" data-close>
-                    <i class="fi-x-circle"></i>
-                  </button>
+                <div class="uk-alert uk-alert-danger" data-uk-alert>
+                  <a href="" class="uk-alert-close uk-close"></a>
+                  <p><%= alert %></p>
                 </div>
             <% end %>
           </div>
           <!-- /admin-notice-alert -->
 
           <!-- admin-body -->
-          <div id="admin-body">
+          <div id="admin-body" class="uk-panel uk-panel-box">
             <%= yield %>
           </div>
           <!-- /admin-body -->
