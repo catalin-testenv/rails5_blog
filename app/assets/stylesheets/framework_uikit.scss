@@ -2,19 +2,26 @@
 @import 'bower-uikit/scss/uikit-variables';
 @import 'bower-uikit/scss/uikit-mixins';
 
-// override variables
+// -------- override variables
+
 $icon-font-path: 'font-awesome/fonts';
 $utility-container-padding-horizontal: 10px;
 $utility-container-large-padding-horizontal: 10px;
 
 $nav-side-active-background: #002f40;
 
-// override hook-mixins
+$tab-active-border: #ddd;
+$tab-border: #ddd;
+
+// -------- override hook-mixins
+
 @mixin hook-nav-side-active(){
   //&:hover {
   //  color: gray;
   //}
 }
+
+// -------- helpers
 
 .uk-link-unmuted {
   a {
@@ -26,6 +33,18 @@ $nav-side-active-background: #002f40;
     }
   }
 }
+
+// ============== code editor
+
+.uk-switcher.code-editor-area {
+  padding: 10px 0px;
+  background-color: white;
+  border-left: $tab-border-width solid $tab-active-border;
+  border-right: $tab-border-width solid $tab-active-border;
+  border-bottom: $tab-border-width solid $tab-active-border;
+}
+
+// ============== /code editor
 
 @import 'bower-uikit/scss/uikit';
 
