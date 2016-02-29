@@ -1,0 +1,10 @@
+
+<div class="uk-panel uk-panel-box">
+  <h3 class="uk-panel-title"><%= I18n.t('administration').camelize %></h3>
+  <ul class="uk-nav uk-nav-side">
+    <li class="<%= 'uk-active' if controller.is_a?(Admin::PagesController) %>"><a href="<%= admin_pages_path %>"><%= Page.model_name.human(count: 2) %></a></li>
+    <li><a href="#">other</a></li>
+  </ul>
+</div>
+
+

@@ -18,11 +18,66 @@
 
   <body>
 
-    <%= render 'admin/partials/admin_toggle' %>
+    <div class="uk-container uk-container-center">
+      <div class="uk-grid uk-grid-small">
 
-    <%= render 'admin/partials/notice_alert' %>
+        <!-- admin-toggle -->
+        <div class="uk-width-medium-1-1">
+          <div id="admin-toggle">
+            <% if current_user && current_user.admin? %>
+                <% if controller.is_a? Admin::AdminController  %>
+                    <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-link-unmuted">
+                      <li><%= link_to I18n.t('view_site').camelize, root_path %></li>
+                      <li><%= link_to I18n.t('administration').camelize, admin_root_path %></li>
+                    </ul>
+                <% else %>
+                    <ul class="uk-subnav uk-subnav-line">
+                      <li><%= link_to I18n.t('administration').camelize, admin_root_path %></li>
+                    </ul>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- /admin-toggle -->
 
-    <%= render 'admin/partials/site_content' %>
+        <!-- admin-main-navigation -->
+        <div class="uk-width-medium-1-4">
+          <div id="admin-main-navigation">
+            <%= render 'admin/partials/admin_main_navigation' %>
+          </div>
+        </div>
+        <!-- /admin-main-navigation -->
+
+        <div class="uk-width-medium-3-4">
+          <!-- admin-notice-alert -->
+          <div id="admin-notice-alert">
+            <% if notice %>
+                <div class="callout small success" data-closable>
+                  <h5><%= notice %></h5>
+                  <button class="close-button" type="button" data-close>
+                    <i class="fi-x-circle"></i>
+                  </button>
+                </div>
+            <% end %>
+            <% if alert %>
+                <div class="callout small alert" data-closable>
+                  <h5><%= alert %></h5>
+                  <button class="close-button" type="button" data-close>
+                    <i class="fi-x-circle"></i>
+                  </button>
+                </div>
+            <% end %>
+          </div>
+          <!-- /admin-notice-alert -->
+
+          <!-- admin-body -->
+          <div id="admin-body">
+            <%= yield %>
+          </div>
+          <!-- /admin-body -->
+        </div>
+      </div>
+    </div>
 
   </body>
 

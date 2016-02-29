@@ -1,6 +1,33 @@
 
-$icon-font-path: 'font-awesome/fonts';
-
+@import 'bower-uikit/scss/uikit-variables';
 @import 'bower-uikit/scss/uikit-mixins';
+
+// override variables
+$icon-font-path: 'font-awesome/fonts';
+$utility-container-padding-horizontal: 10px;
+$utility-container-large-padding-horizontal: 10px;
+
+$nav-side-active-background: #002f40;
+
+// override hook-mixins
+@mixin hook-nav-side-active(){
+  //&:hover {
+  //  color: gray;
+  //}
+}
+
+.uk-link-unmuted {
+  a {
+    color: $base-link-color;
+    text-decoration: $base-link-text-decoration;
+    &:hover {
+      color: $base-link-hover-color;
+      text-decoration: $base-link-hover-text-decoration;
+    }
+  }
+}
+
 @import 'bower-uikit/scss/uikit';
+
+
 
