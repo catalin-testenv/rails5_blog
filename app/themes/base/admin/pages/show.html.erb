@@ -10,7 +10,7 @@
     <%= @resource.meta_js.try(:html_safe) %>
 <% end %>
 
-<h4><%= resource_view_show_message resource_instance: @resource %> <span>[id&lt;<%= @resource.id %>&gt;]</span></h4>
+<h4 class="uk-panel-title"><%= resource_view_show_message resource_instance: @resource %> <span>[id&lt;<%= @resource.id %>&gt;]</span></h4>
 
 <div>
   <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
