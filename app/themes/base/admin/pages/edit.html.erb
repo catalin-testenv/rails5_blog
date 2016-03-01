@@ -2,7 +2,14 @@
     <%= resource_view_editing_message resource_instance: @resource %>
 <% end %>
 
-<h4><%= resource_view_editing_message resource_instance: @resource %></h4>
+<h4 class="uk-panel-title"><%= resource_view_editing_message resource_instance: @resource %></h4>
+
+<div>
+  <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-link-unmuted">
+    <li><%= link_to show_message, admin_page_path(@resource) %></li>
+    <li><%= link_to back_message, admin_pages_path %></li>
+  </ul>
+</div>
 
 <%= render 'form', resource: @resource %>
 

@@ -1,0 +1,102 @@
+
+@import 'bower-uikit/scss/uikit-variables';
+@import 'bower-uikit/scss/uikit-mixins';
+
+// -------- override variables
+$icon-font-path: 'font-awesome/fonts';
+$utility-container-padding-horizontal: 0px;
+$utility-container-large-padding-horizontal: 10px;
+
+$nav-side-active-background: #002f40;
+
+$tab-active-background: #a5904e;
+$tab-hover-background: #b69f56;
+$tab-active-border: #ddd;
+$tab-border: #ddd;
+
+$panel-box-background: #dec36b;
+
+$form-background: #a5904e;
+$form-color: #444;
+$form-border: #6b5e34;
+
+$form-focus-background: #bfa75a;
+$form-focus-color: #444;
+$form-focus-border: #6b5e34;
+
+$button-background: #6b5e34;
+$button-hover-background: #847440;
+// -------- /override variables
+
+
+// -------- override hook-mixins
+@mixin hook-nav-side-active(){
+  //&:hover {
+  //  color: gray;
+  //}
+}
+// -------- /override hook-mixins
+
+// -------- helpers
+.uk-link-unmuted {
+  a {
+    color: $base-link-color;
+    text-decoration: $base-link-text-decoration;
+    &:hover {
+      color: $base-link-hover-color;
+      text-decoration: $base-link-hover-text-decoration;
+    }
+  }
+}
+
+.cancel-panel-box-horizontal-padding {
+  margin-left: -$panel-box-padding;
+  margin-right: -$panel-box-padding;
+}
+// -------- /helpers
+
+
+
+// ============== form area
+.field_with_errors label {
+  color: $text-danger-color;
+}
+
+form.edit_page .uk-grid-margin {
+  margin-top: $grid-gutter-vertical; // $grid-gutter-small-vertical
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+select::-ms-expand {
+  display: none;
+}
+// ============== /form area
+
+
+
+
+
+// ============== code editor
+.uk-switcher.code-editor-area {
+  padding: 10px 0px;
+  background-color: $form-background;
+  border-left: $tab-border-width solid $tab-active-border;
+  border-right: $tab-border-width solid $tab-active-border;
+  border-bottom: $tab-border-width solid $tab-active-border;
+}
+// ============== /code editor
+
+@import 'bower-uikit/scss/uikit';
+
+// ============== site utilities overrides
+$ccr-color-button-on: #1e7f34;
+$ccr-color-button: #9d9d9d;
+
+@import 'site_utilities';
+// ============== /site utilities overrides
+
+
+

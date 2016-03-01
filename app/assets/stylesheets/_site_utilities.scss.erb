@@ -1,0 +1,69 @@
+
+// ============ form custom radio & checkbox
+
+// http://codepen.io/ericrasch/pen/ElKBI?editors=1100
+
+$ccr-base-background:      #fffaef !default;
+$ccr-base-text:            #4f4351 !default;
+
+$ccr-color-subtitles:      #9a8864 !default;
+$ccr-color-highlight:      #e9e59b !default;
+
+$ccr-color-button:         #f2f2f0 !default;
+$ccr-color-button-text:    darken($ccr-color-button, 50%) !default;
+$ccr-color-button-border:  darken($ccr-color-button, 10%) !default;
+$ccr-color-button-on:      indianred !default;
+
+.custom-cc:not(#foo) input[type='radio'],
+.custom-cc:not(#foo) input[type='checkbox'] {
+  // Hide the input, but have it still be click-able
+  opacity: 0;
+  // filter: "alpha(opacity=0)";
+  float: left;
+  width: 1px;
+}
+
+.custom-cc:not(#foo) input[type='radio'] + label,
+.custom-cc:not(#foo) input[type='checkbox'] + label {
+  display: inline-block;
+  clear: none;
+  // Left padding makes room for image
+  padding: .5em;
+  cursor: pointer;
+  // background: url(off.png) left center no-repeat;
+  background: $ccr-color-button;
+  //.border-radius(3px);
+  // border: 1px solid $ccr-color-button-border;
+  color: $ccr-color-button-text;
+  font-weight: 700;
+  // text-transform: uppercase;
+  text-align: center;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.custom-cc.custom-cc-fa:not(#foo) input[type='radio'] + label:after,
+.custom-cc.custom-cc-fa:not(#foo) input[type='checkbox'] + label:after {
+  font-family: FontAwesome;
+  content: "\00a0\00a0\00a0\f088";
+}
+
+.custom-cc:not(#foo) input[type='radio']:checked + label,
+.custom-cc:not(#foo) input[type='checkbox']:checked + label {
+  // background-image: url(radio.png);
+  background: $ccr-color-button-on;
+  // box-shadow: inset 2px 2px 1px darken($ccr-color-button-on, 20%);
+  color: #fff;
+  // font-weight: 900;
+  // text-shadow: 1px 1px 0 darken($ccr-color-button-on, 20%);
+}
+
+.custom-cc.custom-cc-fa:not(#foo) input[type='radio']:checked + label:after,
+.custom-cc.custom-cc-fa:not(#foo) input[type='checkbox']:checked + label:after {
+  content: "\00a0\00a0\00a0\f087";
+}
+
+// ============ /form custom radio & checkbox
+
