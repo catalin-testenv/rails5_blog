@@ -2,19 +2,31 @@
 @import 'bower-uikit/scss/uikit-variables';
 @import 'bower-uikit/scss/uikit-mixins';
 
+// -------- /define variables
+$admin-body-uk-panel-background-color: #f9f9f9;
+$admin-main-navigation-uk-panel-background-color: #D7D6DB;
+// -------- /define variables
+
 // -------- override variables
 $icon-font-path: 'font-awesome/fonts';
-$utility-container-padding-horizontal: 0px;
-$utility-container-large-padding-horizontal: 10px;
 
-$nav-side-active-background: #002f40;
+$base-body-background: #2C2F3B;
+
+$utility-container-padding-horizontal: 0px;
+$utility-container-large-padding-horizontal: 0px;
+
+$nav-side-color: #666;
+$nav-side-active-background: $admin-body-uk-panel-background-color;
+$nav-side-active-color: #333;
+$nav-side-hover-background: rgba(0,0,0,0.1);
+$nav-side-hover-color: #333;
 
 $tab-active-background: #a5904e;
 $tab-hover-background: #b69f56;
 $tab-active-border: #ddd;
 $tab-border: #ddd;
 
-$panel-box-background: #dec36b;
+$panel-box-background: #ffffff;
 
 $form-background: #a5904e;
 $form-color: #444;
@@ -27,6 +39,9 @@ $form-focus-border: #6b5e34;
 $button-background: #6b5e34;
 $button-hover-background: #847440;
 // -------- /override variables
+
+
+
 
 
 // -------- override hook-mixins
@@ -53,8 +68,41 @@ $button-hover-background: #847440;
   margin-left: -$panel-box-padding;
   margin-right: -$panel-box-padding;
 }
+.uk-margin-left-remove { margin-left: 0 !important; }
+.uk-margin-right-remove { margin-right: 0 !important; }
 // -------- /helpers
 
+
+// ============== layout area
+
+#admin-toggle.uk-panel {
+  background-color: $base-body-background;
+}
+
+#admin-body.uk-panel {
+  background-color: $admin-body-uk-panel-background-color;
+}
+#admin-main-navigation.uk-panel {
+  background-color: $admin-main-navigation-uk-panel-background-color;
+  box-shadow: inset -9px 0 8px -11px rgba(0,0,0,.4);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  @media (min-width: $breakpoint-medium) {
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+  }
+}
+#admin-main-navigation .uk-panel-title {
+  margin-bottom: 15px;
+  font-size: 12px;
+  line-height: 12px;
+  weight: normal;
+  color: $nav-side-color;
+  text-transform: uppercase;
+}
+// box-shadow: inset -9px 0 8px -11px rgba(0,0,0,.4); */
+
+// ============== /layout area
 
 
 // ============== form area
