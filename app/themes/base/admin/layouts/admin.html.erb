@@ -26,7 +26,7 @@
           <div id="admin-toggle" class="uk-panel uk-panel-box">
             <% if current_user && current_user.admin? %>
                 <% if controller.is_a? Admin::AdminController  %>
-                    <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
+                    <ul class="uk-subnav uk-subnav-line">
                       <li><%= link_to I18n.t('view_site').camelize, root_path %></li>
                       <li><%= link_to I18n.t('administration').camelize, admin_root_path %></li>
                     </ul>
@@ -41,7 +41,7 @@
         <!-- /admin-toggle -->
 
         <!-- admin-main-navigation -->
-        <div class="uk-width-medium-1-5 uk-padding-remove uk-margin-top_">
+        <div class="uk-width-medium-1-5 uk-padding-remove">
           <div id="admin-main-navigation" class="uk-panel uk-panel-box">
             <%= render 'admin/partials/admin_main_navigation.html' %>
           </div>

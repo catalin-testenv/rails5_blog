@@ -1,16 +1,24 @@
 
+// @import "compass/css3";
+// @import "compass";
+
+
 @import 'bower-uikit/scss/uikit-variables';
 @import 'bower-uikit/scss/uikit-mixins';
 
 // -------- /define variables
 $admin-body-uk-panel-background-color: #f9f9f9;
 $admin-main-navigation-uk-panel-background-color: #D7D6DB;
+$link-color-on-black-background: rgba(255, 255, 255, 0.7);
+$link-hover-color-on-black-background: white;
 // -------- /define variables
 
-// -------- override variables
+// -------- override uk variables
 $icon-font-path: 'font-awesome/fonts';
 
 $base-body-background: #2C2F3B;
+
+$utility-border-rounded: 5px;
 
 $utility-container-padding-horizontal: 0px;
 $utility-container-large-padding-horizontal: 0px;
@@ -38,21 +46,27 @@ $form-focus-border: #6b5e34;
 
 $button-background: #6b5e34;
 $button-hover-background: #847440;
-// -------- /override variables
+// -------- /override uk variables
 
 
+// --------  define mixins
+
+// -------- /define mixins
 
 
-
-// -------- override hook-mixins
+// -------- override uk hook-mixins
 @mixin hook-nav-side-active(){
-  //&:hover {
-  //  color: gray;
-  //}
+  box-shadow:  9px 9px 9px -9px rgba(0,0,0,.4);
+  @media (min-width: $breakpoint-medium) {
+    border-top-left-radius: $utility-border-rounded;
+    border-bottom-left-radius: $utility-border-rounded;
+  }
 }
-// -------- /override hook-mixins
+// -------- /override uk hook-mixins
 
-// -------- helpers
+
+
+// -------- helper classes
 .uk-link-unmuted {
   a {
     color: $base-link-color;
@@ -68,28 +82,48 @@ $button-hover-background: #847440;
   margin-left: -$panel-box-padding;
   margin-right: -$panel-box-padding;
 }
+
+// for the sake of uk utils completeness
 .uk-margin-left-remove { margin-left: 0 !important; }
 .uk-margin-right-remove { margin-right: 0 !important; }
-// -------- /helpers
+.uk-margin-vertical-remove { margin-top: 0 !important; margin-bottom: 0 !important; }
+.uk-margin-horizontal-remove { margin-left: 0 !important; margin-right: 0 !important; }
+.uk-padding-left-remove { padding-left: 0 !important; }
+.uk-padding-right-remove { padding-right: 0 !important; }
+.uk-padding-horizontal-remove {  padding-left: 0 !important;  padding-right: 0 !important;  }
+// -------- /helper classes
+
 
 
 // ============== layout area
 
 #admin-toggle.uk-panel {
   background-color: $base-body-background;
+  .uk-subnav-line > :nth-child(n+2):before {
+    border-width: 0px 1px 0px 0px;
+    border-right: 1px solid darken($link-color-on-black-background, 30%);
+    border-image: linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,.2) 50%,rgba(255,255,255,0) 100%);
+    border-image-slice: 1;
+
+    height: $subnav-line-border-height * 3;
+    margin-top: -($subnav-line-border-height*1.5);
+    margin-bottom: -($subnav-line-border-height*1.5);
+  }
+  a {
+    color: $link-color-on-black-background;
+    &:hover {
+      color: $link-hover-color-on-black-background;
+    }
+  }
 }
 
-#admin-body.uk-panel {
-  background-color: $admin-body-uk-panel-background-color;
-}
 #admin-main-navigation.uk-panel {
   background-color: $admin-main-navigation-uk-panel-background-color;
-  box-shadow: inset -9px 0 8px -11px rgba(0,0,0,.4);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  box-shadow: inset 0 -9px 8px -11px rgba(0,0,0,.4);
   @media (min-width: $breakpoint-medium) {
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 0px;
+    box-shadow: inset -9px 0 8px -11px rgba(0,0,0,.4);
+    border-top-left-radius: $utility-border-rounded;
+    border-bottom-left-radius: $utility-border-rounded;
   }
 }
 #admin-main-navigation .uk-panel-title {
@@ -100,7 +134,20 @@ $button-hover-background: #847440;
   color: $nav-side-color;
   text-transform: uppercase;
 }
-// box-shadow: inset -9px 0 8px -11px rgba(0,0,0,.4); */
+#admin-main-navigation .uk-nav-side {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  @media (min-width: $breakpoint-medium) {
+    margin-right: -$panel-box-padding !important;
+  }
+}
+
+#admin-body.uk-panel {
+  background-color: $admin-body-uk-panel-background-color;
+  @media (min-width: $breakpoint-medium) {
+    border-top-right-radius: $utility-border-rounded;
+  }
+}
 
 // ============== /layout area
 
