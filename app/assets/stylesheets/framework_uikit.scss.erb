@@ -8,15 +8,19 @@
 
 // -------- /define variables
 $admin-body-uk-panel-background-color:           #f9f9f9;
-$admin-main-navigation-uk-panel-background-color: #D7D6DB;
 $link-font-size:                                 13px;
 $link-letter-spacing:                            0.010em;
 $link-font-weight:                               500;
 $link-color-on-black-background:                 rgba(255,255,255,0.5);
 $link-hover-color-on-black-background:           rgba(255,255,255,0.8);
-$panel-title-background-color:                    #DCDCDC; // rgb(223, 223, 223);
-// -------- /define variables
 
+$panel-title-background-color:                   #DCDCDC;
+
+$box-shadow-bottom-right:                        9px 9px 10px -9px rgba(0,0,0,.4);
+$box-shadow-bottom:                              0px 9px 10px -9px rgba(0,0,0,.4);
+$box-shadow-material:                            0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+
+$border-radius-small-all:                        2px;
 // -------- override uk variables
 $icon-font-path:                                 'font-awesome/fonts';
 
@@ -43,21 +47,27 @@ $utility-container-large-padding-horizontal:     0px;
 
 $nav-side-color:                                 #666;
 $nav-side-active-background:                     $admin-body-uk-panel-background-color;
-$nav-side-active-color:                          #444;
+$nav-side-active-color:                          $panel-title-color;
 $nav-side-hover-background:                      rgba(0,0,0,0.1);
-$nav-side-hover-color:                           #444;
+$nav-side-hover-color:                           $panel-title-color;
 
 
 $tab-border:                                     $panel-title-background-color;
-$tab-color:                                      #888;
+$tab-color:                                      lighten($panel-title-color, 20%);
 $tab-hover-border:                               $panel-title-background-color;
 $tab-hover-background:                           $panel-title-background-color;
-$tab-active-color:                               #555;
-$tab-hover-color:                                #555;
+$tab-active-color:                               $panel-title-color;
+$tab-hover-color:                                $panel-title-color;
 $tab-active-border:                              $panel-title-background-color;
 $tab-active-background:                          $panel-title-background-color;
 
 $panel-box-background:                           #ffffff;
+$panel-title-font-size:                          12px;
+$panel-title-color:                              rgba(0, 0, 0, 0.6);
+$panel-title-line-height:                        24px;
+$panel-title-font-weight:                        normal;
+$panel-title-margin-bottom:                      15px;
+$panel-title-text-transform:                     none;
 
 $form-background:                                #a5904e;
 $form-color:                                     #444;
@@ -78,28 +88,87 @@ $button-hover-background:                        #847440;
 
 
 // -------- override uk hook-mixins
-@mixin hook-nav-side-active(){
-  box-shadow:  0px 9px 10px -9px rgba(0,0,0,.4);
-  @media (min-width: $breakpoint-medium) {
-    box-shadow:  9px 9px 10px -9px rgba(0,0,0,.4);
-    border-top-left-radius: $utility-border-rounded;
-    border-bottom-left-radius: $utility-border-rounded;
-  }
-}
+@mixin hook-panel-box() {
 
-@mixin hook-panel-box(){
-  &.panel-box-material {
-    border-radius: 2px;
-    box-shadow:0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+  #admin-toggle & {
+    background-color: $base-body-background;
+    a {
+      color: $link-color-on-black-background;
+      &:hover {
+        color: $link-hover-color-on-black-background;
+      }
+    }
+    .uk-subnav-line > :nth-child(n+2):before {
+      border-width: 0px 1px 0px 0px;
+      border-right: 1px solid darken($link-color-on-black-background, 30%);
+      border-image: linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,.2) 50%,rgba(255,255,255,0) 100%);
+      border-image-slice: 1;
+
+      height: $subnav-line-border-height * 3;
+      margin-top: -($subnav-line-border-height*1.5);
+      margin-bottom: -($subnav-line-border-height*1.5);
+    }
+  }
+
+  #admin-main-navigation & {
+    background-color: $panel-title-background-color;
+    box-shadow: inset 0px -9px 10px -9px rgba(0,0,0,.4);
+    @media (min-width: $breakpoint-medium) {
+      box-shadow: inset -9px 0px 10px -9px rgba(0,0,0,.4);
+      border-top-left-radius: $utility-border-rounded;
+      border-bottom-left-radius: $utility-border-rounded;
+    }
     .uk-panel-title {
-      background-color: rgb(223, 223, 223);
-      color: rgba(0, 0, 0, 0.6);
+      text-transform: uppercase;
+    }
+    .uk-nav-side {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+      @media (min-width: $breakpoint-medium) {
+        margin-right: -$panel-box-padding !important;
+      }
+      li.uk-active > a {
+        box-shadow:  $box-shadow-bottom;
+        @media (min-width: $breakpoint-medium) {
+          box-shadow:  $box-shadow-bottom-right;
+          border-top-left-radius: $utility-border-rounded;
+          border-bottom-left-radius: $utility-border-rounded;
+        }
+      }
+    }
+  }
+
+  #admin-body > & {
+    background-color: $admin-body-uk-panel-background-color;
+    @media (min-width: $breakpoint-medium) {
+      border-top-right-radius: $utility-border-rounded;
+    }
+  }
+
+  &.panel-box-material {
+    border-radius: $border-radius-small-all;
+    box-shadow: $box-shadow-material;
+    .uk-panel-title {
+      background-color: $panel-title-background-color;
+      color: $panel-title-color;
       font-size: 16px;
       margin-left: -$panel-box-padding;
       margin-top: -$panel-box-padding;
       margin-right: -$panel-box-padding;
       padding: $panel-box-padding;
     }
+  }
+
+}
+
+
+@mixin hook-switcher-misc() {
+  .uk-switcher.code-editor-area {
+    padding: 10px 0px;
+    background-color: $panel-title-background-color;
+    border-left: $tab-border-width solid $tab-active-border;
+    border-right: $tab-border-width solid $tab-active-border;
+    border-bottom: $tab-border-width solid $tab-active-border;
   }
 }
 // -------- /override uk hook-mixins
@@ -142,62 +211,6 @@ a {
 }
 // ============== /general
 
-// ============== layout area
-
-#admin-toggle.uk-panel {
-  background-color: $base-body-background;
-  .uk-subnav-line > :nth-child(n+2):before {
-    border-width: 0px 1px 0px 0px;
-    border-right: 1px solid darken($link-color-on-black-background, 30%);
-    border-image: linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,.2) 50%,rgba(255,255,255,0) 100%);
-    border-image-slice: 1;
-
-    height: $subnav-line-border-height * 3;
-    margin-top: -($subnav-line-border-height*1.5);
-    margin-bottom: -($subnav-line-border-height*1.5);
-  }
-  a {
-    color: $link-color-on-black-background;
-    &:hover {
-      color: $link-hover-color-on-black-background;
-    }
-  }
-}
-
-#admin-main-navigation.uk-panel {
-  background-color: $admin-main-navigation-uk-panel-background-color;
-  box-shadow: inset 0px -9px 10px -9px rgba(0,0,0,.4);
-  @media (min-width: $breakpoint-medium) {
-    box-shadow: inset -9px 0px 10px -9px rgba(0,0,0,.4);
-    border-top-left-radius: $utility-border-rounded;
-    border-bottom-left-radius: $utility-border-rounded;
-  }
-}
-#admin-main-navigation .uk-panel-title {
-  margin-bottom: 15px;
-  font-size: 12px;
-  line-height: 12px;
-  weight: normal;
-  color: $nav-side-color;
-  text-transform: uppercase;
-}
-#admin-main-navigation .uk-nav-side {
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-  @media (min-width: $breakpoint-medium) {
-    margin-right: -$panel-box-padding !important;
-  }
-}
-
-#admin-body.uk-panel {
-  background-color: $admin-body-uk-panel-background-color;
-  @media (min-width: $breakpoint-medium) {
-    border-top-right-radius: $utility-border-rounded;
-  }
-}
-
-// ============== /layout area
-
 
 // ============== form area
 .field_with_errors label {
@@ -217,19 +230,6 @@ select::-ms-expand {
 }
 // ============== /form area
 
-
-
-
-
-// ============== code editor
-.uk-switcher.code-editor-area {
-  padding: 10px 0px;
-  background-color: $panel-title-background-color;
-  border-left: $tab-border-width solid $tab-active-border;
-  border-right: $tab-border-width solid $tab-active-border;
-  border-bottom: $tab-border-width solid $tab-active-border;
-}
-// ============== /code editor
 
 @import 'bower-uikit/scss/uikit';
 

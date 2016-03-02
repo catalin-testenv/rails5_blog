@@ -24,8 +24,8 @@
       <div class="uk-grid uk-margin-remove">
 
         <!-- admin-toggle -->
-        <div class="uk-width-medium-1-1 uk-padding-remove">
-          <div id="admin-toggle" class="uk-panel uk-panel-box">
+        <div id="admin-toggle" class="uk-width-medium-1-1 uk-padding-remove">
+          <div class="uk-panel uk-panel-box">
             <% if current_user && current_user.admin? %>
                 <% if controller.is_a? Admin::AdminController  %>
                     <ul class="uk-subnav uk-subnav-line">
@@ -43,8 +43,8 @@
         <!-- /admin-toggle -->
 
         <!-- admin-main-navigation -->
-        <div class="uk-width-medium-1-5 uk-padding-remove">
-          <div id="admin-main-navigation" class="uk-panel uk-panel-box">
+        <div id="admin-main-navigation" class="uk-width-medium-1-5 uk-padding-remove">
+          <div class="uk-panel uk-panel-box">
             <%= render 'admin/partials/admin_main_navigation.html' %>
           </div>
         </div>
@@ -69,9 +69,11 @@
           <!-- /admin-notice-alert -->
 
           <!-- admin-body -->
-          <div id="admin-body" class="uk-panel uk-panel-box">
-            <div class="uk-panel uk-panel-box panel-box-material">
-              <%= yield %>
+          <div id="admin-body">
+            <div class="uk-panel uk-panel-box">
+              <div class="uk-panel uk-panel-box panel-box-material">
+                <%= yield %>
+              </div>
             </div>
           </div>
           <!-- /admin-body -->
