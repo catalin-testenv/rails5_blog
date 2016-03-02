@@ -7,14 +7,18 @@
 @import 'bower-uikit/scss/uikit-mixins';
 
 // -------- /define variables
-$admin-body-uk-panel-background-color: #f9f9f9;
+$admin-body-uk-panel-background-color:           #f9f9f9;
 $admin-main-navigation-uk-panel-background-color: #D7D6DB;
-$link-color-on-black-background: rgba(255, 255, 255, 0.7);
-$link-hover-color-on-black-background: white;
+$link-font-size:                                 13px;
+$link-letter-spacing:                            0.010em;
+$link-font-weight:                               500;
+$link-color-on-black-background:                 rgba(255,255,255,0.5);
+$link-hover-color-on-black-background:           rgba(255,255,255,0.8);
+
 // -------- /define variables
 
 // -------- override uk variables
-$icon-font-path: 'font-awesome/fonts';
+$icon-font-path:                                 'font-awesome/fonts';
 
 $base-body-font-family:                          "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $base-heading-font-family:                       $base-body-font-family;
@@ -22,36 +26,39 @@ $navbar-nav-font-family:                         $base-body-font-family;
 $base-code-font-family:                          Consolas, monospace, serif;
 $base-pre-font-family:                           $base-code-font-family;
 
-$base-body-background: #2C2F3B;
+$base-body-font-size:                            14px;
+$navbar-nav-font-size:                           14px;
 
-$utility-border-rounded: 5px;
+$base-body-background:                           #262B33;
 
-$utility-container-padding-horizontal: 0px;
-$utility-container-large-padding-horizontal: 0px;
+$utility-border-rounded:                         5px;
 
-$nav-side-color: #666;
-$nav-side-active-background: $admin-body-uk-panel-background-color;
-$nav-side-active-color: #333;
-$nav-side-hover-background: rgba(0,0,0,0.1);
-$nav-side-hover-color: #333;
+$utility-container-padding-horizontal:           0px;
+$utility-container-large-padding-horizontal:     0px;
 
-$tab-active-background: #a5904e;
-$tab-hover-background: #b69f56;
-$tab-active-border: #ddd;
+$nav-side-color:                                 #666;
+$nav-side-active-background:                     $admin-body-uk-panel-background-color;
+$nav-side-active-color:                          #333;
+$nav-side-hover-background:                      rgba(0,0,0,0.1);
+$nav-side-hover-color:                           #333;
+
+$tab-active-background:                          #a5904e;
+$tab-hover-background:                           #b69f56;
+$tab-active-border:                              #ddd;
 $tab-border: #ddd;
 
-$panel-box-background: #ffffff;
+$panel-box-background:                           #ffffff;
 
-$form-background: #a5904e;
-$form-color: #444;
-$form-border: #6b5e34;
+$form-background:                                #a5904e;
+$form-color:                                     #444;
+$form-border:                                    #6b5e34;
 
-$form-focus-background: #bfa75a;
-$form-focus-color: #444;
-$form-focus-border: #6b5e34;
+$form-focus-background:                          #bfa75a;
+$form-focus-color:                               #444;
+$form-focus-border:                              #6b5e34;
 
-$button-background: #6b5e34;
-$button-hover-background: #847440;
+$button-background:                              #6b5e34;
+$button-hover-background:                        #847440;
 // -------- /override uk variables
 
 
@@ -75,8 +82,6 @@ $button-hover-background: #847440;
     border-radius: 2px;
     box-shadow:0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
     .uk-panel-title {
-      /*background-color: rgb(232,232,232);*/
-      /*color: rgba(0, 0, 0, .40);*/
       background-color: rgb(223, 223, 223);
       color: rgba(0, 0, 0, 0.45);
       font-size: 16px;
@@ -119,6 +124,13 @@ $button-hover-background: #847440;
 // -------- /helper classes
 
 
+// ============== general
+a {
+  letter-spacing: $link-letter-spacing;
+  font-weight: $link-font-weight;
+  font-size: $link-font-size;
+}
+// ============== /general
 
 // ============== layout area
 
