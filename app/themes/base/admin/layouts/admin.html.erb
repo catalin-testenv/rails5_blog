@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
+    <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
@@ -68,7 +70,7 @@
 
           <!-- admin-body -->
           <div id="admin-body" class="uk-panel uk-panel-box">
-            <div class="uk-panel uk-panel-box">
+            <div class="uk-panel uk-panel-box panel-box-material">
               <%= yield %>
             </div>
           </div>
