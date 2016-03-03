@@ -14,7 +14,7 @@ $link-font-weight:                               500;
 $link-color-on-black-background:                 rgba(255,255,255,0.5);
 $link-hover-color-on-black-background:           rgba(255,255,255,0.8);
 
-$panel-title-background-color:                   #DCDCDC;
+$panel-title-background-color_:                  #DCDCDC;
 
 $box-shadow-bottom-right:                        9px 9px 10px -9px rgba(0,0,0,.4);
 $box-shadow-bottom:                              0px 9px 10px -9px rgba(0,0,0,.4);
@@ -24,42 +24,23 @@ $border-radius-small-all:                        2px;
 // -------- override uk variables
 $icon-font-path:                                 'font-awesome/fonts';
 
+
 $base-body-font-family:                          "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $base-heading-font-family:                       $base-body-font-family;
-$navbar-nav-font-family:                         $base-body-font-family;
 $base-code-font-family:                          Consolas, monospace, serif;
 $base-pre-font-family:                           $base-code-font-family;
-
 $base-body-font-size:                            14px;
-$navbar-nav-font-size:                           14px;
-
 $base-body-background:                           #262B33;
-
 $base-link-color:                                #07D;
 $base-link-hover-color:                          #059;
 $base-selection-background:                      #39f;
 $base-selection-color:                           #fff;
 
-$utility-border-rounded:                         5px;
 
+$utility-border-rounded:                         5px;
 $utility-container-padding-horizontal:           0px;
 $utility-container-large-padding-horizontal:     0px;
 
-$nav-side-color:                                 #666;
-$nav-side-active-background:                     $admin-body-uk-panel-background-color;
-$nav-side-active-color:                          $panel-title-color;
-$nav-side-hover-background:                      rgba(0,0,0,0.1);
-$nav-side-hover-color:                           $panel-title-color;
-
-
-$tab-border:                                     $panel-title-background-color;
-$tab-color:                                      lighten($panel-title-color, 20%);
-$tab-hover-border:                               $panel-title-background-color;
-$tab-hover-background:                           $panel-title-background-color;
-$tab-active-color:                               $panel-title-color;
-$tab-hover-color:                                $panel-title-color;
-$tab-active-border:                              $panel-title-background-color;
-$tab-active-background:                          $panel-title-background-color;
 
 $panel-box-background:                           #ffffff;
 $panel-title-font-size:                          12px;
@@ -69,13 +50,33 @@ $panel-title-font-weight:                        normal;
 $panel-title-margin-bottom:                      15px;
 $panel-title-text-transform:                     none;
 
+
+$nav-side-color:                                 #666;
+$nav-side-active-background:                     $admin-body-uk-panel-background-color;
+$nav-side-active-color:                          $panel-title-color;
+$nav-side-hover-background:                      rgba(0,0,0,0.1);
+$nav-side-hover-color:                           $panel-title-color;
+
+
+$tab-border:                                     $panel-title-background-color_;
+$tab-color:                                      lighten($panel-title-color, 20%);
+$tab-hover-border:                               $panel-title-background-color_;
+$tab-hover-background:                           $panel-title-background-color_;
+$tab-active-color:                               $panel-title-color;
+$tab-hover-color:                                $panel-title-color;
+$tab-active-border:                              $panel-title-background-color_;
+$tab-active-background:                          $panel-title-background-color_;
+
+
 $form-background:                                #a5904e;
 $form-color:                                     #444;
 $form-border:                                    #6b5e34;
 
+
 $form-focus-background:                          #bfa75a;
 $form-focus-color:                               #444;
 $form-focus-border:                              #6b5e34;
+
 
 $button-background:                              #6b5e34;
 $button-hover-background:                        #847440;
@@ -111,7 +112,7 @@ $button-hover-background:                        #847440;
   }
 
   #admin-main-navigation & {
-    background-color: $panel-title-background-color;
+    background-color: $panel-title-background-color_;
     box-shadow: inset 0px -9px 10px -9px rgba(0,0,0,.4);
     @media (min-width: $breakpoint-medium) {
       box-shadow: inset -9px 0px 10px -9px rgba(0,0,0,.4);
@@ -149,7 +150,7 @@ $button-hover-background:                        #847440;
     border-radius: $border-radius-small-all;
     box-shadow: $box-shadow-material;
     .uk-panel-title {
-      background-color: $panel-title-background-color;
+      background-color: $panel-title-background-color_;
       color: $panel-title-color;
       font-size: 16px;
       margin-left: -$panel-box-padding;
@@ -165,7 +166,7 @@ $button-hover-background:                        #847440;
 @mixin hook-switcher-misc() {
   .uk-switcher.code-editor-area {
     padding: 10px 0px;
-    background-color: $panel-title-background-color;
+    background-color: $panel-title-background-color_;
     border-left: $tab-border-width solid $tab-active-border;
     border-right: $tab-border-width solid $tab-active-border;
     border-bottom: $tab-border-width solid $tab-active-border;
