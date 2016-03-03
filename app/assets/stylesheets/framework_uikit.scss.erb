@@ -18,9 +18,13 @@ $panel-title-background-color_:                  #DCDCDC;
 
 $box-shadow-bottom-right:                        9px 9px 10px -9px rgba(0,0,0,.4);
 $box-shadow-bottom:                              0px 9px 10px -9px rgba(0,0,0,.4);
+$box-shadow-right-inset:                         inset -9px 0px 10px -9px rgba(0,0,0,.4);
+$box-shadow-bottom-inset:                        inset 0px -9px 10px -9px rgba(0,0,0,.4);
 $box-shadow-material:                            0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
 
 $border-radius-small-all:                        2px;
+
+$code-editor-area-padding:                       10px 0px;
 // -------- override uk variables
 $icon-font-path:                                 'font-awesome/fonts';
 
@@ -113,9 +117,9 @@ $button-hover-background:                        #847440;
 
   #admin-main-navigation & {
     background-color: $panel-title-background-color_;
-    box-shadow: inset 0px -9px 10px -9px rgba(0,0,0,.4);
+    box-shadow: $box-shadow-bottom-inset;
     @media (min-width: $breakpoint-medium) {
-      box-shadow: inset -9px 0px 10px -9px rgba(0,0,0,.4);
+      box-shadow: $box-shadow-right-inset;
       border-top-left-radius: $utility-border-rounded;
       border-bottom-left-radius: $utility-border-rounded;
     }
@@ -123,10 +127,10 @@ $button-hover-background:                        #847440;
       text-transform: uppercase;
     }
     .uk-nav-side {
-      margin-left: 0px !important;
-      margin-right: 0px !important;
+      margin-left: 0px;
+      margin-right: 0px;
       @media (min-width: $breakpoint-medium) {
-        margin-right: -$panel-box-padding !important;
+        margin-right: -$panel-box-padding;
       }
       li.uk-active > a {
         box-shadow:  $box-shadow-bottom;
@@ -152,7 +156,7 @@ $button-hover-background:                        #847440;
     .uk-panel-title {
       background-color: $panel-title-background-color_;
       color: $panel-title-color;
-      font-size: 16px;
+      font-size: $panel-title-font-size + 4;
       margin-left: -$panel-box-padding;
       margin-top: -$panel-box-padding;
       margin-right: -$panel-box-padding;
@@ -165,7 +169,7 @@ $button-hover-background:                        #847440;
 
 @mixin hook-switcher-misc() {
   .uk-switcher.code-editor-area {
-    padding: 10px 0px;
+    padding: $code-editor-area-padding;
     background-color: $panel-title-background-color_;
     border-left: $tab-border-width solid $tab-active-border;
     border-right: $tab-border-width solid $tab-active-border;
