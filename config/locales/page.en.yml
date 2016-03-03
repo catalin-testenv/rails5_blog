@@ -14,7 +14,7 @@ en:
         is_main_nav: 'Included in main navigation'
         is_commentable: 'Accepts comments'
         published: 'Published'
-        max_comments: 'Max comments allowed'
+        max_comments: 'Max comments'
         excerpt: 'Excerpt'
         root_page: 'Landing page'
         parent_id: 'Category ID'

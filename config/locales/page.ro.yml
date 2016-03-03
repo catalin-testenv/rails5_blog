@@ -14,7 +14,7 @@ ro:
         is_main_nav: 'Inclusa in meniul principal'
         is_commentable: 'Accepta commentarii'
         published: 'Publicata'
-        max_comments: 'Numarul maxim de comentarii acceptate'
+        max_comments: 'Comentarii max'
         excerpt: 'Rezumat'
         root_page: 'Pagina principala'
         parent_id: 'Categorie ID'
