@@ -16,11 +16,40 @@ $ccr-color-button-border:  darken($ccr-color-button, 10%) !default;
 $ccr-color-button-on:      indianred !default;
 $ccr-color-button-text-on: #fff      !default;
 
+.ccr-custom-style {
+  display: inline-block;
+  clear: none;
+  padding: .5em;
 
+  cursor: default;
+
+  font-weight: $ccr-base-font-weight;
+  text-align: center;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ccr-state-off {
+  background: $ccr-color-button;
+  color: $ccr-color-button-text;
+}
+.ccr-state-off:after {
+  font-family: FontAwesome;
+  content: "\00a0\00a0\00a0\f088";
+}
+.ccr-state-on {
+  background: $ccr-color-button-on;
+  color: $ccr-color-button-text-on;
+}
+.ccr-state-on:after {
+  font-family: FontAwesome;
+  content: "\00a0\00a0\00a0\f087";
+}
 
 .custom-cc:not(#foo) input[type='radio'],
 .custom-cc:not(#foo) input[type='checkbox'] {
-  // Hide the input, but have it still be click-able
   opacity: 0;
   // filter: "alpha(opacity=0)";
   float: left;
@@ -29,44 +58,24 @@ $ccr-color-button-text-on: #fff      !default;
 
 .custom-cc:not(#foo) input[type='radio'] + label,
 .custom-cc:not(#foo) input[type='checkbox'] + label {
-  display: inline-block;
-  clear: none;
-  // Left padding makes room for image
-  padding: .5em;
+  @extend .ccr-custom-style;
+  @extend .ccr-state-off;
   cursor: pointer;
-  // background: url(off.png) left center no-repeat;
-  background: $ccr-color-button;
-  //.border-radius(3px);
-  // border: 1px solid $ccr-color-button-border;
-  color: $ccr-color-button-text;
-  font-weight: $ccr-base-font-weight;
-  // text-transform: uppercase;
-  text-align: center;
-
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 .custom-cc.custom-cc-fa:not(#foo) input[type='radio'] + label:after,
 .custom-cc.custom-cc-fa:not(#foo) input[type='checkbox'] + label:after {
-  font-family: FontAwesome;
-  content: "\00a0\00a0\00a0\f088";
+  @extend .ccr-state-off:after;
 }
 
 .custom-cc:not(#foo) input[type='radio']:checked + label,
 .custom-cc:not(#foo) input[type='checkbox']:checked + label {
-  // background-image: url(radio.png);
-  background: $ccr-color-button-on;
-  // box-shadow: inset 2px 2px 1px darken($ccr-color-button-on, 20%);
-  color: $ccr-color-button-text-on;
-  // font-weight: 900;
-  // text-shadow: 1px 1px 0 darken($ccr-color-button-on, 20%);
+  @extend .ccr-state-on;
 }
 
 .custom-cc.custom-cc-fa:not(#foo) input[type='radio']:checked + label:after,
 .custom-cc.custom-cc-fa:not(#foo) input[type='checkbox']:checked + label:after {
-  content: "\00a0\00a0\00a0\f087";
+  @extend .ccr-state-on:after;
 }
 
 // ============ /form custom radio & checkbox
