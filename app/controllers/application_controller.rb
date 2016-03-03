@@ -1,4 +1,5 @@
 
+# TODO: add will-paginate on index pages
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
 # TODO: find a way to not override a user theme when main blog code is updated from repo
 # TODO: should be excluded from PageCategory show listing those pages for main nav?
