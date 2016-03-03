@@ -2,9 +2,17 @@
     <%= resource_view_new_message resource_instance: @resource %>
 <% end %>
 
-<h1><%= resource_view_new_message resource_instance: @resource %></h1>
+<h4 class="uk-panel-title"><%= resource_view_new_message resource_instance: @resource %></h4>
+
+<div>
+  <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
+    <li><%= link_to back_message, admin_pages_path %></li>
+  </ul>
+</div>
 
 <%= render 'form', resource: @resource %>
+
+<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
 
 <div>
   <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-link-unmuted">
