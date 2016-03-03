@@ -1,7 +1,7 @@
 
 <% if resource.errors.any? %>
     <div class="uk-alert uk-alert-danger cancel-panel-box-horizontal-padding">
-      <p><strong><%= resource_view_form_general_error_message resource: Page, errors_num: resource.errors_num %>:</strong></p>
+      <h4><%= resource_view_form_general_error_message resource: Page, errors_num: resource.errors_num %>:</h4>
       <ul>
         <% resource.errors.full_messages.each do |message| %>
             <li><%= message %></li>

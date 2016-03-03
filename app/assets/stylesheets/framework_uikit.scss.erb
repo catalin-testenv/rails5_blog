@@ -79,7 +79,15 @@ $form-border:                                    #c8c7cc;
 
 $form-focus-background:                          #F8F8F8;
 $form-focus-color:                               #5b5b60;
-$form-focus-border:                              #bbbac0;
+$form-focus-border:                              #9e9da3;
+
+
+$alert-success-background:                       #E7F6CB;
+$alert-success-color:                            #659f13;
+$alert-danger-background:                        #FFE2E0;
+$alert-danger-color:                             #d85030;
+
+
 
 $button-color:                                   darken($panel-title-background-color_, 30%);
 $button-background:                              white;
@@ -147,7 +155,7 @@ $button-hover-background:                        darken($panel-title-background-
   #admin-body > & {
     background-color: $admin-body-uk-panel-background-color;
     @media (min-width: $breakpoint-medium) {
-      border-top-right-radius: $utility-border-rounded;
+      //border-top-right-radius: $utility-border-rounded; // doesn't look good with alert/notice stacked up
     }
   }
 
@@ -165,6 +173,10 @@ $button-hover-background:                        darken($panel-title-background-
     }
   }
 
+}
+
+@mixin hook-form() {
+  border-width: 0px 0px 1px 0px;
 }
 
 @mixin hook-form-stacked-label() {
