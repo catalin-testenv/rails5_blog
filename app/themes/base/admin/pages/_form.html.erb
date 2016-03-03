@@ -12,7 +12,7 @@
 
 <%= form_for([:admin, resource], html: {class: 'edit_page uk-form uk-form-stacked custom-cc custom-cc-fa '}) do |f| %>
 
-    <div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-grid uk-grid-small" data-uk-grid-margin>
       <!-- model tl;dr
       <div class="uk-width-1-1">
         <div class="uk-form-row">
@@ -60,7 +60,7 @@
       </div>
 
       <div class="uk-width-1-1">
-        <div class="uk-grid">
+        <div class="uk-grid uk-grid-small">
           <div class="uk-width-medium-1-2">
             <%= f.check_box :is_main_nav %>
             <%= f.label :is_main_nav, f.object.class.human_attribute_name(:is_main_nav), class: 'uk-width' %>
@@ -81,7 +81,7 @@
       </div>
 
       <div class="uk-width-1-1">
-        <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-grid uk-grid-small" data-uk-grid-margin>
           <div class="uk-width-medium-1-2">
             <div class="uk-form-row">
               <%= f.label :parent_id, f.object.class.human_attribute_name(:parent_id), class: 'uk-form-label' %>

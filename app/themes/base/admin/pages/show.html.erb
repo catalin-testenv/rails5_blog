@@ -19,72 +19,78 @@
   </ul>
 </div>
 
-<div>
-  <span><%= Page.human_attribute_name(:name) %></span>
-  <p class="form-text-input-mirror"><%= @resource.name %></p>
-</div>
-
-<div>
-  <ul class="uk-tab" data-uk-tab="{connect:'#code-editor-area'}">
-    <li class="uk-active"><a href=""><%= Page.human_attribute_name(:meta_description) %></a></li>
-    <li><a href=""><%= Page.human_attribute_name(:excerpt) %></a></li>
-    <li><a href="" ><%= Page.human_attribute_name(:meta_css) %></a></li>
-    <li><a href=""><%= Page.human_attribute_name(:meta_js) %></a></li>
-  </ul>
-  <ul id="code-editor-area" class="uk-switcher uk-margin-bottom code-editor-area">
-    <li><pre data-code-editor='{"language":"text"}'><%= @resource.meta_description %></pre></li>
-    <li><pre data-code-editor='{"language":"html_ruby"}'><%= @resource.excerpt.html_safe %></pre></li>
-    <li><pre data-code-editor='{"language":"css"}'><%= @resource.meta_css %></pre></li>
-    <li><pre data-code-editor='{"language":"javascript"}'><%= @resource.meta_js %></pre></li>
-  </ul>
-</div>
-
-<div class="uk-grid uk-grid-small uk-margin-bottom" data-uk-grid-margin>
-  <div class="uk-width-medium-1-2">
-    <span class="ccr-custom-style ccr-state-<%= @resource.is_main_nav ? 'on': 'off' %> uk-width">
-      <%= Page.human_attribute_name(:is_main_nav).humanize %>
-      <%# content_tag(:span, nil, class: @resource.is_main_nav ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %>
-    </span>
-  </div>
-  <div class="uk-width-medium-1-2">
-    <span class="ccr-custom-style ccr-state-<%= @resource.is_commentable ? 'on': 'off' %> uk-width">
-      <%= Page.human_attribute_name(:is_commentable).humanize %>
-    </span>
-  </div>
-  <div class="uk-width-medium-1-2">
-    <span class="ccr-custom-style ccr-state-<%= @resource.published ? 'on': 'off' %> uk-width">
-      <%= Page.human_attribute_name(:published).humanize %>
-    </span>
-  </div>
-  <div class="uk-width-medium-1-2">
-    <span class="ccr-custom-style ccr-state-<%= @resource.root_page ? 'on': 'off' %> uk-width">
-      <%= Page.human_attribute_name(:root_page).humanize %>
-    </span>
-  </div>
-</div>
-
 <div class="uk-grid uk-grid-small" data-uk-grid-margin>
-  <div class="uk-width-medium-1-2">
-    <span><%= Page.human_attribute_name(:parent_id).humanize %></span>:
-    <i><%= @resource.page_category.try(:name) || I18n.t('root') %></i>
+  <div class="uk-width-1-1">
+    <span><%= Page.human_attribute_name(:name) %></span>
+    <p class="form-text-input-mirror"><%= @resource.name %></p>
   </div>
-  <div class="uk-width-medium-1-2">
-    <span><%= Page.human_attribute_name(:ordering).humanize %></span>:
-    <i><%= @resource.ordering%></i>
+
+  <div class="uk-width-1-1">
+    <ul class="uk-tab" data-uk-tab="{connect:'#code-editor-area'}">
+      <li class="uk-active"><a href=""><%= Page.human_attribute_name(:meta_description) %></a></li>
+      <li><a href=""><%= Page.human_attribute_name(:excerpt) %></a></li>
+      <li><a href="" ><%= Page.human_attribute_name(:meta_css) %></a></li>
+      <li><a href=""><%= Page.human_attribute_name(:meta_js) %></a></li>
+    </ul>
+    <ul id="code-editor-area" class="uk-switcher code-editor-area">
+      <li><pre data-code-editor='{"language":"text"}'><%= @resource.meta_description %></pre></li>
+      <li><pre data-code-editor='{"language":"html_ruby"}'><%= @resource.excerpt.html_safe %></pre></li>
+      <li><pre data-code-editor='{"language":"css"}'><%= @resource.meta_css %></pre></li>
+      <li><pre data-code-editor='{"language":"javascript"}'><%= @resource.meta_js %></pre></li>
+    </ul>
   </div>
-  <div class="uk-width-medium-1-2">
-    <span><%= Page.human_attribute_name(:max_comments).humanize %></span>:
-    <i><%= @resource.max_comments%></i>
+
+  <div class="uk-width-1-1">
+    <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+      <div class="uk-width-medium-1-2">
+      <span class="ccr-custom-style ccr-state-<%= @resource.is_main_nav ? 'on': 'off' %> uk-width">
+        <%= Page.human_attribute_name(:is_main_nav).humanize %>
+        <%# content_tag(:span, nil, class: @resource.is_main_nav ? 'fa fa-thumbs-o-up' : 'fa fa-thumbs-o-down') %>
+      </span>
+      </div>
+      <div class="uk-width-medium-1-2">
+      <span class="ccr-custom-style ccr-state-<%= @resource.is_commentable ? 'on': 'off' %> uk-width">
+        <%= Page.human_attribute_name(:is_commentable).humanize %>
+      </span>
+      </div>
+      <div class="uk-width-medium-1-2">
+      <span class="ccr-custom-style ccr-state-<%= @resource.published ? 'on': 'off' %> uk-width">
+        <%= Page.human_attribute_name(:published).humanize %>
+      </span>
+      </div>
+      <div class="uk-width-medium-1-2">
+      <span class="ccr-custom-style ccr-state-<%= @resource.root_page ? 'on': 'off' %> uk-width">
+        <%= Page.human_attribute_name(:root_page).humanize %>
+      </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-1">
+    <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+      <div class="uk-width-medium-1-2">
+        <span><%= Page.human_attribute_name(:parent_id) %></span>
+        <p class="form-text-input-mirror"><%= @resource.page_category.try(:name) || I18n.t('root') %></p>
+      </div>
+      <div class="uk-width-medium-1-2">
+        <span><%= Page.human_attribute_name(:ordering).humanize %></span>
+        <p class="form-text-input-mirror"><%= @resource.ordering %></p>
+      </div>
+      <div class="uk-width-medium-1-2">
+        <span><%= Page.human_attribute_name(:max_comments).humanize %></span>
+        <p class="form-text-input-mirror"><%= @resource.max_comments %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="uk-width-1-1">
+    <div><%= evaluate(@resource.content).html_safe %></div>
+  </div>
+
+  <div class="uk-width-1-1">
+    <hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
   </div>
 </div>
-
-<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
-
-<div>
-  <div><%= evaluate(@resource.content).html_safe %></div>
-</div>
-
-<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
 
 <div>
   <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-link-unmuted">
