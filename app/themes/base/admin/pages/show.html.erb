@@ -20,6 +20,11 @@
 </div>
 
 <div>
+  <span><%= Page.human_attribute_name(:name) %></span>
+  <p class="form-text-input-mirror"><%= @resource.name %></p>
+</div>
+
+<div>
   <ul class="uk-tab" data-uk-tab="{connect:'#code-editor-area'}">
     <li class="uk-active"><a href=""><%= Page.human_attribute_name(:meta_description) %></a></li>
     <li><a href=""><%= Page.human_attribute_name(:excerpt) %></a></li>
