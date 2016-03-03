@@ -5,6 +5,7 @@
 
 $ccr-base-background:      #fffaef !default;
 $ccr-base-text:            #4f4351 !default;
+$ccr-base-font-weight:     700     !default;
 
 $ccr-color-subtitles:      #9a8864 !default;
 $ccr-color-highlight:      #e9e59b !default;
@@ -13,6 +14,9 @@ $ccr-color-button:         #f2f2f0 !default;
 $ccr-color-button-text:    darken($ccr-color-button, 50%) !default;
 $ccr-color-button-border:  darken($ccr-color-button, 10%) !default;
 $ccr-color-button-on:      indianred !default;
+$ccr-color-button-text-on: #fff      !default;
+
+
 
 .custom-cc:not(#foo) input[type='radio'],
 .custom-cc:not(#foo) input[type='checkbox'] {
@@ -35,7 +39,7 @@ $ccr-color-button-on:      indianred !default;
   //.border-radius(3px);
   // border: 1px solid $ccr-color-button-border;
   color: $ccr-color-button-text;
-  font-weight: 700;
+  font-weight: $ccr-base-font-weight;
   // text-transform: uppercase;
   text-align: center;
 
@@ -55,7 +59,7 @@ $ccr-color-button-on:      indianred !default;
   // background-image: url(radio.png);
   background: $ccr-color-button-on;
   // box-shadow: inset 2px 2px 1px darken($ccr-color-button-on, 20%);
-  color: #fff;
+  color: $ccr-color-button-text-on;
   // font-weight: 900;
   // text-shadow: 1px 1px 0 darken($ccr-color-button-on, 20%);
 }

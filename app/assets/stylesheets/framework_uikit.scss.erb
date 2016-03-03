@@ -72,18 +72,19 @@ $tab-active-border:                              $panel-title-background-color_;
 $tab-active-background:                          $panel-title-background-color_;
 
 
-$form-background:                                #a5904e;
-$form-color:                                     #444;
-$form-border:                                    #6b5e34;
+$form-background:                                #fff;
+$form-color:                                     #5b5b60;
+$form-border:                                    #c8c7cc;
 
 
-$form-focus-background:                          #bfa75a;
-$form-focus-color:                               #444;
-$form-focus-border:                              #6b5e34;
+$form-focus-background:                          #F8F8F8;
+$form-focus-color:                               #5b5b60;
+$form-focus-border:                              #bbbac0;
 
-
-$button-background:                              #6b5e34;
-$button-hover-background:                        #847440;
+$button-color:                                   darken($panel-title-background-color_, 30%);
+$button-background:                              white;
+$button-hover-color:                             white;
+$button-hover-background:                        darken($panel-title-background-color_, 30%);
 // -------- /override uk variables
 
 
@@ -166,6 +167,13 @@ $button-hover-background:                        #847440;
 
 }
 
+@mixin hook-form-stacked-label() {
+  font-weight: normal;
+}
+
+@mixin hook-button() {
+  border: 1px solid $button-color;
+}
 
 @mixin hook-switcher-misc() {
   .uk-switcher.code-editor-area {
@@ -239,8 +247,11 @@ select::-ms-expand {
 @import 'bower-uikit/scss/uikit';
 
 // ============== site utilities overrides
-$ccr-color-button-on: #1e7f34;
-$ccr-color-button: #9d9d9d;
+$ccr-color-button-on: #7CBB7F;
+$ccr-color-button: $panel-title-background-color_;
+$ccr-color-button-text: $panel-title-color;
+$ccr-color-button-text-on: $panel-title-color;
+$ccr-base-font-weight: 400;
 
 @import 'site_utilities';
 // ============== /site utilities overrides
