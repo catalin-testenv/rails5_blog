@@ -179,6 +179,14 @@ $button-hover-background:                        darken($panel-title-background-
   border-width: 0px 0px 1px 0px;
 }
 
+@mixin hook-form-misc(){
+  .code-editor-area textarea {
+    border-width: 0px;
+    min-height: 200px;
+    width: 100%; // helps with ie flicker bug
+  }
+}
+
 @mixin hook-form-stacked-label() {
   font-weight: normal;
 }
