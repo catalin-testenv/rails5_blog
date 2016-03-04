@@ -25,63 +25,20 @@
       -->
 
       <div class="uk-width-1-1">
-        <div class="uk-form-row">
-          <%= f.label :name, class: 'uk-form-label' do |e| %>
-              <%= f.object.class.human_attribute_name(:name) %>
-          <% end %>
-          <div class="uk-form-controls">
-            <%= f.text_field :name, class: 'uk-width' %>
-          </div>
-          <% f.object.errors[:name].each do |e|%>
-              <p class="uk-form-help-block uk-text-danger"><%= f.object.class.human_attribute_name(:name) %> <%= e %></p>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="uk-width-1-1">
-        <ul class="uk-tab" data-uk-tab="{connect:'#code-editor-area'}">
-          <li class="uk-active"><a href=""><%= f.object.class.human_attribute_name(:meta_description) %></a></li>
-          <li><a href=""><%= f.object.class.human_attribute_name(:excerpt) %></a></li>
-          <li><a href="" ><%= f.object.class.human_attribute_name(:meta_css) %></a></li>
-          <li><a href=""><%= f.object.class.human_attribute_name(:meta_js) %></a></li>
-        </ul>
-        <ul id="code-editor-area" class="uk-switcher code-editor-area">
-          <li><%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %></li>
-          <li><%= f.text_area :excerpt, data: {'code-editor': '{"language":"html_ruby"}'} %></li>
-          <li><%= f.text_area :meta_css, data: {'code-editor': '{"language":"css"}'} %></li>
-          <li><%= f.text_area :meta_js, data: {'code-editor': '{"language":"javascript"}'} %></li>
-        </ul>
-        <% f.object.errors[:meta_description].each do |e|%>
-            <p class="uk-form-help-block uk-text-danger"> <%= f.object.class.human_attribute_name(:meta_description) %> <%= e %></p>
-        <% end %>
-        <% f.object.errors[:excerpt].each do |e|%>
-            <p class="uk-form-help-block uk-text-danger"> <%= f.object.class.human_attribute_name(:excerpt) %> <%= e %></p>
-        <% end %>
-      </div>
-
-      <div class="uk-width-1-1">
-        <div class="uk-grid uk-grid-small">
-          <div class="uk-width-medium-1-2">
-            <%= f.check_box :is_main_nav %>
-            <%= f.label :is_main_nav, f.object.class.human_attribute_name(:is_main_nav), class: 'uk-width' %>
-          </div>
-          <div class="uk-width-medium-1-2">
-            <%= f.check_box :is_commentable %>
-            <%= f.label :is_commentable, f.object.class.human_attribute_name(:is_commentable), class: 'uk-width' %>
-          </div>
-          <div class="uk-width-medium-1-2">
-            <%= f.check_box :published %>
-            <%= f.label :published, f.object.class.human_attribute_name(:published), class: 'uk-width' %>
-          </div>
-          <div class="uk-width-medium-1-2">
-            <%= f.check_box :root_page %>
-            <%= f.label :root_page, f.object.class.human_attribute_name(:root_page), class: 'uk-width' %>
-          </div>
-        </div>
-      </div>
-
-      <div class="uk-width-1-1">
         <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+          <div class="uk-width-medium-1-2">
+            <div class="uk-form-row">
+              <%= f.label :name, class: 'uk-form-label' do |e| %>
+                  <%= f.object.class.human_attribute_name(:name) %>
+              <% end %>
+              <div class="uk-form-controls">
+                <%= f.text_field :name, class: 'uk-width' %>
+              </div>
+              <% f.object.errors[:name].each do |e|%>
+                  <p class="uk-form-help-block uk-text-danger"><%= f.object.class.human_attribute_name(:name) %> <%= e %></p>
+              <% end %>
+            </div>
+          </div>
           <div class="uk-width-medium-1-2">
             <div class="uk-form-row">
               <%= f.label :parent_id, f.object.class.human_attribute_name(:parent_id), class: 'uk-form-label' %>
@@ -110,12 +67,50 @@
       </div>
 
       <div class="uk-width-1-1">
-        <div class="uk-form-row">
-          <%= f.label :content, f.object.class.human_attribute_name(:content), class: 'uk-form-label' %>
-          <div class="uk-form-controls">
-            <%= f.text_area :content, class: 'uk-width', data: {'code-editor': '{"language":"html_ruby"}'} %>
+        <div class="uk-grid uk-grid-small">
+          <div class="uk-width-medium-1-2">
+            <%= f.check_box :is_main_nav %>
+            <%= f.label :is_main_nav, f.object.class.human_attribute_name(:is_main_nav), class: 'uk-width' %>
+          </div>
+          <div class="uk-width-medium-1-2">
+            <%= f.check_box :is_commentable %>
+            <%= f.label :is_commentable, f.object.class.human_attribute_name(:is_commentable), class: 'uk-width' %>
+          </div>
+          <div class="uk-width-medium-1-2">
+            <%= f.check_box :published %>
+            <%= f.label :published, f.object.class.human_attribute_name(:published), class: 'uk-width' %>
+          </div>
+          <div class="uk-width-medium-1-2">
+            <%= f.check_box :root_page %>
+            <%= f.label :root_page, f.object.class.human_attribute_name(:root_page), class: 'uk-width' %>
           </div>
         </div>
+      </div>
+
+      <div class="uk-width-1-1">
+        <ul class="uk-tab" data-uk-tab="{connect:'#code-editor-area'}">
+          <li class="uk-active"><a><%= f.object.class.human_attribute_name(:content) %></a></li>
+          <li><a href=""><%= f.object.class.human_attribute_name(:meta_description) %></a></li>
+          <li><a href=""><%= f.object.class.human_attribute_name(:excerpt) %></a></li>
+          <li><a href="" ><%= f.object.class.human_attribute_name(:meta_css) %></a></li>
+          <li><a href=""><%= f.object.class.human_attribute_name(:meta_js) %></a></li>
+        </ul>
+        <ul id="code-editor-area" class="uk-switcher code-editor-area">
+          <li><%= f.text_area :content, data: {'code-editor': '{"language":"html_ruby"}'} %></li>
+          <li><%= f.text_area :meta_description, data: {'code-editor': '{"language":"text"}'} %></li>
+          <li><%= f.text_area :excerpt, data: {'code-editor': '{"language":"html_ruby"}'} %></li>
+          <li><%= f.text_area :meta_css, data: {'code-editor': '{"language":"css"}'} %></li>
+          <li><%= f.text_area :meta_js, data: {'code-editor': '{"language":"javascript"}'} %></li>
+        </ul>
+        <% f.object.errors[:content].each do |e|%>
+            <p class="uk-form-help-block uk-text-danger"> <%= f.object.class.human_attribute_name(:content) %> <%= e %></p>
+        <% end %>
+        <% f.object.errors[:meta_description].each do |e|%>
+            <p class="uk-form-help-block uk-text-danger"> <%= f.object.class.human_attribute_name(:meta_description) %> <%= e %></p>
+        <% end %>
+        <% f.object.errors[:excerpt].each do |e|%>
+            <p class="uk-form-help-block uk-text-danger"> <%= f.object.class.human_attribute_name(:excerpt) %> <%= e %></p>
+        <% end %>
       </div>
 
       <div class="uk-width-1-1">
