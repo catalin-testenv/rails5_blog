@@ -3,64 +3,55 @@
 // https://ace.c9.io/#nav=howto
 // https://github.com/ajaxorg/ace-builds
 //= require ace/ace
-//= // require ace/ext-language_tools
+// ace/ext-language_tools is required if enableBasicAutocompletion == true
+//= require ace/ext-language_tools
 // ============== /ace editor
 
-// TODO: remove these when issue solved
-console.log('<%= Rails.env %>');
-console.log('<%= Rails.application.config.assets.prefix %>');
-
 $(function () {
-
-
-//    ace.config.setDefaultValue('session', 'useWorker', false);
+  // ace.config.setDefaultValue('session', 'useWorker', false);
   ace.config.set('modePath', '<%= Rails.application.config.assets.prefix %>/ace/');
   ace.config.set('themePath', '<%= Rails.application.config.assets.prefix %>/ace/');
   ace.config.set('workerPath', '<%= Rails.application.config.assets.prefix %>/ace/');
-//  ace.require("ace/ext/language_tools");
+  ace.require("ace/ext/language_tools"); // required if enableBasicAutocompletion == true
 
-//  https://github.com/ajaxorg/ace/wiki/Configuring-Ace
-//  https://ace.c9.io/build/kitchen-sink.html
+  // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
+  // https://ace.c9.io/build/kitchen-sink.html
   $('[data-code-editor]').each(function () {
     var $this = $(this);
-    var options = {
-      theme: 'chrome',
-      language: 'javascript',
+    var readOnly = ['TEXTAREA'].indexOf(this.nodeName) === -1;
+    var params = $this.data('code-editor') || {};
+
+    var sessionOptions = $.extend({}, {
+      language: 'text',
+    }, params['sessionOptions'] || {});
+
+    var options = $.extend({}, {
+      theme: 'ace/theme/chrome',
       wrap: true,
       maxLines: 100,
-    };
-    var params = $this.data('code-editor') || {};
-    var options = $.extend({}, options, params);
-
-    var readOnly = ['TEXTAREA'].indexOf(this.nodeName) === -1;
+      showPrintMargin: false,
+      readOnly: readOnly,
+      highlightActiveLine: !readOnly,
+      showFoldWidgets: !readOnly,
+      enableBasicAutocompletion: false,
+      enableSnippets: false,
+      enableLiveAutocompletion: false
+    }, params['editorOptions'] || {});
 
     var editDiv = $('<div>', {
       'class': $this.attr('class')
     }).insertBefore($this);
-
-    $this.css('display', 'none'); // ?
+    $this.css('display', 'none');
 
     var editor = ace.edit(editDiv[0]);
     editor.$blockScrolling = Infinity; // to disable a deprecation warning
-    editor.setTheme('ace/theme/' + options['theme']);
-    editor.getSession().setMode('ace/mode/' + options['language']);
-    //  editor.resize();
-    editor.setOptions({
-      showPrintMargin: false,
-      maxLines: options['maxLines'],
-      wrap: options['wrap'],
-      readOnly: readOnly,
-      highlightActiveLine: !readOnly,
-      showFoldWidgets: !readOnly
-//    enableBasicAutocompletion: true,
-//    enableSnippets: false,
-//    enableLiveAutocompletion: false
-    });
-
+    editor.setOptions(options);
+    editor.getSession().setMode('ace/mode/' + sessionOptions['language']);
     editor.getSession().setValue(readOnly ? $this.html() : $this.val());
     !readOnly && editor.getSession().on('change', function () {
       $this.val(editor.getSession().getValue());
     });
+    editor.resize();
   });
 });
 
