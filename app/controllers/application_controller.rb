@@ -25,6 +25,7 @@
 # TODO: automate as much as possible when deploying/installing
 # TODO: add help sections / document what helpers are available
 # TODO: improve UI
+# TODO: add robots.txt
 # TODO: try ui-kit and use it in UI
 # TODO: check ENV hanging (assets precompile) when switching envs
 # TODO: add plugins/utils: contact_form, ...
