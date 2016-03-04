@@ -12,15 +12,17 @@
   </ul>
 </div>
 
+<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+
 <%= render 'form', resource: @resource %>
 
 <hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
 
 <div>
-  <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
-    <li><%= link_to list_message, admin_pages_path %></li>
-    <li><%= link_to preview_message, page_path(@resource), target: '_blank' %></li>
-    <li><%= link_to destroy_message, admin_page_path(@resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
+  <ul class="uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted">
+    <li class="uk-margin-top-remove"><%= link_to list_message, admin_pages_path %></li>
+    <li class="uk-margin-top-remove"><%= link_to preview_message, page_path(@resource), target: '_blank' %></li>
+    <li class="uk-margin-top-remove"><%= link_to destroy_message, admin_page_path(@resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
   </ul>
 </div>
 
