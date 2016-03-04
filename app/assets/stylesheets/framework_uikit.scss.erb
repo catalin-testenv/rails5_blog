@@ -180,10 +180,17 @@ $button-hover-background:                        darken($panel-title-background-
 }
 
 @mixin hook-form-misc(){
-  .code-editor-area textarea {
-    border-width: 0px;
-    min-height: 200px;
-    width: 100%; // helps with ie flicker bug
+  .code-editor-area.uk-switcher {
+    padding: $code-editor-area-padding;
+    background-color: $panel-title-background-color_;
+    border-left: $tab-border-width solid $tab-active-border;
+    border-right: $tab-border-width solid $tab-active-border;
+    border-bottom: $tab-border-width solid $tab-active-border;
+    textarea {
+      border-width: 0px;
+      min-height: 200px;
+      width: 100%; // helps with ie flicker bug
+    }
   }
 }
 
@@ -193,16 +200,6 @@ $button-hover-background:                        darken($panel-title-background-
 
 @mixin hook-button() {
   border: 1px solid $button-color;
-}
-
-@mixin hook-switcher-misc() {
-  .uk-switcher.code-editor-area {
-    padding: $code-editor-area-padding;
-    background-color: $panel-title-background-color_;
-    border-left: $tab-border-width solid $tab-active-border;
-    border-right: $tab-border-width solid $tab-active-border;
-    border-bottom: $tab-border-width solid $tab-active-border;
-  }
 }
 // -------- /override uk hook-mixins
 
