@@ -16,7 +16,9 @@ class PagesController < ApplicationController
   private
 
   def set_resource
-    @resource = Page.find(params[:id])
+    resource = Page.find(params[:id])
+    raise ActiveRecord::RecordNotFound unless resource.published || current_user && current_user.admin?
+    @resource = resource
   end
 
 end
