@@ -33,9 +33,9 @@ $(function () {
       readOnly: readOnly,
       highlightActiveLine: !readOnly,
       showFoldWidgets: !readOnly,
-      enableBasicAutocompletion: false,
-      enableSnippets: false,
-      enableLiveAutocompletion: false
+      enableBasicAutocompletion: false, // language_tools
+      enableSnippets: false, //language_tools
+      enableLiveAutocompletion: false // language_tools
     }, params['editorOptions'] || {});
 
     var editDiv = $('<div>', {
