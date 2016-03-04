@@ -6,8 +6,8 @@
 
 <div>
   <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
-    <li><%= link_to show_message, admin_page_path(@resource) %></li>
-    <li><%= link_to back_message, admin_pages_path %></li>
+    <li><%= link_to list_message, admin_pages_path %></li>
+    <li><%= link_to destroy_message, admin_page_path(@resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
   </ul>
 </div>
 
@@ -16,9 +16,9 @@
 <hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
 
 <div>
-  <ul class="uk-subnav uk-subnav-line uk-margin-top-remove uk-link-unmuted">
-    <li><%= link_to show_message, admin_page_path(@resource) %></li>
-    <li><%= link_to back_message, admin_pages_path %></li>
+  <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
+    <li><%= link_to list_message, admin_pages_path %></li>
+    <li><%= link_to destroy_message, admin_page_path(@resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
   </ul>
 </div>
 

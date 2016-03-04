@@ -10,7 +10,7 @@ module CommonMessages
       resource_view_new resource_view_show
       resource_view_form_general_error
       authorization.failure sign_in sign_out
-      show edit destroy back are_you_sure menu root
+      show edit destroy back list are_you_sure menu root
       |.each do |template|
         meth = "#{template.gsub(/\./,'_')}_message"
         define_method(meth) { |**params|

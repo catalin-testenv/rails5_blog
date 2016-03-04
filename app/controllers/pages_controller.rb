@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def root
-    @resource = Page.published_root_page || Page.new({meta_css: '', meta_js: '', content: ''})
+    @resource = Page.published_root_page || Page.new({name: '', meta_css: '', meta_js: '', content: ''})
     authorize @resource
     skip_policy_scope
     render :show

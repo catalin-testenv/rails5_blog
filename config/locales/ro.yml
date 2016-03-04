@@ -34,6 +34,7 @@ ro:
   edit: 'editeaza'
   destroy: 'sterge'
   back: 'inapoi'
+  list: 'listare'
   are_you_sure: 'Esti sigur?'
   error: 'eroare'
   menu: 'meniu'

@@ -10,6 +10,7 @@ class Admin::PagesController < Admin::AdminController
   # GET /admin/pages/1
   def show
     authorize @resource
+    render :edit
   end
 
   # GET /admin/pages/new
@@ -29,13 +30,15 @@ class Admin::PagesController < Admin::AdminController
     authorize @resource
     respond_to do |format|
       if @resource.save
-        format.html { redirect_to admin_page_path(@resource),
-                                  notice: resource_creation_success_message(resource_instance: @resource) }
+        format.html do
+          flash.now[:notice] = resource_creation_success_message(resource_instance: @resource)
+          render :edit
+        end
       else
-        format.html {
+        format.html do
           flash.now[:alert] = resource_creation_failed_message(resource_instance: @resource)
           render :new
-        }
+        end
       end
     end
   end
@@ -45,13 +48,16 @@ class Admin::PagesController < Admin::AdminController
     authorize @resource
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to admin_page_path(@resource), notice: resource_update_success_message(resource_instance: @resource) }
+        format.html do
+          flash.now[:notice] = resource_update_success_message(resource_instance: @resource)
+          render :edit
+        end
       else
         # @resource.errors[:base] << 'some error' << 'some other error'
-        format.html {
+        format.html do
           flash.now[:alert] = resource_update_failed_message(resource_instance: @resource)
           render :edit
-        }
+        end
       end
     end
   end
