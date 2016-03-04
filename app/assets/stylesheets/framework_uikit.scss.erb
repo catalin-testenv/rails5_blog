@@ -65,7 +65,7 @@ $nav-side-hover-color:                           $panel-title-color;
 $tab-border:                                     $panel-title-background-color_;
 $tab-color:                                      lighten($panel-title-color, 20%);
 $tab-hover-border:                               $panel-title-background-color_;
-$tab-hover-background:                           darken($admin-body-uk-panel-background-color, 3%)r;
+$tab-hover-background:                           darken($admin-body-uk-panel-background-color, 3%);
 $tab-active-color:                               $panel-title-color;
 $tab-hover-color:                                $panel-title-color;
 $tab-active-border:                              $panel-title-background-color_;
@@ -194,10 +194,10 @@ $button-border_:                                 $panel-title-background-color_;
     }
   }
   .ace-chrome .ace_gutter {
-    background-color: $admin-body-uk-panel-background-color !important;
+    background-color: darken($admin-body-uk-panel-background-color, 3%) !important;
   }
   .ace-chrome .ace_gutter-active-line {
-    background-color: darken($admin-body-uk-panel-background-color, 3%) !important;
+    background-color: darken($admin-body-uk-panel-background-color, 6%) !important;
   }
 }
 
