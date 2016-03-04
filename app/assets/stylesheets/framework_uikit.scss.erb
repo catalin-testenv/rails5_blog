@@ -8,13 +8,12 @@
 
 // -------- /define variables
 $admin-body-uk-panel-background-color:           #f9f9f9;
+
 $link-font-size:                                 13px;
 $link-letter-spacing:                            0.010em;
 $link-font-weight:                               500;
 $link-color-on-black-background:                 rgba(255,255,255,0.5);
 $link-hover-color-on-black-background:           rgba(255,255,255,0.8);
-
-$panel-title-background-color_:                  #DCDCDC;
 
 $box-shadow-bottom-right:                        9px 9px 10px -9px rgba(0,0,0,.4);
 $box-shadow-bottom:                              0px 9px 10px -9px rgba(0,0,0,.4);
@@ -53,6 +52,7 @@ $panel-title-line-height:                        24px;
 $panel-title-font-weight:                        normal;
 $panel-title-margin-bottom:                      15px;
 $panel-title-text-transform:                     none;
+$panel-title-background-color_:                  #DCDCDC;
 
 
 $nav-side-color:                                 #666;
@@ -65,21 +65,21 @@ $nav-side-hover-color:                           $panel-title-color;
 $tab-border:                                     $panel-title-background-color_;
 $tab-color:                                      lighten($panel-title-color, 20%);
 $tab-hover-border:                               $panel-title-background-color_;
-$tab-hover-background:                           $panel-title-background-color_;
+$tab-hover-background:                           $admin-body-uk-panel-background-color;
 $tab-active-color:                               $panel-title-color;
 $tab-hover-color:                                $panel-title-color;
 $tab-active-border:                              $panel-title-background-color_;
-$tab-active-background:                          $panel-title-background-color_;
+$tab-active-background:                          $admin-body-uk-panel-background-color;
 
 
 $form-background:                                #fff;
 $form-color:                                     #5b5b60;
-$form-border:                                    #c8c7cc;
+$form-border:                                    #ddd;
 
 
 $form-focus-background:                          #F8F8F8;
 $form-focus-color:                               #5b5b60;
-$form-focus-border:                              #9e9da3;
+$form-focus-border:                              #dadada;
 
 
 $alert-success-background:                       #F2FAE3;
@@ -89,10 +89,11 @@ $alert-danger-color:                             #d85030;
 
 
 
-$button-color:                                   darken($panel-title-background-color_, 30%);
-$button-background:                              white;
-$button-hover-color:                             white;
-$button-hover-background:                        darken($panel-title-background-color_, 30%);
+$button-color:                                   $form-color;
+$button-background:                              $admin-body-uk-panel-background-color;
+$button-hover-color:                             $button-color;
+$button-hover-background:                        darken($admin-body-uk-panel-background-color, 3%);
+$button-border_:                                 $panel-title-background-color_;
 // -------- /override uk variables
 
 
@@ -182,7 +183,7 @@ $button-hover-background:                        darken($panel-title-background-
 @mixin hook-form-misc(){
   .code-editor-area.uk-switcher {
     padding: $code-editor-area-padding;
-    background-color: $panel-title-background-color_;
+    background-color: $admin-body-uk-panel-background-color;
     border-left: $tab-border-width solid $tab-active-border;
     border-right: $tab-border-width solid $tab-active-border;
     border-bottom: $tab-border-width solid $tab-active-border;
@@ -192,6 +193,12 @@ $button-hover-background:                        darken($panel-title-background-
       width: 100%; // helps with ie flicker bug
     }
   }
+  .ace-chrome .ace_gutter {
+    background-color: $admin-body-uk-panel-background-color !important;
+  }
+  .ace-chrome .ace_gutter-active-line {
+    background-color: darken($admin-body-uk-panel-background-color, 3%) !important;
+  }
 }
 
 @mixin hook-form-stacked-label() {
@@ -199,7 +206,8 @@ $button-hover-background:                        darken($panel-title-background-
 }
 
 @mixin hook-button() {
-  border: 1px solid $button-color;
+  color: $button-color !important;
+  border: 1px solid $button-border_;
 }
 // -------- /override uk hook-mixins
 
@@ -246,8 +254,6 @@ a {
 .field_with_errors label {
   color: $text-danger-color;
 }
-
-
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -261,8 +267,8 @@ select::-ms-expand {
 @import 'bower-uikit/scss/uikit';
 
 // ============== site utilities overrides
-$ccr-color-button-on: #7CBB7F;
-$ccr-color-button: $panel-title-background-color_;
+$ccr-color-button-on: #D5F6D7;
+$ccr-color-button: darken($admin-body-uk-panel-background-color, 3%);
 $ccr-color-button-text: $panel-title-color;
 $ccr-color-button-text-on: $panel-title-color;
 $ccr-base-font-weight: 400;
