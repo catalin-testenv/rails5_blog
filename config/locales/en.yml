@@ -35,6 +35,7 @@ en:
   destroy: 'destroy'
   back: 'back'
   list: 'list'
+  preview: 'preview'
   are_you_sure: 'Are you sure?'
   error: 'error'
   menu: 'menu'

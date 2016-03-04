@@ -7,6 +7,7 @@
 <div>
   <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
     <li><%= link_to list_message, admin_pages_path %></li>
+    <li><%= link_to preview_message, page_path(@resource), target: '_blank' %></li>
     <li><%= link_to destroy_message, admin_page_path(@resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
   </ul>
 </div>
@@ -18,6 +19,7 @@
 <div>
   <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
     <li><%= link_to list_message, admin_pages_path %></li>
+    <li><%= link_to preview_message, page_path(@resource), target: '_blank' %></li>
     <li><%= link_to destroy_message, admin_page_path(@resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
   </ul>
 </div>
