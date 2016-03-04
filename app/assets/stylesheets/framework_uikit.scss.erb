@@ -65,11 +65,11 @@ $nav-side-hover-color:                           $panel-title-color;
 $tab-border:                                     $panel-title-background-color_;
 $tab-color:                                      lighten($panel-title-color, 20%);
 $tab-hover-border:                               $panel-title-background-color_;
-$tab-hover-background:                           $admin-body-uk-panel-background-color;
+$tab-hover-background:                           darken($admin-body-uk-panel-background-color, 3%)r;
 $tab-active-color:                               $panel-title-color;
 $tab-hover-color:                                $panel-title-color;
 $tab-active-border:                              $panel-title-background-color_;
-$tab-active-background:                          $admin-body-uk-panel-background-color;
+$tab-active-background:                          darken($admin-body-uk-panel-background-color, 3%);
 
 
 $form-background:                                #fff;
@@ -90,9 +90,9 @@ $alert-danger-color:                             #d85030;
 
 
 $button-color:                                   $form-color;
-$button-background:                              $admin-body-uk-panel-background-color;
+$button-background:                              darken($admin-body-uk-panel-background-color, 3%);
 $button-hover-color:                             $button-color;
-$button-hover-background:                        darken($admin-body-uk-panel-background-color, 3%);
+$button-hover-background:                        darken($admin-body-uk-panel-background-color, 5%);
 $button-border_:                                 $panel-title-background-color_;
 // -------- /override uk variables
 
@@ -183,7 +183,7 @@ $button-border_:                                 $panel-title-background-color_;
 @mixin hook-form-misc(){
   .code-editor-area.uk-switcher {
     padding: $code-editor-area-padding;
-    background-color: $admin-body-uk-panel-background-color;
+    background-color: darken($admin-body-uk-panel-background-color, 3%);
     border-left: $tab-border-width solid $tab-active-border;
     border-right: $tab-border-width solid $tab-active-border;
     border-bottom: $tab-border-width solid $tab-active-border;
