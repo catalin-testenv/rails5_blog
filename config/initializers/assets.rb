@@ -16,8 +16,6 @@ Rails.application.config.assets.precompile += %w(
 
   ace/*
   tinymce/*
-  font-awesome/*
-  foundation-icon-font-3/*
 )
 
 # Extend Sass.load_paths
