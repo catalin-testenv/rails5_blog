@@ -4,6 +4,7 @@ $(function () {
   tinymce.baseURL = '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/tinymce';
   tinymce.suffix = '.min';
   tinymce.init({
+    content_css : '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/application.css',
     selector:'textarea.tinymce' ,
     plugins : 'advlist autolink link image lists charmap print preview code',
     protect: [/\<\%.+?\%\>/g], // protect Ruby code
