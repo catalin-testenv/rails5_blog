@@ -11,9 +11,13 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( **/*.jpg )
 Rails.application.config.assets.precompile += %w(
-  ace/*.js
   framework_foundation.*
   framework_uikit.*
+
+  ace/*
+  tinymce/*
+  font-awesome/*
+  foundation-icon-font-3/*
 )
 
 # Extend Sass.load_paths

@@ -4,15 +4,15 @@
 // https://github.com/ajaxorg/ace-builds
 //= require ace/ace
 // ace/ext-language_tools is required if enableBasicAutocompletion == true
-//= require ace/ext-language_tools
+//= // require ace/ext-language_tools
 // ============== /ace editor
 
 $(function () {
   // ace.config.setDefaultValue('session', 'useWorker', false);
-  ace.config.set('modePath', '<%= Rails.application.config.assets.prefix %>/ace/');
-  ace.config.set('themePath', '<%= Rails.application.config.assets.prefix %>/ace/');
-  ace.config.set('workerPath', '<%= Rails.application.config.assets.prefix %>/ace/');
-  ace.require("ace/ext/language_tools"); // required if enableBasicAutocompletion == true
+  ace.config.set('modePath', '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/ace/');
+  ace.config.set('themePath', '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/ace/');
+  ace.config.set('workerPath', '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/ace/');
+  // ace.require("ace/ext/language_tools"); // required if enableBasicAutocompletion == true
 
   // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
   // https://ace.c9.io/build/kitchen-sink.html
@@ -33,9 +33,9 @@ $(function () {
       readOnly: readOnly,
       highlightActiveLine: !readOnly,
       showFoldWidgets: !readOnly,
-      enableBasicAutocompletion: false, // language_tools
-      enableSnippets: false, //language_tools
-      enableLiveAutocompletion: false // language_tools
+      // enableBasicAutocompletion: false, // language_tools
+      // enableSnippets: false, //language_tools
+      // enableLiveAutocompletion: false // language_tools
     }, params['editorOptions'] || {});
 
     var editDiv = $('<div>', {

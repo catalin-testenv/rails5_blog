@@ -1,4 +1,6 @@
 
+# TODO: rename tinymce_editor, code_editor to editor_tinymce, editor_ace
+# TODO: fix font-awesome path | ex: production login page
 # TODO: add will-paginate on index pages
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
 # TODO: find a way to not override a user theme when main blog code is updated from repo

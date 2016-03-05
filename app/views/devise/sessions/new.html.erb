@@ -2,6 +2,9 @@
 
 <% if devise_mapping.omniauthable? %>
     <% resource_class.omniauth_providers.each do |provider| %>
-        <%= link_to image_tag("omniauth_providers/#{provider}.jpg", size: '46x46', alt: 'Google'), omniauth_authorize_path(resource_name, provider) %><br />
+        <%= link_to  omniauth_authorize_path(resource_name, provider) do %>
+            <i class="fa fa-google"></i>
+        <% end %>
+        <br />
     <% end %>
 <% end %>

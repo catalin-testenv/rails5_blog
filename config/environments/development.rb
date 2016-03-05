@@ -48,7 +48,7 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  config.assets.prefix = '/dev-assets'
+  config.assets.prefix = ENV['CONFIG_ASSETS_PREFIX']
   config.assets.compile = true
 
   # Raises error for missing translations
