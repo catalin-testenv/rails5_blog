@@ -16,10 +16,11 @@ $(function () {
 
   // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
   // https://ace.c9.io/build/kitchen-sink.html
-  $('[data-code-editor]').each(function () {
+  $('[data-editor-ace]').each(function () {
     var $this = $(this);
+    if ($this.data('editor-tinymce')) { return; }
     var readOnly = ['TEXTAREA'].indexOf(this.nodeName) === -1;
-    var params = $this.data('code-editor') || {};
+    var params = $this.data('editor-ace') || {};
 
     var sessionOptions = $.extend({}, {
       language: 'text',
@@ -52,6 +53,16 @@ $(function () {
       $this.val(editor.getSession().getValue());
     });
     editor.resize();
+
+    // destroy editor
+
+    setTimeout(function(){
+      // http://stackoverflow.com/questions/16304832/how-to-change-a-div-from-an-ace-editor-back-to-a-div
+      //editor.destroy();
+      //editor.container.remove();
+      //$this.css('display', 'block');
+    }, 5000);
+
   });
 });
 

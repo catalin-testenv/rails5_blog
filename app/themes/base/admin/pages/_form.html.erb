@@ -96,11 +96,23 @@
           <li><a href=""><%= f.object.class.human_attribute_name(:meta_js) %></a></li>
         </ul>
         <ul id="code-editor-area" class="uk-switcher code-editor-area">
-          <li><%= f.text_area :content, class: 'tinymce', data: {'code-editor_': '{"sessionOptions": {"language":"html_ruby"}}'} %></li>
-          <li><%= f.text_area :meta_description, data: {'code-editor': '{"sessionOptions": {"language":"text"}}'} %></li>
-          <li><%= f.text_area :excerpt, data: {'code-editor': '{"sessionOptions": {"language":"html_ruby"}}'} %></li>
-          <li><%= f.text_area :meta_css, data: {'code-editor': '{"sessionOptions": {"language":"css"}}'} %></li>
-          <li><%= f.text_area :meta_js, data: {'code-editor': '{"sessionOptions": {"language":"javascript"}}'} %></li>
+          <li><%= f.text_area :content, data: {
+              'editor-ace': '{"sessionOptions": {"language":"html_ruby"}}',
+              'editor-tinymce': '{}'
+          } %></li>
+          <li><%= f.text_area :meta_description, data: {
+              'editor-ace': '{"sessionOptions": {"language":"text"}}'
+          } %></li>
+          <li><%= f.text_area :excerpt, data: {
+              'editor-ace': '{"sessionOptions": {"language":"html_ruby"}}',
+              'editor-tinymce': '{}'
+          } %></li>
+          <li><%= f.text_area :meta_css, data: {
+              'editor-ace': '{"sessionOptions": {"language":"css"}}'
+          } %></li>
+          <li><%= f.text_area :meta_js, data: {
+              'editor-ace': '{"sessionOptions": {"language":"javascript"}}'
+          } %></li>
         </ul>
         <% f.object.errors[:content].each do |e|%>
             <p class="uk-form-help-block uk-text-danger"> <%= f.object.class.human_attribute_name(:content) %> <%= e %></p>

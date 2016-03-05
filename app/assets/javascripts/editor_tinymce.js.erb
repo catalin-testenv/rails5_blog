@@ -5,10 +5,26 @@ $(function () {
   tinymce.suffix = '.min';
   tinymce.init({
     content_css : '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/application.css',
-    selector:'textarea.tinymce' ,
+    // selector: 'textarea[data-editor-tinymce]' ,
     plugins : 'advlist autolink link image lists charmap print preview code',
     protect: [/\<\%.+?\%\>/g], // protect Ruby code
     // toolbar: 'code',
     // menubar: 'tools'
+
+    setup: function(editor) {
+      editor.on('init', function() {
+        setTimeout(function(){
+          //tinymce.execCommand("mceRemoveEditor", true, tinymce.editors[0].id);
+        }, 5000);
+      });
+    }
+
   });
+
+  $('[data-editor-tinymce]').each(function () {
+    var $this = $(this);
+    if ($this.data('editor-ace')) { return; }
+    tinymce.execCommand('mceAddEditor', false, this.id);
+  });
+
 });
