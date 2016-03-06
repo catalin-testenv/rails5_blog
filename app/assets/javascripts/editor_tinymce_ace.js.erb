@@ -40,7 +40,7 @@ $(function() {
       var next_editor_type = button.text();
       var current_editor_type = switcher_values[button.text()];
       if (next_editor_type == 'wysiwyg') {
-        var proceed = confirm('The HTML source will be modified!\nWhite space will not be preserved!');
+        var proceed = confirm('<%= I18n.t('confirm_editor_switch').html_safe %>');
         if (!proceed) { return; }
       }
       button.text(current_editor_type);

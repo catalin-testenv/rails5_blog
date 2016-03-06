@@ -43,6 +43,7 @@ en:
   read_more: 'read more'
   administration: 'administration'
   view_site: 'view site'
+  confirm_editor_switch: "The HTML source will be modified!\nFormatting white space will not be preserved!"
 
   # ---------------- RESOURCE
 
