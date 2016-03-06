@@ -9,7 +9,7 @@ $(function() {
   $('[data-editor-ace][data-editor-tinymce]').each(function() {
     var target = this;
     var $this = $(this);
-    var initial_editor_type = 'wysiwyg';
+    var initial_editor_type = 'code';
     var switcher_id = this.id + '_switcher';
     var switcher_values = {'wysiwyg': 'code', 'code': 'wysiwyg'};
 
@@ -37,10 +37,14 @@ $(function() {
     function change(e) {
       e.preventDefault();
       var button = $(e.target);
-      var current_editor_type = button.text();
-      var new_editor_type = switcher_values[button.text()];
-      button.text(new_editor_type);
-      initialize_for(current_editor_type);
+      var next_editor_type = button.text();
+      var current_editor_type = switcher_values[button.text()];
+      if (next_editor_type == 'wysiwyg') {
+        var proceed = confirm('The HTML source will be modified!\nWhite space will not be preserved!');
+        if (!proceed) { return; }
+      }
+      button.text(current_editor_type);
+      initialize_for(next_editor_type);
     }
 
     var switcher = $('<div class="uk-clearfix wysiwyg-switcher">' +

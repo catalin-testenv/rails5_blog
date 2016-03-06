@@ -33,10 +33,13 @@ $(function () {
   tinymce.init({
     content_css : '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/application.css',
     // selector: 'textarea[data-editor-tinymce]' ,
-    plugins : 'advlist autolink link image lists charmap print preview code',
+
+    plugins : 'advlist autolink link image lists charmap print preview code textcolor colorpicker table searchreplace nonbreaking hr',
     protect: [/\<\%.+?\%\>/g], // protect Ruby code
-    // toolbar: 'code',
+    toolbar: 'forecolor backcolor table',
     // menubar: 'tools'
+
+    // forced_root_block: false,
 
     setup: function(editor) {
       editor.on('init', function(e) {
