@@ -7,6 +7,52 @@
 //= // require ace/ext-language_tools
 // ============== /ace editor
 
+function editor_ace_initialize(target) {
+  var $this = $(target);
+  var readOnly = ['TEXTAREA'].indexOf(target.nodeName) === -1;
+  var params = $this.data('editor-ace') || {};
+
+  var sessionOptions = $.extend({}, {
+    language: 'text',
+  }, params['sessionOptions'] || {});
+
+  var options = $.extend({}, {
+    theme: 'ace/theme/chrome',
+    wrap: true,
+    maxLines: 100,
+    showPrintMargin: false,
+    readOnly: readOnly,
+    highlightActiveLine: !readOnly,
+    showFoldWidgets: !readOnly,
+    // enableBasicAutocompletion: false, // language_tools
+    // enableSnippets: false, //language_tools
+    // enableLiveAutocompletion: false // language_tools
+  }, params['editorOptions'] || {});
+
+  var editDiv = $('<div>', {
+    'class': $this.attr('class')
+  }).insertBefore($this);
+  $this.css('display', 'none');
+
+  var editor = ace.edit(editDiv[0]);
+  editor.$blockScrolling = Infinity; // to disable a deprecation warning
+  editor.setOptions(options);
+  editor.getSession().setMode('ace/mode/' + sessionOptions['language']);
+  editor.getSession().setValue(readOnly ? $this.html() : $this.val());
+  !readOnly && editor.getSession().on('change', function () {
+    $this.val(editor.getSession().getValue());
+  });
+  editor.resize();
+  return editor;
+}
+
+function editor_ace_destroy (editor) {
+  // http://stackoverflow.com/questions/16304832/how-to-change-a-div-from-an-ace-editor-back-to-a-div
+  editor.destroy();
+  $(editor.container).next().css('display', 'block');
+  editor.container.remove();
+}
+
 $(function () {
   // ace.config.setDefaultValue('session', 'useWorker', false);
   ace.config.set('modePath', '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/ace/');
@@ -17,52 +63,10 @@ $(function () {
   // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
   // https://ace.c9.io/build/kitchen-sink.html
   $('[data-editor-ace]').each(function () {
+    var target = this;
     var $this = $(this);
     if ($this.data('editor-tinymce')) { return; }
-    var readOnly = ['TEXTAREA'].indexOf(this.nodeName) === -1;
-    var params = $this.data('editor-ace') || {};
-
-    var sessionOptions = $.extend({}, {
-      language: 'text',
-    }, params['sessionOptions'] || {});
-
-    var options = $.extend({}, {
-      theme: 'ace/theme/chrome',
-      wrap: true,
-      maxLines: 100,
-      showPrintMargin: false,
-      readOnly: readOnly,
-      highlightActiveLine: !readOnly,
-      showFoldWidgets: !readOnly,
-      // enableBasicAutocompletion: false, // language_tools
-      // enableSnippets: false, //language_tools
-      // enableLiveAutocompletion: false // language_tools
-    }, params['editorOptions'] || {});
-
-    var editDiv = $('<div>', {
-      'class': $this.attr('class')
-    }).insertBefore($this);
-    $this.css('display', 'none');
-
-    var editor = ace.edit(editDiv[0]);
-    editor.$blockScrolling = Infinity; // to disable a deprecation warning
-    editor.setOptions(options);
-    editor.getSession().setMode('ace/mode/' + sessionOptions['language']);
-    editor.getSession().setValue(readOnly ? $this.html() : $this.val());
-    !readOnly && editor.getSession().on('change', function () {
-      $this.val(editor.getSession().getValue());
-    });
-    editor.resize();
-
-    // destroy editor
-
-    setTimeout(function(){
-      // http://stackoverflow.com/questions/16304832/how-to-change-a-div-from-an-ace-editor-back-to-a-div
-      //editor.destroy();
-      //editor.container.remove();
-      //$this.css('display', 'block');
-    }, 5000);
-
+    editor_ace_initialize(target);
   });
 });
 

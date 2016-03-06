@@ -1,5 +1,32 @@
 //= require tinymce/tinymce.min
 
+
+function editor_tinymce_initialize(target, callback) {
+  callback && (editor_tinymce_initialize.callbacks[target.id] = callback);
+  tinymce.execCommand('mceAddEditor', false, target.id);
+}
+editor_tinymce_initialize.callbacks = {};
+
+function editor_tinymce_destroy (target, callback) {
+  callback && (editor_tinymce_destroy.callbacks[target.id] = callback);
+  tinymce.execCommand("mceRemoveEditor", true, target.id); // tinymce.editors[0].id
+}
+editor_tinymce_destroy.callbacks = {};
+
+function _editor_tinymce_on_init(editor) {
+  if(!editor_tinymce_initialize.callbacks[editor.id]) { return; }
+  // fire and forget
+  editor_tinymce_initialize.callbacks[editor.id](editor);
+  delete editor_tinymce_initialize.callbacks[editor.id];
+}
+
+function _editor_tinymce_on_remove(editor) {
+  if(!editor_tinymce_destroy.callbacks[editor.id]) { return; }
+  // fire and forget
+  editor_tinymce_destroy.callbacks[editor.id](editor);
+  delete editor_tinymce_destroy.callbacks[editor.id];
+}
+
 $(function () {
   tinymce.baseURL = '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/tinymce';
   tinymce.suffix = '.min';
@@ -12,19 +39,21 @@ $(function () {
     // menubar: 'tools'
 
     setup: function(editor) {
-      editor.on('init', function() {
-        setTimeout(function(){
-          //tinymce.execCommand("mceRemoveEditor", true, tinymce.editors[0].id);
-        }, 5000);
+      editor.on('init', function(e) {
+        _editor_tinymce_on_init(editor);
+      });
+      editor.on('remove', function(e) {
+        _editor_tinymce_on_remove(editor);
+        editor = undefined;
       });
     }
-
   });
 
   $('[data-editor-tinymce]').each(function () {
+    var target = this;
     var $this = $(this);
     if ($this.data('editor-ace')) { return; }
-    tinymce.execCommand('mceAddEditor', false, this.id);
+    editor_tinymce_initialize(target);
   });
 
 });

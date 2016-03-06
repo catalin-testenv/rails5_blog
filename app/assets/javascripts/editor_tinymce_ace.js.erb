@@ -1,0 +1,57 @@
+/*
+* enables switching between editors when both ace and tinymce are supposed take control
+* requires editor_ace and editor_tinymce being included before
+* as it depends on:
+* editor_ace_initialize() editor_ace_destroy() editor_tinymce_initialize() editor_tinymce_destroy()
+* */
+$(function() {
+  'use strict';
+  $('[data-editor-ace][data-editor-tinymce]').each(function() {
+    var target = this;
+    var $this = $(this);
+    var initial_editor_type = 'wysiwyg';
+    var switcher_id = this.id + '_switcher';
+    var switcher_values = {'wysiwyg': 'code', 'code': 'wysiwyg'};
+
+    var editor_ace = undefined;
+    var editor_tinymce = undefined;
+
+    function initialize_for(editor_type) {
+      switch(editor_type) {
+        case 'code':
+          !editor_tinymce && !editor_ace && (editor_ace = editor_ace_initialize(target));
+          editor_tinymce && (editor_tinymce_destroy(editor_tinymce, function(editor) {
+            editor_tinymce = undefined;
+            !editor_ace && (editor_ace = editor_ace_initialize(target));
+          }));
+          break;
+        case 'wysiwyg':
+          editor_ace && (editor_ace = editor_ace_destroy(editor_ace));
+          !editor_tinymce && editor_tinymce_initialize(target, function(editor) {
+            editor_tinymce = editor;
+          });
+          break;
+      }
+    }
+
+    function change(e) {
+      e.preventDefault();
+      var button = $(e.target);
+      var current_editor_type = button.text();
+      var new_editor_type = switcher_values[button.text()];
+      button.text(new_editor_type);
+      initialize_for(current_editor_type);
+    }
+
+    var switcher = $('<div class="uk-clearfix wysiwyg-switcher">' +
+          '<ul class="uk-subnav uk-float-right uk-margin-right ">' +
+            '<li><a id="' + switcher_id + '" href="">' + switcher_values[initial_editor_type] + '</a></li>' +
+          '</ul>' +
+        '</div>', {
+    }).insertBefore($this);
+    $('#'+switcher_id).on('click', change);
+
+    initialize_for(initial_editor_type);
+
+  });
+});
