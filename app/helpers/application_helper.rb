@@ -13,6 +13,7 @@ module ApplicationHelper
   end
 
   def evaluate(data)
+    data = data.gsub(/(`\[|\]`)/, '`[' => '<%= ', ']`' => ' %>')
     ERB.new(data).result(binding)
   end
 end
