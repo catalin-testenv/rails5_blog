@@ -43,7 +43,7 @@ ro:
   read_more: 'citeste tot articolul'
   administration: 'administrare'
   view_site: 'vizualizeaza site-ul'
-  confirm_editor_switch: "Sursa HTML va fi modificata!\nFormatarea nu va fi pastrata!"
+  confirm_editor_switch: 'Sursa HTML va fi modificata!\nFormatarea nu va fi pastrata!'
 
   # ---------------- STANDARD_RESOURCE
 
