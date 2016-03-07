@@ -10,11 +10,17 @@ function editor_tinymce_initialize(target, on_init, on_remove) {
   var options = $.extend({}, {
     content_css : '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/application.css',
     //selector: '#' + target.id,
-    plugins : 'advlist autolink link image lists charmap print preview code textcolor colorpicker table searchreplace nonbreaking hr',
+
+    // https://www.tinymce.com/docs/configure/editor-appearance/
+    // https://www.tinymce.com/docs/get-started/customize-ui/
+    plugins : 'advlist autolink link image lists charmap print preview code textcolor colorpicker table searchreplace nonbreaking hr autoresize',
+    toolbar: 'undo redo | styleselect | alignleft aligncenter alignright | bullist numlist | outdent indent | forecolor backcolor | code | table | searchreplace',
+    // toolbar: false,
+    // menubar: false,
+
     protect: [/\<\%.+?\%\>/g], // protect Ruby code
-    toolbar: 'forecolor backcolor table',
-    // menubar: 'tools'
     // forced_root_block: false,
+
     setup: function(editor) {
       on_init && editor.on('init', function(e) {
         on_init(editor);
