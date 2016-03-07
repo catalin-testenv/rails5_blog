@@ -8,6 +8,7 @@
 // ============== /ace editor
 
 function editor_ace_initialize(target) {
+  'use strict';
   var $this = $(target);
   var readOnly = ['TEXTAREA'].indexOf(target.nodeName) === -1;
   var params = $this.data('editor-ace') || {};
@@ -47,6 +48,7 @@ function editor_ace_initialize(target) {
 }
 
 function editor_ace_destroy (editor) {
+  'use strict';
   // http://stackoverflow.com/questions/16304832/how-to-change-a-div-from-an-ace-editor-back-to-a-div
   editor.destroy();
   $(editor.container).next().css('display', 'block');
@@ -54,6 +56,7 @@ function editor_ace_destroy (editor) {
 }
 
 $(function () {
+  'use strict';
   // ace.config.setDefaultValue('session', 'useWorker', false);
   ace.config.set('modePath', '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/ace/');
   ace.config.set('themePath', '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/ace/');

@@ -105,7 +105,7 @@
           } %></li>
           <li><%= f.text_area :excerpt, data: {
               'editor-ace': '{"sessionOptions": {"language":"html_ruby"}}',
-              'editor-tinymce': '{}'
+              'editor-tinymce': '{"toolbar": "forecolor backcolor", "plugins": "textcolor"}'
           } %></li>
           <li><%= f.text_area :meta_css, data: {
               'editor-ace': '{"sessionOptions": {"language":"css"}}'

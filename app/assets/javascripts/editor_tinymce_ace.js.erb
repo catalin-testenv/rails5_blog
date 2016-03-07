@@ -19,16 +19,19 @@ $(function() {
     function initialize_for(editor_type) {
       switch(editor_type) {
         case 'code':
-          !editor_tinymce && !editor_ace && (editor_ace = editor_ace_initialize(target));
-          editor_tinymce && (editor_tinymce_destroy(editor_tinymce, function(editor) {
-            editor_tinymce = undefined;
+          if (editor_tinymce) {
+            editor_tinymce_destroy(editor_tinymce)
+          } else {
             !editor_ace && (editor_ace = editor_ace_initialize(target));
-          }));
+          }
           break;
         case 'wysiwyg':
           editor_ace && (editor_ace = editor_ace_destroy(editor_ace));
           !editor_tinymce && editor_tinymce_initialize(target, function(editor) {
             editor_tinymce = editor;
+          }, function(editor) {
+            editor_tinymce = undefined;
+            !editor_ace && (editor_ace = editor_ace_initialize(target));
           });
           break;
       }
@@ -48,7 +51,7 @@ $(function() {
     }
 
     var switcher = $('<div class="uk-clearfix wysiwyg-switcher">' +
-          '<ul class="uk-subnav uk-float-right uk-margin-right ">' +
+          '<ul class="uk-subnav uk-float-right uk-margin-right">' +
             '<li><a id="' + switcher_id + '" href="">' + switcher_values[initial_editor_type] + '</a></li>' +
           '</ul>' +
         '</div>', {
@@ -56,6 +59,5 @@ $(function() {
     $('#'+switcher_id).on('click', change);
 
     initialize_for(initial_editor_type);
-
   });
 });

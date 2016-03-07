@@ -1,62 +1,47 @@
 //= require tinymce/tinymce.min
 
 
-function editor_tinymce_initialize(target, callback) {
-  callback && (editor_tinymce_initialize.callbacks[target.id] = callback);
-  tinymce.execCommand('mceAddEditor', false, target.id);
-}
-editor_tinymce_initialize.callbacks = {};
+function editor_tinymce_initialize(target, on_init, on_remove) {
+  'use strict';
+  var $target = $(target);
+  var params = $target.data('editor-tinymce') || {};
 
-function editor_tinymce_destroy (target, callback) {
-  callback && (editor_tinymce_destroy.callbacks[target.id] = callback);
-  tinymce.execCommand("mceRemoveEditor", true, target.id); // tinymce.editors[0].id
-}
-editor_tinymce_destroy.callbacks = {};
-
-function _editor_tinymce_on_init(editor) {
-  if(!editor_tinymce_initialize.callbacks[editor.id]) { return; }
-  // fire and forget
-  editor_tinymce_initialize.callbacks[editor.id](editor);
-  delete editor_tinymce_initialize.callbacks[editor.id];
-}
-
-function _editor_tinymce_on_remove(editor) {
-  if(!editor_tinymce_destroy.callbacks[editor.id]) { return; }
-  // fire and forget
-  editor_tinymce_destroy.callbacks[editor.id](editor);
-  delete editor_tinymce_destroy.callbacks[editor.id];
-}
-
-$(function () {
-  tinymce.baseURL = '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/tinymce';
-  tinymce.suffix = '.min';
-  tinymce.init({
+  var options = $.extend({}, {
     content_css : '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/application.css',
-    // selector: 'textarea[data-editor-tinymce]' ,
-
+    //selector: '#' + target.id,
     plugins : 'advlist autolink link image lists charmap print preview code textcolor colorpicker table searchreplace nonbreaking hr',
     protect: [/\<\%.+?\%\>/g], // protect Ruby code
     toolbar: 'forecolor backcolor table',
     // menubar: 'tools'
-
     // forced_root_block: false,
-
     setup: function(editor) {
-      editor.on('init', function(e) {
-        _editor_tinymce_on_init(editor);
+      on_init && editor.on('init', function(e) {
+        on_init(editor);
       });
-      editor.on('remove', function(e) {
-        _editor_tinymce_on_remove(editor);
+      on_remove && editor.on('remove', function(e) {
+        on_remove(editor);
         editor = undefined;
       });
     }
-  });
+  }, params);
 
-  $('[data-editor-tinymce]').each(function () {
+  tinymce.init(options);
+  tinymce.execCommand('mceAddEditor', false, target.id);
+}
+
+function editor_tinymce_destroy(target, callback) {
+  tinymce.execCommand("mceRemoveEditor", true, target.id); // tinymce.editors[0].id
+}
+
+$(function () {
+  'use strict';
+  tinymce.baseURL = '<%= ENV['CONFIG_ASSETS_PREFIX'] %>/tinymce';
+  tinymce.suffix = '.min';
+
+  $('[data-editor-tinymce]').each(function() {
     var target = this;
     var $this = $(this);
     if ($this.data('editor-ace')) { return; }
     editor_tinymce_initialize(target);
   });
-
 });
