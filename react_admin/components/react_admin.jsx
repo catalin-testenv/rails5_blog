@@ -2,7 +2,6 @@
 
 import React from 'react';
 import AdminMainNavigation from './admin_main_navigation';
-import AdminBody from './admin_body';
 
 class ReactAdmin extends React.Component {
     render() {
@@ -13,7 +12,11 @@ class ReactAdmin extends React.Component {
                 </div>
                 <div className="uk-width-medium-4-5 uk-padding-remove">
                     <div id="admin-body">
-                        <AdminBody />
+                        <div className="uk-panel uk-panel-box">
+                            <div className="uk-panel uk-panel-box panel-box-material">
+                                {this.props.children}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

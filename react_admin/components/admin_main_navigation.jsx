@@ -8,12 +8,8 @@ class AdminMainNavigation extends React.Component {
             <div className="uk-panel uk-panel-box">
                 <h4 className="uk-panel-title">Administration</h4>
                 <ul className="uk-nav uk-nav-side">
-                    <li className="uk-active">
-                        <a href="#pages">Pages</a>
-                    </li>
-                    <li>
-                        <a href="#other">Other</a>
-                    </li>
+                    <li className={window.location.hash.match(/^#\/pages/) ? 'uk-active' : ''}><a href="#/pages">Pages</a></li>
+                    <li className={window.location.hash.match(/^#\/other/) ? 'uk-active' : ''}><a href="#/other">Other</a></li>
                 </ul>
             </div>
         );
