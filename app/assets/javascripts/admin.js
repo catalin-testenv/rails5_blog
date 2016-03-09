@@ -19156,7 +19156,7 @@ var AdminMainNavigation = function (_React$Component) {
                         { className: 'uk-active' },
                         _react2.default.createElement(
                             'a',
-                            { href: 'pages' },
+                            { href: '#pages' },
                             'Pages'
                         )
                     ),
@@ -19165,8 +19165,8 @@ var AdminMainNavigation = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             'a',
-                            { href: '#' },
-                            'other'
+                            { href: '#other' },
+                            'Other'
                         )
                     )
                 )
