@@ -28,7 +28,31 @@
 
   <body>
     <% if ENV['ADMIN_APP_TYPE'] == 'spa' %>
-      <div id="react-admin" class="uk-container uk-container-center">
+      <div class="uk-container uk-container-center">
+        <div class="uk-grid uk-margin-remove">
+
+          <!-- admin-toggle -->
+          <div id="admin-toggle" class="uk-width uk-padding-remove">
+            <div class="uk-panel uk-panel-box">
+              <% if current_user && current_user.admin? %>
+                  <% if controller.is_a? Admin::AdminController  %>
+                      <ul class="uk-subnav uk-subnav-line">
+                        <li><%= link_to I18n.t('view_site').camelize, root_path %></li>
+                        <li><%= link_to I18n.t('administration').camelize, admin_root_path %></li>
+                      </ul>
+                  <% else %>
+                      <ul class="uk-subnav uk-subnav-line">
+                        <li><%= link_to I18n.t('administration').camelize, admin_root_path %></li>
+                      </ul>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+          <!-- /admin-toggle -->
+
+          <div id="react-admin" class="uk-width">
+          </div>
+        </div>
       </div>
     <% else %>
         <div class="uk-container uk-container-center">

@@ -19051,7 +19051,7 @@ $(function () {
     return _reactDom2.default.render(_react2.default.createElement(_react_admin2.default, null), document.querySelector('#react-admin'));
 });
 
-},{"./components/react_admin":160,"react":158,"react-dom":29}],160:[function(require,module,exports){
+},{"./components/react_admin":162,"react":158,"react-dom":29}],160:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19063,6 +19063,144 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _admin_main_navigation = require('./admin_main_navigation');
+
+var _admin_main_navigation2 = _interopRequireDefault(_admin_main_navigation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdminBody = function (_React$Component) {
+    _inherits(AdminBody, _React$Component);
+
+    function AdminBody() {
+        _classCallCheck(this, AdminBody);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(AdminBody).apply(this, arguments));
+    }
+
+    _createClass(AdminBody, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'uk-panel uk-panel-box' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'uk-panel uk-panel-box panel-box-material' },
+                    _react2.default.createElement('div', { style: { height: 500 } })
+                )
+            );
+        }
+    }]);
+
+    return AdminBody;
+}(_react2.default.Component);
+
+;
+
+exports.default = AdminBody;
+
+},{"./admin_main_navigation":161,"react":158}],161:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdminMainNavigation = function (_React$Component) {
+    _inherits(AdminMainNavigation, _React$Component);
+
+    function AdminMainNavigation() {
+        _classCallCheck(this, AdminMainNavigation);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(AdminMainNavigation).apply(this, arguments));
+    }
+
+    _createClass(AdminMainNavigation, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'uk-panel uk-panel-box' },
+                _react2.default.createElement(
+                    'h4',
+                    { className: 'uk-panel-title' },
+                    'Administration'
+                ),
+                _react2.default.createElement(
+                    'ul',
+                    { className: 'uk-nav uk-nav-side' },
+                    _react2.default.createElement(
+                        'li',
+                        { className: 'uk-active' },
+                        _react2.default.createElement(
+                            'a',
+                            { href: 'pages' },
+                            'Pages'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                            'a',
+                            { href: '#' },
+                            'other'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AdminMainNavigation;
+}(_react2.default.Component);
+
+;
+
+exports.default = AdminMainNavigation;
+
+},{"react":158}],162:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _admin_main_navigation = require('./admin_main_navigation');
+
+var _admin_main_navigation2 = _interopRequireDefault(_admin_main_navigation);
+
+var _admin_body = require('./admin_body');
+
+var _admin_body2 = _interopRequireDefault(_admin_body);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19086,11 +19224,20 @@ var ReactAdmin = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'uk-grid' },
                 _react2.default.createElement(
-                    'h3',
-                    null,
-                    'React Admin'
+                    'div',
+                    { id: 'admin-main-navigation', className: 'uk-width-medium-1-5 uk-padding-remove' },
+                    _react2.default.createElement(_admin_main_navigation2.default, null)
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'uk-width-medium-4-5 uk-padding-remove' },
+                    _react2.default.createElement(
+                        'div',
+                        { id: 'admin-body' },
+                        _react2.default.createElement(_admin_body2.default, null)
+                    )
                 )
             );
         }
@@ -19103,4 +19250,4 @@ var ReactAdmin = function (_React$Component) {
 
 exports.default = ReactAdmin;
 
-},{"react":158}]},{},[159]);
+},{"./admin_body":160,"./admin_main_navigation":161,"react":158}]},{},[159]);
