@@ -9,10 +9,10 @@ class AdminMainNavigation extends React.Component {
                 <h4 className="uk-panel-title">Administration</h4>
                 <ul className="uk-nav uk-nav-side">
                     <li className="uk-active">
-                        <a href="pages">Pages</a>
+                        <a href="#pages">Pages</a>
                     </li>
                     <li>
-                        <a href="#">other</a>
+                        <a href="#other">Other</a>
                     </li>
                 </ul>
             </div>
