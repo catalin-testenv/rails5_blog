@@ -16,6 +16,8 @@ Rails.application.config.assets.precompile += %w(
 
   ace/*
   tinymce/*
+
+  admin.js
 )
 
 # Extend Sass.load_paths
