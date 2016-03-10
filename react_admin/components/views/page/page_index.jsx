@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class Pages extends React.Component {
+class PageIndex extends React.Component {
 
     constructor(...props) {
         super(...props);
@@ -81,4 +81,4 @@ class Pages extends React.Component {
     }
 };
 
-export default Pages;
+export default PageIndex;

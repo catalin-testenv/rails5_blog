@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-class PageCategories extends React.Component {
+class PageCategoryIndex extends React.Component {
     render() {
         return (
             <div style={{height: 500}}>Page Categories</div>
@@ -9,4 +9,4 @@ class PageCategories extends React.Component {
     }
 };
 
-export default PageCategories;
+export default PageCategoryIndex;
