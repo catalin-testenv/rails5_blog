@@ -26,6 +26,10 @@ class Admin::PagesController < Admin::AdminController
   # GET /admin/pages/1/edit
   def edit
     authorize @resource
+    respond_to do |format|
+      format.json { render json: @resource }
+      format.html  { render :edit }
+    end
   end
 
   # POST /admin/pages

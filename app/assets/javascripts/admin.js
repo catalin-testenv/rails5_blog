@@ -24148,7 +24148,7 @@ var AdminBodyBottomLinks = function (_React$Component) {
             var links = this.props.links.map(function (link) {
                 return _react2.default.createElement(
                     _nav_li2.default,
-                    _extends({ key: link.to, to: link.to }, _this2.props),
+                    _extends({ key: link.to }, link, _this2.props),
                     link.name
                 );
             });
@@ -24262,7 +24262,7 @@ var AdminBodyTopLinks = function (_React$Component) {
             var links = this.props.links.map(function (link) {
                 return _react2.default.createElement(
                     _nav_li2.default,
-                    _extends({ key: link.to, to: link.to }, _this2.props),
+                    _extends({ key: link.to }, link, _this2.props),
                     link.name
                 );
             });
@@ -24391,11 +24391,25 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _admin_body_title = require('../../subcomponents/admin_body_title');
+
+var _admin_body_title2 = _interopRequireDefault(_admin_body_title);
+
+var _admin_body_top_links = require('../../subcomponents/admin_body_top_links');
+
+var _admin_body_top_links2 = _interopRequireDefault(_admin_body_top_links);
+
+var _admin_body_bottom_links = require('../../subcomponents/admin_body_bottom_links');
+
+var _admin_body_bottom_links2 = _interopRequireDefault(_admin_body_bottom_links);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24409,18 +24423,57 @@ var PageEdit = function (_React$Component) {
     _inherits(PageEdit, _React$Component);
 
     function PageEdit() {
+        var _Object$getPrototypeO;
+
         _classCallCheck(this, PageEdit);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(PageEdit).apply(this, arguments));
+        for (var _len = arguments.length, props = Array(_len), _key = 0; _key < _len; _key++) {
+            props[_key] = arguments[_key];
+        }
+
+        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PageEdit)).call.apply(_Object$getPrototypeO, [this].concat(props)));
+
+        _this.state = {
+            resource: undefined
+        };
+        return _this;
     }
 
     _createClass(PageEdit, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.loadPage();
+        }
+    }, {
+        key: 'loadPage',
+        value: function loadPage() {
+            var _this2 = this;
+
+            $.ajax({
+                url: Routes.edit_admin_page_path(this.props.params.id, { format: 'json' }),
+                method: 'GET',
+                dataType: 'json'
+            }).done(function (data) {
+                _this2.setState({ resource: data });
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var links = [{ to: Routes.admin_pages_path(), name: 'List' }];
+            this.state.resource && links.push({ to: Routes.page_path(this.state.resource.id + '-' + this.state.resource.name.replace(/\s+/g, '_')), name: 'Preview', target: "_blank" });
+
             return _react2.default.createElement(
                 'div',
-                { style: { height: 500 } },
-                'Page Edit'
+                null,
+                _react2.default.createElement(
+                    _admin_body_title2.default,
+                    null,
+                    'Edit'
+                ),
+                _react2.default.createElement(_admin_body_top_links2.default, _extends({ links: links }, this.props)),
+                _react2.default.createElement('div', { style: { height: 500 } }),
+                _react2.default.createElement(_admin_body_bottom_links2.default, _extends({ links: links }, this.props))
             );
         }
     }]);
@@ -24432,7 +24485,7 @@ var PageEdit = function (_React$Component) {
 
 exports.default = PageEdit;
 
-},{"react":213}],226:[function(require,module,exports){
+},{"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"react":213}],226:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
