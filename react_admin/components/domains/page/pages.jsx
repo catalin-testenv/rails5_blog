@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router';
 
 class Pages extends React.Component {
 
@@ -32,9 +33,9 @@ class Pages extends React.Component {
                     <td>{resource.name}</td>
                     <td>
                         <ul className="uk-list uk-margin-bottom-remove">
-                            <li><a href={Routes.page_path(`${resource.id}-${resource.name.replace(/\s+/g, '_')}`)} target="_blank">Preview</a></li>
-                            <li><a href={Routes.edit_admin_page_path(resource)} >Edit</a></li>
-                            <li><a href={Routes.admin_page_path(resource)} data-method="delete" data-confirm="Are you sure?" >Destroy</a></li>
+                            <li><Link to={Routes.page_path(`${resource.id}-${resource.name.replace(/\s+/g, '_')}`)} target="_blank">Preview</Link></li>
+                            <li><Link to={Routes.edit_admin_page_path(resource)}>Edit</Link></li>
+                            <li><Link to={Routes.admin_page_path(resource)} data-method="delete" data-confirm="Are you sure?">Destroy</Link></li>
                         </ul>
                     </td>
                 </tr>
@@ -43,11 +44,11 @@ class Pages extends React.Component {
 
         return (
             <div>
-                <h4 className="uk-panel-title">Pages</h4>
+                <h4 className="uk-panel-title">List</h4>
 
                 <div>
                     <ul className="uk-subnav uk-subnav-line uk-link-unmuted">
-                        <li><a href={Routes.new_admin_page_path()}>New Page</a></li>
+                        <li><Link to={Routes.new_admin_page_path()}>New</Link></li>
                     </ul>
                 </div>
 
@@ -72,7 +73,7 @@ class Pages extends React.Component {
 
                 <div>
                     <ul className="uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted">
-                        <li className="uk-margin-top-remove"><a href={Routes.new_admin_page_path()}>New Page</a></li>
+                        <li className="uk-margin-top-remove"><Link to={Routes.new_admin_page_path()}>New</Link></li>
                     </ul>
                 </div>
             </div>

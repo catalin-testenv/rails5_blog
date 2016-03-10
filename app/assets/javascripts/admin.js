@@ -23993,15 +23993,15 @@ var _react_admin = require('./react_admin');
 
 var _react_admin2 = _interopRequireDefault(_react_admin);
 
-var _pages = require('./pages');
+var _pages = require('./domains/page/pages');
 
 var _pages2 = _interopRequireDefault(_pages);
 
-var _dashboard = require('./dashboard');
+var _dashboard = require('./domains/dashboard/dashboard');
 
 var _dashboard2 = _interopRequireDefault(_dashboard);
 
-var _page_categories = require('./page_categories');
+var _page_categories = require('./domains/page_category/page_categories');
 
 var _page_categories2 = _interopRequireDefault(_page_categories);
 
@@ -24021,7 +24021,7 @@ var AdminRoutes = exports.AdminRoutes = _react2.default.createElement(
     )
 );
 
-},{"./dashboard":219,"./page_categories":220,"./pages":221,"./react_admin":222,"react":213,"react-router":51}],219:[function(require,module,exports){
+},{"./domains/dashboard/dashboard":219,"./domains/page/pages":220,"./domains/page_category/page_categories":221,"./react_admin":222,"react":213,"react-router":51}],219:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24082,53 +24082,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var PageCategories = function (_React$Component) {
-    _inherits(PageCategories, _React$Component);
-
-    function PageCategories() {
-        _classCallCheck(this, PageCategories);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(PageCategories).apply(this, arguments));
-    }
-
-    _createClass(PageCategories, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { style: { height: 500 } },
-                'Page Categories'
-            );
-        }
-    }]);
-
-    return PageCategories;
-}(_react2.default.Component);
-
-;
-
-exports.default = PageCategories;
-
-},{"react":213}],221:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
+var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24199,8 +24153,8 @@ var Pages = function (_React$Component) {
                                 'li',
                                 null,
                                 _react2.default.createElement(
-                                    'a',
-                                    { href: Routes.page_path(resource.id + '-' + resource.name.replace(/\s+/g, '_')), target: '_blank' },
+                                    _reactRouter.Link,
+                                    { to: Routes.page_path(resource.id + '-' + resource.name.replace(/\s+/g, '_')), target: '_blank' },
                                     'Preview'
                                 )
                             ),
@@ -24208,8 +24162,8 @@ var Pages = function (_React$Component) {
                                 'li',
                                 null,
                                 _react2.default.createElement(
-                                    'a',
-                                    { href: Routes.edit_admin_page_path(resource) },
+                                    _reactRouter.Link,
+                                    { to: Routes.edit_admin_page_path(resource) },
                                     'Edit'
                                 )
                             ),
@@ -24217,8 +24171,8 @@ var Pages = function (_React$Component) {
                                 'li',
                                 null,
                                 _react2.default.createElement(
-                                    'a',
-                                    { href: Routes.admin_page_path(resource), 'data-method': 'delete', 'data-confirm': 'Are you sure?' },
+                                    _reactRouter.Link,
+                                    { to: Routes.admin_page_path(resource), 'data-method': 'delete', 'data-confirm': 'Are you sure?' },
                                     'Destroy'
                                 )
                             )
@@ -24233,7 +24187,7 @@ var Pages = function (_React$Component) {
                 _react2.default.createElement(
                     'h4',
                     { className: 'uk-panel-title' },
-                    'Pages'
+                    'List'
                 ),
                 _react2.default.createElement(
                     'div',
@@ -24245,9 +24199,9 @@ var Pages = function (_React$Component) {
                             'li',
                             null,
                             _react2.default.createElement(
-                                'a',
-                                { href: Routes.new_admin_page_path() },
-                                'New Page'
+                                _reactRouter.Link,
+                                { to: Routes.new_admin_page_path() },
+                                'New'
                             )
                         )
                     )
@@ -24291,9 +24245,9 @@ var Pages = function (_React$Component) {
                             'li',
                             { className: 'uk-margin-top-remove' },
                             _react2.default.createElement(
-                                'a',
-                                { href: Routes.new_admin_page_path() },
-                                'New Page'
+                                _reactRouter.Link,
+                                { to: Routes.new_admin_page_path() },
+                                'New'
                             )
                         )
                     )
@@ -24308,6 +24262,54 @@ var Pages = function (_React$Component) {
 ;
 
 exports.default = Pages;
+
+},{"react":213,"react-router":51}],221:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PageCategories = function (_React$Component) {
+    _inherits(PageCategories, _React$Component);
+
+    function PageCategories() {
+        _classCallCheck(this, PageCategories);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(PageCategories).apply(this, arguments));
+    }
+
+    _createClass(PageCategories, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { style: { height: 500 } },
+                'Page Categories'
+            );
+        }
+    }]);
+
+    return PageCategories;
+}(_react2.default.Component);
+
+;
+
+exports.default = PageCategories;
 
 },{"react":213}],222:[function(require,module,exports){
 'use strict';

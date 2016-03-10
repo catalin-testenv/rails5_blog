@@ -3,9 +3,9 @@ import React from 'react';
 import { Router, Route, hashHistory, browserHistory, IndexRoute  } from 'react-router';
 
 import ReactAdmin from './react_admin';
-import Pages from './pages';
-import Dashboard from './dashboard';
-import PageCategories from './page_categories';
+import Pages from './domains/page/pages';
+import Dashboard from './domains/dashboard/dashboard';
+import PageCategories from './domains/page_category/page_categories';
 
 export const AdminMainLinks = [
     {to: Routes.admin_pages_path(), name: 'Pages'},
