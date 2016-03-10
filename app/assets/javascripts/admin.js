@@ -23975,7 +23975,7 @@ var AdminMainNavigation = function (_React$Component) {
 
 exports.default = AdminMainNavigation;
 
-},{"./subcomponents/nav_li":220,"react":213}],218:[function(require,module,exports){
+},{"./subcomponents/nav_li":223,"react":213}],218:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24031,7 +24031,7 @@ var AdminRoutes = exports.AdminRoutes = _react2.default.createElement(
     )
 );
 
-},{"./react_admin":219,"./views/dashboard/dashboard":221,"./views/page/page_edit":222,"./views/page/page_index":223,"./views/page/page_new":224,"./views/page_category/page_category_index":225,"react":213,"react-router":51}],219:[function(require,module,exports){
+},{"./react_admin":219,"./views/dashboard/dashboard":224,"./views/page/page_edit":225,"./views/page/page_index":226,"./views/page/page_new":227,"./views/page_category/page_category_index":228,"react":213,"react-router":51}],219:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24111,6 +24111,188 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _nav_li = require('./nav_li');
+
+var _nav_li2 = _interopRequireDefault(_nav_li);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdminBodyBottomLinks = function (_React$Component) {
+    _inherits(AdminBodyBottomLinks, _React$Component);
+
+    function AdminBodyBottomLinks() {
+        _classCallCheck(this, AdminBodyBottomLinks);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(AdminBodyBottomLinks).apply(this, arguments));
+    }
+
+    _createClass(AdminBodyBottomLinks, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var links = this.props.links.map(function (link) {
+                return _react2.default.createElement(
+                    _nav_li2.default,
+                    _extends({ key: link.to, to: link.to }, _this2.props),
+                    link.name
+                );
+            });
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('hr', { className: 'uk-grid-divider uk-margin-top-remove uk-margin-bottom-remove cancel-panel-box-horizontal-padding' }),
+                _react2.default.createElement(
+                    'ul',
+                    { className: 'uk-subnav uk-subnav-line uk-margin-bottom-remove uk-margin-top-remove uk-link-unmuted' },
+                    links
+                )
+            );
+        }
+    }]);
+
+    return AdminBodyBottomLinks;
+}(_react2.default.Component);
+
+;
+
+exports.default = AdminBodyBottomLinks;
+
+},{"./nav_li":223,"react":213}],221:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdminBodyTitle = function (_React$Component) {
+    _inherits(AdminBodyTitle, _React$Component);
+
+    function AdminBodyTitle() {
+        _classCallCheck(this, AdminBodyTitle);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(AdminBodyTitle).apply(this, arguments));
+    }
+
+    _createClass(AdminBodyTitle, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement("h4", _extends({ className: "uk-panel-title" }, this.props));
+        }
+    }]);
+
+    return AdminBodyTitle;
+}(_react2.default.Component);
+
+;
+
+exports.default = AdminBodyTitle;
+
+},{"react":213}],222:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _nav_li = require('./nav_li');
+
+var _nav_li2 = _interopRequireDefault(_nav_li);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdminBodyTopLinks = function (_React$Component) {
+    _inherits(AdminBodyTopLinks, _React$Component);
+
+    function AdminBodyTopLinks() {
+        _classCallCheck(this, AdminBodyTopLinks);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(AdminBodyTopLinks).apply(this, arguments));
+    }
+
+    _createClass(AdminBodyTopLinks, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var links = this.props.links.map(function (link) {
+                return _react2.default.createElement(
+                    _nav_li2.default,
+                    _extends({ key: link.to, to: link.to }, _this2.props),
+                    link.name
+                );
+            });
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'ul',
+                    { className: 'uk-subnav uk-subnav-line uk-link-unmuted' },
+                    links
+                ),
+                _react2.default.createElement('hr', { className: 'uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding' })
+            );
+        }
+    }]);
+
+    return AdminBodyTopLinks;
+}(_react2.default.Component);
+
+;
+
+exports.default = AdminBodyTopLinks;
+
+},{"./nav_li":223,"react":213}],223:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -24154,7 +24336,7 @@ var NavLi = function (_React$Component) {
 
 exports.default = NavLi;
 
-},{"react":213,"react-router":51}],221:[function(require,module,exports){
+},{"react":213,"react-router":51}],224:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24202,7 +24384,7 @@ var Dashboard = function (_React$Component) {
 
 exports.default = Dashboard;
 
-},{"react":213}],222:[function(require,module,exports){
+},{"react":213}],225:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24250,12 +24432,14 @@ var PageEdit = function (_React$Component) {
 
 exports.default = PageEdit;
 
-},{"react":213}],223:[function(require,module,exports){
+},{"react":213}],226:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -24264,6 +24448,18 @@ var _react = require('react');
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
+
+var _admin_body_title = require('../../subcomponents/admin_body_title');
+
+var _admin_body_title2 = _interopRequireDefault(_admin_body_title);
+
+var _admin_body_top_links = require('../../subcomponents/admin_body_top_links');
+
+var _admin_body_top_links2 = _interopRequireDefault(_admin_body_top_links);
+
+var _admin_body_bottom_links = require('../../subcomponents/admin_body_bottom_links');
+
+var _admin_body_bottom_links2 = _interopRequireDefault(_admin_body_bottom_links);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24366,28 +24562,11 @@ var PageIndex = function (_React$Component) {
                 'div',
                 null,
                 _react2.default.createElement(
-                    'h4',
-                    { className: 'uk-panel-title' },
+                    _admin_body_title2.default,
+                    null,
                     'List'
                 ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'ul',
-                        { className: 'uk-subnav uk-subnav-line uk-link-unmuted' },
-                        _react2.default.createElement(
-                            'li',
-                            null,
-                            _react2.default.createElement(
-                                _reactRouter.Link,
-                                { to: Routes.new_admin_page_path() },
-                                'New'
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement('hr', { className: 'uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding' }),
+                _react2.default.createElement(_admin_body_top_links2.default, _extends({ links: [{ to: Routes.new_admin_page_path(), name: 'New' }] }, this.props)),
                 _react2.default.createElement(
                     'div',
                     { className: 'uk-overflow-container' },
@@ -24415,24 +24594,7 @@ var PageIndex = function (_React$Component) {
                         )
                     )
                 ),
-                _react2.default.createElement('hr', { className: 'uk-grid-divider cancel-panel-box-horizontal-padding' }),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'ul',
-                        { className: 'uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted' },
-                        _react2.default.createElement(
-                            'li',
-                            { className: 'uk-margin-top-remove' },
-                            _react2.default.createElement(
-                                _reactRouter.Link,
-                                { to: Routes.new_admin_page_path() },
-                                'New'
-                            )
-                        )
-                    )
-                )
+                _react2.default.createElement(_admin_body_bottom_links2.default, _extends({ links: [{ to: Routes.new_admin_page_path(), name: 'New' }] }, this.props))
             );
         }
     }]);
@@ -24444,7 +24606,7 @@ var PageIndex = function (_React$Component) {
 
 exports.default = PageIndex;
 
-},{"react":213,"react-router":51}],224:[function(require,module,exports){
+},{"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"react":213,"react-router":51}],227:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24492,7 +24654,7 @@ var PageNew = function (_React$Component) {
 
 exports.default = PageNew;
 
-},{"react":213}],225:[function(require,module,exports){
+},{"react":213}],228:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

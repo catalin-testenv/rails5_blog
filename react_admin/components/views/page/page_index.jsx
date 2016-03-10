@@ -1,6 +1,9 @@
 
 import React from 'react';
 import { Link } from 'react-router';
+import AdminBodyTitle from '../../subcomponents/admin_body_title';
+import AdminBodyTopLinks from '../../subcomponents/admin_body_top_links';
+import AdminBodyBottomLinks from '../../subcomponents/admin_body_bottom_links';
 
 class PageIndex extends React.Component {
 
@@ -44,15 +47,8 @@ class PageIndex extends React.Component {
 
         return (
             <div>
-                <h4 className="uk-panel-title">List</h4>
-
-                <div>
-                    <ul className="uk-subnav uk-subnav-line uk-link-unmuted">
-                        <li><Link to={Routes.new_admin_page_path()}>New</Link></li>
-                    </ul>
-                </div>
-
-                <hr className="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+                <AdminBodyTitle>List</AdminBodyTitle>
+                <AdminBodyTopLinks links={[{to: Routes.new_admin_page_path(), name: 'New'}]} {...this.props} />
 
                 <div className="uk-overflow-container">
                     <table className="uk-table uk-table-striped uk-table-hover uk-text-nowrap">
@@ -69,13 +65,7 @@ class PageIndex extends React.Component {
                     </table>
                 </div>
 
-                <hr className="uk-grid-divider cancel-panel-box-horizontal-padding" />
-
-                <div>
-                    <ul className="uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted">
-                        <li className="uk-margin-top-remove"><Link to={Routes.new_admin_page_path()}>New</Link></li>
-                    </ul>
-                </div>
+                <AdminBodyBottomLinks links={[{to: Routes.new_admin_page_path(), name: 'New'}]} {...this.props} />
             </div>
         );
     }
