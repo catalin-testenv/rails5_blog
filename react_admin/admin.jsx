@@ -2,9 +2,9 @@
 
 import ReactDOM from 'react-dom';
 
-import { Routes } from './components/routes';
+import { AdminRoutes } from './components/admin_routes';
 
 $(() => ReactDOM.render(
-    Routes,
+    AdminRoutes,
     document.querySelector('#react-admin')
 ));

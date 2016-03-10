@@ -2,14 +2,14 @@
 
 import React from 'react';
 import AdminMainNavigation from './admin_main_navigation';
-import { MainLinks } from './routes';
+import { AdminMainLinks } from './admin_routes';
 
 class ReactAdmin extends React.Component {
     render() {
         return (
             <div className="uk-grid">
                 <div id="admin-main-navigation" className="uk-width-medium-1-5 uk-padding-remove">
-                    <AdminMainNavigation links={MainLinks} {...this.props} />
+                    <AdminMainNavigation links={AdminMainLinks} {...this.props} />
                 </div>
                 <div className="uk-width-medium-4-5 uk-padding-remove">
                     <div id="admin-body">

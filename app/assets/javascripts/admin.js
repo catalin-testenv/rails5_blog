@@ -23895,15 +23895,15 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _routes = require('./components/routes');
+var _admin_routes = require('./components/admin_routes');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 $(function () {
-    return _reactDom2.default.render(_routes.Routes, document.querySelector('#react-admin'));
+    return _reactDom2.default.render(_admin_routes.AdminRoutes, document.querySelector('#react-admin'));
 });
 
-},{"./components/routes":222,"react-dom":23}],217:[function(require,module,exports){
+},{"./components/admin_routes":218,"react-dom":23}],217:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23981,6 +23981,52 @@ exports.default = AdminMainNavigation;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.AdminRoutes = exports.AdminMainLinks = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _react_admin = require('./react_admin');
+
+var _react_admin2 = _interopRequireDefault(_react_admin);
+
+var _pages = require('./pages');
+
+var _pages2 = _interopRequireDefault(_pages);
+
+var _dashboard = require('./dashboard');
+
+var _dashboard2 = _interopRequireDefault(_dashboard);
+
+var _page_categories = require('./page_categories');
+
+var _page_categories2 = _interopRequireDefault(_page_categories);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var AdminMainLinks = exports.AdminMainLinks = [{ to: Routes.admin_pages_path(), name: 'Pages' }, { to: '/admin/page_categories', name: 'Page Categories' }];
+
+var AdminRoutes = exports.AdminRoutes = _react2.default.createElement(
+    _reactRouter.Router,
+    { history: _reactRouter.browserHistory },
+    _react2.default.createElement(
+        _reactRouter.Route,
+        { path: Routes.admin_root_path(), component: _react_admin2.default },
+        _react2.default.createElement(_reactRouter.IndexRoute, { component: _dashboard2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: Routes.admin_pages_path(), component: _pages2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'page_categories', component: _page_categories2.default })
+    )
+);
+
+},{"./dashboard":219,"./page_categories":220,"./pages":221,"./react_admin":222,"react":213,"react-router":51}],219:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -24023,7 +24069,7 @@ var Dashboard = function (_React$Component) {
 
 exports.default = Dashboard;
 
-},{"react":213}],219:[function(require,module,exports){
+},{"react":213}],220:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24071,7 +24117,7 @@ var PageCategories = function (_React$Component) {
 
 exports.default = PageCategories;
 
-},{"react":213}],220:[function(require,module,exports){
+},{"react":213}],221:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24096,18 +24142,162 @@ var Pages = function (_React$Component) {
     _inherits(Pages, _React$Component);
 
     function Pages() {
+        var _Object$getPrototypeO;
+
         _classCallCheck(this, Pages);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(Pages).apply(this, arguments));
+        for (var _len = arguments.length, props = Array(_len), _key = 0; _key < _len; _key++) {
+            props[_key] = arguments[_key];
+        }
+
+        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Pages)).call.apply(_Object$getPrototypeO, [this].concat(props)));
+
+        _this.state = {
+            resource_list: []
+        };
+        return _this;
     }
 
     _createClass(Pages, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.loadPagesList();
+        }
+    }, {
+        key: 'loadPagesList',
+        value: function loadPagesList() {
+            var _this2 = this;
+
+            $.ajax({
+                url: Routes.admin_pages_path({ format: 'json' }),
+                method: 'GET',
+                dataType: 'json'
+            }).done(function (data) {
+                _this2.setState({ resource_list: data });
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+
+            var rows = this.state.resource_list.map(function (resource) {
+                return _react2.default.createElement(
+                    'tr',
+                    { key: resource.id },
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        resource.name
+                    ),
+                    _react2.default.createElement(
+                        'td',
+                        null,
+                        _react2.default.createElement(
+                            'ul',
+                            { className: 'uk-list uk-margin-bottom-remove' },
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: Routes.page_path(resource.id + '-' + resource.name.replace(/\s+/g, '_')), target: '_blank' },
+                                    'Preview'
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: Routes.edit_admin_page_path(resource) },
+                                    'Edit'
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                null,
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: Routes.admin_page_path(resource), 'data-method': 'delete', 'data-confirm': 'Are you sure?' },
+                                    'Destroy'
+                                )
+                            )
+                        )
+                    )
+                );
+            });
+
             return _react2.default.createElement(
                 'div',
-                { style: { height: 500 } },
-                'Pages'
+                null,
+                _react2.default.createElement(
+                    'h4',
+                    { className: 'uk-panel-title' },
+                    'Pages'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'ul',
+                        { className: 'uk-subnav uk-subnav-line uk-link-unmuted' },
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                'a',
+                                { href: Routes.new_admin_page_path() },
+                                'New Page'
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement('hr', { className: 'uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding' }),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'uk-overflow-container' },
+                    _react2.default.createElement(
+                        'table',
+                        { className: 'uk-table uk-table-striped uk-table-hover uk-text-nowrap' },
+                        _react2.default.createElement(
+                            'thead',
+                            null,
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    'Title'
+                                ),
+                                _react2.default.createElement('th', { colSpan: '1' })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'tbody',
+                            null,
+                            rows
+                        )
+                    )
+                ),
+                _react2.default.createElement('hr', { className: 'uk-grid-divider cancel-panel-box-horizontal-padding' }),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'ul',
+                        { className: 'uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted' },
+                        _react2.default.createElement(
+                            'li',
+                            { className: 'uk-margin-top-remove' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: Routes.new_admin_page_path() },
+                                'New Page'
+                            )
+                        )
+                    )
+                )
             );
         }
     }]);
@@ -24119,7 +24309,7 @@ var Pages = function (_React$Component) {
 
 exports.default = Pages;
 
-},{"react":213}],221:[function(require,module,exports){
+},{"react":213}],222:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24138,7 +24328,7 @@ var _admin_main_navigation = require('./admin_main_navigation');
 
 var _admin_main_navigation2 = _interopRequireDefault(_admin_main_navigation);
 
-var _routes = require('./routes');
+var _admin_routes = require('./admin_routes');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24166,7 +24356,7 @@ var ReactAdmin = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { id: 'admin-main-navigation', className: 'uk-width-medium-1-5 uk-padding-remove' },
-                    _react2.default.createElement(_admin_main_navigation2.default, _extends({ links: _routes.MainLinks }, this.props))
+                    _react2.default.createElement(_admin_main_navigation2.default, _extends({ links: _admin_routes.AdminMainLinks }, this.props))
                 ),
                 _react2.default.createElement(
                     'div',
@@ -24192,53 +24382,7 @@ var ReactAdmin = function (_React$Component) {
 
 exports.default = ReactAdmin;
 
-},{"./admin_main_navigation":217,"./routes":222,"react":213}],222:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.Routes = exports.MainLinks = undefined;
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
-
-var _react_admin = require('./react_admin');
-
-var _react_admin2 = _interopRequireDefault(_react_admin);
-
-var _pages = require('./pages');
-
-var _pages2 = _interopRequireDefault(_pages);
-
-var _dashboard = require('./dashboard');
-
-var _dashboard2 = _interopRequireDefault(_dashboard);
-
-var _page_categories = require('./page_categories');
-
-var _page_categories2 = _interopRequireDefault(_page_categories);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var MainLinks = exports.MainLinks = [{ to: '/admin/pages', name: 'Pages' }, { to: '/admin/page_categories', name: 'Page Categories' }];
-
-var Routes = exports.Routes = _react2.default.createElement(
-    _reactRouter.Router,
-    { history: _reactRouter.browserHistory },
-    _react2.default.createElement(
-        _reactRouter.Route,
-        { path: '/admin', component: _react_admin2.default },
-        _react2.default.createElement(_reactRouter.IndexRoute, { component: _dashboard2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'pages', component: _pages2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'page_categories', component: _page_categories2.default })
-    )
-);
-
-},{"./dashboard":218,"./page_categories":219,"./pages":220,"./react_admin":221,"react":213,"react-router":51}],223:[function(require,module,exports){
+},{"./admin_main_navigation":217,"./admin_routes":218,"react":213}],223:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

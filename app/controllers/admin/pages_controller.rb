@@ -5,6 +5,10 @@ class Admin::PagesController < Admin::AdminController
   def index
     authorize Page
     @resource_list = policy_scope(Page.all)
+    respond_to do |format|
+      format.json { render json: @resource_list }
+      format.html  { render :index }
+    end
   end
 
   # GET /admin/pages/1

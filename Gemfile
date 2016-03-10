@@ -32,6 +32,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'foundation-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# https://github.com/railsware/js-routes
+gem 'js-routes', '~> 1.2.4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # Action Cable dependencies for the Redis adapter
