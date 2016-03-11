@@ -6,7 +6,7 @@ import NavLi from './subcomponents/nav_li'
 class AdminMainNavigation extends React.Component {
     render() {
         let links = this.props.links.map((link) => {
-            return <NavLi key={link.to} to={link.to} {...this.props}>{link.name}</NavLi>
+            return <NavLi key={link.to} {...link} {...this.props}>{link.name}</NavLi>
         });
         return (
             <div className="uk-panel uk-panel-box">

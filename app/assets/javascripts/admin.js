@@ -23947,7 +23947,7 @@ var AdminMainNavigation = function (_React$Component) {
             var links = this.props.links.map(function (link) {
                 return _react2.default.createElement(
                     _nav_li2.default,
-                    _extends({ key: link.to, to: link.to }, _this2.props),
+                    _extends({ key: link.to }, link, _this2.props),
                     link.name
                 );
             });
