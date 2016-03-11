@@ -23,6 +23,7 @@ class PageEdit extends React.Component {
             method: 'GET',
             dataType: 'json',
         }).done((data) => {
+            console.log(data);
             this.setState({resource: data});
         });
     }

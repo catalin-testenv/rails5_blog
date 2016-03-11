@@ -24454,6 +24454,7 @@ var PageEdit = function (_React$Component) {
                 method: 'GET',
                 dataType: 'json'
             }).done(function (data) {
+                console.log(data);
                 _this2.setState({ resource: data });
             });
         }
