@@ -2,12 +2,17 @@ class Admin::PagesController < Admin::AdminController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/pages
+  # GET /admin/pages.json
   def index
     authorize Page
     @resource_list = policy_scope(Page.all)
     respond_to do |format|
-      format.json { render json: @resource_list }
-      format.html  { render :index }
+      format.html do
+        render :index
+      end
+      format.json do
+        render json: @resource_list
+      end
     end
   end
 
@@ -24,15 +29,23 @@ class Admin::PagesController < Admin::AdminController
   end
 
   # GET /admin/pages/1/edit
+  # GET /admin/pages/1/edit.json
   def edit
     authorize @resource
     respond_to do |format|
-      format.json { render json: @resource }
-      format.html  { render :edit }
+      format.html do
+        render :edit
+      end
+      format.json do
+        render json: @resource.attributes.merge(
+          page_categories_all: PageCategory.all.each.with_object({0 => 'root'}){ |p, h|  h[p.id] = p.name }
+        )
+      end
     end
   end
 
   # POST /admin/pages
+  # POST /admin/pages.json
   def create
     @resource = Page.new(resource_params)
     authorize @resource
@@ -42,16 +55,23 @@ class Admin::PagesController < Admin::AdminController
           flash.now[:notice] = resource_creation_success_message(resource_instance: @resource)
           render :edit
         end
+        format.json do
+          render json: @resource, status: :created, location: @resource
+        end
       else
         format.html do
           flash.now[:alert] = resource_creation_failed_message(resource_instance: @resource)
           render :new
+        end
+        format.json do
+          render json: @resource.errors, status: :unprocessable_entity
         end
       end
     end
   end
 
   # PATCH/PUT /admin/pages/1
+  # PATCH/PUT /admin/pages/1.json
   def update
     authorize @resource
     respond_to do |format|
@@ -60,22 +80,35 @@ class Admin::PagesController < Admin::AdminController
           flash.now[:notice] = resource_update_success_message(resource_instance: @resource)
           render :edit
         end
+        format.json do
+          render json: @resource.attributes.merge(
+              page_categories_all: PageCategory.all.each.with_object({0 => 'root'}){ |p, h|  h[p.id] = p.name }
+          ), status: :ok, location: @resource
+        end
       else
-        # @resource.errors[:base] << 'some error' << 'some other error'
         format.html do
           flash.now[:alert] = resource_update_failed_message(resource_instance: @resource)
           render :edit
+        end
+        format.json do
+          render json: @resource.errors, status: :unprocessable_entity
         end
       end
     end
   end
 
   # DELETE /admin/pages/1
+  # DELETE /admin/pages/1.json
   def destroy
     authorize @resource
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to admin_pages_url, notice: resource_destroy_success_message(resource_instance: @resource) }
+      format.html do
+        redirect_to admin_pages_url, notice: resource_destroy_success_message(resource_instance: @resource)
+      end
+      format.json do
+        head :no_content
+      end
     end
   end
 

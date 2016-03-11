@@ -24031,7 +24031,7 @@ var AdminRoutes = exports.AdminRoutes = _react2.default.createElement(
     )
 );
 
-},{"./react_admin":219,"./views/dashboard/dashboard":224,"./views/page/page_edit":225,"./views/page/page_index":226,"./views/page/page_new":227,"./views/page_category/page_category_index":228,"react":213,"react-router":51}],219:[function(require,module,exports){
+},{"./react_admin":219,"./views/dashboard/dashboard":224,"./views/page/page_edit":225,"./views/page/page_index":227,"./views/page/page_new":228,"./views/page_category/page_category_index":229,"react":213,"react-router":51}],219:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24155,7 +24155,7 @@ var AdminBodyBottomLinks = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement('hr', { className: 'uk-grid-divider uk-margin-top-remove uk-margin-bottom-remove cancel-panel-box-horizontal-padding' }),
+                _react2.default.createElement('hr', { className: 'uk-grid-divider uk-margin-bottom-remove cancel-panel-box-horizontal-padding' }),
                 _react2.default.createElement(
                     'ul',
                     { className: 'uk-subnav uk-subnav-line uk-margin-bottom-remove uk-margin-top-remove uk-link-unmuted' },
@@ -24411,6 +24411,10 @@ var _admin_body_bottom_links = require('../../subcomponents/admin_body_bottom_li
 
 var _admin_body_bottom_links2 = _interopRequireDefault(_admin_body_bottom_links);
 
+var _page_form = require('./page_form');
+
+var _page_form2 = _interopRequireDefault(_page_form);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24418,6 +24422,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MODEL = 'page';
 
 var PageEdit = function (_React$Component) {
     _inherits(PageEdit, _React$Component);
@@ -24436,6 +24442,7 @@ var PageEdit = function (_React$Component) {
         _this.state = {
             resource: undefined
         };
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
 
@@ -24459,11 +24466,36 @@ var PageEdit = function (_React$Component) {
             });
         }
     }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(data) {
+            var _this3 = this;
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-Token': Cookies.get('X-CSRF-Token').replace(/xxx-/, '')
+                },
+                url: Routes.admin_page_path(this.props.params.id, { format: 'json' }),
+                method: 'PATCH',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: data
+            }).done(function (data) {
+                console.log(data);
+                _this3.setState({ resource: data });
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.error(textStatus + ' ' + errorThrown);
+                console.error(jqXHR.responseJSON);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var links = [{ to: Routes.admin_pages_path(), name: 'List' }];
-            this.state.resource && links.push({ to: Routes.page_path(this.state.resource.id + '-' + this.state.resource.name.replace(/\s+/g, '_')), name: 'Preview', target: "_blank" });
-            this.state.resource && links.push({ to: Routes.admin_page_path(this.state.resource), name: 'Destroy', 'data-method': 'delete', 'data-confirm': 'Are you sure?' });
+            var resource = this.state.resource;
+            if (!resource) {
+                return _react2.default.createElement('div', null);
+            }
+
+            var links = [{ to: Routes.admin_pages_path(), name: 'List' }, { to: Routes.page_path(resource.id + '-' + resource.name.replace(/\s+/g, '_')), name: 'Preview', target: "_blank" }, { to: Routes.admin_page_path(resource), name: 'Destroy', 'data-method': 'delete', 'data-confirm': 'Are you sure?' }];
 
             return _react2.default.createElement(
                 'div',
@@ -24474,172 +24506,7 @@ var PageEdit = function (_React$Component) {
                     'Edit'
                 ),
                 _react2.default.createElement(_admin_body_top_links2.default, _extends({ links: links }, this.props)),
-                _react2.default.createElement(
-                    'form',
-                    { className: 'edit_page uk-form uk-form-stacked custom-cc custom-cc-fa' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'uk-grid uk-grid-small', 'data-uk-grid-margin': true },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'uk-width' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'uk-grid uk-grid-small', 'data-uk-grid-margin': true },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'uk-width-medium-1-2' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'uk-form-row' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            { className: 'uk-form-label', htmlFor: 'page_name' },
-                                            'Title'
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'uk-form-controls' },
-                                            _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: 'page first', name: 'page[name]', id: 'page_name' })
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'uk-width-medium-1-2' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'uk-form-row' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            { className: 'uk-form-label', htmlFor: 'page_parent_id' },
-                                            'Categorie ID'
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'uk-form-controls' },
-                                            _react2.default.createElement(
-                                                'select',
-                                                { className: 'uk-width', name: 'page[parent_id]', id: 'page_parent_id' },
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { selected: 'selected', value: '0' },
-                                                    'radacina'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '24' },
-                                                    'movies'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '29' },
-                                                    'gallery'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '25' },
-                                                    'comedy'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '26' },
-                                                    'fantasy'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '27' },
-                                                    'black'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '28' },
-                                                    'white'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '32' },
-                                                    'web design'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '31' },
-                                                    'vectorial'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '30' },
-                                                    'photoshop'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '33' },
-                                                    'digital art'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '36' },
-                                                    'illustrator'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '37' },
-                                                    'corel'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '34' },
-                                                    'photo retouch'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'option',
-                                                    { value: '35' },
-                                                    'pictures'
-                                                )
-                                            )
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'uk-width-medium-1-2' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'uk-form-row' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            { className: 'uk-form-label', htmlFor: 'page_ordering' },
-                                            'Ordonare'
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'uk-form-controls' },
-                                            _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: '0', name: 'page[ordering]', id: 'page_ordering' })
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'uk-width-medium-1-2' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'uk-form-row' },
-                                        _react2.default.createElement(
-                                            'label',
-                                            { className: 'uk-form-label', htmlFor: 'page_max_comments' },
-                                            'Comentarii max'
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'uk-form-controls' },
-                                            _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: '50', name: 'page[max_comments]', id: 'page_max_comments' })
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                ),
+                _react2.default.createElement(_page_form2.default, { onSubmit: this.handleSubmit, model: MODEL, resource: resource }),
                 _react2.default.createElement(_admin_body_bottom_links2.default, _extends({ links: links }, this.props))
             );
         }
@@ -24652,7 +24519,196 @@ var PageEdit = function (_React$Component) {
 
 exports.default = PageEdit;
 
-},{"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"react":213}],226:[function(require,module,exports){
+},{"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"./page_form":226,"react":213}],226:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PageForm = function (_React$Component) {
+    _inherits(PageForm, _React$Component);
+
+    function PageForm() {
+        var _Object$getPrototypeO;
+
+        _classCallCheck(this, PageForm);
+
+        for (var _len = arguments.length, props = Array(_len), _key = 0; _key < _len; _key++) {
+            props[_key] = arguments[_key];
+        }
+
+        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PageForm)).call.apply(_Object$getPrototypeO, [this].concat(props)));
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(PageForm, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            var MODEL = this.props.model;
+            var data = _defineProperty({}, MODEL, {
+                name: _reactDom2.default.findDOMNode(this.refs[MODEL + '_name']).value,
+                parent_id: _reactDom2.default.findDOMNode(this.refs[MODEL + '_parent_id']).value,
+                ordering: _reactDom2.default.findDOMNode(this.refs[MODEL + '_ordering']).value,
+                max_comments: _reactDom2.default.findDOMNode(this.refs[MODEL + '_max_comments']).value
+            });
+            this.props.onSubmit(data);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var MODEL = this.props.model;
+            var resource = this.props.resource;
+            var page_categories_all = resource.page_categories_all;
+
+            var pageCategories = [];
+            for (var id in page_categories_all) {
+                pageCategories.push(_react2.default.createElement(
+                    'option',
+                    { key: id, value: id },
+                    page_categories_all[id]
+                ));
+            }
+
+            return _react2.default.createElement(
+                'form',
+                { className: 'edit_' + MODEL + ' uk-form uk-form-stacked custom-cc custom-cc-fa', id: 'edit_' + MODEL + '_' + resource.id, onSubmit: this.handleSubmit, acceptCharset: 'UTF-8' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'uk-grid uk-grid-small', 'data-uk-grid-margin': true },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'uk-width' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'uk-grid uk-grid-small', 'data-uk-grid-margin': true },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'uk-width-medium-1-2' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-form-row' },
+                                    _react2.default.createElement(
+                                        'label',
+                                        { className: 'uk-form-label', htmlFor: MODEL + '_name' },
+                                        'Title'
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-controls' },
+                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', defaultValue: resource.name, name: MODEL + '[name]', id: MODEL + '_name', ref: MODEL + '_name' })
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'uk-width-medium-1-2' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-form-row' },
+                                    _react2.default.createElement(
+                                        'label',
+                                        { className: 'uk-form-label', htmlFor: MODEL + '_parent_id' },
+                                        'Category ID'
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-controls' },
+                                        _react2.default.createElement(
+                                            'select',
+                                            { defaultValue: resource.parent_id, className: 'uk-width', name: MODEL + '[parent_id]', id: MODEL + '_parent_id', ref: MODEL + '_parent_id' },
+                                            pageCategories
+                                        )
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'uk-width-medium-1-2' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-form-row' },
+                                    _react2.default.createElement(
+                                        'label',
+                                        { className: 'uk-form-label', htmlFor: MODEL + '_ordering' },
+                                        'Ordering'
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-controls' },
+                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', defaultValue: resource.ordering, name: MODEL + '[ordering]', id: MODEL + '_ordering', ref: MODEL + '_ordering' })
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'uk-width-medium-1-2' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-form-row' },
+                                    _react2.default.createElement(
+                                        'label',
+                                        { className: 'uk-form-label', htmlFor: MODEL + '_max_comments' },
+                                        'Comments max'
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-controls' },
+                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', defaultValue: resource.max_comments, name: MODEL + '[max_comments]', id: MODEL + '_max_comments', ref: MODEL + '_max_comments' })
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'uk-width-1-1 uk-margin-top' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-form-row' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-controls' },
+                                        _react2.default.createElement('input', { type: 'submit', className: 'uk-button uk-width' })
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return PageForm;
+}(_react2.default.Component);
+
+;
+
+exports.default = PageForm;
+
+},{"react":213,"react-dom":23}],227:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24826,7 +24882,7 @@ var PageIndex = function (_React$Component) {
 
 exports.default = PageIndex;
 
-},{"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"react":213,"react-router":51}],227:[function(require,module,exports){
+},{"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"react":213,"react-router":51}],228:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24874,7 +24930,7 @@ var PageNew = function (_React$Component) {
 
 exports.default = PageNew;
 
-},{"react":213}],228:[function(require,module,exports){
+},{"react":213}],229:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

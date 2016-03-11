@@ -9,7 +9,7 @@ class AdminBodyBottomLinks extends React.Component {
         });
         return (
             <div>
-                <hr className="uk-grid-divider uk-margin-top-remove uk-margin-bottom-remove cancel-panel-box-horizontal-padding" />
+                <hr className="uk-grid-divider uk-margin-bottom-remove cancel-panel-box-horizontal-padding" />
                 <ul className="uk-subnav uk-subnav-line uk-margin-bottom-remove uk-margin-top-remove uk-link-unmuted">
                     {links}
                 </ul>
