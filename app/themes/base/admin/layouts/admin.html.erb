@@ -8,6 +8,8 @@
         <%= javascript_include_tag 'application' %>
 
         <%= stylesheet_link_tag    'framework_uikit', media: 'all' %>
+        <%= javascript_include_tag 'framework_uikit' %>
+
         <%= javascript_include_tag 'admin' %>
     <% else %>
         <title><%= content_for?(:title) ? yield(:title) : 'Untitled' %></title>
@@ -52,7 +54,7 @@
           </div>
           <!-- /admin-toggle -->
 
-          <div id="react-admin" class="uk-width">
+          <div id="react-admin" class="uk-width" data-uk-observe>
           </div>
         </div>
       </div>

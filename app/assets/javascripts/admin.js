@@ -24323,7 +24323,7 @@ var NavLi = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 'li',
-                { className: this.props.location.pathname.startsWith(this.props.to) ? 'uk-active' : '' },
+                { className: _.startsWith(this.props.location.pathname, this.props.to) ? 'uk-active' : '' },
                 _react2.default.createElement(_reactRouter.Link, this.props)
             );
         }
@@ -24463,6 +24463,7 @@ var PageEdit = function (_React$Component) {
         value: function render() {
             var links = [{ to: Routes.admin_pages_path(), name: 'List' }];
             this.state.resource && links.push({ to: Routes.page_path(this.state.resource.id + '-' + this.state.resource.name.replace(/\s+/g, '_')), name: 'Preview', target: "_blank" });
+            this.state.resource && links.push({ to: Routes.admin_page_path(this.state.resource), name: 'Destroy', 'data-method': 'delete', 'data-confirm': 'Are you sure?' });
 
             return _react2.default.createElement(
                 'div',
@@ -24473,7 +24474,172 @@ var PageEdit = function (_React$Component) {
                     'Edit'
                 ),
                 _react2.default.createElement(_admin_body_top_links2.default, _extends({ links: links }, this.props)),
-                _react2.default.createElement('div', { style: { height: 500 } }),
+                _react2.default.createElement(
+                    'form',
+                    { className: 'edit_page uk-form uk-form-stacked custom-cc custom-cc-fa' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'uk-grid uk-grid-small', 'data-uk-grid-margin': true },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'uk-width' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'uk-grid uk-grid-small', 'data-uk-grid-margin': true },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-width-medium-1-2' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-row' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            { className: 'uk-form-label', htmlFor: 'page_name' },
+                                            'Title'
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'uk-form-controls' },
+                                            _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: 'page first', name: 'page[name]', id: 'page_name' })
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-width-medium-1-2' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-row' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            { className: 'uk-form-label', htmlFor: 'page_parent_id' },
+                                            'Categorie ID'
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'uk-form-controls' },
+                                            _react2.default.createElement(
+                                                'select',
+                                                { className: 'uk-width', name: 'page[parent_id]', id: 'page_parent_id' },
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { selected: 'selected', value: '0' },
+                                                    'radacina'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '24' },
+                                                    'movies'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '29' },
+                                                    'gallery'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '25' },
+                                                    'comedy'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '26' },
+                                                    'fantasy'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '27' },
+                                                    'black'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '28' },
+                                                    'white'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '32' },
+                                                    'web design'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '31' },
+                                                    'vectorial'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '30' },
+                                                    'photoshop'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '33' },
+                                                    'digital art'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '36' },
+                                                    'illustrator'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '37' },
+                                                    'corel'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '34' },
+                                                    'photo retouch'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '35' },
+                                                    'pictures'
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-width-medium-1-2' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-row' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            { className: 'uk-form-label', htmlFor: 'page_ordering' },
+                                            'Ordonare'
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'uk-form-controls' },
+                                            _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: '0', name: 'page[ordering]', id: 'page_ordering' })
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'uk-width-medium-1-2' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'uk-form-row' },
+                                        _react2.default.createElement(
+                                            'label',
+                                            { className: 'uk-form-label', htmlFor: 'page_max_comments' },
+                                            'Comentarii max'
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'uk-form-controls' },
+                                            _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: '50', name: 'page[max_comments]', id: 'page_max_comments' })
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
                 _react2.default.createElement(_admin_body_bottom_links2.default, _extends({ links: links }, this.props))
             );
         }

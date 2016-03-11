@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 class NavLi extends React.Component {
     render() {
         return (
-            <li className={this.props.location.pathname.startsWith(this.props.to) ? 'uk-active' : ''}>
+            <li className={_.startsWith(this.props.location.pathname, this.props.to) ? 'uk-active' : ''}>
                 <Link {...this.props} />
             </li>
         );
