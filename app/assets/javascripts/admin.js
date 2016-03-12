@@ -25047,7 +25047,7 @@ var PageEdit = function (_React$Component) {
         _this.handleSubmit = _this.handleSubmit.bind(_this);
 
         _this.state = {
-            resource: _page_store2.default.getPage()
+            resource: undefined
         };
         return _this;
     }
@@ -25377,7 +25377,7 @@ var PageIndex = function (_React$Component) {
         _this._onChange = _this._onChange.bind(_this);
 
         _this.state = {
-            pageList: _page_store2.default.getPageList()
+            pageList: []
         };
         return _this;
     }
@@ -25412,7 +25412,14 @@ var PageIndex = function (_React$Component) {
         key: 'render',
         value: function render() {
 
-            var rows = this.state.pageList.map(function (resource) {
+            var pageList = this.state.pageList;
+            if (pageList.length === 0) {
+                return _react2.default.createElement('div', null);
+            }
+
+            var links = [{ to: Routes.new_admin_page_path(), name: 'New' }];
+
+            var rows = pageList.map(function (resource) {
                 return _react2.default.createElement(
                     'tr',
                     { key: resource.id },
@@ -25467,7 +25474,7 @@ var PageIndex = function (_React$Component) {
                     null,
                     'List'
                 ),
-                _react2.default.createElement(_admin_body_top_links2.default, _extends({ links: [{ to: Routes.new_admin_page_path(), name: 'New' }] }, this.props)),
+                _react2.default.createElement(_admin_body_top_links2.default, _extends({ links: links }, this.props)),
                 _react2.default.createElement(
                     'div',
                     { className: 'uk-overflow-container' },
@@ -25495,7 +25502,7 @@ var PageIndex = function (_React$Component) {
                         )
                     )
                 ),
-                _react2.default.createElement(_admin_body_bottom_links2.default, _extends({ links: [{ to: Routes.new_admin_page_path(), name: 'New' }] }, this.props))
+                _react2.default.createElement(_admin_body_bottom_links2.default, _extends({ links: links }, this.props))
             );
         }
     }]);

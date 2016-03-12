@@ -19,7 +19,7 @@ class PageEdit extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
-            resource: PageStore.getPage(),
+            resource: undefined,
         };
     }
 

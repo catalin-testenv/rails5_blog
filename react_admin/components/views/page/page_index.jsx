@@ -18,7 +18,7 @@ class PageIndex extends React.Component {
         this._onChange = this._onChange.bind(this);
 
         this.state = {
-            pageList: PageStore.getPageList(),
+            pageList: [],
         };
     }
 
@@ -42,7 +42,14 @@ class PageIndex extends React.Component {
 
     render() {
 
-        let rows = this.state.pageList.map((resource) => {
+        let pageList = this.state.pageList;
+        if(pageList.length === 0) { return <div />; }
+
+        let links = [
+            {to: Routes.new_admin_page_path(), name: 'New'}
+        ];
+
+        let rows = pageList.map((resource) => {
             return(
                 <tr key={resource.id}>
                     <td>{resource.name}</td>
@@ -60,7 +67,7 @@ class PageIndex extends React.Component {
         return (
             <div>
                 <AdminBodyTitle>List</AdminBodyTitle>
-                <AdminBodyTopLinks links={[{to: Routes.new_admin_page_path(), name: 'New'}]} {...this.props} />
+                <AdminBodyTopLinks links={links} {...this.props} />
 
                 <div className="uk-overflow-container">
                     <table className="uk-table uk-table-striped uk-table-hover uk-text-nowrap">
@@ -77,7 +84,7 @@ class PageIndex extends React.Component {
                     </table>
                 </div>
 
-                <AdminBodyBottomLinks links={[{to: Routes.new_admin_page_path(), name: 'New'}]} {...this.props} />
+                <AdminBodyBottomLinks links={links} {...this.props} />
             </div>
         );
     }
