@@ -35,11 +35,11 @@ class PageForm extends React.Component {
 
     render() {
         const resource = this.props.resource;
-        const page_categories_all = resource.page_categories_all;
+        const pageCategoriesAll = resource.page_categories_all;
 
         let pageCategories = [];
-        for (let id in page_categories_all) {
-            pageCategories.push(<option key={id} value={id}>{page_categories_all[id]}</option>)
+        for (let id in pageCategoriesAll) {
+            pageCategories.push(<option key={id} value={id}>{pageCategoriesAll[id]}</option>)
         }
 
         return (

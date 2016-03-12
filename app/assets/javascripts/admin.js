@@ -25180,14 +25180,14 @@ var PageForm = function (_React$Component) {
         key: 'render',
         value: function render() {
             var resource = this.props.resource;
-            var page_categories_all = resource.page_categories_all;
+            var pageCategoriesAll = resource.page_categories_all;
 
             var pageCategories = [];
-            for (var id in page_categories_all) {
+            for (var id in pageCategoriesAll) {
                 pageCategories.push(_react2.default.createElement(
                     'option',
                     { key: id, value: id },
-                    page_categories_all[id]
+                    pageCategoriesAll[id]
                 ));
             }
 
