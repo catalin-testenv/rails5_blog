@@ -25159,6 +25159,14 @@ var PageForm = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PageForm)).call.apply(_Object$getPrototypeO, [this].concat(props)));
 
         _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+
+        _this.state = _defineProperty({}, MODEL, {
+            name: _this.props.resource.name,
+            parent_id: _this.props.resource.parent_id,
+            ordering: _this.props.resource.ordering,
+            max_comments: _this.props.resource.max_comments
+        });
         return _this;
     }
 
@@ -25166,13 +25174,27 @@ var PageForm = function (_React$Component) {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            var data = _defineProperty({}, MODEL, {
-                name: _reactDom2.default.findDOMNode(this.refs[MODEL + '_name']).value,
-                parent_id: _reactDom2.default.findDOMNode(this.refs[MODEL + '_parent_id']).value,
-                ordering: _reactDom2.default.findDOMNode(this.refs[MODEL + '_ordering']).value,
-                max_comments: _reactDom2.default.findDOMNode(this.refs[MODEL + '_max_comments']).value
-            });
-            this.props.onSubmit(data);
+            //let data = {
+            //    [MODEL]: {
+            //        name: ReactDOM.findDOMNode(this.refs[`${MODEL}_name`]).value,
+            //        parent_id: ReactDOM.findDOMNode(this.refs[`${MODEL}_parent_id`]).value,
+            //        ordering: ReactDOM.findDOMNode(this.refs[`${MODEL}_ordering`]).value,
+            //        max_comments: ReactDOM.findDOMNode(this.refs[`${MODEL}_max_comments`]).value,
+            //    }
+            //};
+            //this.props.onSubmit(data);
+            this.props.onSubmit(this.state);
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(e) {
+            var key = e.target.name.match(/^.+\[(.+)\]/)[1];
+            var value = e.target.value;
+            var state = this.state;
+            state[MODEL][key] = value;
+            this.setState(state);
+            //this.state[MODEL][key] = value;
+            //console.log(`${key} ${value}`);
         }
     }, {
         key: 'render',
@@ -25216,7 +25238,7 @@ var PageForm = function (_React$Component) {
                                     _react2.default.createElement(
                                         'div',
                                         { className: 'uk-form-controls' },
-                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: resource.name, name: MODEL + '[name]', id: MODEL + '_name', ref: MODEL + '_name' })
+                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: this.state[MODEL]['name'], name: MODEL + '[name]', id: MODEL + '_name', ref: MODEL + '_name', onChange: this.handleChange })
                                     )
                                 )
                             ),
@@ -25236,7 +25258,7 @@ var PageForm = function (_React$Component) {
                                         { className: 'uk-form-controls' },
                                         _react2.default.createElement(
                                             'select',
-                                            { value: resource.parent_id, className: 'uk-width', name: MODEL + '[parent_id]', id: MODEL + '_parent_id', ref: MODEL + '_parent_id' },
+                                            { value: this.state[MODEL]['parent_id'], className: 'uk-width', name: MODEL + '[parent_id]', id: MODEL + '_parent_id', ref: MODEL + '_parent_id', onChange: this.handleChange },
                                             pageCategories
                                         )
                                     )
@@ -25256,7 +25278,7 @@ var PageForm = function (_React$Component) {
                                     _react2.default.createElement(
                                         'div',
                                         { className: 'uk-form-controls' },
-                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: resource.ordering, name: MODEL + '[ordering]', id: MODEL + '_ordering', ref: MODEL + '_ordering' })
+                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: this.state[MODEL]['ordering'], name: MODEL + '[ordering]', id: MODEL + '_ordering', ref: MODEL + '_ordering', onChange: this.handleChange })
                                     )
                                 )
                             ),
@@ -25274,7 +25296,7 @@ var PageForm = function (_React$Component) {
                                     _react2.default.createElement(
                                         'div',
                                         { className: 'uk-form-controls' },
-                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: resource.max_comments, name: MODEL + '[max_comments]', id: MODEL + '_max_comments', ref: MODEL + '_max_comments' })
+                                        _react2.default.createElement('input', { className: 'uk-width', type: 'text', value: this.state[MODEL]['max_comments'], name: MODEL + '[max_comments]', id: MODEL + '_max_comments', ref: MODEL + '_max_comments', onChange: this.handleChange })
                                     )
                                 )
                             ),

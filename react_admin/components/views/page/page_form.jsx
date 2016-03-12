@@ -9,19 +9,29 @@ class PageForm extends React.Component {
     constructor(...props) {
         super(...props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+
+        this.state = {
+            [MODEL]: {
+                name: this.props.resource.name,
+                parent_id: this.props.resource.parent_id,
+                ordering: this.props.resource.ordering,
+                max_comments: this.props.resource.max_comments,
+            }
+        }
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        let data = {
-            [MODEL]: {
-                name: ReactDOM.findDOMNode(this.refs[`${MODEL}_name`]).value,
-                parent_id: ReactDOM.findDOMNode(this.refs[`${MODEL}_parent_id`]).value,
-                ordering: ReactDOM.findDOMNode(this.refs[`${MODEL}_ordering`]).value,
-                max_comments: ReactDOM.findDOMNode(this.refs[`${MODEL}_max_comments`]).value,
-            }
-        };
-        this.props.onSubmit(data);
+        this.props.onSubmit(this.state);
+    }
+
+    handleChange(e) {
+        let key = e.target.name.match(/^.+\[(.+)\]/)[1];
+        let value = e.target.value;
+        let state = this.state;
+        state[MODEL][key] = value;
+        this.setState(state);
     }
 
     render() {
@@ -43,7 +53,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_name`}>Title</label>
                                     <div className="uk-form-controls">
-                                        <input className="uk-width" type="text" value={resource.name} name={`${MODEL}[name]`} id={`${MODEL}_name`} ref={`${MODEL}_name`} />
+                                        <input className="uk-width" type="text" value={this.state[MODEL]['name']} name={`${MODEL}[name]`} id={`${MODEL}_name`} ref={`${MODEL}_name`} onChange={this.handleChange} />
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +61,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_parent_id`}>Category ID</label>
                                     <div className="uk-form-controls">
-                                        <select value={resource.parent_id} className="uk-width" name={`${MODEL}[parent_id]`} id={`${MODEL}_parent_id`} ref={`${MODEL}_parent_id`}>
+                                        <select value={this.state[MODEL]['parent_id']} className="uk-width" name={`${MODEL}[parent_id]`} id={`${MODEL}_parent_id`} ref={`${MODEL}_parent_id`} onChange={this.handleChange} >
                                             {pageCategories}
                                         </select>
                                     </div>
@@ -61,7 +71,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_ordering`}>Ordering</label>
                                     <div className="uk-form-controls">
-                                        <input className="uk-width" type="text" value={resource.ordering} name={`${MODEL}[ordering]`} id={`${MODEL}_ordering`} ref={`${MODEL}_ordering`} />
+                                        <input className="uk-width" type="text" value={this.state[MODEL]['ordering']} name={`${MODEL}[ordering]`} id={`${MODEL}_ordering`} ref={`${MODEL}_ordering`} onChange={this.handleChange} />
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +79,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_max_comments`}>Comments max</label>
                                     <div className="uk-form-controls">
-                                        <input className="uk-width" type="text" value={resource.max_comments} name={`${MODEL}[max_comments]`} id={`${MODEL}_max_comments`} ref={`${MODEL}_max_comments`} />
+                                        <input className="uk-width" type="text" value={this.state[MODEL]['max_comments']} name={`${MODEL}[max_comments]`} id={`${MODEL}_max_comments`} ref={`${MODEL}_max_comments`} onChange={this.handleChange} />
                                     </div>
                                 </div>
                             </div>
