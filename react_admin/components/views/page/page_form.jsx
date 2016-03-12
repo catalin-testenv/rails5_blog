@@ -12,12 +12,7 @@ class PageForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
 
         this.state = {
-            [MODEL]: {
-                name: this.props.resource.name,
-                parent_id: this.props.resource.parent_id,
-                ordering: this.props.resource.ordering,
-                max_comments: this.props.resource.max_comments,
-            }
+            [MODEL]: this.props.resource
         }
     }
 
