@@ -25049,6 +25049,8 @@ var PageEdit = function (_React$Component) {
         _this.state = {
             resource: _page_store2.default.getPage()
         };
+
+        console.log('PageEdit constructor');
         return _this;
     }
 
@@ -25086,6 +25088,7 @@ var PageEdit = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            this.state.resource && console.log('PageEdit render ' + this.state.resource.id + ' ' + this.state.resource.name);
             var resource = this.state.resource;
             if (!resource) {
                 return _react2.default.createElement('div', null);
@@ -25161,11 +25164,18 @@ var PageForm = function (_React$Component) {
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.handleChange = _this.handleChange.bind(_this);
 
+        console.log('PageForm constructor ' + _this.props.resource.id + ' ' + _this.props.resource.name);
+
         _this.state = _defineProperty({}, MODEL, _this.props.resource);
         return _this;
     }
 
     _createClass(PageForm, [{
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            this.setState(_defineProperty({}, MODEL, nextProps.resource));
+        }
+    }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
@@ -25183,6 +25193,8 @@ var PageForm = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+
+            console.log('PageForm render ' + this.props.resource.id + ' ' + this.props.resource.name);
 
             var resource = this.props.resource;
             var page_categories_all = resource.page_categories_all;

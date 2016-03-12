@@ -11,9 +11,15 @@ class PageForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
+        console.log(`PageForm constructor ${this.props.resource.id} ${this.props.resource.name}`);
+
         this.state = {
             [MODEL]: this.props.resource
         }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({[MODEL]: nextProps.resource});
     }
 
     handleSubmit(e) {
@@ -30,6 +36,8 @@ class PageForm extends React.Component {
     }
 
     render() {
+
+        console.log(`PageForm render ${this.props.resource.id} ${this.props.resource.name}`);
 
         const resource = this.props.resource;
         const page_categories_all = resource.page_categories_all;

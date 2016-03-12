@@ -21,6 +21,8 @@ class PageEdit extends React.Component {
         this.state = {
             resource: PageStore.getPage(),
         };
+
+        console.log(`PageEdit constructor`);
     }
 
     // FLUX boilerplate
@@ -46,6 +48,7 @@ class PageEdit extends React.Component {
     }
 
     render() {
+        this.state.resource && console.log(`PageEdit render ${this.state.resource.id} ${this.state.resource.name}`);
         let resource = this.state.resource;
         if(!resource) { return <div />; }
 
