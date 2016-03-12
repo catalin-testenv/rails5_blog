@@ -1,7 +1,11 @@
 
 import React from 'react';
+
 import { Link } from 'react-router';
-import Api from '../../../services/api';
+
+import PageActions from '../../../flux/actions/page_actions';
+import PageStore from '../../../flux/stores/page_store';
+
 import AdminBodyTitle from '../../subcomponents/admin_body_title';
 import AdminBodyTopLinks from '../../subcomponents/admin_body_top_links';
 import AdminBodyBottomLinks from '../../subcomponents/admin_body_bottom_links';
@@ -10,27 +14,35 @@ class PageIndex extends React.Component {
 
     constructor(...props) {
         super(...props);
+
+        this._onChange = this._onChange.bind(this);
+
         this.state = {
-            resource_list: [],
+            pageList: PageStore.getPageList(),
         };
     }
 
-    componentDidMount() {
-        this.loadPagesList();
+    // FLUX boilerplate
+    componentWillMount() {
+        PageStore.addChangeListener(this._onChange);
     }
 
-    loadPagesList() {
-        let promise = Api.getAllPages();
-        promise.then((data) => {
-            this.setState({resource_list: data});
-        }).catch((jqXHR, textStatus, errorThrown) => {
-            console.error(jqXHR.status, jqXHR.statusText);
-        });
+    // FLUX boilerplate
+    componentWillUnmount() {
+        PageStore.removeChangeListener(this._onChange);
+    }
+
+    _onChange() {
+        this.setState({ pageList: PageStore.getPageList() });
+    }
+
+    componentDidMount() {
+        PageActions.getPageList();
     }
 
     render() {
 
-        let rows = this.state.resource_list.map((resource) => {
+        let rows = this.state.pageList.map((resource) => {
             return(
                 <tr key={resource.id}>
                     <td>{resource.name}</td>

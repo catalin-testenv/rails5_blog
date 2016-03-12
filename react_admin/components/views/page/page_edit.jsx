@@ -1,54 +1,48 @@
 
 import React from 'react';
+
+import PageActions from '../../../flux/actions/page_actions';
+import PageStore from '../../../flux/stores/page_store';
+
 import AdminBodyTitle from '../../subcomponents/admin_body_title';
 import AdminBodyTopLinks from '../../subcomponents/admin_body_top_links';
 import AdminBodyBottomLinks from '../../subcomponents/admin_body_bottom_links';
 import PageForm from './page_form';
 
-const MODEL = 'page';
 
 class PageEdit extends React.Component {
 
     constructor(...props) {
         super(...props);
-        this.state = {
-            resource: undefined,
-        };
+
+        this._onChange = this._onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        this.state = {
+            resource: PageStore.getPage(),
+        };
+    }
+
+    // FLUX boilerplate
+    componentWillMount() {
+        PageStore.addChangeListener(this._onChange);
+    }
+
+    // FLUX boilerplate
+    componentWillUnmount() {
+        PageStore.removeChangeListener(this._onChange);
+    }
+
+    _onChange() {
+        this.setState({ resource: PageStore.getPage() });
     }
 
     componentDidMount() {
-        this.loadPage();
+        PageActions.getPage(this.props.params.id);
     }
 
-    loadPage() {
-        $.ajax({
-            url: Routes.edit_admin_page_path(this.props.params.id, {format: 'json'}),
-            method: 'GET',
-            dataType: 'json',
-        }).done((data) => {
-            console.log(data);
-            this.setState({resource: data});
-        });
-    }
-
-    handleSubmit(data) {
-        $.ajax({
-            headers: {
-                'X-CSRF-Token': Cookies.get('X-CSRF-Token').replace(/xxx-/, '')
-            },
-            url: Routes.admin_page_path(this.props.params.id, {format: 'json'}),
-            method: 'PATCH',
-            dataType: 'json',
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data: data,
-        }).done((data) => {
-            console.log(data);
-            this.setState({resource: data});
-        }).fail((jqXHR, textStatus, errorThrown) => {
-            console.error(`${textStatus} ${errorThrown}`);
-            console.error(jqXHR.responseJSON);
-        });
+    handleSubmit(pageData) {
+        PageActions.updatePage(this.props.params.id, pageData);
     }
 
     render() {
@@ -66,7 +60,7 @@ class PageEdit extends React.Component {
                 <AdminBodyTitle>Edit</AdminBodyTitle>
                 <AdminBodyTopLinks links={links} {...this.props} />
 
-                <PageForm onSubmit={this.handleSubmit} model={MODEL} resource={resource} />
+                <PageForm onSubmit={this.handleSubmit} resource={resource} />
 
                 <AdminBodyBottomLinks links={links} {...this.props} />
             </div>

@@ -2,6 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const MODEL = 'page';
+
 class PageForm extends React.Component {
 
     constructor(...props) {
@@ -11,7 +13,6 @@ class PageForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const MODEL = this.props.model;
         let data = {
             [MODEL]: {
                 name: ReactDOM.findDOMNode(this.refs[`${MODEL}_name`]).value,
@@ -24,7 +25,7 @@ class PageForm extends React.Component {
     }
 
     render() {
-        const MODEL = this.props.model;
+
         const resource = this.props.resource;
         const page_categories_all = resource.page_categories_all;
 
@@ -42,7 +43,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_name`}>Title</label>
                                     <div className="uk-form-controls">
-                                        <input className="uk-width" type="text" defaultValue={resource.name} name={`${MODEL}[name]`} id={`${MODEL}_name`} ref={`${MODEL}_name`} />
+                                        <input className="uk-width" type="text" value={resource.name} name={`${MODEL}[name]`} id={`${MODEL}_name`} ref={`${MODEL}_name`} />
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +51,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_parent_id`}>Category ID</label>
                                     <div className="uk-form-controls">
-                                        <select defaultValue={resource.parent_id} className="uk-width" name={`${MODEL}[parent_id]`} id={`${MODEL}_parent_id`} ref={`${MODEL}_parent_id`}>
+                                        <select value={resource.parent_id} className="uk-width" name={`${MODEL}[parent_id]`} id={`${MODEL}_parent_id`} ref={`${MODEL}_parent_id`}>
                                             {pageCategories}
                                         </select>
                                     </div>
@@ -60,7 +61,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_ordering`}>Ordering</label>
                                     <div className="uk-form-controls">
-                                        <input className="uk-width" type="text" defaultValue={resource.ordering} name={`${MODEL}[ordering]`} id={`${MODEL}_ordering`} ref={`${MODEL}_ordering`} />
+                                        <input className="uk-width" type="text" value={resource.ordering} name={`${MODEL}[ordering]`} id={`${MODEL}_ordering`} ref={`${MODEL}_ordering`} />
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +69,7 @@ class PageForm extends React.Component {
                                 <div className="uk-form-row">
                                     <label className="uk-form-label" htmlFor={`${MODEL}_max_comments`}>Comments max</label>
                                     <div className="uk-form-controls">
-                                        <input className="uk-width" type="text" defaultValue={resource.max_comments} name={`${MODEL}[max_comments]`} id={`${MODEL}_max_comments`} ref={`${MODEL}_max_comments`} />
+                                        <input className="uk-width" type="text" value={resource.max_comments} name={`${MODEL}[max_comments]`} id={`${MODEL}_max_comments`} ref={`${MODEL}_max_comments`} />
                                     </div>
                                 </div>
                             </div>
