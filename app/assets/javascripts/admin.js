@@ -25001,6 +25001,10 @@ var _generic_deco = require('../../../decorators/generic_deco');
 
 var _generic_deco2 = _interopRequireDefault(_generic_deco);
 
+var _flux_registered_deco = require('../../../decorators/flux_registered_deco');
+
+var _flux_registered_deco2 = _interopRequireDefault(_flux_registered_deco);
+
 var _page_actions = require('../../../flux/actions/page_actions');
 
 var _page_actions2 = _interopRequireDefault(_page_actions);
@@ -25047,7 +25051,6 @@ var PageEdit = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PageEdit)).call.apply(_Object$getPrototypeO, [this].concat(props)));
 
-        _this._onChange = _this._onChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
 
         _this.state = {
@@ -25056,23 +25059,7 @@ var PageEdit = function (_React$Component) {
         return _this;
     }
 
-    // FLUX boilerplate
-
-
     _createClass(PageEdit, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            _page_store2.default.addChangeListener(this._onChange);
-        }
-
-        // FLUX boilerplate
-
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            _page_store2.default.removeChangeListener(this._onChange);
-        }
-    }, {
         key: '_onChange',
         value: function _onChange() {
             this.setState({ resource: _page_store2.default.getPage() });
@@ -25115,13 +25102,11 @@ var PageEdit = function (_React$Component) {
     return PageEdit;
 }(_react2.default.Component);
 
-;
-
 PageEdit = (0, _generic_deco2.default)(PageEdit);
-
+PageEdit = (0, _flux_registered_deco2.default)([_page_store2.default])(PageEdit);
 exports.default = PageEdit;
 
-},{"../../../decorators/generic_deco":234,"../../../flux/actions/page_actions":235,"../../../flux/stores/page_store":237,"../../subcomponents/admin_body_bottom_links":224,"../../subcomponents/admin_body_title":225,"../../subcomponents/admin_body_top_links":226,"./page_form":230,"react":217}],230:[function(require,module,exports){
+},{"../../../decorators/flux_registered_deco":234,"../../../decorators/generic_deco":235,"../../../flux/actions/page_actions":236,"../../../flux/stores/page_store":238,"../../subcomponents/admin_body_bottom_links":224,"../../subcomponents/admin_body_title":225,"../../subcomponents/admin_body_top_links":226,"./page_form":230,"react":217}],230:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25342,6 +25327,10 @@ var _generic_deco = require('../../../decorators/generic_deco');
 
 var _generic_deco2 = _interopRequireDefault(_generic_deco);
 
+var _flux_registered_deco = require('../../../decorators/flux_registered_deco');
+
+var _flux_registered_deco2 = _interopRequireDefault(_flux_registered_deco);
+
 var _page_actions = require('../../../flux/actions/page_actions');
 
 var _page_actions2 = _interopRequireDefault(_page_actions);
@@ -25384,31 +25373,13 @@ var PageIndex = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PageIndex)).call.apply(_Object$getPrototypeO, [this].concat(props)));
 
-        _this._onChange = _this._onChange.bind(_this);
-
         _this.state = {
             pageList: []
         };
         return _this;
     }
 
-    // FLUX boilerplate
-
-
     _createClass(PageIndex, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            _page_store2.default.addChangeListener(this._onChange);
-        }
-
-        // FLUX boilerplate
-
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            _page_store2.default.removeChangeListener(this._onChange);
-        }
-    }, {
         key: '_onChange',
         value: function _onChange() {
             this.setState({ pageList: _page_store2.default.getPageList() });
@@ -25520,12 +25491,11 @@ var PageIndex = function (_React$Component) {
     return PageIndex;
 }(_react2.default.Component);
 
-;
-
 PageIndex = (0, _generic_deco2.default)(PageIndex);
+PageIndex = (0, _flux_registered_deco2.default)([_page_store2.default])(PageIndex);
 exports.default = PageIndex;
 
-},{"../../../decorators/generic_deco":234,"../../../flux/actions/page_actions":235,"../../../flux/stores/page_store":237,"../../subcomponents/admin_body_bottom_links":224,"../../subcomponents/admin_body_title":225,"../../subcomponents/admin_body_top_links":226,"react":217,"react-router":55}],232:[function(require,module,exports){
+},{"../../../decorators/flux_registered_deco":234,"../../../decorators/generic_deco":235,"../../../flux/actions/page_actions":236,"../../../flux/stores/page_store":238,"../../subcomponents/admin_body_bottom_links":224,"../../subcomponents/admin_body_title":225,"../../subcomponents/admin_body_top_links":226,"react":217,"react-router":55}],232:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25632,6 +25602,80 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
+exports.default = FluxRegisteredDeco;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/*
+requires Component to define _onChange method
+*/
+
+function FluxRegisteredDeco(stores) {
+
+    return function inner(Component) {
+        var Decorated = function (_Component) {
+            _inherits(Decorated, _Component);
+
+            function Decorated(props) {
+                _classCallCheck(this, Decorated);
+
+                var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Decorated).call(this, props));
+
+                _this._onChange = _this._onChange.bind(_this);
+                return _this;
+            }
+
+            _createClass(Decorated, [{
+                key: 'componentWillMount',
+                value: function componentWillMount() {
+                    var _this2 = this;
+
+                    stores.forEach(function (store) {
+                        store.addChangeListener(_this2._onChange);
+                    });
+
+                    _get(Object.getPrototypeOf(Decorated.prototype), 'componentWillMount', this) && _get(Object.getPrototypeOf(Decorated.prototype), 'componentWillMount', this).call(this);
+                }
+            }, {
+                key: 'componentWillUnmount',
+                value: function componentWillUnmount() {
+                    var _this3 = this;
+
+                    stores.forEach(function (store) {
+                        store.removeChangeListener(_this3._onChange);
+                    });
+                    _get(Object.getPrototypeOf(Decorated.prototype), 'componentWillUnmount', this) && _get(Object.getPrototypeOf(Decorated.prototype), 'componentWillUnmount', this).call(this);
+                }
+            }]);
+
+            return Decorated;
+        }(Component);
+
+        return Decorated;
+    };
+}
+
+},{"react":217}],235:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
 exports.default = GenericDeco;
 
 var _react = require('react');
@@ -25679,7 +25723,7 @@ function GenericDeco(Component) {
     return Decorated;
 }
 
-},{"react":217}],235:[function(require,module,exports){
+},{"react":217}],236:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25737,7 +25781,7 @@ var PageActions = {
 
 exports.default = PageActions;
 
-},{"../../services/api":239,"../dispatcher":236}],236:[function(require,module,exports){
+},{"../../services/api":240,"../dispatcher":237}],237:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25748,7 +25792,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":6}],237:[function(require,module,exports){
+},{"flux":6}],238:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25848,7 +25892,7 @@ exports.default = new (function (_EventEmitter) {
     return PageStore;
 }(_events2.default))();
 
-},{"../../helpers/helpers":238,"../dispatcher":236,"events":4}],238:[function(require,module,exports){
+},{"../../helpers/helpers":239,"../dispatcher":237,"events":4}],239:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25859,7 +25903,7 @@ function clone(item) {
     return JSON.parse(JSON.stringify(item));
 }
 
-},{}],239:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 
 'use strict';
 

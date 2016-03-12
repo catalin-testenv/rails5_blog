@@ -2,6 +2,7 @@
 import React from 'react';
 
 import GenericDeco from '../../../decorators/generic_deco';
+import FluxRegisteredDeco from '../../../decorators/flux_registered_deco';
 
 import PageActions from '../../../flux/actions/page_actions';
 import PageStore from '../../../flux/stores/page_store';
@@ -17,22 +18,11 @@ class PageEdit extends React.Component {
     constructor(...props) {
         super(...props);
 
-        this._onChange = this._onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
             resource: undefined,
         };
-    }
-
-    // FLUX boilerplate
-    componentWillMount() {
-        PageStore.addChangeListener(this._onChange);
-    }
-
-    // FLUX boilerplate
-    componentWillUnmount() {
-        PageStore.removeChangeListener(this._onChange);
     }
 
     _onChange() {
@@ -68,7 +58,8 @@ class PageEdit extends React.Component {
             </div>
         );
     }
-};
+}
 
 PageEdit = GenericDeco(PageEdit);
+PageEdit = FluxRegisteredDeco([PageStore])(PageEdit);
 export default PageEdit;

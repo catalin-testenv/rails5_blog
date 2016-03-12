@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import GenericDeco from '../../../decorators/generic_deco';
+import FluxRegisteredDeco from '../../../decorators/flux_registered_deco';
 
 import PageActions from '../../../flux/actions/page_actions';
 import PageStore from '../../../flux/stores/page_store';
@@ -17,21 +18,9 @@ class PageIndex extends React.Component {
     constructor(...props) {
         super(...props);
 
-        this._onChange = this._onChange.bind(this);
-
         this.state = {
             pageList: [],
         };
-    }
-
-    // FLUX boilerplate
-    componentWillMount() {
-        PageStore.addChangeListener(this._onChange);
-    }
-
-    // FLUX boilerplate
-    componentWillUnmount() {
-        PageStore.removeChangeListener(this._onChange);
     }
 
     _onChange() {
@@ -90,7 +79,8 @@ class PageIndex extends React.Component {
             </div>
         );
     }
-};
+}
 
 PageIndex = GenericDeco(PageIndex);
+PageIndex = FluxRegisteredDeco([PageStore])(PageIndex);
 export default PageIndex;

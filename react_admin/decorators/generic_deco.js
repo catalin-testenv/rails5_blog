@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function GenericDeco (Component) {
+export default function GenericDeco(Component) {
     class Decorated extends Component {
         constructor(props) {
             super(props);
