@@ -3,6 +3,8 @@ import React from 'react';
 
 import { Link } from 'react-router';
 
+import GenericDeco from '../../../decorators/generic_deco';
+
 import PageActions from '../../../flux/actions/page_actions';
 import PageStore from '../../../flux/stores/page_store';
 
@@ -90,4 +92,5 @@ class PageIndex extends React.Component {
     }
 };
 
+PageIndex = GenericDeco(PageIndex);
 export default PageIndex;

@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import GenericDeco from '../../../decorators/generic_deco';
+
 import PageActions from '../../../flux/actions/page_actions';
 import PageStore from '../../../flux/stores/page_store';
 
@@ -68,4 +70,5 @@ class PageEdit extends React.Component {
     }
 };
 
+PageEdit = GenericDeco(PageEdit);
 export default PageEdit;
