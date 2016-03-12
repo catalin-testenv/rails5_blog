@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router';
+import Api from '../../../services/api';
 import AdminBodyTitle from '../../subcomponents/admin_body_title';
 import AdminBodyTopLinks from '../../subcomponents/admin_body_top_links';
 import AdminBodyBottomLinks from '../../subcomponents/admin_body_bottom_links';
@@ -19,12 +20,11 @@ class PageIndex extends React.Component {
     }
 
     loadPagesList() {
-        $.ajax({
-            url: Routes.admin_pages_path({format: 'json'}),
-            method: 'GET',
-            dataType: 'json',
-        }).done((data) => {
+        let promise = Api.getAllPages();
+        promise.then((data) => {
             this.setState({resource_list: data});
+        }).catch((jqXHR, textStatus, errorThrown) => {
+            console.error(jqXHR.status, jqXHR.statusText);
         });
     }
 

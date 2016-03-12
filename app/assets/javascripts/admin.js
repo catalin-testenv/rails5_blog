@@ -24725,6 +24725,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
+var _api = require('../../../services/api');
+
+var _api2 = _interopRequireDefault(_api);
+
 var _admin_body_title = require('../../subcomponents/admin_body_title');
 
 var _admin_body_title2 = _interopRequireDefault(_admin_body_title);
@@ -24775,12 +24779,11 @@ var PageIndex = function (_React$Component) {
         value: function loadPagesList() {
             var _this2 = this;
 
-            $.ajax({
-                url: Routes.admin_pages_path({ format: 'json' }),
-                method: 'GET',
-                dataType: 'json'
-            }).done(function (data) {
+            var promise = _api2.default.getAllPages();
+            promise.then(function (data) {
                 _this2.setState({ resource_list: data });
+            }).catch(function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR.status, jqXHR.statusText);
             });
         }
     }, {
@@ -24882,7 +24885,7 @@ var PageIndex = function (_React$Component) {
 
 exports.default = PageIndex;
 
-},{"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"react":213,"react-router":51}],228:[function(require,module,exports){
+},{"../../../services/api":230,"../../subcomponents/admin_body_bottom_links":220,"../../subcomponents/admin_body_title":221,"../../subcomponents/admin_body_top_links":222,"react":213,"react-router":51}],228:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24978,4 +24981,29 @@ var PageCategoryIndex = function (_React$Component) {
 
 exports.default = PageCategoryIndex;
 
-},{"react":213}]},{},[216]);
+},{"react":213}],230:[function(require,module,exports){
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var Api = {
+    getAllPages: function getAllPages() {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: Routes.admin_pages_path({ format: 'json' }),
+                method: 'GET',
+                dataType: 'json'
+            }).done(function (data) {
+                resolve(data);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                reject(jqXHR, textStatus, errorThrown);
+            });
+        });
+    }
+};
+
+exports.default = Api;
+
+},{}]},{},[216]);
