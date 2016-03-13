@@ -1,13 +1,14 @@
 
 import Dispatcher from '../dispatcher';
 import Api from '../../services/api';
+import ActionTypes from '../../constants/action_types';
 
 const PageActions = {
 
     getPageList() {
         Api.getPageList().then((data, textStatus, jqXHR) => {
             Dispatcher.dispatch({
-                actionType: 'PAGE_LIST_READY',
+                actionType: ActionTypes.PAGE_LIST_READY,
                 data: {
                     pageList: data
                 }
@@ -21,7 +22,7 @@ const PageActions = {
     getPage(id) {
         Api.getPage(id).then((data, textStatus, jqXHR) => {
             Dispatcher.dispatch({
-                actionType: 'PAGE_READY',
+                actionType: ActionTypes.PAGE_READY,
                 data: {
                     page: data
                 }
@@ -34,13 +35,20 @@ const PageActions = {
     updatePage(id, pageData) {
         Api.updatePage(id, pageData).then((data, textStatus, jqXHR) => {
             Dispatcher.dispatch({
-                actionType: 'PAGE_READY',
+                actionType: ActionTypes.PAGE_READY,
                 data: {
                     page: data
                 }
             });
         }).catch((jqXHR, textStatus, errorThrown) => {
-            console.error(jqXHR);
+            Dispatcher.dispatch({
+                actionType: ActionTypes.PAGE_ERROR,
+                data: {
+                    jqXHR: jqXHR,
+                    textStatus: textStatus,
+                    errorThrown: errorThrown
+                }
+            });
         });
     }
 };

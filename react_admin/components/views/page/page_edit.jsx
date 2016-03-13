@@ -5,7 +5,9 @@ import GenericDeco from '../../../decorators/generic_deco';
 import FluxRegisteredDeco from '../../../decorators/flux_registered_deco';
 
 import PageActions from '../../../flux/actions/page_actions';
-import PageStore from '../../../flux/stores/page_store';
+import PassthroughStore from '../../../flux/stores/passthrough_store';
+
+import ActionTypes from '../../../constants/action_types';
 
 import AdminBodyTitle from '../../subcomponents/admin_body_title';
 import AdminBodyTopLinks from '../../subcomponents/admin_body_top_links';
@@ -25,8 +27,9 @@ class PageEdit extends React.Component {
         };
     }
 
-    _onChange() {
-        this.setState({ resource: PageStore.getPage() });
+    _onChange(actionType, data) {
+        if (actionType !== ActionTypes.PAGE_READY) { return; }
+        this.setState({ resource: data.page });
     }
 
     componentDidMount() {
@@ -61,5 +64,5 @@ class PageEdit extends React.Component {
 }
 
 PageEdit = GenericDeco(PageEdit);
-PageEdit = FluxRegisteredDeco([PageStore])(PageEdit);
+PageEdit = FluxRegisteredDeco([PassthroughStore])(PageEdit);
 export default PageEdit;
