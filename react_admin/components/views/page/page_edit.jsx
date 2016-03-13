@@ -24,12 +24,16 @@ class PageEdit extends React.Component {
 
         this.state = {
             resource: undefined,
+            errorMessages: []
         };
     }
 
     _onChange(actionType, data) {
-        if ([ActionTypes.PAGE_READY, ActionTypes.PAGE_UPDATED].indexOf(actionType) === -1) { return; }
-        this.setState({ resource: data.page });
+        if ([ActionTypes.PAGE_READY, ActionTypes.PAGE_UPDATED].indexOf(actionType) !== -1) {
+            this.setState({ resource: data.page,  errorMessages: []});
+        } else if ([ActionTypes.PAGE_ERROR].indexOf(actionType) !== -1) {
+            this.setState({errorMessages: data.jqXHR.responseJSON })
+        }
     }
 
     componentDidMount() {
@@ -55,7 +59,7 @@ class PageEdit extends React.Component {
                 <AdminBodyTitle>Edit</AdminBodyTitle>
                 <AdminBodyTopLinks links={links} {...this.props} />
 
-                <PageForm onSubmit={this.handleSubmit} resource={resource} />
+                <PageForm onSubmit={this.handleSubmit} resource={resource} errorMessages={this.state.errorMessages} />
 
                 <AdminBodyBottomLinks links={links} {...this.props} />
             </div>

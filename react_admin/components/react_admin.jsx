@@ -35,8 +35,8 @@ class ReactAdmin extends React.Component {
         let notification = this.state.message ? (
             <div id="admin-notice-alert">
                 <Notification type={this.state.type}>{this.state.message}</Notification>
-            </div>) : <div />;
-        
+            </div>) : null;
+
         return (
             <div className="uk-grid">
                 <div id="admin-main-navigation" className="uk-width-medium-1-5 uk-padding-remove">
