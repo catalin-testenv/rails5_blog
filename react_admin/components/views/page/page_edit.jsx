@@ -28,7 +28,7 @@ class PageEdit extends React.Component {
     }
 
     _onChange(actionType, data) {
-        if (actionType !== ActionTypes.PAGE_READY) { return; }
+        if ([ActionTypes.PAGE_READY, ActionTypes.PAGE_UPDATED].indexOf(actionType) === -1) { return; }
         this.setState({ resource: data.page });
     }
 

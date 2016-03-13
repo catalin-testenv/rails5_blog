@@ -5,6 +5,8 @@ import Dispatcher from '../flux/dispatcher';
  requires StoreClass to define _onAction method
 */
 
+const CHANGE = 'change';
+
 export default function StoreDeco(StoreClass) {
     class Decorated extends StoreClass {
         constructor(...args) {
@@ -14,17 +16,17 @@ export default function StoreDeco(StoreClass) {
         }
 
         addChangeListener(callback) {
-            this.on('change', callback);
+            this.on(CHANGE, callback);
             super.addChangeListener && super.addChangeListener(callback);
         }
 
         removeChangeListener(callback) {
-            this.removeListener('change', callback);
+            this.removeListener(CHANGE, callback);
             super.removeChangeListener && super.removeChangeListener(callback);
         }
 
         emitChange(...args) {
-            this.emit('change', ...args);
+            this.emit(CHANGE, ...args);
             super.emitChange && super.emitChange(...args);
         }
 

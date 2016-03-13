@@ -8,7 +8,7 @@ class PassthroughStore extends EventEmitter {
 
     // passthrough
     _onAction(action) {
-        this.emitChange(action.actionType, action.data);
+        this.emitChange(action.actionType, Object.freeze(action.data));
     }
 
 }

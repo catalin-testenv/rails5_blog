@@ -35,9 +35,10 @@ const PageActions = {
     updatePage(id, pageData) {
         Api.updatePage(id, pageData).then((data, textStatus, jqXHR) => {
             Dispatcher.dispatch({
-                actionType: ActionTypes.PAGE_READY,
+                actionType: ActionTypes.PAGE_UPDATED,
                 data: {
-                    page: data
+                    page: data,
+                    message: 'Page updated.'
                 }
             });
         }).catch((jqXHR, textStatus, errorThrown) => {
@@ -46,7 +47,8 @@ const PageActions = {
                 data: {
                     jqXHR: jqXHR,
                     textStatus: textStatus,
-                    errorThrown: errorThrown
+                    errorThrown: errorThrown,
+                    message: 'Page not updated.'
                 }
             });
         });

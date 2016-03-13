@@ -24684,7 +24684,7 @@ var AdminRoutes = exports.AdminRoutes = _react2.default.createElement(
     )
 );
 
-},{"./react_admin":224,"./views/dashboard/dashboard":229,"./views/page/page_edit":230,"./views/page/page_index":232,"./views/page/page_new":233,"./views/page_category/page_category_index":234,"react":218,"react-router":56}],224:[function(require,module,exports){
+},{"./react_admin":224,"./views/dashboard/dashboard":230,"./views/page/page_edit":231,"./views/page/page_index":233,"./views/page/page_new":234,"./views/page_category/page_category_index":235,"react":218,"react-router":56}],224:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24699,11 +24699,31 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _generic_deco = require('../decorators/generic_deco');
+
+var _generic_deco2 = _interopRequireDefault(_generic_deco);
+
+var _flux_registered_deco = require('../decorators/flux_registered_deco');
+
+var _flux_registered_deco2 = _interopRequireDefault(_flux_registered_deco);
+
+var _page_actions = require('../flux/actions/page_actions');
+
+var _page_actions2 = _interopRequireDefault(_page_actions);
+
+var _passthrough_store = require('../flux/stores/passthrough_store');
+
+var _passthrough_store2 = _interopRequireDefault(_passthrough_store);
+
 var _admin_main_navigation = require('./admin_main_navigation');
 
 var _admin_main_navigation2 = _interopRequireDefault(_admin_main_navigation);
 
 var _admin_routes = require('./admin_routes');
+
+var _notification = require('./subcomponents/notification');
+
+var _notification2 = _interopRequireDefault(_notification);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24717,14 +24737,45 @@ var ReactAdmin = function (_React$Component) {
     _inherits(ReactAdmin, _React$Component);
 
     function ReactAdmin() {
+        var _Object$getPrototypeO;
+
         _classCallCheck(this, ReactAdmin);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(ReactAdmin).apply(this, arguments));
+        for (var _len = arguments.length, props = Array(_len), _key = 0; _key < _len; _key++) {
+            props[_key] = arguments[_key];
+        }
+
+        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ReactAdmin)).call.apply(_Object$getPrototypeO, [this].concat(props)));
+
+        _this.state = { message: undefined, type: undefined };
+        return _this;
     }
 
     _createClass(ReactAdmin, [{
+        key: '_onChange',
+        value: function _onChange(actionType, data) {
+            if (actionType.match(/_(UPDATED|CREATED|DESTROYED)$/)) {
+                this.setState({ message: data.message, type: 'success' });
+            } else if (actionType.match(/_ERROR$/)) {
+                this.setState({ message: data.message, type: 'danger' });
+            } else {
+                this.setState({ message: undefined, type: undefined });
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
+
+            var notification = this.state.message ? _react2.default.createElement(
+                'div',
+                { id: 'admin-notice-alert' },
+                _react2.default.createElement(
+                    _notification2.default,
+                    { type: this.state.type },
+                    this.state.message
+                )
+            ) : _react2.default.createElement('div', null);
+
             return _react2.default.createElement(
                 'div',
                 { className: 'uk-grid' },
@@ -24736,6 +24787,7 @@ var ReactAdmin = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'uk-width-medium-4-5 uk-padding-remove' },
+                    notification,
                     _react2.default.createElement(
                         'div',
                         { id: 'admin-body' },
@@ -24755,9 +24807,12 @@ var ReactAdmin = function (_React$Component) {
 
 ;
 
+ReactAdmin = (0, _generic_deco2.default)(ReactAdmin);
+ReactAdmin = (0, _flux_registered_deco2.default)([_passthrough_store2.default])(ReactAdmin);
+
 exports.default = ReactAdmin;
 
-},{"./admin_main_navigation":222,"./admin_routes":223,"react":218}],225:[function(require,module,exports){
+},{"../decorators/flux_registered_deco":237,"../decorators/generic_deco":238,"../flux/actions/page_actions":240,"../flux/stores/passthrough_store":242,"./admin_main_navigation":222,"./admin_routes":223,"./subcomponents/notification":229,"react":218}],225:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24990,6 +25045,78 @@ var NavLi = function (_React$Component) {
 exports.default = NavLi;
 
 },{"react":218,"react-router":56}],229:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Notification = function (_React$Component) {
+    _inherits(Notification, _React$Component);
+
+    function Notification(props) {
+        _classCallCheck(this, Notification);
+
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Notification).call(this, props));
+
+        _this.state = { show: true };
+        _this.handleClick = _this.handleClick.bind(_this);
+        return _this;
+    }
+
+    _createClass(Notification, [{
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+            this.setState({ show: true });
+        }
+    }, {
+        key: "handleClick",
+        value: function handleClick(e) {
+            e.preventDefault();
+            this.setState({ show: false });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var notification = _react2.default.createElement("div", null);
+
+            if (this.state.show) {
+                notification = _react2.default.createElement(
+                    "div",
+                    { className: "uk-alert uk-margin-bottom-remove uk-alert-" + this.props.type },
+                    _react2.default.createElement("a", { href: "", onClick: this.handleClick, className: "uk-alert-close uk-close" }),
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        this.props.children
+                    )
+                );
+            }
+
+            return notification;
+        }
+    }]);
+
+    return Notification;
+}(_react2.default.Component);
+
+exports.default = Notification;
+
+},{"react":218}],230:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25037,7 +25164,7 @@ var Dashboard = function (_React$Component) {
 
 exports.default = Dashboard;
 
-},{"react":218}],230:[function(require,module,exports){
+},{"react":218}],231:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25121,7 +25248,7 @@ var PageEdit = function (_React$Component) {
     _createClass(PageEdit, [{
         key: '_onChange',
         value: function _onChange(actionType, data) {
-            if (actionType !== _action_types2.default.PAGE_READY) {
+            if ([_action_types2.default.PAGE_READY, _action_types2.default.PAGE_UPDATED].indexOf(actionType) === -1) {
                 return;
             }
             this.setState({ resource: data.page });
@@ -25168,7 +25295,7 @@ PageEdit = (0, _generic_deco2.default)(PageEdit);
 PageEdit = (0, _flux_registered_deco2.default)([_passthrough_store2.default])(PageEdit);
 exports.default = PageEdit;
 
-},{"../../../constants/action_types":235,"../../../decorators/flux_registered_deco":236,"../../../decorators/generic_deco":237,"../../../flux/actions/page_actions":239,"../../../flux/stores/passthrough_store":241,"../../subcomponents/admin_body_bottom_links":225,"../../subcomponents/admin_body_title":226,"../../subcomponents/admin_body_top_links":227,"./page_form":231,"react":218}],231:[function(require,module,exports){
+},{"../../../constants/action_types":236,"../../../decorators/flux_registered_deco":237,"../../../decorators/generic_deco":238,"../../../flux/actions/page_actions":240,"../../../flux/stores/passthrough_store":242,"../../subcomponents/admin_body_bottom_links":225,"../../subcomponents/admin_body_title":226,"../../subcomponents/admin_body_top_links":227,"./page_form":232,"react":218}],232:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25368,7 +25495,7 @@ var PageForm = function (_React$Component) {
 
 exports.default = PageForm;
 
-},{"react":218,"react-dom":28}],232:[function(require,module,exports){
+},{"react":218,"react-dom":28}],233:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25564,7 +25691,7 @@ PageIndex = (0, _generic_deco2.default)(PageIndex);
 PageIndex = (0, _flux_registered_deco2.default)([_passthrough_store2.default])(PageIndex);
 exports.default = PageIndex;
 
-},{"../../../constants/action_types":235,"../../../decorators/flux_registered_deco":236,"../../../decorators/generic_deco":237,"../../../flux/actions/page_actions":239,"../../../flux/stores/passthrough_store":241,"../../subcomponents/admin_body_bottom_links":225,"../../subcomponents/admin_body_title":226,"../../subcomponents/admin_body_top_links":227,"react":218,"react-router":56}],233:[function(require,module,exports){
+},{"../../../constants/action_types":236,"../../../decorators/flux_registered_deco":237,"../../../decorators/generic_deco":238,"../../../flux/actions/page_actions":240,"../../../flux/stores/passthrough_store":242,"../../subcomponents/admin_body_bottom_links":225,"../../subcomponents/admin_body_title":226,"../../subcomponents/admin_body_top_links":227,"react":218,"react-router":56}],234:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25612,7 +25739,7 @@ var PageNew = function (_React$Component) {
 
 exports.default = PageNew;
 
-},{"react":218}],234:[function(require,module,exports){
+},{"react":218}],235:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25660,7 +25787,7 @@ var PageCategoryIndex = function (_React$Component) {
 
 exports.default = PageCategoryIndex;
 
-},{"react":218}],235:[function(require,module,exports){
+},{"react":218}],236:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25676,10 +25803,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = (0, _keymirror2.default)({
     PAGE_LIST_READY: null,
     PAGE_READY: null,
+    PAGE_UPDATED: null,
     PAGE_ERROR: null
 });
 
-},{"keymirror":25}],236:[function(require,module,exports){
+},{"keymirror":25}],237:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25753,7 +25881,7 @@ function FluxRegisteredDeco(stores) {
     };
 }
 
-},{"react":218}],237:[function(require,module,exports){
+},{"react":218}],238:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25811,7 +25939,7 @@ function GenericDeco(Component) {
     return Decorated;
 }
 
-},{"react":218}],238:[function(require,module,exports){
+},{"react":218}],239:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25840,6 +25968,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  requires StoreClass to define _onAction method
 */
 
+var CHANGE = 'change';
+
 function StoreDeco(StoreClass) {
     var Decorated = function (_StoreClass) {
         _inherits(Decorated, _StoreClass);
@@ -25863,13 +25993,13 @@ function StoreDeco(StoreClass) {
         _createClass(Decorated, [{
             key: 'addChangeListener',
             value: function addChangeListener(callback) {
-                this.on('change', callback);
+                this.on(CHANGE, callback);
                 _get(Object.getPrototypeOf(Decorated.prototype), 'addChangeListener', this) && _get(Object.getPrototypeOf(Decorated.prototype), 'addChangeListener', this).call(this, callback);
             }
         }, {
             key: 'removeChangeListener',
             value: function removeChangeListener(callback) {
-                this.removeListener('change', callback);
+                this.removeListener(CHANGE, callback);
                 _get(Object.getPrototypeOf(Decorated.prototype), 'removeChangeListener', this) && _get(Object.getPrototypeOf(Decorated.prototype), 'removeChangeListener', this).call(this, callback);
             }
         }, {
@@ -25881,7 +26011,7 @@ function StoreDeco(StoreClass) {
                     args[_key2] = arguments[_key2];
                 }
 
-                this.emit.apply(this, ['change'].concat(args));
+                this.emit.apply(this, [CHANGE].concat(args));
                 _get(Object.getPrototypeOf(Decorated.prototype), 'emitChange', this) && (_get2 = _get(Object.getPrototypeOf(Decorated.prototype), 'emitChange', this)).call.apply(_get2, [this].concat(args));
             }
         }]);
@@ -25892,7 +26022,7 @@ function StoreDeco(StoreClass) {
     return Decorated;
 }
 
-},{"../flux/dispatcher":240}],239:[function(require,module,exports){
+},{"../flux/dispatcher":241}],240:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25941,9 +26071,10 @@ var PageActions = {
     updatePage: function updatePage(id, pageData) {
         _api2.default.updatePage(id, pageData).then(function (data, textStatus, jqXHR) {
             _dispatcher2.default.dispatch({
-                actionType: _action_types2.default.PAGE_READY,
+                actionType: _action_types2.default.PAGE_UPDATED,
                 data: {
-                    page: data
+                    page: data,
+                    message: 'Page updated'
                 }
             });
         }).catch(function (jqXHR, textStatus, errorThrown) {
@@ -25952,7 +26083,8 @@ var PageActions = {
                 data: {
                     jqXHR: jqXHR,
                     textStatus: textStatus,
-                    errorThrown: errorThrown
+                    errorThrown: errorThrown,
+                    message: 'Page not updated'
                 }
             });
         });
@@ -25961,7 +26093,7 @@ var PageActions = {
 
 exports.default = PageActions;
 
-},{"../../constants/action_types":235,"../../services/api":242,"../dispatcher":240}],240:[function(require,module,exports){
+},{"../../constants/action_types":236,"../../services/api":243,"../dispatcher":241}],241:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25972,7 +26104,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":6}],241:[function(require,module,exports){
+},{"flux":6}],242:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26010,7 +26142,7 @@ var PassthroughStore = function (_EventEmitter) {
 
         // passthrough
         value: function _onAction(action) {
-            this.emitChange(action.actionType, action.data);
+            this.emitChange(action.actionType, Object.freeze(action.data));
         }
     }]);
 
@@ -26021,7 +26153,7 @@ PassthroughStore = (0, _store_deco2.default)(PassthroughStore);
 
 exports.default = new PassthroughStore();
 
-},{"../../decorators/store_deco":238,"events":4}],242:[function(require,module,exports){
+},{"../../decorators/store_deco":239,"events":4}],243:[function(require,module,exports){
 
 'use strict';
 
