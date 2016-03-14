@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220121504) do
+ActiveRecord::Schema.define(version: 20160314133813) do
 
   create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string  "name"
@@ -19,22 +19,28 @@ ActiveRecord::Schema.define(version: 20160220121504) do
     t.integer "ordering",  default: 0, null: false
   end
 
+  create_table "page_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "page_id",                           null: false
+    t.text    "content",          limit: 16777215, null: false
+    t.text    "excerpt",          limit: 255
+    t.text    "meta_description", limit: 255
+    t.text    "meta_css",         limit: 16777215
+    t.text    "meta_js",          limit: 16777215
+  end
+
+  add_index "page_contents", ["page_id"], name: "fk_page_id", using: :btree
+
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "name",                                              null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.text     "content",          limit: 16777215,                 null: false
-    t.text     "meta_description", limit: 255
-    t.text     "excerpt",          limit: 255
-    t.text     "meta_css",         limit: 16777215
-    t.text     "meta_js",          limit: 16777215
-    t.boolean  "is_main_nav",                       default: false, null: false
-    t.boolean  "is_commentable",                    default: false, null: false
-    t.integer  "max_comments",                      default: 50,    null: false
-    t.boolean  "published",                         default: false, null: false
-    t.integer  "parent_id",                         default: 0,     null: false
-    t.integer  "ordering",                          default: 0,     null: false
-    t.boolean  "root_page",                         default: false, null: false
+    t.string   "name",                           null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "is_main_nav",    default: false, null: false
+    t.boolean  "is_commentable", default: false, null: false
+    t.integer  "max_comments",   default: 50,    null: false
+    t.boolean  "published",      default: false, null: false
+    t.integer  "parent_id",      default: 0,     null: false
+    t.integer  "ordering",       default: 0,     null: false
+    t.boolean  "root_page",      default: false, null: false
   end
 
   create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -55,4 +61,5 @@ ActiveRecord::Schema.define(version: 20160220121504) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "page_contents", "pages", name: "fk_page_id", on_delete: :cascade
 end

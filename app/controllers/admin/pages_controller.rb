@@ -15,7 +15,7 @@ class Admin::PagesController < Admin::AdminController
 
   # GET /admin/pages/new
   def new
-    @resource = Page.new
+    @resource = Page.new(page_content_attributes: {})
     authorize @resource
   end
 
@@ -79,11 +79,13 @@ class Admin::PagesController < Admin::AdminController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:page).permit(:name, :content,
-                                 :meta_description, :excerpt,
-                                 :meta_css, :meta_js, :is_main_nav,
+    params.require(:page).permit(:name, :is_main_nav,
                                  :is_commentable, :max_comments, :published, :root_page,
-                                 :parent_id, :ordering
-                                  )
+                                 :parent_id, :ordering,
+                                 page_content_attributes: [
+                                     :id, :content, :excerpt,
+                                     :meta_description, :meta_css, :meta_js
+                                 ]
+    )
   end
 end

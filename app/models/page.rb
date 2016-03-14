@@ -2,15 +2,13 @@ class Page < ApplicationRecord
 
   attr_accessor :active
 
-  MAX_META = 150
-  EXCERPT_LENGTH = 100
-
   belongs_to :page_category, foreign_key: 'parent_id', required: false
+  has_one :page_content, dependent: :destroy, inverse_of: :page
+
+  accepts_nested_attributes_for :page_content
 
   validates :name, presence: true
-  validates :content, presence: true
-  validates :meta_description, length: { maximum: MAX_META }
-  validates :excerpt, length: { maximum: MAX_META }
+  validates :page_content, presence: true
 
   default_scope { order(:parent_id, :ordering) }
   scope :published, -> { where(published: true) }
@@ -35,12 +33,6 @@ class Page < ApplicationRecord
       end
     end
     super
-  end
-
-  def excerpt
-    res = super
-    return res if res && res.length > 0
-    (content || '').truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
   end
 
   def to_name

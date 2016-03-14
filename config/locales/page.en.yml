@@ -7,15 +7,16 @@ en:
     attributes:
       page:
         name: 'Title'
-        content: 'Content'
-        meta_description: 'Meta description'
-        meta_css: 'Meta CSS'
-        meta_js: 'Meta JavaScript'
         is_main_nav: 'Included in main navigation'
         is_commentable: 'Accepts comments'
         published: 'Published'
         max_comments: 'Max comments'
-        excerpt: 'Excerpt'
         root_page: 'Landing page'
         parent_id: 'Category ID'
         ordering: 'Ordering'
+      page_content:
+        excerpt: 'Excerpt'
+        content: 'Content'
+        meta_description: 'Meta description'
+        meta_css: 'Meta CSS'
+        meta_js: 'Meta JavaScript'

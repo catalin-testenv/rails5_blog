@@ -7,15 +7,16 @@ ro:
     attributes:
       page:
         name: 'Titlu'
-        content: 'Continut'
-        meta_description: 'Meta descriere'
-        meta_css: 'Meta CSS'
-        meta_js: 'Meta JavaScript'
         is_main_nav: 'Inclusa in meniul principal'
         is_commentable: 'Accepta commentarii'
         published: 'Publicata'
         max_comments: 'Comentarii max'
-        excerpt: 'Rezumat'
         root_page: 'Pagina principala'
         parent_id: 'Categorie ID'
         ordering: 'Ordonare'
+      page_content:
+        excerpt: 'Rezumat'
+        content: 'Continut'
+        meta_description: 'Meta descriere'
+        meta_css: 'Meta CSS'
+        meta_js: 'Meta JavaScript'
