@@ -1,16 +1,17 @@
+
+<% title = resource_view_listing_message(resource: Page, count: 2) %>
+
 <% content_for :title do %>
-    <%= resource_view_listing_message resource: Page, count: 2 %>
+    <%= title %>
 <% end %>
 
-<h4 class="uk-panel-title"><%= resource_view_listing_message resource: Page, count: 2 %></h4>
+<%= admin_body_title(title) %>
 
-<div>
-  <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
-    <li><%= link_to resource_view_new_message(resource: Page), new_admin_page_path %></li>
-  </ul>
-</div>
+<% page_index_links = [
+    {message: resource_view_new_message(resource: Page), path: new_admin_page_path}
+] %>
 
-<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+<%= admin_body_top_links(page_index_links) %>
 
 <div class="uk-overflow-container">
   <table class="uk-table uk-table-striped uk-table-hover uk-text-nowrap"> <!-- uk-table-condensed -->
@@ -38,11 +39,4 @@
   </table>
 </div>
 
-<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
-
-<div>
-  <ul class="uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted">
-    <li class="uk-margin-top-remove"><%= link_to resource_view_new_message(resource: Page), new_admin_page_path %></li>
-  </ul>
-</div>
-
+<%= admin_body_bottom_links(page_index_links) %>
