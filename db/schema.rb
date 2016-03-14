@@ -13,13 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20160314133813) do
 
-  create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
     t.integer "parent_id", default: 0, null: false
     t.integer "ordering",  default: 0, null: false
   end
 
-  create_table "page_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "page_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "page_id",                           null: false
     t.text    "content",          limit: 16777215, null: false
     t.text    "excerpt",          limit: 255
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160314133813) do
 
   add_index "page_contents", ["page_id"], name: "fk_page_id", using: :btree
 
-  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                           null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 20160314133813) do
     t.boolean  "root_page",      default: false, null: false
   end
 
-  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "key"
     t.text   "val", limit: 65535
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",      default: "", null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false

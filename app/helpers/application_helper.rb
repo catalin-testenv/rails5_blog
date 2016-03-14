@@ -19,6 +19,8 @@ module ApplicationHelper
     # http://stackoverflow.com/questions/27465389/error-compiling-erb-code-from-string
     # http://stackoverflow.com/questions/17374274/why-is-this-an-error-with-erb
     # but this works
-    ActionView::Template::Handlers::Erubis.new(data).result(binding)
+    capture do
+      ActionView::Template::Handlers::Erubis.new(data).result(binding)
+    end
   end
 end
