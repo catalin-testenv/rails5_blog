@@ -1,23 +1,18 @@
+
+<% title = resource_view_new_message(resource_instance: @resource) %>
+
 <% content_for :title do %>
-    <%= resource_view_new_message resource_instance: @resource %>
+    <%= title %>
 <% end %>
 
-<h4 class="uk-panel-title"><%= resource_view_new_message resource_instance: @resource %></h4>
+<%= admin_body_title(title) %>
 
-<div>
-  <ul class="uk-subnav uk-subnav-line uk-link-unmuted">
-    <li><%= link_to list_message, admin_pages_path %></li>
-  </ul>
-</div>
+<% page_new_links = [
+    {message: list_message, path: admin_pages_path}
+] %>
 
-<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+<%= admin_body_top_links(page_new_links) %>
 
 <%= render 'form', resource: @resource %>
 
-<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
-
-<div>
-  <ul class="uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted">
-    <li class="uk-margin-top-remove"><%= link_to list_message, admin_pages_path %></li>
-  </ul>
-</div>
+<%= admin_body_bottom_links(page_new_links) %>
