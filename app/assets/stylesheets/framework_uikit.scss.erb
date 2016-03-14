@@ -177,10 +177,18 @@ $button-border_:                                 $panel-title-background-color_;
 }
 
 @mixin hook-form() {
-  border-width: 0px 0px 1px 0px;
+
 }
 
 @mixin hook-form-misc(){
+
+  .uk-form input[type=text],
+  .uk-form  select {
+    border-width: 0px 0px 1px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .code-editor-area.uk-switcher {
     padding: $code-editor-area-padding;
     background-color: darken($admin-body-uk-panel-background-color, 3%);
