@@ -7,6 +7,8 @@ gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Authentication
 gem 'devise', '>= 4.0.0.rc1', '< 4.1'
+# https://github.com/plataformatec/has_scope
+gem 'has_scope', '~> 0.7.0'
 # Omniauth gems
 # https://github.com/zquestz/omniauth-google-oauth2
 gem 'omniauth-google-oauth2'

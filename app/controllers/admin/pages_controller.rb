@@ -1,10 +1,14 @@
 class Admin::PagesController < Admin::AdminController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
+  has_scope :flt_name
+  has_scope :published
+  has_scope :for_main_menu
+
   # GET /admin/pages
   def index
     authorize Page
-    @resource_list = sort(policy_scope(Page.all))
+    @resource_list = sort(policy_scope(apply_scopes(Page).all))
   end
 
   # GET /admin/pages/1

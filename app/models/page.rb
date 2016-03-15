@@ -11,8 +11,12 @@ class Page < ApplicationRecord
   validates :page_content, presence: true
 
   default_scope { order(:parent_id, :ordering) }
-  scope :published, -> { where(published: true) }
-  scope :for_main_menu, -> { published.where(is_main_nav: true) }
+  scope :published, -> (bool = true) { where(published: bool) }
+  scope :for_main_menu, -> (bool = true) { published.where(is_main_nav: bool) }
+
+  scope :flt_name, ->(name) {
+    where('name LIKE ?', "%#{name}%")
+  }
 
   def self.published_root_page
     found = root_page
