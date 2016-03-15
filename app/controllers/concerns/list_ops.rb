@@ -1,4 +1,6 @@
 
+# related files: list_ops list_ops_helper list_ops_config
+
 # include this concern in ApplicationController
 module ListOps
   extend ActiveSupport::Concern
