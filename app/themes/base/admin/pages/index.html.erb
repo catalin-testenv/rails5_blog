@@ -14,11 +14,17 @@
 <%= admin_body_top_links(page_index_links) %>
 
 <div class="uk-overflow-container">
-  <table class="uk-table uk-table-striped uk-table-hover uk-text-nowrap"> <!-- uk-table-condensed -->
+  <table class="uk-table uk-table-striped uk-table-hover "> <!-- uk-text-nowrap uk-table-condensed -->
     <thead>
     <tr>
       <th><%= Page.human_attribute_name(:name).humanize %></th>
-      <th colspan="1"></th>
+      <th><%= Page.human_attribute_name(:is_main_nav).humanize %></th>
+      <th><%= Page.human_attribute_name(:is_commentable).humanize %></th>
+      <th><%= Page.human_attribute_name(:max_comments).humanize %></th>
+      <th><%= Page.human_attribute_name(:published).humanize %></th>
+      <th><%= Page.human_attribute_name(:parent_id).humanize %></th>
+      <th><%= Page.human_attribute_name(:ordering).humanize %></th>
+      <th></th>
     </tr>
     </thead>
 
@@ -26,6 +32,12 @@
     <% @resource_list.each do |resource| %>
         <tr>
           <td><%= resource.name %></td>
+          <td><%= resource.is_main_nav %></td>
+          <td><%= resource.is_commentable %></td>
+          <td><%= resource.max_comments %></td>
+          <td><%= resource.published %></td>
+          <td><%= resource.parent_id %></td>
+          <td><%= resource.ordering %></td>
           <td>
             <ul class="uk-list uk-margin-bottom-remove">
               <li><%= link_to preview_message, page_path(resource), target: '_blank' %></li>

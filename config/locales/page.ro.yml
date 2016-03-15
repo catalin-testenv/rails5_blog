@@ -7,7 +7,7 @@ ro:
     attributes:
       page:
         name: 'Titlu'
-        is_main_nav: 'Inclusa in meniul principal'
+        is_main_nav: 'Inclusa in navigare'
         is_commentable: 'Accepta commentarii'
         published: 'Publicata'
         max_comments: 'Comentarii max'
