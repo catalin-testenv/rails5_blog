@@ -13,42 +13,51 @@
 
 <%= admin_body_top_links(page_index_links) %>
 
-<div class="uk-overflow-container">
-  <table class="uk-table uk-table-striped uk-table-hover "> <!-- uk-text-nowrap uk-table-condensed -->
-    <thead>
-    <tr>
-      <th><%= sort_link :name, Page.human_attribute_name(:name).humanize %></th>
-      <th><%= sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
-      <th><%= sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
-      <th><%= sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
-      <th><%= sort_link :published, Page.human_attribute_name(:published).humanize %></th>
-      <th><%= sort_link :parent_id, Page.human_attribute_name(:parent_id).humanize %></th>
-      <th><%= sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @resource_list.each do |resource| %>
-        <tr>
-          <td><%= resource.name %></td>
-          <td><%= resource.is_main_nav %></td>
-          <td><%= resource.is_commentable %></td>
-          <td><%= resource.max_comments %></td>
-          <td><%= resource.published %></td>
-          <td><%= resource.parent_id %></td>
-          <td><%= resource.ordering %></td>
-          <td>
-            <ul class="uk-list uk-margin-bottom-remove">
-              <li><%= link_to preview_message, page_path(resource), target: '_blank' %></li>
-              <li><%= link_to edit_message, edit_admin_page_path(resource) %></li>
-              <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
-            </ul>
-          </td>
-        </tr>
+<form action="" method="get">
+    <% request.query_parameters.each do |param| %>
+        <input type="hidden" name="<%= param[0] %>" value="<%= param[1] %>" />
     <% end %>
-    </tbody>
-  </table>
-</div>
+  <div class="uk-overflow-container">
+    <table class="uk-table uk-table-striped uk-table-hover "> <!-- uk-text-nowrap uk-table-condensed -->
+      <thead>
+      <tr>
+        <th>
+          <%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %>
+          <%= list_ops_filter :name, Page, :flt_name %>
+        </th>
+        <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
+        <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+        <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
+        <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
+        <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:parent_id).humanize %></th>
+        <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @resource_list.each do |resource| %>
+          <tr>
+            <td><%= resource.name %></td>
+            <td><%= resource.is_main_nav %></td>
+            <td><%= resource.is_commentable %></td>
+            <td><%= resource.max_comments %></td>
+            <td><%= resource.published %></td>
+            <td><%= resource.parent_id %></td>
+            <td><%= resource.ordering %></td>
+            <td>
+              <ul class="uk-list uk-margin-bottom-remove">
+                <li><%= link_to preview_message, page_path(resource), target: '_blank' %></li>
+                <li><%= link_to edit_message, edit_admin_page_path(resource) %></li>
+                <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <input type="submit" />
+</form>
 
 <%= admin_body_bottom_links(page_index_links) %>
