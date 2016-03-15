@@ -51,8 +51,9 @@ function editor_ace_destroy (editor) {
   'use strict';
   // http://stackoverflow.com/questions/16304832/how-to-change-a-div-from-an-ace-editor-back-to-a-div
   editor.destroy();
-  $(editor.container).next().css('display', 'block');
-  editor.container.remove();
+  var editorContainer = $(editor.container);
+  editorContainer.next().css('display', 'block');
+  editorContainer.remove();
 }
 
 $(function () {
