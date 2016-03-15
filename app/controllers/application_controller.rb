@@ -17,7 +17,6 @@
 # TODO: implement comments
 # TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: make blog real
-# TODO: move page content/js/css into separate table for performance reasons
 # TODO: implement layout regions
 # TODO: make unittests
 # TODO: add assets manager as an engine preferably + stuff(gallery, carousel)
@@ -26,7 +25,6 @@
 # TODO: add help sections / document what helpers are available
 # TODO: improve UI
 # TODO: add robots.txt
-# TODO: try ui-kit and use it in UI
 # TODO: check ENV hanging (assets precompile) when switching envs
 # TODO: add plugins/utils: contact_form, ...
 # TODO: add quotes module
