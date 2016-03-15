@@ -6,8 +6,8 @@ module ListOps
   included do
 
     def sort(scope)
-      if sort_column != ''
-        scope.reorder("#{sort_column} #{sort_direction}")
+      if sort_orderby != ''
+        scope.reorder("#{sort_orderby} #{sort_direction}")
       else
         scope
       end
@@ -19,15 +19,15 @@ module ListOps
       []
     end
 
-    def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : ''
+    def sort_orderby
+      sortable_columns.include?(params[:orderby]) ? params[:orderby] : ''
     end
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    helper_method :sort_column, :sort_direction
+    helper_method :sort_orderby, :sort_direction
 
   end
 
