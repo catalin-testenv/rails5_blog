@@ -8,7 +8,7 @@ class Admin::PagesController < Admin::AdminController
   # GET /admin/pages
   def index
     authorize Page
-    @resource_list = sort(policy_scope(apply_scopes(Page).all))
+    @resource_list = list_ops_sort(policy_scope(apply_scopes(Page).all))
   end
 
   # GET /admin/pages/1
@@ -96,7 +96,4 @@ class Admin::PagesController < Admin::AdminController
     )
   end
 
-  def sortable_columns
-    Page.column_names
-  end
 end

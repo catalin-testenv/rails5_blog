@@ -7,29 +7,30 @@ module ListOps
 
   included do
 
-    def sort(scope)
-      if sort_orderby != ''
-        scope.reorder("#{sort_orderby} #{sort_direction}")
+    def list_ops_sort(scope)
+      if list_ops_sort_orderby != ''
+        scope.reorder("#{list_ops_sort_orderby} #{list_ops_sort_direction}")
       else
         scope
       end
     end
 
-    # target controller should override this method
-    # ex: Model.column_names
-    def sortable_columns
-      []
+    # this method is trying to infer model name from controller name
+    # target controller might override this method when autodetect does not do the job
+    # ex. return:  Model.column_names
+    def list_ops_sortable_columns
+      self.class.name.split('::')[-1].sub('Controller', '').singularize.constantize.column_names
     end
 
-    def sort_orderby
-      sortable_columns.include?(params[:orderby]) ? params[:orderby] : ''
+    def list_ops_sort_orderby
+      list_ops_sortable_columns.include?(params[:orderby]) ? params[:orderby] : ''
     end
 
-    def sort_direction
+    def list_ops_sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
     end
 
-    helper_method :sort_orderby, :sort_direction
+    helper_method :list_ops_sort_orderby, :list_ops_sort_direction
 
   end
 
