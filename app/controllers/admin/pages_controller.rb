@@ -4,7 +4,7 @@ class Admin::PagesController < Admin::AdminController
   # GET /admin/pages
   def index
     authorize Page
-    @resource_list = policy_scope(Page.all)
+    @resource_list = sort(policy_scope(Page.all))
   end
 
   # GET /admin/pages/1
@@ -79,13 +79,20 @@ class Admin::PagesController < Admin::AdminController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:page).permit(:name, :is_main_nav,
-                                 :is_commentable, :max_comments, :published, :root_page,
-                                 :parent_id, :ordering,
-                                 page_content_attributes: [
-                                     :id, :content, :excerpt,
-                                     :meta_description, :meta_css, :meta_js
-                                 ]
+    params
+      .require(:page)
+      .permit(:name, :is_main_nav,
+              :is_commentable, :max_comments,
+              :published, :root_page,
+              :parent_id, :ordering,
+               page_content_attributes: [
+                 :id, :content, :excerpt,
+                 :meta_description, :meta_css, :meta_js
+               ]
     )
+  end
+
+  def sortable_columns
+    Page.column_names
   end
 end
