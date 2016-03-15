@@ -6,7 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-content = <<END
+content = <<'END'
+<p>`[Time.now]`</p>
+<ul>
+  <%=
+    ['hello', 'world'].map{|w|"<li>#{w}</li>"}.join("\n").html_safe
+  %>
+</ul>
 <h2>The standard Lorem Ipsum passage, used since the 1500s</h2>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -41,37 +47,39 @@ categ_12 = PageCategory.create(name: 'pictures', parent: categ_10)
 categ_13 = PageCategory.create(name: 'illustrator', parent: categ_8)
 categ_14 = PageCategory.create(name: 'corel articles', parent: categ_8)
 
-# page_1 = Page.create(name: 'movie 1', content: content, page_category: categ_4, published: true, is_main_nav: true)
-# page_2 = Page.create(name: 'movie 2', content: content, page_category: categ_4, published: true, is_main_nav: true)
-# page_3 = Page.create(name: 'movie 3', content: content, page_category: categ_4, published: true, is_main_nav: true)
-# page_4 = Page.create(name: 'movie 4', content: content, page_category: categ_5, published: true, is_main_nav: true)
-# page_5 = Page.create(name: 'movie 5', content: content, page_category: categ_5, published: true, is_main_nav: true)
-# page_6 = Page.create(name: 'movie 6', content: content, page_category: categ_5, published: true, is_main_nav: true)
-# page_7 = Page.create(name: 'movie 7', content: content, page_category: categ_3, published: true, is_main_nav: true)
-# page_8 = Page.create(name: 'gallery 1', content: content, page_category: categ_14, excerpt: 'gallery 1 excerpt', published: true, is_main_nav: false)
-# page_9 = Page.create(name: 'gallery 2', content: content, page_category: categ_14, excerpt: '', published: true, is_main_nav: false)
-# page_10 = Page.create(name: 'gallery 3 super long link name', content: content, page_category: categ_14, published: true, is_main_nav: false)
-# page_11 = Page.create(name: 'gallery 4 super long link name', content: content, page_category: categ_13, published: true, is_main_nav: true)
-# page_12 = Page.create(name: 'gallery 5 no vectorial category 1', content: content, page_category: categ_8, published: true, is_main_nav: true)
-# page_13 = Page.create(name: 'gallery 6 no vectorial category 2', content: content, page_category: categ_8, published: true, is_main_nav: true)
-# page_14 = Page.create(name: 'gallery 7', content: content, page_category: categ_12, published: true, is_main_nav: true)
-# page_15 = Page.create(name: 'gallery 8', content: content, page_category: categ_12, published: true, is_main_nav: true)
-# page_16 = Page.create(name: 'gallery 9', content: content, page_category: categ_12, published: true, is_main_nav: true)
-# page_17 = Page.create(name: 'gallery 10', content: content, page_category: categ_11, published: true, is_main_nav: true)
-# page_18 = Page.create(name: 'gallery 11', content: content, page_category: categ_11, published: true, is_main_nav: true)
-# page_19 = Page.create(name: 'gallery 12', content: content, page_category: categ_11, published: true, is_main_nav: true)
-# page_20 = Page.create(name: 'gallery 13', content: content, page_category: categ_11, published: true, is_main_nav: true)
-# page_21 = Page.create(name: 'movie 8 comedy no category', content: content, page_category: categ_2, published: true, is_main_nav: true)
-# page_22 = Page.create(name: 'about movies', content: content, page_category: categ_1, published: true, is_main_nav: true)
-# page_23 = Page.create(name: 'page 1', content: content, published: true, is_main_nav: true, root_page: '1',
-#                       meta_css: 'h6 {color:green;}', meta_js: 'function f() {} f();', meta_description: 'description',
-#                       excerpt: '<strong>excerpt</strong>')
-# # page_23.update(root_page: '1')
-# page_24 = Page.create(name: 'page 2', content: content, published: true, is_main_nav: true, root_page: '0')
-# # page_24.update(root_page: '0')
-#
-#
-#
+page_1 = Page.create(name: 'movie 1', page_category: categ_4, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_2 = Page.create(name: 'movie 2', page_category: categ_4, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_3 = Page.create(name: 'movie 3', page_category: categ_4, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_4 = Page.create(name: 'movie 4', page_category: categ_5, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_5 = Page.create(name: 'movie 5', page_category: categ_5, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_6 = Page.create(name: 'movie 6', page_category: categ_5, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_7 = Page.create(name: 'movie 7', page_category: categ_3, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_8 = Page.create(name: 'gallery 1', page_category: categ_14,  published: true, is_main_nav: false, page_content_attributes: {content: content, excerpt: 'gallery 1 excerpt'})
+page_9 = Page.create(name: 'gallery 2', page_category: categ_14, published: true, is_main_nav: false, page_content_attributes: {content: content, excerpt: ''})
+page_10 = Page.create(name: 'gallery 3 super long link name', page_category: categ_14, published: true, is_main_nav: false, page_content_attributes: {content: content})
+page_11 = Page.create(name: 'gallery 4 super long link name', page_category: categ_13, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_12 = Page.create(name: 'gallery 5 no vectorial category 1', page_category: categ_8, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_13 = Page.create(name: 'gallery 6 no vectorial category 2', page_category: categ_8, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_14 = Page.create(name: 'gallery 7', page_category: categ_12, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_15 = Page.create(name: 'gallery 8', page_category: categ_12, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_16 = Page.create(name: 'gallery 9', page_category: categ_12, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_17 = Page.create(name: 'gallery 10', page_category: categ_11, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_18 = Page.create(name: 'gallery 11', page_category: categ_11, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_19 = Page.create(name: 'gallery 12', page_category: categ_11, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_20 = Page.create(name: 'gallery 13', page_category: categ_11, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_21 = Page.create(name: 'movie 8 comedy no category', page_category: categ_2, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_22 = Page.create(name: 'about movies', page_category: categ_1, published: true, is_main_nav: true, page_content_attributes: {content: content})
+page_23 = Page.create(name: 'page 1', published: true, is_main_nav: true, root_page: '1',
+                      page_content_attributes: {
+                          content: content, meta_css: 'h6 {color:green;}', meta_js: 'function f() {} f();', meta_description: 'description',
+                          excerpt: '<strong>excerpt</strong>'}
+                      )
+# page_23.update(root_page: '1')
+page_24 = Page.create(name: 'page 2', published: true, is_main_nav: true, root_page: '0', page_content_attributes: {content: content})
+# page_24.update(root_page: '0')
+
+
+
 
 
 

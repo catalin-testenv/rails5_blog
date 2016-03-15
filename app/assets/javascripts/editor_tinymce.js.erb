@@ -18,7 +18,7 @@ function editor_tinymce_initialize(target, on_init, on_remove) {
     // toolbar: false,
     // menubar: false,
 
-    protect: [/\<\%.+?\%\>/g], // protect Ruby code
+    protect: [/\<\%(?:.|\s)+?\%\>/g], // protect Ruby code
     // forced_root_block: false,
 
     setup: function(editor) {
