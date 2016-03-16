@@ -1,8 +1,8 @@
 ro:
   # Attributes names common to most models
   attributes:
-    created_at: "Created at[RO]"
-    updated_at: "Updated at[RO]"
+    created_at: "Data crearii"
+    updated_at: "Data actualizarii"
 
   # Default error messages
   errors:

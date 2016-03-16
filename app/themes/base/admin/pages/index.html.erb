@@ -13,51 +13,72 @@
 
 <%= admin_body_top_links(page_index_links) %>
 
-<form action="" method="get">
-    <% request.query_parameters.each do |param| %>
-        <input type="hidden" name="<%= param[0] %>" value="<%= param[1] %>" />
-    <% end %>
-  <div class="uk-overflow-container">
-    <table class="uk-table uk-table-striped uk-table-hover "> <!-- uk-text-nowrap uk-table-condensed -->
-      <thead>
-      <tr>
-        <th>
-          <%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %>
-          <%= list_ops_filter :name, Page, :flt_name %>
-        </th>
-        <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
-        <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
-        <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
-        <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
-        <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:parent_id).humanize %></th>
-        <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
-        <th></th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @resource_list.each do |resource| %>
-          <tr>
-            <td><%= resource.name %></td>
-            <td><%= resource.is_main_nav %></td>
-            <td><%= resource.is_commentable %></td>
-            <td><%= resource.max_comments %></td>
-            <td><%= resource.published %></td>
-            <td><%= resource.parent_id %></td>
-            <td><%= resource.ordering %></td>
-            <td>
-              <ul class="uk-list uk-margin-bottom-remove">
-                <li><%= link_to preview_message, page_path(resource), target: '_blank' %></li>
-                <li><%= link_to edit_message, edit_admin_page_path(resource) %></li>
-                <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
-              </ul>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
+<form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="" method="get">
+  <%# declare what filters are to be used to not include them in hidden fields %>
+  <% filter_names = [:flt_name, :is_main_nav, :published, :is_commentable, 'updated_at_period[starting]'.intern, 'updated_at_period[ending]'.intern] %>
+  <% request.query_parameters.each do |k, v| %>
+      <%= hidden_field_tag k, v unless filter_names.include?(k.intern) %>
+  <% end %>
+  <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+    <div class="uk-width">
+      <%= list_ops_filter(Page, :name, :flt_name) %>
+    </div>
+    <div class="uk-width-small-1-2 uk-width-medium-1-3">
+      <%= list_ops_filter(Page, :is_main_nav) %>
+    </div>
+    <div class="uk-width-small-1-2 uk-width-medium-1-3">
+      <%= list_ops_filter(Page, :published) %>
+    </div>
+    <div class="uk-width-small-1-2 uk-width-medium-1-3">
+      <%= list_ops_filter(Page, :is_commentable) %>
+    </div>
+    <div class="uk-width">
+      <%= list_ops_filter(Page, :updated_at, :updated_at_period) %>
+    </div>
   </div>
+
   <input type="submit" />
 </form>
+
+<div class="uk-overflow-container">
+  <table class="uk-table uk-table-striped uk-table-hover "> <!-- uk-text-nowrap uk-table-condensed -->
+    <thead>
+    <tr>
+      <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
+      <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
+      <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
+      <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+      <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
+      <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
+      <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:parent_id).humanize %></th>
+      <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @resource_list.each do |resource| %>
+        <tr>
+          <td><%= resource.name %></td>
+          <td><%= resource.is_main_nav %></td>
+          <td><%= resource.published %></td>
+          <td><%= resource.is_commentable %></td>
+          <td><%= resource.max_comments %></td>
+          <td><%= resource.ordering %></td>
+          <td><%= resource.parent_id %></td>
+          <td><%= resource.updated_at %></td>
+          <td>
+            <ul class="uk-list uk-margin-bottom-remove">
+              <li><%= link_to preview_message, page_path(resource), target: '_blank' %></li>
+              <li><%= link_to edit_message, edit_admin_page_path(resource) %></li>
+              <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
+            </ul>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
 
 <%= admin_body_bottom_links(page_index_links) %>
