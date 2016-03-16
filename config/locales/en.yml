@@ -44,6 +44,11 @@ en:
   administration: 'administration'
   view_site: 'view site'
   confirm_editor_switch: 'The HTML source will be modified!\nFormatting white space will not be preserved!'
+  yep: 'yes'
+  nope: 'no'
+  wildcard: '*'
+  from: 'from'
+  to: 'to'
 
   # ---------------- RESOURCE
 

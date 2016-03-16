@@ -15,25 +15,25 @@
 
 <form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="" method="get">
   <%# declare what filters are to be used to not include them in hidden fields %>
-  <% filter_names = [:flt_name, :is_main_nav, :published, :is_commentable, 'updated_at_period[starting]'.intern, 'updated_at_period[ending]'.intern] %>
+  <% filter_names = %w[flt_name is_main_nav published is_commentable updated_at_period] %>
   <% request.query_parameters.each do |k, v| %>
-      <%= hidden_field_tag k, v unless filter_names.include?(k.intern) %>
+      <%= hidden_field_tag k, v unless filter_names.include?(k) %>
   <% end %>
   <div class="uk-grid uk-grid-small" data-uk-grid-margin>
     <div class="uk-width">
-      <%= list_ops_filter(Page, :name, :flt_name) %>
+      <%= list_ops_filter_string(Page, :name, :flt_name) %>
     </div>
     <div class="uk-width-small-1-2 uk-width-medium-1-3">
-      <%= list_ops_filter(Page, :is_main_nav) %>
+      <%= list_ops_filter_boolean(Page, :is_main_nav, :is_main_nav, t('yep'), t('nope'), t('wildcard')) %>
     </div>
     <div class="uk-width-small-1-2 uk-width-medium-1-3">
-      <%= list_ops_filter(Page, :published) %>
+      <%= list_ops_filter_boolean(Page, :published, :published, t('yep'), t('nope'), t('wildcard')) %>
     </div>
     <div class="uk-width-small-1-2 uk-width-medium-1-3">
-      <%= list_ops_filter(Page, :is_commentable) %>
+      <%= list_ops_filter_boolean(Page, :is_commentable, :is_commentable, t('yep'), t('nope'), t('wildcard')) %>
     </div>
     <div class="uk-width">
-      <%= list_ops_filter(Page, :updated_at, :updated_at_period) %>
+      <%= list_ops_filter_datetime_range(Page, :updated_at, :updated_at_period, :starting, :ending, t('from'), t('to')) %>
     </div>
   </div>
 

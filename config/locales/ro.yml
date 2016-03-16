@@ -44,6 +44,11 @@ ro:
   administration: 'administrare'
   view_site: 'vizualizeaza site-ul'
   confirm_editor_switch: 'Sursa HTML va fi modificata!\nFormatarea nu va fi pastrata!'
+  yep: 'da'
+  nope: 'nu'
+  wildcard: '*'
+  from: 'de la'
+  to: 'pana la'
 
   # ---------------- STANDARD_RESOURCE
 
