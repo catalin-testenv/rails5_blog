@@ -7,8 +7,10 @@ module ListOps
 
   included do
 
-    # To be used in controller's index like methods.
-    # ex: @resource_list = list_ops_sort(Model.all)
+    # Controller helper to be used in controller's index like methods.
+    # ex: def index
+    #   @resource_list = list_ops_sort(Model.all)
+    # end
     def list_ops_sort(scope)
       if list_ops_sort_orderby != ''
         scope.reorder("#{list_ops_sort_orderby} #{list_ops_sort_direction}")
@@ -17,9 +19,10 @@ module ListOps
       end
     end
 
-    # This method is trying to infer model name from controller name.
+    # Get the list of columns that should be sortable.
+    # This method is trying to infer model name from controller name then retrieve from it column_names.
     # Target controller can override this when autodetect does not do the job.
-    # Override method would return:  Model.column_names
+    # Override method should return something like:  Model.column_names
     def list_ops_sortable_columns
       self.class.name.split('::')[-1].sub('Controller', '').singularize.constantize.column_names
     end
