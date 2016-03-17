@@ -49,6 +49,7 @@ en:
   wildcard: '*'
   from: 'from'
   to: 'to'
+  filter_button: 'filter'
 
   # ---------------- RESOURCE
 

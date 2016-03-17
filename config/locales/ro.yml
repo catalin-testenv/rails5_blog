@@ -49,6 +49,7 @@ ro:
   wildcard: '*'
   from: 'de la'
   to: 'pana la'
+  filter_button: 'filtreaza'
 
   # ---------------- STANDARD_RESOURCE
 
