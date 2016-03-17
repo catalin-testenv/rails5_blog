@@ -5,6 +5,7 @@ class Admin::PagesController < Admin::AdminController
   has_scope :published
   has_scope :is_main_nav
   has_scope :is_commentable
+  has_scope :in_category
   include HasScopeUpdatedAtConcern
 
 

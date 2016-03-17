@@ -15,6 +15,7 @@ class Page < ApplicationRecord
   scope :for_main_menu, -> { published.where(is_main_nav: true) }
   scope :is_main_nav, -> (val=true) { where(is_main_nav: val) }
   scope :is_commentable, -> (val=true) { where(is_commentable: val) }
+  scope :in_category, -> (id=nil) { where(page_category: id) if id.present?}
   scope :flt_name, ->(name) do
     where('name LIKE ?', "%#{name}%")
   end
