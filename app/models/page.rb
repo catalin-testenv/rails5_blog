@@ -1,7 +1,5 @@
 class Page < ApplicationRecord
 
-  include UpdatedAtScopeConcern
-
   attr_accessor :active
 
   belongs_to :page_category, foreign_key: 'parent_id', required: false
@@ -17,10 +15,10 @@ class Page < ApplicationRecord
   scope :for_main_menu, -> { published.where(is_main_nav: true) }
   scope :is_main_nav, -> (val=true) { where(is_main_nav: val) }
   scope :is_commentable, -> (val=true) { where(is_commentable: val) }
-
   scope :flt_name, ->(name) do
     where('name LIKE ?', "%#{name}%")
   end
+  include ScopeUpdatedAtConcern
 
   def self.published_root_page
     found = root_page

@@ -5,7 +5,8 @@ class Admin::PagesController < Admin::AdminController
   has_scope :published
   has_scope :is_main_nav
   has_scope :is_commentable
-  has_scope :updated_at_period, :using => [:starting, :ending], :type => :hash
+  include HasScopeUpdatedAtConcern
+
 
   # GET /admin/pages
   def index

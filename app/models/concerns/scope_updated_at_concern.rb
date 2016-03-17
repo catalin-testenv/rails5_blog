@@ -1,5 +1,5 @@
 
-module UpdatedAtScopeConcern
+module ScopeUpdatedAtConcern
   extend ActiveSupport::Concern
 
   included do
