@@ -16,6 +16,10 @@ class PageCategory < ApplicationRecord
     subcategories.count > 0
   end
 
+  def has_any_pages?
+    pages.count > 0
+  end
+
   def has_nav_pages?
     pages.to_a.any?(&:is_main_nav)
   end
