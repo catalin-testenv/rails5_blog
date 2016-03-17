@@ -130,6 +130,8 @@ $button-border_:                                 $panel-title-background-color_;
     box-shadow: $box-shadow-bottom-inset;
     @media (min-width: $breakpoint-medium) {
       box-shadow: $box-shadow-right-inset;
+    }
+    @media (min-width: $breakpoint-large) {
       border-top-left-radius: $utility-border-rounded;
       border-bottom-left-radius: $utility-border-rounded;
     }
@@ -146,6 +148,8 @@ $button-border_:                                 $panel-title-background-color_;
         box-shadow:  $box-shadow-bottom;
         @media (min-width: $breakpoint-medium) {
           box-shadow:  $box-shadow-bottom-right;
+        }
+        @media (min-width: $breakpoint-large) {
           border-top-left-radius: $utility-border-rounded;
           border-bottom-left-radius: $utility-border-rounded;
         }
@@ -178,6 +182,19 @@ $button-border_:                                 $panel-title-background-color_;
 
 @mixin hook-form() {
 
+}
+
+@mixin hook-table-misc() {
+  .uk-table thead {
+    background-color: lighten($admin-body-uk-panel-background-color, 0.5%);
+    border-bottom: 1px solid darken($table-active-background, 1%);
+  }
+  .uk-table tfoot {
+    font-style: normal;
+    vertical-align: top;
+    background-color: lighten($admin-body-uk-panel-background-color, 0.5%);
+    border-top: 1px solid darken($table-active-background, 1%);
+  }
 }
 
 @mixin hook-form-misc(){
@@ -307,6 +324,7 @@ select::-ms-expand {
 
 @import 'bower-uikit/scss/uikit';
 @import 'bower-uikit/scss/components/datepicker';
+@import 'bower-uikit/scss/components/sticky';
 
 // ============== site utilities overrides
 $ccr-color-button-on: #D5F6D7;

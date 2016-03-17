@@ -58,16 +58,27 @@
 <div class="uk-overflow-container">
   <table class="uk-table uk-table-striped uk-table-hover "> <!-- uk-text-nowrap uk-table-condensed -->
     <thead>
-    <tr>
-      <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
-      <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
-      <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
-      <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
-      <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
-      <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
-      <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>>
-    </tr>
+      <tr>
+        <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
+        <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
+        <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
+        <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+        <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
+        <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
+        <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
+      </tr>
     </thead>
+    <tfoot>
+      <tr>
+        <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
+        <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
+        <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
+        <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+        <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
+        <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
+        <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
+      </tr>
+    </tfoot>
 
     <tbody>
     <% @resource_list.each do |resource| %>
@@ -85,7 +96,7 @@
           <td><%= resource.is_commentable %></td>
           <td><%= resource.ordering %></td>
           <td><%= resource.page_category.try(:name) || t('root') %></td>
-          <td><%= resource.updated_at %></td>
+          <td><%= resource.updated_at.to_date %></td>
         </tr>
     <% end %>
     </tbody>
