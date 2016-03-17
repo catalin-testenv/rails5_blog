@@ -1,7 +1,7 @@
 class PageContent < ApplicationRecord
 
   MAX_META = 150
-  EXCERPT_LENGTH = 100
+  EXCERPT_LENGTH = 150
 
   belongs_to :page, required: true
 

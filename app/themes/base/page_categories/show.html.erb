@@ -8,7 +8,7 @@
     <div>
       <% if item.is_a? Page %>
           <h3><%= item.name %></h3>
-          <div><%= item.page_content.excerpt.html_safe %></div>
+          <div><%= evaluate(item.page_content.excerpt).html_safe %></div>
           <p><%= link_to I18n.t('read_more'), page_path(item) %></p>
       <% else %>
           <h3><%= link_to item.name, page_category_path(item) %></h3>
