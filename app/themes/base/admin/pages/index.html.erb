@@ -65,28 +65,27 @@
       <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
       <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
       <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
-      <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
-      <th></th>
+      <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>>
     </tr>
     </thead>
 
     <tbody>
     <% @resource_list.each do |resource| %>
         <tr>
-          <td><%= resource.name %></td>
+          <td>
+            <%= link_to resource.name, '#', data: {'uk-toggle' => "{target:'##{resource.id}'}"}, class: %w(secondary-link) %>
+            <ul id="<%= resource.id %>" class="uk-list uk-nav-sub uk-margin-bottom-remove uk-hidden">
+              <li><%= link_to preview_message, page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
+              <li><%= link_to edit_message, edit_admin_page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
+              <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link) %></li>
+            </ul>
+          </td>
           <td><%= resource.is_main_nav %></td>
           <td><%= resource.published %></td>
           <td><%= resource.is_commentable %></td>
           <td><%= resource.ordering %></td>
           <td><%= resource.page_category.try(:name) || t('root') %></td>
           <td><%= resource.updated_at %></td>
-          <td>
-            <ul class="uk-list uk-margin-bottom-remove">
-              <li><%= link_to preview_message, page_path(resource), target: '_blank' %></li>
-              <li><%= link_to edit_message, edit_admin_page_path(resource) %></li>
-              <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message } %></li>
-            </ul>
-          </td>
         </tr>
     <% end %>
     </tbody>
