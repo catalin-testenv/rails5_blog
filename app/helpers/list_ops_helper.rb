@@ -52,7 +52,7 @@ module ListOpsHelper
           end)
           concat(content_tag(:div, class: %w(uk-width-1-2)) do
             concat label_tag("#{flt_key}[#{end_key}]", end_label.humanize+':', class:  %w(uk-form-label))
-            concat text_field_tag("#{flt_key}[#{end_key}]", qp[flt_key] && qp[flt_key][end_key], class: %w(uk-width))
+            concat text_field_tag("#{flt_key}[#{end_key}]", qp[flt_key] && qp[flt_key][end_key], class: %w(uk-width), data: {'uk-datepicker' => ''})
           end)
         end
       end)
