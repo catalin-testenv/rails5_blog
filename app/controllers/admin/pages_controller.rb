@@ -70,6 +70,16 @@ class Admin::PagesController < Admin::AdminController
     end
   end
 
+  def bulk_update
+    skip_authorization
+    skip_policy_scope
+    respond_to do |format|
+      format.html do
+        redirect_back fallback_location:  admin_pages_path
+      end
+    end
+  end
+
   # DELETE /admin/pages/1
   def destroy
     authorize @resource

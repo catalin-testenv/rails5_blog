@@ -14,6 +14,12 @@
 <%= admin_body_top_links(page_index_links) %>
 
 
+<%= form_tag bulk_update_admin_pages_path(request.query_parameters) do %>
+    <input type="submit" value="submit" />
+<% end %>
+
+
+
 <form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="" method="get">
   <%# declare what filters are to be used to not include them in hidden fields %>
   <% filter_names = %w[flt_name is_main_nav published is_commentable updated_at_period in_category] %>

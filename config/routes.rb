@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'home#home'
-    resources :pages
+    resources :pages do
+      collection do
+        post 'bulk_update'
+      end
+    end
   end
 
   resources :pages, only: [:show]
