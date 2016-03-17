@@ -1,5 +1,7 @@
 class Page < ApplicationRecord
 
+  include UpdatedAtScopeConcern
+
   attr_accessor :active
 
   belongs_to :page_category, foreign_key: 'parent_id', required: false
