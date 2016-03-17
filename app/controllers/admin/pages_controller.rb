@@ -73,9 +73,19 @@ class Admin::PagesController < Admin::AdminController
   def bulk_update
     authorize Page
     skip_policy_scope
+    p "#{bulk_params} #{bulk_params.keys} #{bulk_params.values}"
     respond_to do |format|
-      format.html do
-        redirect_back fallback_location:  admin_pages_path
+      if Page.update(bulk_params.keys, bulk_params.values)
+        format.html do
+          flash.now[:notice] = 'ok'
+          redirect_back fallback_location:  admin_pages_path
+        end
+      else
+        # @resource.errors[:base] << 'some error' << 'some other error'
+        format.html do
+          flash.now[:alert] = 'nok'
+          redirect_back fallback_location:  admin_pages_path
+        end
       end
     end
   end
@@ -107,7 +117,13 @@ class Admin::PagesController < Admin::AdminController
                  :id, :content, :excerpt,
                  :meta_description, :meta_css, :meta_js
                ]
-    )
+      )
+  end
+
+  def bulk_params
+    params
+        .require(:page)
+        .permit(:id => [:name])
   end
 
 end
