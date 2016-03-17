@@ -71,7 +71,7 @@ class Admin::PagesController < Admin::AdminController
   end
 
   def bulk_update
-    skip_authorization
+    authorize Page
     skip_policy_scope
     respond_to do |format|
       format.html do

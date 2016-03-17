@@ -9,4 +9,8 @@ class PagePolicy < ApplicationPolicy
     true
   end
 
+  def bulk_update?
+    user.admin?
+  end
+
 end
