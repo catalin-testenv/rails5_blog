@@ -71,7 +71,7 @@
           <td><%= resource.published %></td>
           <td><%= resource.is_commentable %></td>
           <td><%= resource.ordering %></td>
-          <td><%= resource.page_category.name %></td>
+          <td><%= resource.page_category.try(:name) || t('root') %></td>
           <td><%= resource.updated_at %></td>
           <td>
             <ul class="uk-list uk-margin-bottom-remove">
