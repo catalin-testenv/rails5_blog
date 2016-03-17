@@ -45,7 +45,7 @@ module ListOpsHelper
     content_tag :div, class: %w(uk-form-row) do
       concat label_tag(flt_key, model.human_attribute_name(column).humanize, class: %w(uk-form-label))
       concat(content_tag(:div, class: %w(uk-form-controls)) do
-        content_tag :div, class: %w(uk-grid) do
+        content_tag :div, class: %w(uk-grid uk-grid-small) do
           concat(content_tag(:div, class: %w(uk-width-small-1-2)) do
             # concat label_tag("#{flt_key}[#{start_key}]", start_label.humanize+':', class:  %w(uk-form-label))
             concat text_field_tag("#{flt_key}[#{start_key}]", qp[flt_key] && qp[flt_key][start_key], class: %w(uk-width), data: {'uk-datepicker' => ''}, placeholder: start_label.humanize)
