@@ -1,8 +1,8 @@
 
-# related files: list_ops list_ops_helper list_ops_config
+# related files: list_ops_concern list_ops_helper list_ops_config
 
 # list_ops_config initializer auto-includes this module in ActionController::Base
-module ListOps
+module ListOpsConcern
   extend ActiveSupport::Concern
 
   included do
