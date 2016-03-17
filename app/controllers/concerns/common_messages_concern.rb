@@ -1,4 +1,4 @@
-module CommonMessages
+module CommonMessagesConcern
   extend ActiveSupport::Concern
 
   included do

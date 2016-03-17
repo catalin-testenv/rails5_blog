@@ -43,7 +43,7 @@ end
 class ApplicationController < ActionController::Base
 
   include Pundit
-  include CommonMessages
+  include CommonMessagesConcern
 
   # before_action :authenticate_user!
   before_action :set_locale, :add_theme_support
