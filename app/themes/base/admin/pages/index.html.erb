@@ -75,7 +75,7 @@
       </div>
       <div class="uk-width-medium-1-2">
         <div class="uk-form-row">
-          <%= list_ops_select(Page, 'parent_id', 'page[attrs][parent_id]', page_categories_all
+          <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', page_categories_all
               .collect { |p| [p.name, p.id] }
               .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
         </div>
@@ -111,6 +111,7 @@
               <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
               <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
               <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+              <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
               <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
               <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
               <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
@@ -123,6 +124,7 @@
               <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
               <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
               <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+              <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
               <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
               <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
               <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
@@ -144,6 +146,7 @@
                 <td><%= resource.is_main_nav %></td>
                 <td><%= resource.published %></td>
                 <td><%= resource.is_commentable %></td>
+                <td><%= resource.max_comments %></td>
                 <td><%= resource.ordering %></td>
                 <td><%= resource.page_category.try(:name) || t('root') %></td>
                 <td><%= resource.updated_at.to_date %></td>
