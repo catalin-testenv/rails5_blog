@@ -1,0 +1,27 @@
+
+// multiple checkboxes toggle checked
+$(function(){
+  $('[data-select-all-checkboxes]').each(function(){
+    var $this = $(this);
+    var target = $this.data('select-all-checkboxes');
+    $this.click(function(){
+      $(target).each(function(){
+        $(this).trigger('click');
+      })
+    })
+  });
+
+  // form which does not submit certain inputs with empty values
+  $('[data-bulk-update-form]').each(function(){
+    $(this).submit(function(e){
+      var $form = $(this);
+      $("input[type!=hidden], select", $form).each(function(){
+        var $input = $(this);
+        if (!$input.val()) {
+          $input.attr('name', '');
+        }
+      });
+      // e.preventDefault();
+    });
+  })
+});

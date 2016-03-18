@@ -59,12 +59,12 @@ module ListOpsHelper
     end
   end
 
-  def list_ops_filter_select(model, column, flt_key, options)
+  def list_ops_filter_select(model, column, flt_key, options, html_options={class: 'uk-width'})
     qp = request.query_parameters
     content_tag :div, class: %w(uk-form-row) do
       concat label_tag(flt_key, model.human_attribute_name(column).humanize, class: %w(uk-form-label))
       concat(content_tag(:div, class: %w(uk-form-controls)) do
-        select_tag(flt_key, options_for_select(options, :selected => qp[flt_key]), {class: 'uk-width'})
+        select_tag(flt_key, options_for_select(options, :selected => qp[flt_key]), html_options)
       end)
     end
   end
