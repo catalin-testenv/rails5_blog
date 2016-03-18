@@ -40,6 +40,15 @@ module ListOpsHelper
     end
   end
 
+  def list_ops_checkbox(model, column, flt_key, html_options={class: 'uk-width'})
+    qp = request.query_parameters
+    capture do
+      concat(hidden_field_tag(flt_key, '0', id: ''))
+      concat check_box_tag(flt_key, '1', qp[flt_key] == '1')
+      concat label_tag(flt_key, model.human_attribute_name(column), html_options)
+    end
+  end
+
   def list_ops_datetime_range(model, column, flt_key, start_key, end_key, start_label, end_label)
     qp = request.query_parameters
     content_tag :div, class: %w(uk-form-row) do

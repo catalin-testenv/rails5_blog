@@ -5,7 +5,7 @@
     <%= title %>
 <% end %>
 
-<%= admin_body_title(title) %>
+<%= admin_body_title("#{title} (#{@resource_list.count})")  %>
 
 <% page_index_links = [
     {message: resource_view_new_message(resource: Page), path: new_admin_page_path}
@@ -32,7 +32,7 @@
       <%= list_ops_select(Page, :page_category, :in_category, page_categories_all
           .select(&:has_any_pages?)
           .collect { |p| [p.name, p.id] }
-          .unshift([t('wildcard'), nil], [t('root'), 0])
+          .unshift(['', nil], [t('root'), 0])
           ) %>
     </div>
     <div class="uk-width-small-1-2 uk-width-medium-1-3">
