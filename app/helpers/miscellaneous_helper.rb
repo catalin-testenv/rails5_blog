@@ -11,13 +11,11 @@ module MiscellaneousHelper
       %Q`<li>#{ link_to(ln[:message], ln[:path], ln[:options]) }</li>`
     end.join("\n")
     html << '</ul></div>'
-    html << '<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />'
     html.html_safe
   end
 
   def admin_body_bottom_links(links)
     html = ''
-    html << '<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />'
     html << '<div><ul class="uk-subnav uk-subnav-line uk-margin-bottom-remove uk-link-unmuted">'
     html << links.map do |ln|
       %Q`<li class="uk-margin-top-remove">#{ link_to(ln[:message], ln[:path], ln[:options]) }</li>`

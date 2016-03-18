@@ -19,6 +19,9 @@ $box-shadow-bottom-right:                        2px 9px 10px -9px rgba(0,0,0,.4
 $box-shadow-bottom:                              0px 9px 10px -9px rgba(0,0,0,.4);
 $box-shadow-right-inset:                         inset -9px 0px 10px -9px rgba(0,0,0,.4);
 $box-shadow-bottom-inset:                        inset 0px -9px 10px -9px rgba(0,0,0,.4);
+$box-shadow-top-inset:                           inset 0px 9px 10px -9px rgba(0,0,0,.4);
+$box-shadow-bottom-inset-smaller:                inset 0px -4px 4px -4px rgba(0,0,0,.4);
+$box-shadow-top-inset-smaller:                   inset 0px 4px 4px -4px rgba(0,0,0,.4);
 $box-shadow-material:                            0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
 
 $border-radius-small-all:                        2px;
@@ -295,6 +298,19 @@ a {
   font-size: $link-font-size;
 }
 // ============== /general
+
+// ============== admin body
+.admin-body-section-title {
+  @extend .cancel-panel-box-horizontal-padding;
+  text-align: center;
+  background-color: #f9f9f9;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.4);
+  box-shadow: $box-shadow-top-inset-smaller, $box-shadow-bottom-inset-smaller;
+}
+// ============== /admin body
 
 // ============== list area
 .sort_link_current.asc:after {

@@ -50,6 +50,8 @@ en:
   from: 'from'
   to: 'to'
   filter_button: 'filter'
+  bulk_update_button: 'bulk update'
+  bool_no_change: 'no change'
 
   # ---------------- RESOURCE
 

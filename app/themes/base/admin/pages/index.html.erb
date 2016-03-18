@@ -13,6 +13,8 @@
 
 <%= admin_body_top_links(page_index_links) %>
 
+<h3 class="admin-body-section-title uk-margin-top-remove">Filtrare</h3>
+
 <!-- filters area -->
 <form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="" method="get">
   <%# declare what filters are to be used to not include them in hidden fields %>
@@ -26,15 +28,16 @@
       <%= list_ops_string(Page, :name, :flt_name) %>
     </div>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_datetime_range(Page, :updated_at, :updated_at_period, :starting, :ending, t('from'), t('to')) %>
-    </div>
-    <div class="uk-width-medium-1-1">
       <%= list_ops_select(Page, :page_category, :in_category, page_categories_all
           .select(&:has_any_pages?)
           .collect { |p| [p.name, p.id] }
           .unshift(['', nil], [t('root'), 0])
           ) %>
     </div>
+    <div class="uk-width-medium-1-1">
+      <%= list_ops_datetime_range(Page, :updated_at, :updated_at_period, :starting, :ending, t('from'), t('to')) %>
+    </div>
+
     <div class="uk-width-small-1-2 uk-width-medium-1-3">
       <%= list_ops_boolean(Page, :is_main_nav, :is_main_nav, t('yep'), t('nope'), t('wildcard')) %>
     </div>
@@ -54,7 +57,8 @@
   </div>
 </form>
 
-<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
+<!--<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />-->
+<h3 class="admin-body-section-title">Listare</h3>
 
 <%= form_tag bulk_update_admin_pages_path(request.query_parameters), class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => ''} do %>
     <!-- bulk update area -->
@@ -77,22 +81,25 @@
         </div>
       </div>
       <div class="uk-width-small-1-2 uk-width-medium-1-3">
-        <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('wildcard')) %>
+        <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
       <div class="uk-width-small-1-2 uk-width-medium-1-3">
-        <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('wildcard')) %>
+        <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
       <div class="uk-width-small-1-2 uk-width-medium-1-3">
-        <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('wildcard')) %>
+        <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
       <div class="uk-width uk-margin-top">
         <div class="uk-form-row">
           <div class="uk-form-controls">
-            <input type="submit" name="submit" value="submit" class="uk-button uk-width" />
+            <%= submit_tag t('bulk_update_button').humanize, class: 'uk-button uk-width' %>
           </div>
         </div>
       </div>
     </div>
+
+    <hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
+    <!--<h3 class="admin-body-subtitle-1">Listare</h3>-->
 
     <!-- results area -->
     <div class="uk-overflow-container">
@@ -147,5 +154,6 @@
     </div>
 <% end %>
 
+<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
 
 <%= admin_body_bottom_links(page_index_links) %>
