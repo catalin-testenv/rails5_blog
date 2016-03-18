@@ -62,6 +62,7 @@ en:
   resource_creation_success: '%{resource} %{resource_name} created.'
   resource_creation_failed: 'could not create %{resource} %{resource_name}.'
   resource_update_success: '%{resource} %{resource_name} updated.'
+  resource_bulk_update_success: 'Updates were applied.'
   resource_update_failed: 'could not update %{resource} %{resource_name}.'
   resource_destroy_success: '%{resource} %{resource_name} destroyed.'
   resource_destroy_failed: 'could not destroy %{resource} %{resource_name}.'

@@ -73,19 +73,16 @@ class Admin::PagesController < Admin::AdminController
   def bulk_update
     authorize Page
     skip_policy_scope
-    p "#{bulk_params} #{bulk_params.keys} #{bulk_params.values}"
+    Page.where(:id => bulk_update_params['ids']).update_all(bulk_update_params['attrs'])
     respond_to do |format|
-      if Page.update(bulk_params.keys, bulk_params.values)
-        format.html do
-          flash.now[:notice] = 'ok'
-          redirect_back fallback_location:  admin_pages_path
-        end
-      else
-        # @resource.errors[:base] << 'some error' << 'some other error'
-        format.html do
-          flash.now[:alert] = 'nok'
-          redirect_back fallback_location:  admin_pages_path
-        end
+      format.html do
+        redirect_back fallback_location: admin_pages_path, notice: resource_bulk_update_success_message
+      end
+    end
+  rescue => e
+    respond_to do |format|
+      format.html do
+        redirect_back fallback_location: admin_pages_path, alert: e.message
       end
     end
   end
@@ -120,10 +117,12 @@ class Admin::PagesController < Admin::AdminController
       )
   end
 
-  def bulk_params
-    params
-        .require(:page)
-        .permit(:id => [:name])
+  def bulk_update_params
+    # ex: # {ids: ['174', '175'], 'attrs' => [:max_comments, :published]}
+    params.require(:page).permit({
+       ids: [],
+       attrs: [:is_main_nav, :is_commentable, :max_comments, :published, :parent_id]
+     }).to_h
   end
 
 end

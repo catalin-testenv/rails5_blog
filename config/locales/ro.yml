@@ -62,6 +62,7 @@ ro:
   resource_creation_success: 's-a adaugat %{resource} %{resource_name}.'
   resource_creation_failed: 'nu s-a adaugat %{resource} %{resource_name}.'
   resource_update_success: 's-a actualizat %{resource} %{resource_name}.'
+  resource_bulk_update_success: 'Actualizarile au fost aplicate.'
   resource_update_failed: 'nu s-a actualizat %{resource} %{resource_name}.'
   resource_destroy_success: 's-a sters %{resource} %{resource_name}.'
   resource_destroy_failed: 'nu s-a sters %{resource} %{resource_name}.'

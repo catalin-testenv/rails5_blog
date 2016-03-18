@@ -15,8 +15,10 @@
 
 
 <%= form_tag bulk_update_admin_pages_path(request.query_parameters) do %>
-    <input type="hidden", name="page[1][id]" value="2552" />
-    <input type="hidden", name="page[1][name]" value="page 11" />
+    <input type="hidden" name="page[ids][]" value="174" />
+    <input type="hidden" name="page[ids][]" value="175" />
+    <input type="hidden" name="page[attrs][max_comments]" value="46" />
+    <input type="hidden" name="page[attrs][is_commentable]" value="0" />
     <input type="submit" value="submit" />
 <% end %>
 
