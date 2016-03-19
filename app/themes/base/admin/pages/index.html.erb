@@ -53,49 +53,12 @@
   </div>
 </form>
 
-<!--<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />-->
 <h3 class="admin-body-section-title"><%= t('results').humanize %></h3>
 
 <%= form_tag bulk_update_admin_pages_path(request.query_parameters), class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => ''} do %>
-    <!-- bulk update area -->
-    <%#
-    examples:
-        <input type="hidden" name="page[ids][]" value="174" />
-        <input type="hidden" name="page[attrs][max_comments]" value="46" />
-    %>
-    <div class="uk-grid uk-grid-small custom-cc custom-cc-fa" data-uk-grid-margin>
-      <div class="uk-width-medium-1-2">
-        <div class="uk-form-row">
-          <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]') %>
-        </div>
-      </div>
-      <div class="uk-width-medium-1-2">
-        <div class="uk-form-row">
-          <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', page_categories_all
-              .collect { |p| [p.name, p.id] }
-              .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
-        </div>
-      </div>
-      <div class="uk-width-small-1-2 uk-width-large-1-4">
-        <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('bool_no_change')) %>
-      </div>
-      <div class="uk-width-small-1-2 uk-width-large-1-4">
-        <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('bool_no_change')) %>
-      </div>
-      <div class="uk-width-small-1-2 uk-width-large-1-4">
-        <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('bool_no_change')) %>
-      </div>
-      <div class="uk-width-small-1-2 uk-width-large-1-4">
-        <%= list_ops_submit(t('bulk_update_button').humanize) %>
-      </div>
-    </div>
-
-    <hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
-    <!--<h3 class="admin-body-subtitle-1">Listare</h3>-->
-
     <!-- results area -->
     <div class="uk-overflow-container">
-      <table class="uk-table uk-table-striped uk-table-hover "> <!-- uk-text-nowrap uk-table-condensed -->
+      <table class="uk-table uk-table-striped-even"> <!-- uk-text-nowrap uk-table-condensed uk-table-hover -->
           <thead>
             <tr>
               <th><%= check_box_tag '', '', false, data: {'select-all-checkboxes' => '.group-check'} %></th>
@@ -124,25 +87,57 @@
           </tfoot>
 
           <tbody>
+            <tr>
+              <td colspan="9" class="uk-padding-horizontal-remove">
+                <!-- bulk update area -->
+                <%#
+    examples:
+        <input type="hidden" name="page[ids][]" value="174" />
+        <input type="hidden" name="page[attrs][max_comments]" value="46" />
+                %>
+                <div class="uk-grid uk-grid-small custom-cc custom-cc-fa" data-uk-grid-margin>
+                  <div class="uk-width-medium-1-2">
+                    <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]') %>
+                  </div>
+                  <div class="uk-width-medium-1-2">
+                    <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', page_categories_all
+                        .collect { |p| [p.name, p.id] }
+                        .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
+                  </div>
+                  <div class="uk-width-small-1-2 uk-width-large-1-4">
+                    <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('bool_no_change')) %>
+                  </div>
+                  <div class="uk-width-small-1-2 uk-width-large-1-4">
+                    <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('bool_no_change')) %>
+                  </div>
+                  <div class="uk-width-small-1-2 uk-width-large-1-4">
+                    <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('bool_no_change')) %>
+                  </div>
+                  <div class="uk-width-small-1-2 uk-width-large-1-4">
+                    <%= list_ops_submit(t('bulk_update_button').humanize) %>
+                  </div>
+                </div>
+              </td>
+            </tr>
           <% @resource_list.each do |resource| %>
-              <tr>
-                <td><%= check_box_tag 'page[ids][]', resource.id, false, class: %w(group-check) %></td>
-                <td>
-                  <%= link_to resource.name, '#', data: {'uk-toggle' => "{target:'##{resource.id}'}"}, class: %w(secondary-link) %>
-                  <ul id="<%= resource.id %>" class="uk-list uk-nav-sub uk-margin-bottom-remove uk-hidden">
-                    <li><%= link_to preview_message, page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
-                    <li><%= link_to edit_message, edit_admin_page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
-                    <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link) %></li>
-                  </ul>
-                </td>
-                <td><%= resource.is_main_nav %></td>
-                <td><%= resource.published %></td>
-                <td><%= resource.is_commentable %></td>
-                <td><%= resource.max_comments %></td>
-                <td><%= resource.ordering %></td>
-                <td><%= resource.page_category.try(:name) || t('root') %></td>
-                <td><%= resource.updated_at.to_date %></td>
-              </tr>
+            <tr>
+              <td><%= check_box_tag 'page[ids][]', resource.id, false, class: %w(group-check) %></td>
+              <td>
+                <%= link_to resource.name, '#', data: {'uk-toggle' => "{target:'##{resource.id}'}"}, class: %w(secondary-link) %>
+                <ul id="<%= resource.id %>" class="uk-list uk-nav-sub uk-margin-bottom-remove uk-hidden">
+                  <li><%= link_to preview_message, page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
+                  <li><%= link_to edit_message, edit_admin_page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
+                  <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link) %></li>
+                </ul>
+              </td>
+              <td><%= resource.is_main_nav %></td>
+              <td><%= resource.published %></td>
+              <td><%= resource.is_commentable %></td>
+              <td><%= resource.max_comments %></td>
+              <td><%= resource.ordering %></td>
+              <td><%= resource.page_category.try(:name) || t('root') %></td>
+              <td><%= resource.updated_at.to_date %></td>
+            </tr>
           <% end %>
           </tbody>
         </table>
