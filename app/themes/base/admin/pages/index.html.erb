@@ -56,11 +56,12 @@
 <h3 class="admin-body-section-title"><%= t('results').humanize %></h3>
 
 <%= form_tag bulk_update_admin_pages_path(request.query_parameters), class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => ''} do %>
-    <!-- results area -->
+
+    <!-- bulk update area -->
     <div class="uk-grid uk-grid-small">
       <div class="uk-width">
         <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
-          <button class="uk-button" onclick="event.preventDefault();">bulk actions</button>
+          <button class="uk-button blue-button" onclick="event.preventDefault();">bulk actions</button>
           <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
               <li><a href="" data-reveal-area=".bulk-update-area">edit</a></li>
@@ -70,11 +71,10 @@
         </div>
       </div>
     </div>
-    <!-- bulk update area -->
     <%#
-                examples:
-                    <input type="hidden" name="page[ids][]" value="174" />
-                    <input type="hidden" name="page[attrs][max_comments]" value="46" />
+    examples:
+        <input type="hidden" name="page[ids][]" value="174" />
+        <input type="hidden" name="page[attrs][max_comments]" value="46" />
     %>
     <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin >
       <div class="uk-width-medium-1-2">
@@ -110,6 +110,7 @@
       <div class="uk-width-small-1-1"></div><%# adds some space thanks to data-uk-grid-margin%>
     </div>
 
+    <!-- results area -->
     <div class="uk-overflow-container">
       <table class="uk-table uk-table-striped-even"> <!-- uk-text-nowrap uk-table-condensed uk-table-hover -->
           <thead>

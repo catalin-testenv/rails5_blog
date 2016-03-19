@@ -72,6 +72,9 @@ $nav-side-active-color:                          $panel-title-color;
 $nav-side-hover-background:                      rgba(0,0,0,0.1);
 $nav-side-hover-color:                           $panel-title-color;
 
+$nav-dropdown-hover-background:                  darken($admin-body-uk-panel-background-color, 5%);;
+$nav-dropdown-hover-color:                       #5b5b60;
+
 
 $tab-border:                                     $panel-title-background-color_;
 $tab-color:                                      lighten($panel-title-color, 20%);
@@ -263,15 +266,22 @@ $button-border_:                                 $panel-title-background-color_;
 @mixin hook-button-active() {
   background-color: darken(#FCE8D1, 5%);
 }
+
+.blue-button {
+  background-color: #C7F1FF !important;
+}
+.blue-button:hover {
+  background-color: darken(#C7F1FF, 4) !important;
+}
+.blue-button:active {
+  background-color: darken(#C7F1FF, 5%) !important;
+}
+
 // -------- /override uk hook-mixins
 
 
 
 // -------- helper classes
-
-.uk-table-striped-even tbody tr:nth-of-type(even) {
-  background: $table-striped-background;
-}
 
 .secondary-link {
   color: $nav-side-header-color;
@@ -301,6 +311,10 @@ $button-border_:                                 $panel-title-background-color_;
 .uk-padding-left-remove { padding-left: 0 !important; }
 .uk-padding-right-remove { padding-right: 0 !important; }
 .uk-padding-horizontal-remove {  padding-left: 0 !important;  padding-right: 0 !important;  }
+
+.uk-table-striped-even tbody tr:nth-of-type(even) {
+  background: $table-striped-background;
+}
 
 // patching uk to add xsmall visibility too
 @media (min-width: $breakpoint-large) {
