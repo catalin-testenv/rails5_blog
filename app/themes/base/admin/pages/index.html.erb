@@ -107,6 +107,7 @@
           </div>
         </div>
       </div>
+      <div class="uk-width-small-1-1"></div><%# adds some space thanks to data-uk-grid-margin%>
     </div>
 
     <div class="uk-overflow-container">
@@ -139,11 +140,6 @@
           </tfoot>
 
           <tbody>
-            <tr>
-              <td colspan="9" class="uk-padding-horizontal-remove">
-
-              </td>
-            </tr>
           <% @resource_list.each do |resource| %>
             <tr>
               <td><%= check_box_tag 'page[ids][]', resource.id, false, class: %w(group-check) %></td>
