@@ -253,7 +253,12 @@ $button-border_:                                 $panel-title-background-color_;
 
 @mixin hook-button() {
   color: $button-color !important;
-  border: 1px solid $button-border_;
+  //border: 1px solid $button-border_;
+  background-color: #FCE8D1; //#C7F1FF;
+}
+
+@mixin hook-button-hover() {
+  background-color: darken(#FCE8D1, 4%);
 }
 // -------- /override uk hook-mixins
 
