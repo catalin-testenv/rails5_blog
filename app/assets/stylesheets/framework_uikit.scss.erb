@@ -293,7 +293,7 @@ $button-border_:                                 $panel-title-background-color_;
   margin-right: -$panel-box-padding;
 }
 
-// for the sake of uk utils completeness
+// =============== for the sake of uk utils completeness ===============
 .uk-margin-left-remove { margin-left: 0 !important; }
 .uk-margin-right-remove { margin-right: 0 !important; }
 .uk-margin-vertical-remove { margin-top: 0 !important; margin-bottom: 0 !important; }
@@ -301,6 +301,39 @@ $button-border_:                                 $panel-title-background-color_;
 .uk-padding-left-remove { padding-left: 0 !important; }
 .uk-padding-right-remove { padding-right: 0 !important; }
 .uk-padding-horizontal-remove {  padding-left: 0 !important;  padding-right: 0 !important;  }
+
+// patching uk to add xsmall visibility too
+@media (min-width: $breakpoint-large) {
+  .uk-visible-xsmall { display: none !important; }
+  .uk-visible-small { display: none !important; }
+  .uk-visible-medium { display: none !important; }
+  .uk-hidden-large { display: none !important; }
+}
+
+/* Tablets portrait */
+@media (min-width: $breakpoint-medium) and (max-width: $breakpoint-medium-max) {
+  .uk-visible-xsmall { display: none !important; }
+  .uk-visible-small { display: none !important; }
+  .uk-visible-large { display: none !important ; }
+  .uk-hidden-medium { display: none !important; }
+}
+
+/* Phone landscape and smaller*/
+@media (max-width: $breakpoint-small-max) {
+  .uk-visible-medium { display: none !important; }
+  .uk-visible-large { display: none !important; }
+  .uk-visible-xsmall { display: none !important; }
+  .uk-hidden-small { display: none !important; }
+}
+
+/* Phone landscape and smaller*/
+@media (max-width: $breakpoint-mini-max) {
+  .uk-visible-medium { display: none !important; }
+  .uk-visible-large { display: none !important; }
+  .uk-visible-small { display: none !important; }
+  .uk-hidden-xsmall { display: none !important; }
+}
+
 // -------- /helper classes
 
 

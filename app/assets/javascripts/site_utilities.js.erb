@@ -23,5 +23,25 @@ $(function(){
       });
       // e.preventDefault();
     });
-  })
+  });
+
+  // data-reveal-area
+  $('[data-reveal-area]').each(function(){
+    $(this).click(function(e){
+      e.preventDefault();
+      var target = $(this).data('reveal-area');
+      $(target).removeClass('uk-hidden');
+      $(target).trigger('display.uk.check');
+    });
+  });
+
+  // data-hide-area
+  $('[data-hide-area]').each(function(){
+    $(this).click(function(e){
+      e.preventDefault();
+      var target = $(this).data('hide-area');
+      $(target).addClass('uk-hidden');
+    });
+  });
+
 });

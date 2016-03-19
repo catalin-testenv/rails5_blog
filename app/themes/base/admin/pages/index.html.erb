@@ -48,7 +48,7 @@
       <%= list_ops_boolean(Page, :is_commentable, :is_commentable, t('yep'), t('nope'), t('wildcard')) %>
     </div>
     <div class="uk-width-small-1-2 uk-width-large-1-4">
-      <%= list_ops_submit(t('filter_button').humanize) %>
+      <%= list_ops_submit(t('filter_button').humanize, with_fake_label: 'uk-hidden-xsmall') %>
     </div>
   </div>
 </form>
@@ -57,6 +57,58 @@
 
 <%= form_tag bulk_update_admin_pages_path(request.query_parameters), class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => ''} do %>
     <!-- results area -->
+    <div class="uk-grid uk-grid-small">
+      <div class="uk-width">
+        <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
+          <button class="uk-button" onclick="event.preventDefault();">bulk actions</button>
+          <div class="uk-dropdown uk-dropdown-small">
+            <ul class="uk-nav uk-nav-dropdown">
+              <li><a href="" data-reveal-area=".bulk-update-area">edit</a></li>
+              <li><a href="" data-reveal-area=".bulk-update-area">destroy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bulk update area -->
+    <%#
+                examples:
+                    <input type="hidden" name="page[ids][]" value="174" />
+                    <input type="hidden" name="page[attrs][max_comments]" value="46" />
+    %>
+    <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin >
+      <div class="uk-width-medium-1-2">
+        <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]') %>
+      </div>
+      <div class="uk-width-medium-1-2">
+        <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', page_categories_all
+            .collect { |p| [p.name, p.id] }
+            .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
+      </div>
+      <div class="uk-width-small-1-2 uk-width-large-1-3">
+        <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('bool_no_change')) %>
+      </div>
+      <div class="uk-width-small-1-2 uk-width-large-1-3">
+        <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('bool_no_change')) %>
+      </div>
+      <div class="uk-width-small-1-2 uk-width-large-1-3">
+        <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('bool_no_change')) %>
+      </div>
+      <div class="uk-width-small-1-1">
+        <%# .bulk-update-area class exists for data-uk-grid-margin to receive 'display.uk.check' event, when area is revealed %>
+        <div class="uk-grid uk-grid-small bulk-update-area" data-uk-grid-margin>
+          <div class="uk-width-small-1-2">
+            <%= list_ops_submit(t('bulk_update_button').humanize, with_fake_label: false) %>
+          </div>
+          <div class="uk-width-small-1-2">
+            <div class="uk-form-controls">
+              <button class="uk-button uk-width" data-hide-area=".bulk-update-area">cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="uk-overflow-container">
       <table class="uk-table uk-table-striped-even"> <!-- uk-text-nowrap uk-table-condensed uk-table-hover -->
           <thead>
@@ -89,47 +141,7 @@
           <tbody>
             <tr>
               <td colspan="9" class="uk-padding-horizontal-remove">
-                <div class="uk-grid uk-grid-small">
-                  <div class="uk-width">
-                    <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
-                      <button class="uk-button" onclick="event.preventDefault();">bulk actions</button>
-                      <div class="uk-dropdown uk-dropdown-small">
-                        <ul class="uk-nav uk-nav-dropdown">
-                          <li><a href="" onclick="event.preventDefault();" data-reveal-area=".bulk-update-area">edit</a></li>
-                          <li><a href="" onclick="event.preventDefault();" data-reveal-area=".bulk-update-area">destroy</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- bulk update area -->
-                <%#
-                examples:
-                    <input type="hidden" name="page[ids][]" value="174" />
-                    <input type="hidden" name="page[attrs][max_comments]" value="46" />
-                %>
-                <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin>
-                  <div class="uk-width-medium-1-2">
-                    <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]') %>
-                  </div>
-                  <div class="uk-width-medium-1-2">
-                    <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', page_categories_all
-                        .collect { |p| [p.name, p.id] }
-                        .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
-                  </div>
-                  <div class="uk-width-small-1-2 uk-width-large-1-4">
-                    <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('bool_no_change')) %>
-                  </div>
-                  <div class="uk-width-small-1-2 uk-width-large-1-4">
-                    <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('bool_no_change')) %>
-                  </div>
-                  <div class="uk-width-small-1-2 uk-width-large-1-4">
-                    <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('bool_no_change')) %>
-                  </div>
-                  <div class="uk-width-small-1-2 uk-width-large-1-4">
-                    <%= list_ops_submit(t('bulk_update_button').humanize) %>
-                  </div>
-                </div>
+
               </td>
             </tr>
           <% @resource_list.each do |resource| %>

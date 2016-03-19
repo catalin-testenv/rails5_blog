@@ -76,9 +76,9 @@ module ListOpsHelper
     end
   end
 
-  def list_ops_submit(title)
+  def list_ops_submit(title, with_fake_label: true)
     content_tag :div, class: %w(uk-form-row) do
-      concat label_tag('', '&nbsp;'.html_safe, class: %w(uk-form-label))
+      with_fake_label && concat(label_tag('', '&nbsp;'.html_safe, class: %W(uk-form-label #{with_fake_label})))
       concat(content_tag(:div, class: %w(uk-form-controls)) do
         submit_tag title, class: 'uk-button uk-width'
       end)
