@@ -52,6 +52,8 @@ ro:
   filter_button: 'filtreaza'
   bulk_update_button: 'actualizeaza selectia'
   bool_no_change: 'retine'
+  filters: 'filtre'
+  results: 'rezultate'
 
   # ---------------- STANDARD_RESOURCE
 

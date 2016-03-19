@@ -52,6 +52,8 @@ en:
   filter_button: 'filter'
   bulk_update_button: 'bulk update'
   bool_no_change: 'no change'
+  filters: 'filters'
+  results: 'results'
 
   # ---------------- RESOURCE
 

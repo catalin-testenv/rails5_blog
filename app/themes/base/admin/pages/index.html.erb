@@ -13,7 +13,7 @@
 
 <%= admin_body_top_links(page_index_links) %>
 
-<h3 class="admin-body-section-title uk-margin-top-remove">Filtrare</h3>
+<h3 class="admin-body-section-title uk-margin-top-remove"><%= t('filters').humanize %></h3>
 
 <!-- filters area -->
 <form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="" method="get">
@@ -58,7 +58,7 @@
 </form>
 
 <!--<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />-->
-<h3 class="admin-body-section-title">Listare</h3>
+<h3 class="admin-body-section-title"><%= t('results').humanize %></h3>
 
 <%= form_tag bulk_update_admin_pages_path(request.query_parameters), class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => ''} do %>
     <!-- bulk update area -->
