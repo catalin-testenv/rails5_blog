@@ -16,10 +16,15 @@ $ccr-color-button-border:  darken($ccr-color-button, 10%) !default;
 $ccr-color-button-on:      indianred !default;
 $ccr-color-button-text-on: #fff      !default;
 
+$ccr-height:               30px      !default;
+
 .ccr-custom-style {
   display: inline-block;
   clear: none;
-  padding: .5em;
+  padding: 0.4em;
+
+  height: $ccr-height;
+  box-sizing: border-box;
 
   cursor: default;
 
@@ -53,8 +58,8 @@ $ccr-color-button-text-on: #fff      !default;
   opacity: 0;
   // filter: "alpha(opacity=0)";
   float: left;
-  width: 1px;
-  height: 1px;
+  width: 0px;
+  height: 0px;
 }
 
 .custom-cc:not(#foo) input[type='radio'] + label,
