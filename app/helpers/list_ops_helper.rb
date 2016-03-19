@@ -76,4 +76,13 @@ module ListOpsHelper
     end
   end
 
+  def list_ops_submit(title)
+    content_tag :div, class: %w(uk-form-row) do
+      concat label_tag('', '&nbsp;'.html_safe, class: %w(uk-form-label))
+      concat(content_tag(:div, class: %w(uk-form-controls)) do
+        submit_tag title, class: 'uk-button uk-width'
+      end)
+    end
+  end
+
 end
