@@ -61,11 +61,11 @@
     <div class="uk-grid uk-grid-small">
       <div class="uk-width">
         <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
-          <button class="uk-button blue-button" onclick="event.preventDefault();">bulk actions</button>
+          <button class="uk-button blue-button" onclick="event.preventDefault();"><%= t('bulk_actions').humanize %></button>
           <div class="uk-dropdown uk-dropdown-small">
             <ul class="uk-nav uk-nav-dropdown">
-              <li><a href="" data-reveal-area=".bulk-update-area">edit</a></li>
-              <li><a href="" data-reveal-area=".bulk-update-area">destroy</a></li>
+              <li><a href="" data-reveal-area=".bulk-update-area" class="font-weight-normal"><%= t('edit').humanize %></a></li>
+              <li><a href="" data-reveal-area=".bulk-update-area" class="font-weight-normal"><%= t('destroy').humanize %></a></li>
             </ul>
           </div>
         </div>
@@ -102,7 +102,7 @@
           </div>
           <div class="uk-width-small-1-2">
             <div class="uk-form-controls">
-              <button class="uk-button uk-width" data-hide-area=".bulk-update-area">cancel</button>
+              <button class="uk-button uk-width" data-hide-area=".bulk-update-area"><%= t('cancel').humanize %></button>
             </div>
           </div>
         </div>

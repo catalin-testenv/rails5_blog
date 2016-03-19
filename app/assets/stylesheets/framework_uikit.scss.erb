@@ -50,7 +50,7 @@ $base-code-font-family:                          Consolas, monospace, serif;
 $base-pre-font-family:                           $base-code-font-family;
 $base-body-font-size:                            14px;
 $base-body-background:                           #1F2C36; // #262626; // #1F2C36; //#262B33;
-$base-link-color:                                #07D;
+$base-link-color:                                #0068c0; //#07D;
 $base-link-hover-color:                          #059;
 $base-selection-background:                      #39f;
 $base-selection-color:                           #fff;
@@ -72,6 +72,7 @@ $nav-side-active-color:                          $panel-title-color;
 $nav-side-hover-background:                      rgba(0,0,0,0.1);
 $nav-side-hover-color:                           $panel-title-color;
 
+$nav-dropdown-color:                             $nav-side-color;
 $nav-dropdown-hover-background:                  darken($admin-body-uk-panel-background-color, 5%);;
 $nav-dropdown-hover-color:                       #5b5b60;
 
@@ -268,13 +269,13 @@ $button-border_:                                 $panel-title-background-color_;
 }
 
 .blue-button {
-  background-color: #C7F1FF !important;
+  background-color: #d0f3ff !important;
 }
 .blue-button:hover {
-  background-color: darken(#C7F1FF, 4) !important;
+  background-color: darken(#d0f3ff, 4%) !important;
 }
 .blue-button:active {
-  background-color: darken(#C7F1FF, 5%) !important;
+  background-color: darken(#d0f3ff, 5%) !important;
 }
 
 // -------- /override uk hook-mixins
@@ -301,6 +302,10 @@ $button-border_:                                 $panel-title-background-color_;
 .cancel-panel-box-horizontal-padding {
   margin-left: -$panel-box-padding;
   margin-right: -$panel-box-padding;
+}
+
+.font-weight-normal {
+  font-weight: normal !important;
 }
 
 // =============== for the sake of uk utils completeness ===============
