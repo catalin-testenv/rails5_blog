@@ -89,13 +89,26 @@
           <tbody>
             <tr>
               <td colspan="9" class="uk-padding-horizontal-remove">
+                <div class="uk-grid uk-grid-small">
+                  <div class="uk-width">
+                    <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
+                      <button class="uk-button" onclick="event.preventDefault();">bulk actions</button>
+                      <div class="uk-dropdown uk-dropdown-small">
+                        <ul class="uk-nav uk-nav-dropdown">
+                          <li><a href="" onclick="event.preventDefault();" data-reveal-area=".bulk-update-area">edit</a></li>
+                          <li><a href="" onclick="event.preventDefault();" data-reveal-area=".bulk-update-area">destroy</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <!-- bulk update area -->
                 <%#
-    examples:
-        <input type="hidden" name="page[ids][]" value="174" />
-        <input type="hidden" name="page[attrs][max_comments]" value="46" />
+                examples:
+                    <input type="hidden" name="page[ids][]" value="174" />
+                    <input type="hidden" name="page[attrs][max_comments]" value="46" />
                 %>
-                <div class="uk-grid uk-grid-small custom-cc custom-cc-fa" data-uk-grid-margin>
+                <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin>
                   <div class="uk-width-medium-1-2">
                     <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]') %>
                   </div>
