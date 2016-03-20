@@ -25,34 +25,34 @@
   <% end %>
   <div class="uk-grid uk-grid-small" data-uk-grid-margin>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_string(Page, :name, :flt_name) %>
+      <%= list_ops_string(Page, :name, :flt_name, '', placeholder: '...') %>
     </div>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_select(Page, :page_category, :in_category, page_categories_all
+      <%= list_ops_select(Page, :page_category, :in_category, icon_page_category, page_categories_all
           .select(&:has_any_pages?)
           .collect { |p| [p.name, p.id] }
-          .unshift(['', nil], [t('root'), 0])
+          .unshift(['...', nil], [t('root'), 0])
           ) %>
     </div>
     <div class="uk-width-medium-1-1">
-      <%= list_ops_datetime_range(Page, :updated_at, :updated_at_period, :starting, :ending, t('from'), t('to')) %>
+      <%= list_ops_datetime_range(Page, :updated_at, :updated_at_period, icon_updated_at,  :starting, :ending, t('from'), t('to')) %>
     </div>
 
     <div class="uk-width-small-1-2 uk-width-large-1-4">
-      <%= list_ops_boolean(Page, :is_main_nav, :is_main_nav, t('yep'), t('nope'), t('wildcard')) %>
+      <%= list_ops_boolean(Page, :is_main_nav, :is_main_nav, icon_is_main_nav, t('yep'), t('nope'), t('wildcard')) %>
     </div>
     <div class="uk-width-small-1-2 uk-width-large-1-4">
-      <%= list_ops_boolean(Page, :published, :published, t('yep'), t('nope'), t('wildcard')) %>
+      <%= list_ops_boolean(Page, :published, :published, icon_published, t('yep'), t('nope'), t('wildcard')) %>
     </div>
     <div class="uk-width-small-1-2 uk-width-large-1-4">
-      <%= list_ops_boolean(Page, :is_commentable, :is_commentable, t('yep'), t('nope'), t('wildcard')) %>
+      <%= list_ops_boolean(Page, :is_commentable, :is_commentable, icon_is_commentable, t('yep'), t('nope'), t('wildcard')) %>
     </div>
 
     <div class="uk-width-small-1-1">
       <%# .bulk-update-area class exists for data-uk-grid-margin to receive 'display.uk.check' event, when area is revealed %>
       <div class="uk-grid uk-grid-small bulk-update-area" data-uk-grid-margin>
         <div class="uk-width-small-1-2">
-          <%= list_ops_submit(t('filter_button').humanize, with_fake_label: false) %>
+          <%= list_ops_submit(icon_filter, with_fake_label: false) %>
         </div>
       </div>
     </div>
@@ -69,8 +69,8 @@
       <button class="uk-button blue-button" onclick="event.preventDefault();"><%= t('bulk_actions').humanize %></button>
       <div class="uk-dropdown uk-dropdown-small">
         <ul class="uk-nav uk-nav-dropdown">
-          <li><a href="" data-reveal-area=".bulk-update-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= t('edit').humanize %></a></li>
-          <li><a href="" data-reveal-area=".bulk-destroy-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= t('destroy').humanize %></a></li>
+          <li><a href="" data-reveal-area=".bulk-update-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= icon_edit %></a></li>
+          <li><a href="" data-reveal-area=".bulk-destroy-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= icon_destroy %></a></li>
         </ul>
       </div>
     </div>
@@ -86,32 +86,32 @@ examples:
 %>
     <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin >
       <div class="uk-width-medium-1-2">
-        <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]') %>
+        <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]', '') %>
       </div>
       <div class="uk-width-medium-1-2">
-        <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', page_categories_all
+        <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', icon_page_category, page_categories_all
             .collect { |p| [p.name, p.id] }
             .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
       </div>
       <div class="uk-width-small-1-2 uk-width-large-1-4">
-        <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('bool_no_change')) %>
+        <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', icon_is_main_nav, t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
       <div class="uk-width-small-1-2 uk-width-large-1-4">
-        <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('bool_no_change')) %>
+        <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', icon_published, t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
       <div class="uk-width-small-1-2 uk-width-large-1-4">
-        <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('bool_no_change')) %>
+        <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', icon_is_commentable, t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
       <div class="uk-width">
         <%# .bulk-update-area class exists for data-uk-grid-margin to receive 'display.uk.check' event, when area is revealed %>
         <div class="uk-grid uk-grid-small bulk-update-area" data-uk-grid-margin>
           <div class="uk-width-small-1-2">
             <div class="uk-form-controls">
-              <button class="uk-button uk-width" data-hide-area=".bulk-update-area" data-reveal-area=".bulk-actions"><%= t('cancel').humanize %></button>
+              <button class="uk-button uk-width" data-hide-area=".bulk-update-area" data-reveal-area=".bulk-actions"><%= icon_cancel %></button>
             </div>
           </div>
           <div class="uk-width-small-1-2">
-            <%= list_ops_submit(t('bulk_update_button').humanize, with_fake_label: false) %>
+            <%= list_ops_submit(icon_save, with_fake_label: false) %>
           </div>
         </div>
       </div>
@@ -126,11 +126,11 @@ examples:
         <div class="uk-grid uk-grid-small bulk-destroy-area" data-uk-grid-margin>
           <div class="uk-width-small-1-2">
             <div class="uk-form-controls">
-              <button class="uk-button uk-width" data-hide-area=".bulk-destroy-area" data-reveal-area=".bulk-actions"><%= t('cancel').humanize %></button>
+              <button class="uk-button uk-width" data-hide-area=".bulk-destroy-area" data-reveal-area=".bulk-actions"><%= icon_cancel %></button>
             </div>
           </div>
           <div class="uk-width-small-1-2">
-            <%= list_ops_submit(t('bulk_destroy_button').humanize, with_fake_label: false, data: { confirm: are_you_sure_message }) %>
+            <%= list_ops_submit(icon_destroy, with_fake_label: false, data: { confirm: are_you_sure_message }) %>
           </div>
         </div>
       </div>
@@ -146,26 +146,26 @@ examples:
         <tr>
           <th><%= check_box_tag '', '', false, data: {'select-all-checkboxes' => '.group-check'} %></th>
           <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
-          <th><%= list_ops_sort_link :is_main_nav, '<i class="fa fa-sitemap"></i>'.html_safe %></th>
-          <th><%= list_ops_sort_link :published, '<i class="fa fa-cloud-upload"></i>'.html_safe %></th>
-          <th><%= list_ops_sort_link :is_commentable, '<i class="fa fa-comments"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
+          <th><%= list_ops_sort_link :published, icon_published %></th>
+          <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>
           <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
-          <th><%= list_ops_sort_link :ordering, '<i class="fa fa-sort-numeric-asc"></i>'.html_safe %></th><
-          <th><%= list_ops_sort_link :parent_id, '<i class="fa fa-folder"></i>'.html_safe %></th>
-          <th><%= list_ops_sort_link :updated_at, '<i class="fa fa-calendar"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :ordering, icon_ordering %></th>
+          <th><%= list_ops_sort_link :parent_id, icon_page_category %></th>
+          <th><%= list_ops_sort_link :updated_at, icon_updated_at %></th>
         </tr>
       </thead>
       <tfoot>
         <tr>
           <th></th>
           <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
-          <th><%= list_ops_sort_link :is_main_nav, '<i class="fa fa-sitemap"></i>'.html_safe %>
-          <th><%= list_ops_sort_link :published, '<i class="fa fa-cloud-upload"></i>'.html_safe %>
-          <th><%= list_ops_sort_link :is_commentable, '<i class="fa fa-comments"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
+          <th><%= list_ops_sort_link :published, icon_published %></th>
+          <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>
           <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
-          <th><%= list_ops_sort_link :ordering, '<i class="fa fa-sort-numeric-asc"></i>'.html_safe %></th>
-          <th><%= list_ops_sort_link :parent_id, '<i class="fa fa-folder"></i>'.html_safe %></th>
-          <th><%= list_ops_sort_link :updated_at, '<i class="fa fa-calendar"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :ordering, icon_ordering %></th>
+          <th><%= list_ops_sort_link :parent_id, icon_page_category %></th>
+          <th><%= list_ops_sort_link :updated_at, icon_updated_at %></th>
         </tr>
       </tfoot>
 
