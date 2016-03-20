@@ -14,13 +14,13 @@ $(function() {
   });
 
   // bulk update/destroy form
-  $('[data-bulk-update-form]').each(function() {
+  $('[data-bulk-update-form], [data-bulk-destroy-form]').each(function() {
     $(this).submit(function(e) {
       // e.preventDefault();
       var $form = $(this);
-      var resourcesProviders = $($form.data('bulk-update-form'));
+      var resourcesProviders = $($form.data('bulk-update-form') || $form.data('bulk-destroy-form'));
       var checkboxes = $('input:checkbox', resourcesProviders);
-      
+
       checkboxes.each(function() {
         var $checkbox = $(this);
         if ($checkbox.prop('checked')) {
@@ -34,6 +34,8 @@ $(function() {
           $input.attr('name', '');
         }
       });
+
+      // console.log($('input:hidden', $form));
     });
   });
 

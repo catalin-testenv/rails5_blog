@@ -52,6 +52,7 @@ en:
   to: 'to'
   filter_button: 'filter'
   bulk_update_button: 'bulk update'
+  bulk_destroy_button: 'bulk delete'
   bulk_actions: 'bulk actions'
   bool_no_change: 'no change'
   filters: 'filters'
@@ -71,4 +72,5 @@ en:
   resource_bulk_update_success: 'Updates were applied.'
   resource_update_failed: 'could not update %{resource} %{resource_name}.'
   resource_destroy_success: '%{resource} %{resource_name} destroyed.'
+  resource_bulk_destroy_success: 'selections destroyed'
   resource_destroy_failed: 'could not destroy %{resource} %{resource_name}.'

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :pages do
       collection do
         post 'bulk_update'
+        delete 'bulk_destroy'
       end
     end
   end

@@ -5,7 +5,7 @@ module CommonMessagesConcern
 
     %w|resource_creation_success resource_creation_failed
       resource_update_success resource_update_failed
-      resource_bulk_update_success
+      resource_bulk_update_success resource_bulk_destroy_success
       resource_destroy_success resource_destroy_failed
       resource_view_listing resource_view_editing
       resource_view_new resource_view_show

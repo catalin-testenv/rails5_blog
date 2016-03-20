@@ -70,12 +70,13 @@ class Admin::PagesController < Admin::AdminController
     end
   end
 
+  # POST /admin/pages/bulk_update
   def bulk_update
     authorize Page
     skip_policy_scope
 
-    if bulk_update_params['ids'] && bulk_update_params['attrs']
-      Page.where(:id => bulk_update_params['ids']).update_all(bulk_update_params['attrs'])
+    if bulk_params['ids'] && bulk_params['attrs']
+      Page.where(:id => bulk_params['ids']).update_all(bulk_params['attrs'])
     end
     respond_to do |format|
       format.html do
@@ -96,6 +97,27 @@ class Admin::PagesController < Admin::AdminController
     @resource.destroy
     respond_to do |format|
       format.html { redirect_to admin_pages_url, notice: resource_destroy_success_message(resource_instance: @resource) }
+    end
+  end
+
+  # DELETE /admin/pages/bulk_delete
+  def bulk_destroy
+    authorize Page
+    skip_policy_scope
+
+    if bulk_params['ids']
+      Page.where(:id => bulk_params['ids']).destroy_all
+    end
+    respond_to do |format|
+      format.html do
+        redirect_back fallback_location: admin_pages_path, notice: resource_bulk_destroy_success_message
+      end
+    end
+  rescue => e
+    respond_to do |format|
+      format.html do
+        redirect_back fallback_location: admin_pages_path, alert: e.message
+      end
     end
   end
 
@@ -120,7 +142,7 @@ class Admin::PagesController < Admin::AdminController
       )
   end
 
-  def bulk_update_params
+  def bulk_params
     # ex: # {ids: ['174', '175'], 'attrs' => [:max_comments, :published]}
     params.fetch(:page, {}).permit({
        ids: [],

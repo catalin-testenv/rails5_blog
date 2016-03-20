@@ -8,7 +8,7 @@
 <%= admin_body_title("#{title} (#{@resource_list.count})")  %>
 
 <% page_index_links = [
-    {message: resource_view_new_message(resource: Page), path: new_admin_page_path}
+    {message: resource_view_new_message(resource: Page), path: new_admin_page_path, options: {target: '_blank'}}
 ] %>
 
 <%= admin_body_top_links(page_index_links) %>
@@ -47,29 +47,37 @@
     <div class="uk-width-small-1-2 uk-width-large-1-4">
       <%= list_ops_boolean(Page, :is_commentable, :is_commentable, t('yep'), t('nope'), t('wildcard')) %>
     </div>
-    <div class="uk-width-small-1-2 uk-width-large-1-4">
-      <%= list_ops_submit(t('filter_button').humanize, with_fake_label: 'uk-hidden-xsmall') %>
+
+    <div class="uk-width-small-1-1">
+      <%# .bulk-update-area class exists for data-uk-grid-margin to receive 'display.uk.check' event, when area is revealed %>
+      <div class="uk-grid uk-grid-small bulk-update-area" data-uk-grid-margin>
+        <div class="uk-width-small-1-2">
+          <%= list_ops_submit(t('filter_button').humanize, with_fake_label: false) %>
+        </div>
+      </div>
     </div>
+
   </div>
 </form>
 
 <h3 class="admin-body-section-title"><%= t('results').humanize %></h3>
 
-<!-- bulk update area -->
-<div class="uk-grid uk-grid-small">
+<!-- bulk update/destroy area -->
+<div class="uk-grid uk-grid-small bulk-actions">
   <div class="uk-width">
     <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
       <button class="uk-button blue-button" onclick="event.preventDefault();"><%= t('bulk_actions').humanize %></button>
       <div class="uk-dropdown uk-dropdown-small">
         <ul class="uk-nav uk-nav-dropdown">
-          <li><a href="" data-reveal-area=".bulk-update-area" class="font-weight-normal"><%= t('edit').humanize %></a></li>
-          <li><a href="" data-reveal-area=".bulk-update-area" class="font-weight-normal"><%= t('destroy').humanize %></a></li>
+          <li><a href="" data-reveal-area=".bulk-update-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= t('edit').humanize %></a></li>
+          <li><a href="" data-reveal-area=".bulk-destroy-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= t('destroy').humanize %></a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
+<!-- bulk update form -->
 <%= form_tag bulk_update_admin_pages_path(request.query_parameters), class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => '.resources-provider'} do %>
 <%#
 examples:
@@ -85,31 +93,51 @@ examples:
             .collect { |p| [p.name, p.id] }
             .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
       </div>
-      <div class="uk-width-small-1-2 uk-width-large-1-3">
+      <div class="uk-width-small-1-2 uk-width-large-1-4">
         <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
-      <div class="uk-width-small-1-2 uk-width-large-1-3">
+      <div class="uk-width-small-1-2 uk-width-large-1-4">
         <%= list_ops_boolean(Page, 'published', 'page[attrs][published]', t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
-      <div class="uk-width-small-1-2 uk-width-large-1-3">
+      <div class="uk-width-small-1-2 uk-width-large-1-4">
         <%= list_ops_boolean(Page, 'is_commentable', 'page[attrs][is_commentable]', t('yep'), t('nope'), t('bool_no_change')) %>
       </div>
-      <div class="uk-width-small-1-1">
+      <div class="uk-width">
         <%# .bulk-update-area class exists for data-uk-grid-margin to receive 'display.uk.check' event, when area is revealed %>
         <div class="uk-grid uk-grid-small bulk-update-area" data-uk-grid-margin>
           <div class="uk-width-small-1-2">
-            <%= list_ops_submit(t('bulk_update_button').humanize, with_fake_label: false) %>
+            <div class="uk-form-controls">
+              <button class="uk-button uk-width" data-hide-area=".bulk-update-area" data-reveal-area=".bulk-actions"><%= t('cancel').humanize %></button>
+            </div>
           </div>
           <div class="uk-width-small-1-2">
-            <div class="uk-form-controls">
-              <button class="uk-button uk-width" data-hide-area=".bulk-update-area"><%= t('cancel').humanize %></button>
-            </div>
+            <%= list_ops_submit(t('bulk_update_button').humanize, with_fake_label: false) %>
           </div>
         </div>
       </div>
-      <div class="uk-width-small-1-1"></div><%# adds some space thanks to data-uk-grid-margin%>
+      <div class="uk-width"></div><%# adds some space thanks to data-uk-grid-margin%>
     </div>
 <% end %>
+
+<!-- bulk destroy form -->
+<%= form_tag bulk_destroy_admin_pages_path(request.query_parameters), method: :delete, class: %w(uk-form uk-form-stacked), data: {'bulk-destroy-form' => '.resources-provider'} do %>
+    <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-destroy-area" data-uk-grid-margin >
+      <div class="uk-width">
+        <div class="uk-grid uk-grid-small bulk-destroy-area" data-uk-grid-margin>
+          <div class="uk-width-small-1-2">
+            <div class="uk-form-controls">
+              <button class="uk-button uk-width" data-hide-area=".bulk-destroy-area" data-reveal-area=".bulk-actions"><%= t('cancel').humanize %></button>
+            </div>
+          </div>
+          <div class="uk-width-small-1-2">
+            <%= list_ops_submit(t('bulk_destroy_button').humanize, with_fake_label: false, data: { confirm: are_you_sure_message }) %>
+          </div>
+        </div>
+      </div>
+      <div class="uk-width"></div><%# adds some space thanks to data-uk-grid-margin%>
+    </div>
+<% end %>
+
 
 <!-- results area -->
 <div class="uk-overflow-container">

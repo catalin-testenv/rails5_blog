@@ -31,11 +31,19 @@ class ApplicationPolicy
     user.admin?
   end
 
+  def bulk_update?
+    user.admin?
+  end
+
   def edit?
     update?
   end
 
   def destroy?
+    user.admin?
+  end
+
+  def bulk_destroy?
     user.admin?
   end
 
