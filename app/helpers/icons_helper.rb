@@ -45,7 +45,7 @@ module IconsHelper
   end
 
   def icon_new(options='')
-    "<i class='fa fa-plus-square-o #{options}'></i>".html_safe
+    "<i class='fa fa-file-o #{options}'></i>".html_safe
   end
 
   def icon_list(options='')
