@@ -32,6 +32,18 @@ module IconsHelper
     "<i class='fa fa-trash-o #{options}'></i>".html_safe
   end
 
+  def icon_new(options='')
+    "<i class='fa fa-plus-square-o #{options}'></i>".html_safe
+  end
+
+  def icon_list(options='')
+    "<i class='fa fa-list #{options}'></i>".html_safe
+  end
+
+  def icon_preview(options='')
+    "<i class='fa fa-eye #{options}'></i>".html_safe
+  end
+
   def icon_filter(options='')
     "<i class='fa fa-filter #{options}'></i>".html_safe
   end

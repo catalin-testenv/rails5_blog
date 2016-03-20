@@ -8,10 +8,10 @@
 <%= admin_body_title(title) %>
 
 <% page_edit_links = [
-    {message: list_message, path: admin_pages_path},
-    {message: preview_message, path: page_path(@resource),
+    {message: icon_list, path: admin_pages_path},
+    {message: icon_preview, path: page_path(@resource),
      options: {target: '_blank'}},
-    {message: destroy_message, path: admin_page_path(@resource),
+    {message: icon_destroy, path: admin_page_path(@resource),
      options: {method: :delete, data: { confirm: are_you_sure_message }}}
 ] %>
 

@@ -8,7 +8,7 @@
 <%= admin_body_title("#{title} (#{@resource_list.count})")  %>
 
 <% page_index_links = [
-    {message: resource_view_new_message(resource: Page), path: new_admin_page_path, options: {target: '_blank'}}
+    {message: icon_new, path: new_admin_page_path, options: {target: '_blank'}}
 ] %>
 
 <%= admin_body_top_links(page_index_links) %>
