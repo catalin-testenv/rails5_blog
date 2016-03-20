@@ -176,9 +176,9 @@ examples:
           <td>
             <%= link_to resource.name, '#', data: {'uk-toggle' => "{target:'##{resource.id}'}"}, class: %w(secondary-link) %>
             <ul id="<%= resource.id %>" class="uk-list uk-nav-sub uk-margin-bottom-remove uk-hidden">
-              <li><%= link_to preview_message, page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
-              <li><%= link_to edit_message, edit_admin_page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
-              <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link) %></li>
+              <li><%= link_to "#{icon_preview}&nbsp;&nbsp;#{preview_message}".html_safe, page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
+              <li><%= link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, edit_admin_page_path(resource), target: '_blank', class: %w(secondary-link) %></li>
+              <li><%= link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link) %></li>
             </ul>
           </td>
           <td><i class="fa fa-thumbs-o-<%= resource.is_main_nav ? 'up success-color' : 'down danger-color' %>"></i></td>
