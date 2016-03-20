@@ -1,5 +1,5 @@
 
-# TODO: css .admin-body-section-title must not be hardcoded
+
 # TODO: make comments_max global !
 # TODO: published should be a date that can be set in the future
 # TODO: add will-paginate on index pages
