@@ -8,6 +8,14 @@
 
 // -------- /define variables
 $admin-body-uk-panel-background-color:           #f9f9f9;
+$light-orange:                                   #FCE8D1;
+$light-blue:                                     #d0f3ff;
+$light-green:                                    #D5F6D7;
+$lighter-green:                                  lighten($light-green, 5%);
+$medium-green:                                   darken($light-green, 50%);
+$dark-green:                                     darken($light-green, 65%);
+$light-red:                                      #FFF1F0;
+$medium-red:                                     #d85030;
 
 $link-font-size:                                 13px;
 $link-letter-spacing:                            0.010em;
@@ -97,11 +105,12 @@ $form-focus-color:                               #5b5b60;
 $form-focus-border:                              #dadada;
 
 
-$alert-success-background:                       #F2FAE3;
-$alert-success-color:                            #659f13;
-$alert-danger-background:                        #FFF1F0;
-$alert-danger-color:                             #d85030;
-
+$text-success-color:                             $medium-green;
+$text-danger-color:                              $medium-red;
+$alert-success-background:                       $lighter-green;
+$alert-success-color:                            transparentize($dark-green, 0.1);
+$alert-danger-background:                        $light-red;
+$alert-danger-color:                             $text-danger-color;
 
 
 $button-color:                                   $form-color;
@@ -257,25 +266,25 @@ $button-border_:                                 $panel-title-background-color_;
 
 @mixin hook-button() {
   color: $button-color !important;
-  background-color: #FCE8D1; //#C7F1FF;
+  background-color: $light-orange;
 }
 
 @mixin hook-button-hover() {
-  background-color: darken(#FCE8D1, 4%);
+  background-color: darken($light-orange, 4%);
 }
 
 @mixin hook-button-active() {
-  background-color: darken(#FCE8D1, 5%);
+  background-color: darken($light-orange, 5%);
 }
 
 .blue-button {
-  background-color: #d0f3ff !important;
+  background-color: $light-blue !important;
 }
 .blue-button:hover {
-  background-color: darken(#d0f3ff, 4%) !important;
+  background-color: darken($light-blue, 4%) !important;
 }
 .blue-button:active {
-  background-color: darken(#d0f3ff, 5%) !important;
+  background-color: darken($light-blue, 5%) !important;
 }
 
 // -------- /override uk hook-mixins
@@ -284,8 +293,28 @@ $button-border_:                                 $panel-title-background-color_;
 
 // -------- helper classes
 
+.light-blue-background {
+  background-color: $light-blue !important;
+}
+
+.light-orange-background {
+  background-color: $light-orange !important;
+}
+
+.success-background {
+  background-color: $light-green !important;
+}
+
+.success-color {
+  color: $medium-green !important;
+}
+
+.danger-color {
+  color: $text-danger-color !important;
+}
+
 .secondary-link {
-  color: $nav-side-header-color;
+  color: $nav-side-header-color !important;
 }
 
 .uk-link-unmuted {
@@ -415,7 +444,7 @@ select::-ms-expand {
 @import 'bower-uikit/scss/components/sticky';
 
 // ============== site utilities overrides
-$ccr-color-button-on: #D5F6D7;
+$ccr-color-button-on: $light-green;
 $ccr-color-button: darken($admin-body-uk-panel-background-color, 3%);
 $ccr-color-button-text: $panel-title-color;
 $ccr-color-button-text-on: $panel-title-color;

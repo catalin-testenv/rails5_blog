@@ -146,26 +146,26 @@ examples:
         <tr>
           <th><%= check_box_tag '', '', false, data: {'select-all-checkboxes' => '.group-check'} %></th>
           <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
-          <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
-          <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
-          <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+          <th><%= list_ops_sort_link :is_main_nav, '<i class="fa fa-sitemap"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :published, '<i class="fa fa-cloud-upload"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :is_commentable, '<i class="fa fa-comments"></i>'.html_safe %></th>
           <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
-          <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
-          <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
-          <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
+          <th><%= list_ops_sort_link :ordering, '<i class="fa fa-sort-numeric-asc"></i>'.html_safe %></th><
+          <th><%= list_ops_sort_link :parent_id, '<i class="fa fa-folder"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :updated_at, '<i class="fa fa-calendar"></i>'.html_safe %></th>
         </tr>
       </thead>
       <tfoot>
         <tr>
           <th></th>
           <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
-          <th><%= list_ops_sort_link :is_main_nav, Page.human_attribute_name(:is_main_nav).humanize %></th>
-          <th><%= list_ops_sort_link :published, Page.human_attribute_name(:published).humanize %></th>
-          <th><%= list_ops_sort_link :is_commentable, Page.human_attribute_name(:is_commentable).humanize %></th>
+          <th><%= list_ops_sort_link :is_main_nav, '<i class="fa fa-sitemap"></i>'.html_safe %>
+          <th><%= list_ops_sort_link :published, '<i class="fa fa-cloud-upload"></i>'.html_safe %>
+          <th><%= list_ops_sort_link :is_commentable, '<i class="fa fa-comments"></i>'.html_safe %></th>
           <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
-          <th><%= list_ops_sort_link :ordering, Page.human_attribute_name(:ordering).humanize %></th>
-          <th><%= list_ops_sort_link :parent_id, Page.human_attribute_name(:page_category).humanize %></th>
-          <th><%= list_ops_sort_link :updated_at, Page.human_attribute_name(:updated_at).humanize %></th>
+          <th><%= list_ops_sort_link :ordering, '<i class="fa fa-sort-numeric-asc"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :parent_id, '<i class="fa fa-folder"></i>'.html_safe %></th>
+          <th><%= list_ops_sort_link :updated_at, '<i class="fa fa-calendar"></i>'.html_safe %></th>
         </tr>
       </tfoot>
 
@@ -181,9 +181,9 @@ examples:
               <li><%= link_to destroy_message, admin_page_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link) %></li>
             </ul>
           </td>
-          <td><%= resource.is_main_nav %></td>
-          <td><%= resource.published %></td>
-          <td><%= resource.is_commentable %></td>
+          <td><i class="fa fa-thumbs-o-<%= resource.is_main_nav ? 'up success-color' : 'down danger-color' %>"></i></td>
+          <td><i class="fa fa-thumbs-o-<%= resource.published ? 'up success-color' : 'down danger-color' %>"></i></td>
+          <td><i class="fa fa-thumbs-o-<%= resource.is_commentable ? 'up success-color' : 'down danger-color' %>"></i></td>
           <td><%= resource.max_comments %></td>
           <td><%= resource.ordering %></td>
           <td><%= resource.page_category.try(:name) || t('root') %></td>
