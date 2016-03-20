@@ -5,7 +5,7 @@
     <%= title %>
 <% end %>
 
-<%= admin_body_title(title) %>
+<%= admin_body_title("#{icon_edit}&nbsp;&nbsp;#{title}") %>
 
 <% page_edit_links = [
     {message: icon_list, path: admin_pages_path},
