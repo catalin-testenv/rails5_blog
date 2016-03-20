@@ -7,25 +7,29 @@
 $(function() {
   'use strict';
   $('[data-editor-ace][data-editor-tinymce]').each(function() {
+    var WYSIWYG = '<i class="fa fa-file-word-o fa-2x"></i>';
+    var CODE = '<i class="fa fa-file-code-o fa-2x"></i>';
     var target = this;
     var $this = $(this);
-    var initial_editor_type = 'code';
+    var initial_editor_type = CODE;
     var switcher_id = this.id + '_switcher';
-    var switcher_values = {'wysiwyg': 'code', 'code': 'wysiwyg'};
+    var switcher_values = {};
+    switcher_values[WYSIWYG] = CODE;
+    switcher_values[CODE] = WYSIWYG;
 
     var editor_ace = undefined;
     var editor_tinymce = undefined;
 
     function initialize_for(editor_type) {
       switch(editor_type) {
-        case 'code':
+        case CODE:
           if (editor_tinymce) {
             editor_tinymce_destroy(editor_tinymce)
           } else {
             !editor_ace && (editor_ace = editor_ace_initialize(target));
           }
           break;
-        case 'wysiwyg':
+        case WYSIWYG:
           editor_ace && (editor_ace = editor_ace_destroy(editor_ace));
           !editor_tinymce && editor_tinymce_initialize(target, function(editor) {
             editor_tinymce = editor;
@@ -39,14 +43,14 @@ $(function() {
 
     function change(e) {
       e.preventDefault();
-      var button = $(e.target);
-      var next_editor_type = button.text();
-      var current_editor_type = switcher_values[button.text()];
-      if (next_editor_type == 'wysiwyg') {
+      var button = $(e.target).parent();
+      var next_editor_type = button.html();
+      var current_editor_type = switcher_values[button.html()];
+      if (next_editor_type == WYSIWYG) {
         var proceed = confirm('<%= I18n.t('confirm_editor_switch').html_safe %>');
         if (!proceed) { return; }
       }
-      button.text(current_editor_type);
+      button.html(current_editor_type);
       initialize_for(next_editor_type);
     }
 
