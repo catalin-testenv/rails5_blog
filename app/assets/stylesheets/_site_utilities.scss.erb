@@ -40,6 +40,10 @@ $ccr-height:               30px      !default;
   background: $ccr-color-button;
   color: $ccr-color-button-text;
 }
+.ccr-state-off:hover {
+  background: darken($ccr-color-button, 3%);
+  color: darken($ccr-color-button-text, 3%);
+}
 .ccr-state-off:after {
   font-family: FontAwesome;
   content: "\00a0\00a0\00a0\f088";
@@ -47,6 +51,10 @@ $ccr-height:               30px      !default;
 .ccr-state-on {
   background: $ccr-color-button-on;
   color: $ccr-color-button-text-on;
+}
+.ccr-state-on:hover {
+  background: darken($ccr-color-button-on, 3%);
+  color: darken($ccr-color-button-text-on, 3%);
 }
 .ccr-state-on:after {
   font-family: FontAwesome;
