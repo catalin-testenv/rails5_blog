@@ -25,7 +25,7 @@
   <% end %>
   <div class="uk-grid uk-grid-small" data-uk-grid-margin>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_string(Page, :name, :flt_name, '', placeholder: '...') %>
+      <%= list_ops_string(Page, :name, :flt_name, icon_title, placeholder: '...') %>
     </div>
     <div class="uk-width-medium-1-2">
       <%= list_ops_select(Page, :page_category, :in_category, icon_page_category, page_categories_all
@@ -145,7 +145,7 @@ examples:
       <thead>
         <tr>
           <th><%= check_box_tag '', '', false, data: {'select-all-checkboxes' => '.group-check'} %></th>
-          <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
+          <th><%= list_ops_sort_link :name, icon_title %></th>
           <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
           <th><%= list_ops_sort_link :published, icon_published %></th>
           <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>
@@ -158,7 +158,7 @@ examples:
       <tfoot>
         <tr>
           <th></th>
-          <th><%= list_ops_sort_link :name, Page.human_attribute_name(:name).humanize %></th>
+          <th><%= list_ops_sort_link :name, icon_title %></th>
           <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
           <th><%= list_ops_sort_link :published, icon_published %></th>
           <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>

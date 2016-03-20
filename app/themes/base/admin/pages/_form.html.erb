@@ -8,7 +8,7 @@
       <div class="uk-width">
         <div class="uk-grid uk-grid-small" data-uk-grid-margin>
           <div class="uk-width-medium-1-2">
-            <%= form_input(f, :text_field, :name, '') %>
+            <%= form_input(f, :text_field, :name, icon_title) %>
           </div>
           <div class="uk-width-medium-1-2">
             <% parent_id_options = page_categories_all.collect { |p| [p.name, p.id] }.unshift([I18n.t('root'), 0]) %>
@@ -35,7 +35,7 @@
             <%= form_check_box(f, :published, icon_published) %>
           </div>
           <div class="uk-width-medium-1-2 uk-margin-top">
-            <%= form_check_box(f, :root_page, '') %>
+            <%= form_check_box(f, :root_page, icon_home_page) %>
           </div>
         </div>
       </div>

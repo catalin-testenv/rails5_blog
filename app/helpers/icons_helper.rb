@@ -1,5 +1,13 @@
 module IconsHelper
 
+  def icon_title(options='')
+    "<i class='fa fa-flag #{options}'></i>".html_safe
+  end
+
+  def icon_home_page(options='')
+    "<i class='fa fa-home #{options}'></i>".html_safe
+  end
+
   def icon_is_main_nav(options='')
     "<i class='fa fa-sitemap #{options}'></i>".html_safe
   end
