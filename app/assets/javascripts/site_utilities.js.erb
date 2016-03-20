@@ -1,33 +1,45 @@
 
-// multiple checkboxes toggle checked
-$(function(){
-  $('[data-select-all-checkboxes]').each(function(){
+
+$(function() {
+
+  // multiple checkboxes toggle checked
+  $('[data-select-all-checkboxes]').each(function() {
     var $this = $(this);
     var target = $this.data('select-all-checkboxes');
-    $this.click(function(){
-      $(target).each(function(){
+    $this.click(function() {
+      $(target).each(function() {
         $(this).trigger('click');
       })
     })
   });
 
-  // form which does not submit certain inputs with empty values
-  $('[data-bulk-update-form]').each(function(){
-    $(this).submit(function(e){
+  // bulk update/destroy form
+  $('[data-bulk-update-form]').each(function() {
+    $(this).submit(function(e) {
+      // e.preventDefault();
       var $form = $(this);
-      $("input[type!=hidden], select", $form).each(function(){
+      var resourcesProviders = $($form.data('bulk-update-form'));
+      var checkboxes = $('input:checkbox', resourcesProviders);
+      
+      checkboxes.each(function() {
+        var $checkbox = $(this);
+        if ($checkbox.prop('checked')) {
+          $form.append('<input type="hidden" name="'+$checkbox.attr('name')+'" value="'+$checkbox.val()+'" />');
+        }
+      });
+
+      $("input[type!=hidden], select", $form).each(function() {
         var $input = $(this);
         if (!$input.val()) {
           $input.attr('name', '');
         }
       });
-      // e.preventDefault();
     });
   });
 
   // data-reveal-area
-  $('[data-reveal-area]').each(function(){
-    $(this).click(function(e){
+  $('[data-reveal-area]').each(function() {
+    $(this).click(function(e) {
       e.preventDefault();
       var target = $(this).data('reveal-area');
       $(target).removeClass('uk-hidden');
@@ -36,7 +48,7 @@ $(function(){
   });
 
   // data-hide-area
-  $('[data-hide-area]').each(function(){
+  $('[data-hide-area]').each(function() {
     $(this).click(function(e){
       e.preventDefault();
       var target = $(this).data('hide-area');
