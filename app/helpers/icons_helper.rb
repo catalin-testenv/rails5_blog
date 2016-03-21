@@ -1,5 +1,9 @@
 module IconsHelper
 
+  def icon_actions(options='')
+    "<i class='fa fa-cog #{options}'></i>".html_safe
+  end
+
   def icon_title(options='')
     "<i class='fa fa-flag #{options}'></i>".html_safe
   end

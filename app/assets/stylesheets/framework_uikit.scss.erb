@@ -219,6 +219,11 @@ $button-border_:                                 $panel-title-background-color_;
     background-color: lighten($admin-body-uk-panel-background-color, 0.5%);
     border-top: 1px solid darken($table-active-background, 1%);
   }
+
+  .uk-table tfoot tr:last-child > th {
+    // for dropdown button to not be clipped by the surrounding overflow-y hidden wrapper
+    height: 100px !important;
+  }
 }
 
 @mixin hook-form-misc(){
@@ -343,6 +348,22 @@ $button-border_:                                 $panel-title-background-color_;
   font-weight: normal !important;
 }
 
+.no-background {
+  background: none !important;
+}
+
+.no-dimensions {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: auto !important;
+  min-width: unset !important;
+  max-width: unset !important;
+  height: auto !important;
+  min-height: unset !important;
+  max-height: unset !important;
+  line-height: normal !important;
+}
+
 // =============== for the sake of uk utils completeness ===============
 .uk-margin-left-remove { margin-left: 0 !important; }
 .uk-margin-right-remove { margin-right: 0 !important; }
@@ -387,6 +408,13 @@ $button-border_:                                 $panel-title-background-color_;
   .uk-visible-small { display: none !important; }
   .uk-hidden-xsmall { display: none !important; }
 }
+
+.uk-overflow-horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.uk-overflow-horizontal > :last-child { margin-bottom: 0; }
 
 // -------- /helper classes
 
