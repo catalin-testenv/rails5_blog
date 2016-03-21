@@ -12,7 +12,7 @@ class Admin::PagesController < Admin::AdminController
   # GET /admin/pages
   def index
     authorize Page
-    @resource_list = list_ops_sort(policy_scope(apply_scopes(Page).all))
+    @resource_list = list_ops_sort(policy_scope(apply_scopes(Page))).page(params[:page])
   end
 
   # GET /admin/pages/1
