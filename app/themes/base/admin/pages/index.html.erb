@@ -69,8 +69,8 @@
       <button class="uk-button blue-button" onclick="event.preventDefault();"><%= t('bulk_actions').humanize %></button>
       <div class="uk-dropdown uk-dropdown-small">
         <ul class="uk-nav uk-nav-dropdown">
-          <li><a href="" data-reveal-area=".bulk-update-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= icon_edit %></a></li>
-          <li><a href="" data-reveal-area=".bulk-destroy-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= icon_destroy %></a></li>
+          <li><a href="" data-reveal-area=".bulk-update-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= "#{icon_edit}&nbsp;&nbsp;#{t('edit')}".html_safe %></a></li>
+          <li><a href="" data-reveal-area=".bulk-destroy-area" data-hide-area=".bulk-actions" class="font-weight-normal"><%= "#{icon_destroy}&nbsp;&nbsp;#{t('destroy')}".html_safe %></a></li>
         </ul>
       </div>
     </div>
