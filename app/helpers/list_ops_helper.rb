@@ -70,7 +70,7 @@ module ListOpsHelper
   def list_ops_datetime_range(model, column, input_name, icon,  start_key, end_key, start_label, end_label)
     qp = request.query_parameters
     content_tag :div, class: %w(uk-form-row) do
-      concat(label_tag(input_name, class: %w(uk-form-label)) do
+      concat(label_tag("#{input_name}[#{start_key}]", class: %w(uk-form-label)) do
         if icon.present?
           icon + '&nbsp;&nbsp;'.html_safe + model.human_attribute_name(column).humanize
         else

@@ -16,7 +16,7 @@
 <h3 class="admin-body-section-title uk-margin-top-remove"><%= t('filters').humanize %></h3>
 
 <!-- filters area -->
-<form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="" method="get">
+<form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="<%= admin_pages_path %>" method="get">
   <%# declare what filters are to be used to not include them in hidden fields %>
   <% filter_names = %w[flt_name is_main_nav published is_commentable updated_at_period in_category] %>
   <%# preserve query string in hidden fields %>
@@ -85,12 +85,12 @@ examples:
 %>
     <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin >
       <div class="uk-width-medium-1-2">
-        <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]', '') %>
+        <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]', '', placeholder: '...') %>
       </div>
       <div class="uk-width-medium-1-2">
         <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', icon_page_category, page_categories_all
             .collect { |p| [p.name, p.id] }
-            .unshift(['', nil], [t('root'), 0]), {class: 'uk-width'}) %>
+            .unshift(['...', nil], [t('root'), 0]), {class: 'uk-width'}) %>
       </div>
       <div class="uk-width-small-1-2 uk-width-large-1-4">
         <%= list_ops_boolean(Page, 'is_main_nav', 'page[attrs][is_main_nav]', icon_is_main_nav, t('yep'), t('nope'), t('bool_no_change')) %>
@@ -143,7 +143,9 @@ examples:
   <table class="uk-table uk-table-striped-even uk-table-hover resources-provider"> <!-- uk-text-nowrap uk-table-condensed uk-table-hover -->
       <thead>
         <tr>
-          <th><%= check_box_tag '', '', false, data: {'select-all-checkboxes' => '.group-check'} %></th>
+          <th>
+            <input type="checkbox" data-select-all-checkboxes=".group-check" />
+          </th>
           <th></th>
           <th><%= list_ops_sort_link :name, icon_title %></th>
           <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
@@ -173,7 +175,9 @@ examples:
       <tbody>
       <% @resource_list.each do |resource| %>
         <tr>
-          <td><%= check_box_tag 'page[ids][]', resource.id, false, class: %w(group-check) %></td>
+          <td>
+            <input type="checkbox" name="page[ids][]"  value="<%= resource.id %>" class="group-check" />
+          </td>
           <td>
             <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
               <button class="uk-button no-background no-dimensions" onclick="event.preventDefault();"><%= icon_actions %></button>
