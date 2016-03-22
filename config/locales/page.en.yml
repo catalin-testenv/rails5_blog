@@ -10,7 +10,6 @@ en:
         is_main_nav: 'Included in navigation'
         is_commentable: 'Accepts comments'
         published: 'Published'
-        max_comments: 'Max comments'
         root_page: 'Landing page'
         parent_id: 'Category ID'
         ordering: 'Ordering'

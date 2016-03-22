@@ -132,7 +132,7 @@ class Admin::PagesController < Admin::AdminController
     params
       .require(:page)
       .permit(:name, :is_main_nav,
-              :is_commentable, :max_comments,
+              :is_commentable,
               :published, :root_page,
               :parent_id, :ordering,
                page_content_attributes: [
@@ -143,10 +143,10 @@ class Admin::PagesController < Admin::AdminController
   end
 
   def bulk_params
-    # ex: # {ids: ['174', '175'], 'attrs' => [:max_comments, :published]}
+    # ex: # {ids: ['174', '175'], 'attrs' => [:is_main_nav, :published]}
     params.fetch(:page, {}).permit({
        ids: [],
-       attrs: [:max_comments, :parent_id, :published, :is_main_nav, :is_commentable]
+       attrs: [:parent_id, :published, :is_main_nav, :is_commentable]
      }).to_h
   end
 

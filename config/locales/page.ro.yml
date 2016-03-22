@@ -10,7 +10,6 @@ ro:
         is_main_nav: 'Inclusa in navigare'
         is_commentable: 'Accepta commentarii'
         published: 'Publicata'
-        max_comments: 'Comentarii max'
         root_page: 'Pagina principala'
         parent_id: 'Categorie ID'
         ordering: 'Ordonare'

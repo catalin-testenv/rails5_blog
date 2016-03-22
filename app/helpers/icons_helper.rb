@@ -24,10 +24,6 @@ module IconsHelper
     "<i class='fa fa-comments #{options}'></i>".html_safe
   end
 
-  def icon_max_comments(options='')
-    "<i class='fa fa-comments #{options}'></i>".html_safe
-  end
-
   def icon_ordering(options='')
     "<i class='fa fa-sort-numeric-asc #{options}'></i>".html_safe
   end

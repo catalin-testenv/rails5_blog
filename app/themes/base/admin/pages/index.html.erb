@@ -81,13 +81,10 @@
 <%#
 examples:
     <input type="hidden" name="page[ids][]" value="174" />
-    <input type="hidden" name="page[attrs][max_comments]" value="46" />
+    <input type="hidden" name="page[attrs][is_commentable]" value="1" />
 %>
     <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin >
-      <div class="uk-width-medium-1-2">
-        <%= list_ops_string(Page, 'max_comments', 'page[attrs][max_comments]', '', placeholder: '...') %>
-      </div>
-      <div class="uk-width-medium-1-2">
+      <div class="uk-width-medium-1-1">
         <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', icon_page_category, page_categories_all
             .collect { |p| [p.name, p.id] }
             .unshift(['...', nil], [t('root'), 0]), {class: 'uk-width'}) %>
@@ -151,7 +148,6 @@ examples:
           <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
           <th><%= list_ops_sort_link :published, icon_published %></th>
           <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>
-          <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
           <th><%= list_ops_sort_link :ordering, icon_ordering %></th>
           <th><%= list_ops_sort_link :parent_id, icon_page_category %></th>
           <th><%= list_ops_sort_link :updated_at, icon_updated_at %></th>
@@ -165,7 +161,6 @@ examples:
           <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
           <th><%= list_ops_sort_link :published, icon_published %></th>
           <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>
-          <th><%= list_ops_sort_link :max_comments, Page.human_attribute_name(:max_comments).humanize %></th>
           <th><%= list_ops_sort_link :ordering, icon_ordering %></th>
           <th><%= list_ops_sort_link :parent_id, icon_page_category %></th>
           <th><%= list_ops_sort_link :updated_at, icon_updated_at %></th>
@@ -194,7 +189,6 @@ examples:
           <td><i class="fa fa-thumbs-o-<%= resource.is_main_nav ? 'up success-color' : 'down danger-color' %>"></i></td>
           <td><i class="fa fa-thumbs-o-<%= resource.published ? 'up success-color' : 'down danger-color' %>"></i></td>
           <td><i class="fa fa-thumbs-o-<%= resource.is_commentable ? 'up success-color' : 'down danger-color' %>"></i></td>
-          <td><%= resource.max_comments %></td>
           <td><%= resource.ordering %></td>
           <td><%= resource.page_category.try(:name) || t('root') %></td>
           <td><%= resource.updated_at.to_date %></td>
