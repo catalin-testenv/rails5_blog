@@ -5,13 +5,13 @@
     <%= title %>
 <% end %>
 
-<%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.total_count})")  %>
+<%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.total_count})") %>
 
-<% page_index_links = [
+<% index_links = [
     {message: icon_new, path: new_admin_page_path, options: {target: '_blank'}}
 ] %>
 
-<%= admin_body_top_links(page_index_links) %>
+<%= admin_body_top_links(index_links) %>
 
 <h3 class="admin-body-section-title uk-margin-top-remove"><%= t('filters').humanize %></h3>
 
@@ -202,4 +202,4 @@ examples:
 
 <hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
 
-<%= admin_body_bottom_links(page_index_links) %>
+<%= admin_body_bottom_links(index_links) %>

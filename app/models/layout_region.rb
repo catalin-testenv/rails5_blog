@@ -4,4 +4,8 @@ class LayoutRegion < ApplicationRecord
     sidebar_left sidebar_right site_footer site_header
   |
   validates :name, presence: true
+
+  def default?
+    DEFAULTS.include? name
+  end
 end

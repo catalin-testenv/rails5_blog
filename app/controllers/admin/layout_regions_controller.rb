@@ -4,7 +4,7 @@ class Admin::LayoutRegionsController < Admin::AdminController
   # GET /admin/layout_regions
   def index
     authorize LayoutRegion
-    @resource_list = policy_scope(LayoutRegion.all)
+    @resource_list = list_ops_sort(policy_scope(LayoutRegion.all))
   end
 
   # GET /admin/layout_regions/1
