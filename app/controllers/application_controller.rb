@@ -85,9 +85,7 @@ class ApplicationController < ActionController::Base
   end
 
   def add_theme_support
-    @current_theme = ENV['APP_THEME']
-    append_view_path(File.join(Rails.root, "app/themes/custom/#{@current_theme}"))
-    append_view_path(File.join(Rails.root, 'app/themes/base'))
+    append_view_path(File.join(Rails.root, "app/themes/#{ENV['APP_THEME']}/views"))
   end
 
 end

@@ -4,15 +4,18 @@
 Rails.application.config.assets.version = '1.0'
 
 # Add additional assets to the asset load path
-# Rails.application.config.assets.paths << File.join(Rails.root, '/path')
+Rails.application.config.assets.paths << File.join(Rails.root, "app/themes/#{ENV['APP_THEME']}/assets/stylesheets")
+Rails.application.config.assets.paths << File.join(Rails.root, "app/themes/#{ENV['APP_THEME']}/assets/javascripts")
+Rails.application.config.assets.paths << File.join(Rails.root, "app/themes/#{ENV['APP_THEME']}/assets/images")
+Rails.application.config.assets.paths << File.join(Rails.root, "app/themes/#{ENV['APP_THEME']}/vendor")
 
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( **/*.jpg )
 Rails.application.config.assets.precompile += %w(
-  framework_foundation.*
-  framework_uikit.*
+  site_front.*
+  site_admin.*
 
   ace/*
   tinymce/*
