@@ -8,4 +8,8 @@ class LayoutRegion < ApplicationRecord
   def default?
     DEFAULTS.include? name
   end
+
+  def to_name
+    name
+  end
 end

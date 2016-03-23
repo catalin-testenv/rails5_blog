@@ -17,7 +17,7 @@ module FormHelper
     end
   end
 
-  def form_input(f, type, name, icon)
+  def form_input(f, type, name, icon, html_options={})
     capture do
       content_tag :div, class: %w(uk-form-row) do
         concat(label_tag(name, class: %w(uk-form-label)) do
@@ -28,7 +28,7 @@ module FormHelper
           end
         end)
         concat(content_tag(:div, class: %w(uk-form-controls)) do
-          f.send(type, name, class: 'uk-width')
+          f.send(type, name, class: 'uk-width', **html_options)
         end)
         concat(f.object.errors[name].map do |e|
           content_tag(:p, class: %w(uk-form-help-block uk-text-danger)) do
