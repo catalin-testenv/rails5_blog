@@ -5,7 +5,7 @@ en:
         one: 'Page Category'
         other: 'Page Categories'
     attributes:
-      page:
+      page_category:
         name: 'Name'
         parent_id: 'Parent ID'
         ordering: 'Ordering'
