@@ -79,6 +79,10 @@ page_24 = Page.create(name: 'page 2', published: true, is_main_nav: true, root_p
 # page_24.update(root_page: '0')
 
 
+LayoutRegion.destroy_all
+LayoutRegion.create(name: 'sidebar_left', content: 'sidebar_left content')
+
+
 
 
 
