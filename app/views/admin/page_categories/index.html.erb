@@ -1,0 +1,14 @@
+
+<% title = resource_view_listing_message(resource: PageCategory, count: 2) %>
+
+<% content_for :title do %>
+    <%= title %>
+<% end %>
+
+<%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.count})") %>
+
+<!-- results area -->
+<div>
+
+</div>
+

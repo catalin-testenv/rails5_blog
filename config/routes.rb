@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       end
     end
     resources :layout_regions
+    resources :page_categories, only: [:index, :create, :update, :destroy]
   end
 
   resources :pages, only: [:show]

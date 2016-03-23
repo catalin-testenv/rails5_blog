@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      page_category:
+        one: 'Page Category'
+        other: 'Page Categories'
+    attributes:
+      page:
+        name: 'Name'
+        parent_id: 'Parent ID'
+        ordering: 'Ordering'

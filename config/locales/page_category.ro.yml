@@ -1,0 +1,11 @@
+ro:
+  activerecord:
+    models:
+      page_category:
+        one: 'Categorie'
+        other: 'Categorii'
+    attributes:
+      page:
+        name: 'Nume'
+        parent_id: 'Id Parinte'
+        ordering: 'Ordonare'

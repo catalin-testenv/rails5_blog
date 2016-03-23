@@ -12,8 +12,12 @@ module ControllerDependentPolicy
     ctrl.is_a?(Admin::AdminController) && user && user.admin?
   end
 
+  def not_admin_controller
+    !ctrl.is_a?(Admin::AdminController)
+  end
+
   def admin_and_admin_controller_or_not_admin_controller
-    admin_and_admin_controller || !ctrl.is_a?(Admin::AdminController)
+    admin_and_admin_controller || not_admin_controller
   end
 
 end
