@@ -1,8 +1,7 @@
 module LayoutRegionsHelper
 
-  # TODO: fake
   def get_content_for(region)
-      "<div>content for #{region}: #{some_helper}</div>".html_safe
+    LayoutRegion.find_by(name: region).try(:html_safe)
   end
 
   # TODO: fake

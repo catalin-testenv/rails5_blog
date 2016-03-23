@@ -131,7 +131,7 @@ $button-border_:                                 $panel-title-background-color_;
 // -------- override uk hook-mixins
 @mixin hook-panel-box() {
 
-  #admin-toggle & {
+  #admin_toggle & {
     background-color: $base-body-background;
     a {
       color: $link-color-on-black-background;
@@ -151,7 +151,7 @@ $button-border_:                                 $panel-title-background-color_;
     }
   }
 
-  #admin-main-navigation & {
+  #admin_main_navigation & {
     background-color: $panel-title-background-color_;
     box-shadow: $box-shadow-bottom-inset;
     @media (min-width: $breakpoint-medium) {
@@ -183,7 +183,7 @@ $button-border_:                                 $panel-title-background-color_;
     }
   }
 
-  #admin-body > & {
+  #admin_body > & {
     background-color: $admin-body-uk-panel-background-color;
     @media (min-width: $breakpoint-medium) {
       //border-top-right-radius: $utility-border-rounded; // doesn't look good with alert/notice stacked up

@@ -23,8 +23,8 @@
     <div class="uk-container uk-container-center">
       <div class="uk-grid uk-margin-remove">
 
-        <!-- admin-toggle -->
-        <div id="admin-toggle" class="uk-width-medium-1-1 uk-padding-remove">
+        <!-- admin_toggle -->
+        <div id="admin_toggle" class="uk-width-medium-1-1 uk-padding-remove">
           <div class="uk-panel uk-panel-box">
             <% if current_user && current_user.admin? %>
                 <% if controller.is_a? Admin::AdminController  %>
@@ -40,10 +40,10 @@
             <% end %>
           </div>
         </div>
-        <!-- /admin-toggle -->
+        <!-- /admin_toggle -->
 
-        <!-- admin-main-navigation -->
-        <div id="admin-main-navigation" class="uk-width-medium-1-5 uk-padding-remove">
+        <!-- admin_main_navigation -->
+        <div id="admin_main_navigation" class="uk-width-medium-1-5 uk-padding-remove">
           <div class="uk-panel uk-panel-box" data-uk-sticky="{media: 980}"> <%# sticky start must be equal with $breakpoint-medium %>
             <%= render 'admin/partials/admin_main_navigation.html' %>
           </div>
@@ -52,7 +52,7 @@
 
         <div class="uk-width-medium-4-5 uk-padding-remove">
           <!-- admin-notice-alert -->
-          <div id="admin-notice-alert">
+          <div id="admin_notice_alert">
             <% if notice %>
                 <div class="uk-alert uk-margin-bottom-remove uk-alert-success" data-uk-alert>
                   <a href="" class="uk-alert-close uk-close"></a>
@@ -69,7 +69,7 @@
           <!-- /admin-notice-alert -->
 
           <!-- admin-body -->
-          <div id="admin-body">
+          <div id="admin_body">
             <div class="uk-panel uk-panel-box">
               <div class="uk-panel uk-panel-box panel-box-material">
                 <%= yield %>

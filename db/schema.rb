@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322132320) do
+ActiveRecord::Schema.define(version: 20160323110640) do
+
+  create_table "layout_regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "name",                     null: false
+    t.text   "content", limit: 16777215
+  end
 
   create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string  "name"

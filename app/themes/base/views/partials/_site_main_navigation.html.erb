@@ -1,6 +1,6 @@
-<div id="site-main-navigation">
+<div id="site_main_navigation">
   <!-- mobile bar -->
-  <div class="title-bar clearfix"  data-responsive-toggle="small-site-main-navigation" data-hide-for="large">
+  <div class="title-bar clearfix"  data-responsive-toggle="small_site_main_navigation" data-hide-for="large">
     <button class="menu-icon" type="button" data-toggle></button>
     <div class="title-bar-title"><%= menu_message %></div>
     <div class="small-6 column float-right">
@@ -20,7 +20,7 @@
 
   <!-- menu (small|large)  -->
   <!-- small displays on small and medium and is non sticky -->
-  <div id="small-site-main-navigation" class="hide-for-large">
+  <div id="small_site_main_navigation" class="hide-for-large">
     <%= page_categories_menu_html_foundation_6(options: {
         wrapper_ul_class: 'vertical menu hide-for-large',
         wrapper_ul_data: 'data-accordion-menu data-options="multiOpen: false"',
@@ -31,7 +31,7 @@
   <!-- /small displays on small and medium and is non sticky -->
 
   <!-- large displays on large and is sticky -->
-  <div id="large-site-main-navigation" class="show-for-large">
+  <div id="large_site_main_navigation" class="show-for-large">
     <div class="row">
       <div class="large-9 columns">
         <%= page_categories_menu_html_foundation_6(options: {
@@ -56,7 +56,7 @@
       </div>
     </div>
   </div>
-  <script>$("#large-site-main-navigation").sticky({topSpacing:0});</script>
+  <script>$("#large_site_main_navigation").sticky({topSpacing:0});</script>
   <!-- /large displays on large and is sticky -->
   <!-- /menu (small|large) -->
 </div>
