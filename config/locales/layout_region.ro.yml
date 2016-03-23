@@ -1,0 +1,11 @@
+ro:
+  activerecord:
+    models:
+      layout_region:
+        one: 'Regiune Layout'
+        other: 'Regiuni Layout'
+    attributes:
+      layout_region:
+        name: 'Nume'
+        content: 'Continut'
+        

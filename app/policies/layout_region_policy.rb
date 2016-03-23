@@ -1,0 +1,4 @@
+
+class LayoutRegionPolicy < ApplicationPolicy
+
+end

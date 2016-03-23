@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      layout_region:
+        one: 'Region'
+        other: 'Regions'
+    attributes:
+      layout_region:
+        name: 'Name'
+        content: 'Content'
+

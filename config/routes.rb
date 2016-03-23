@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         delete 'bulk_destroy'
       end
     end
+    resources :layout_regions
   end
 
   resources :pages, only: [:show]
