@@ -80,7 +80,14 @@ page_24 = Page.create(name: 'page 2', published: true, is_main_nav: true, root_p
 
 
 LayoutRegion.destroy_all
-LayoutRegion.create(name: 'sidebar_left', content: 'sidebar_left content')
+LayoutRegion.create(name: 'before_site_content', content: '')
+LayoutRegion.create(name: 'before_site_footer', content: '')
+LayoutRegion.create(name: 'before_site_header', content: '')
+LayoutRegion.create(name: 'before_site_main_navigation', content: '')
+LayoutRegion.create(name: 'sidebar_left', content: '')
+LayoutRegion.create(name: 'sidebar_right', content: '')
+LayoutRegion.create(name: 'site_footer', content: '')
+LayoutRegion.create(name: 'site_header', content: '')
 
 
 
