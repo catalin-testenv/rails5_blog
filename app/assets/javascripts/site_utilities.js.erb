@@ -13,6 +13,22 @@ $(function() {
     })
   });
 
+  // on submit removes fields having no value
+  $('[data-bulk-form]').each(function() {
+    $(this).submit(function(e) {
+      var $form = $(this);
+      $("button", $form).each(function() {
+        $(this).attr('name', '');
+      });
+      $("input, select", $form).each(function() {
+        var $input = $(this);
+        if (!$input.val()) {
+          $input.attr('name', '');
+        }
+      });
+    });
+  });
+
   // bulk update/destroy form
   $('[data-bulk-update-form], [data-bulk-destroy-form]').each(function() {
     $(this).submit(function(e) {
@@ -27,14 +43,6 @@ $(function() {
           $form.append('<input type="hidden" name="'+$checkbox.attr('name')+'" value="'+$checkbox.val()+'" />');
         }
       });
-
-      $("input[type!=hidden], select", $form).each(function() {
-        var $input = $(this);
-        if (!$input.val()) {
-          $input.attr('name', '');
-        }
-      });
-
       // console.log($('input:hidden', $form));
     });
   });

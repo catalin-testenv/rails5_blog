@@ -7,8 +7,8 @@ ro:
   # Default error messages
   errors:
     messages:
-      required: "must exist[RO]"
-      taken: "has already been taken[RO]"
+      required: "trebuie sa existe"
+      taken: "este deja folosit"
 
   # Active Record models configuration
   activerecord:

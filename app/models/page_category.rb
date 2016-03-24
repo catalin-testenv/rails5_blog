@@ -6,6 +6,8 @@ class PageCategory < ApplicationRecord
   has_many :subcategories, foreign_key: :parent_id, class_name: 'PageCategory'
   belongs_to :parent, class_name: 'PageCategory', required: false
 
+  validates :name, presence: true, uniqueness: true
+
   default_scope { order(:parent_id, :ordering) }
 
   def children
@@ -22,6 +24,10 @@ class PageCategory < ApplicationRecord
 
   def has_nav_pages?
     pages.to_a.any?(&:is_main_nav)
+  end
+
+  def ordering=(val)
+    super(val.present? ? val : 0)
   end
 
   def to_param

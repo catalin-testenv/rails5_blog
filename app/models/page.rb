@@ -7,10 +7,10 @@ class Page < ApplicationRecord
 
   accepts_nested_attributes_for :page_content
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :page_content, presence: true
 
-  default_scope { order(:parent_id, :ordering) }
+  default_scope { order(:parent_id, :ordering, :updated_at) }
   scope :published, -> (val=true) { where(published: val) }
   scope :for_main_menu, -> { published.where(is_main_nav: true) }
   scope :is_main_nav, -> (val=true) { where(is_main_nav: val) }
@@ -40,6 +40,10 @@ class Page < ApplicationRecord
       end
     end
     super
+  end
+
+  def ordering=(val)
+    super(val.present? ? val : 0)
   end
 
   def to_name

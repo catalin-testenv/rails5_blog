@@ -14,13 +14,11 @@ class Admin::PageCategoriesController < Admin::AdminController
     respond_to do |format|
       if @resource.save
         format.html do
-          flash.now[:notice] = resource_creation_success_message(resource_instance: @resource)
-          render :edit
+          redirect_to admin_page_categories_path, notice: resource_creation_success_message(resource_instance: @resource)
         end
       else
         format.html do
-          flash.now[:alert] = resource_creation_failed_message(resource_instance: @resource)
-          render :new
+          redirect_to admin_page_categories_path, alert: resource_creation_failed_message(resource_instance: @resource) + "(#{@resource.errors.full_messages.join(', ')})"
         end
       end
     end
@@ -36,7 +34,7 @@ class Admin::PageCategoriesController < Admin::AdminController
         end
       else
         format.html do
-          redirect_to admin_page_categories_path, alert: resource_update_failed_message(resource_instance: @resource)
+          redirect_to admin_page_categories_path, alert: resource_update_failed_message(resource_instance: @resource) + "(#{@resource.errors.full_messages.join(', ')})"
         end
       end
     end
@@ -59,7 +57,7 @@ class Admin::PageCategoriesController < Admin::AdminController
 
   def resource_params
     params
-      .require(:page_category)
+      .fetch(:page_category, {})
       .permit(:name, :parent_id, :ordering)
   end
 

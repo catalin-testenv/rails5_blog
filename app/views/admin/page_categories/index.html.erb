@@ -7,16 +7,26 @@
 
 <%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.count})") %>
 
+<% index_links = [
+    {message: icon_new, options: {data: {'show-edit-form' => 'post'}}}
+] %>
+
+<%= admin_body_top_links(index_links) %>
+
+<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+
 <!-- results area -->
-<div>
-<%=
+
+<%
   def page_categories_tree
     ids = {}
     @resource_list.map.with_object([]) do |item, arr|
       obj = {
               id: item.id,
               name: item.name,
-              link: page_category_path(item),
+              ordering: item.ordering,
+              parent_id: item.parent_id,
+              update_delete_path: admin_page_category_path(item),
               children: []}
 
       ids[item.id] = obj
@@ -32,33 +42,91 @@
     html = ''
     return html if arr.length == 0
     html << (_count == 0 ? "<ul class='uk-list'>" : "<ul class=''>")
+
     arr.each do |obj|
       id = obj[:id]
       name = obj[:name]
-      link = obj[:link]
+      ordering = obj[:ordering]
+      parent_id = obj[:parent_id]
+      update_delete_path = obj[:update_delete_path]
       children = obj[:children]
-      if children.nil? || children.length == 0
+
+      html << content_tag(:li) do
+          # link_to("#{name} - #{ordering}", '#update_form', data: {'uk-modal' => '', update_delete_path: update_delete_path, name: name, id: id, ordering: ordering})
+          %Q`
+          <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
+              <a class="secondary-link" onclick="event.preventDefault();"><span>#{ordering}: #{name}</span></a>
+              <div class="uk-dropdown uk-dropdown-small">
+                <ul class="uk-nav uk-nav-dropdown uk-padding-left-remove">
+                  <li>#{ link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, '#update_form', class: 'secondary-link', data: {'show-edit-form' => 'patch', 'update-delete-path' => update_delete_path, name: name, id: id, ordering: ordering, 'parent-id' => parent_id} }</li>
+                  <li>#{ link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, admin_page_category_path(id), method: :delete, data: { confirm: are_you_sure_message }, class: 'secondary-link' }</li>
+                </ul>
+              </div>
+          </div>
+          `.html_safe
+      end
+
+      unless children.nil? || children.length == 0
         html << content_tag(:li) do
-          form_tag(admin_page_category_path(id), method: 'PUT') do
-            concat(text_field_tag('page_category[name]', name))
-            concat(button_tag)
-          end
-        end
-      else
-        html << content_tag(:li) do
-          concat(form_tag(admin_page_category_path(id), method: 'PUT') do
-            concat(text_field_tag('page_category[name]', name))
-            concat(button_tag)
-          end)
           concat(page_categories_html(arr: children, _count: _count+1).html_safe)
         end
       end
+
     end
+
     html << '</ul>'
     html
-  end
 
-  page_categories_html.html_safe
+  end
 %>
+
+<div>
+  <%= page_categories_html.html_safe %>
 </div>
+
+<div id="update_form" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <%= form_for [:admin, PageCategory.new], html: {class: 'uk-form uk-form-stacked custom-cc custom-cc-fa'} do |f| %>
+      <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+        <div class="uk-width">
+          <%= form_input(f, :text_field, :name, icon_title, placeholder: '...') %>
+        </div>
+        <div class="uk-width">
+          <%= form_input(f, :text_field, :ordering, icon_ordering, placeholder: '0') %>
+        </div>
+        <div class="uk-width">
+          <%= form_select(f, :parent_id, icon_page_category,
+                PageCategory.all
+                .collect { |p| [p.name, p.id] }
+                .unshift([t('root'), 0]), nil)
+          %>
+        </div>
+        <div class="uk-width uk-margin-top">
+          <%= form_button(f, icon_save, false) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $('[data-show-edit-form]').each(function() {
+    $(this).click(function(e) {
+      e.preventDefault();
+      var $this = $(this);
+
+      var form =  $('form', $('#update_form'));
+      form.attr('action', $this.data('update-delete-path'));
+      $('input[name=_method]').remove();
+      form.append('<input type="hidden" name="_method" value="'+$this.data('show-edit-form')+'" />');
+
+      $('#page_category_name').val($this.data('name'));
+      $('#page_category_ordering').val($this.data('ordering'));
+      $('#page_category_parent_id').val($this.data('parent-id'));
+
+      UIkit.modal("#update_form").show();
+    })
+  });
+</script>
 
