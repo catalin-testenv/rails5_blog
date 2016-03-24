@@ -1,4 +1,5 @@
 
+# TODO: make page and page_category unique per scope
 # TODO: what happens when a page category is destroyed ?
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
 # TODO: find a way to not override a user theme when main blog code is updated from repo
