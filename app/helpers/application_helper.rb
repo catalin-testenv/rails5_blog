@@ -13,6 +13,7 @@ module ApplicationHelper
   end
 
   def evaluate(data)
+    return unless data
     # allow quick `[ruby_code_here]`
     data = data.gsub(/(`\[|\]`)/, '`[' => '<%= ', ']`' => ' %>')
     # ERB.new(data).result(binding) # this doesn't work with blocks in some cases
