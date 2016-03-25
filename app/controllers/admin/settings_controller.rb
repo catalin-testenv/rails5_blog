@@ -29,6 +29,7 @@ class Admin::SettingsController < Admin::AdminController
   private
 
   def bulk_params
+    # ex: {"setting"=>{"10"=>{"val"=>"My Blog"}, "11"=>{"val"=>"motto here"}}}
     params.require(:setting).permit(Setting.all.pluck(:id).map.with_object({}){|id, h| h[id.to_s] = [:val]})
   end
 
