@@ -312,6 +312,10 @@ $button-border_:                                 $panel-title-background-color_;
 
 // -------- helper classes
 
+@for $i from 1 through 25 {
+  .v-space-#{$i} { height: #{$i}px; }
+}
+
 .light-blue-background {
   background-color: $light-blue !important;
 }

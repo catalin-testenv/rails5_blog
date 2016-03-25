@@ -1,6 +1,6 @@
 class Setting < ApplicationRecord
 
-  # types: int, float, boolean, enum, string, text
+  # types: integer, float, boolean, enum, string, text
 
   KNOWN_NAMES = %i(
     brand_name
