@@ -41,7 +41,7 @@ module IconsHelper
   end
 
   def icon_destroy(options='')
-    "<i class='fa fa-trash-o #{options}'></i>".html_safe
+    "<i class='fa fa-trash-o #{options}'></i>&nbsp;".html_safe
   end
 
   def icon_new(options='')

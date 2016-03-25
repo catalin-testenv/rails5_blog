@@ -52,14 +52,13 @@
       children = obj[:children]
 
       html << content_tag(:li) do
-          # link_to("#{name} - #{ordering}", '#update_form', data: {'uk-modal' => '', update_delete_path: update_delete_path, name: name, id: id, ordering: ordering})
           %Q`
           <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
               <a class="secondary-link" onclick="event.preventDefault();"><span>#{ordering}: #{name}</span></a>
               <div class="uk-dropdown uk-dropdown-small">
                 <ul class="uk-nav uk-nav-dropdown uk-padding-left-remove">
-                  <li>#{ link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, '#update_form', class: 'secondary-link', data: {'show-edit-form' => 'patch', 'update-delete-path' => update_delete_path, name: name, id: id, ordering: ordering, 'parent-id' => parent_id} }</li>
-                  <li>#{ link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, admin_page_category_path(id), method: :delete, data: { confirm: are_you_sure_message }, class: 'secondary-link' }</li>
+                  <li>#{ link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, '#update_form', class: 'secondary-link font-weight-normal', data: {'show-edit-form' => 'patch', 'update-delete-path' => update_delete_path, name: name, id: id, ordering: ordering, 'parent-id' => parent_id} }</li>
+                  <li>#{ link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, admin_page_category_path(id), class: 'secondary-link font-weight-normal', method: :delete, data: { confirm: are_you_sure_message } }</li>
                 </ul>
               </div>
           </div>
