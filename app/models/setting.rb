@@ -1,10 +1,22 @@
 class Setting < ApplicationRecord
 
-  # types: int, float, boolean, string, enum, text, js, css, erb, ...
+  # types: int, float, boolean, enum, string, text
 
-  KNOWN_NAMES = %i(max_comments)
+  KNOWN_NAMES = %i(
+    brand_name
+    tag_line
+    listing_items_per_page
+    inbox_email_address
+    global_js
+    global_css
+    listing_blogs_per_page
+    listing_comments_per_page
+    comments_max_per_page
+  )
 
-  default_scope { order(:group) }
+  validates :key, presence: true, uniqueness: true
+
+  default_scope { order(:group, :ordering) }
 
   def self.method_missing(name, *args, &block)
     if KNOWN_NAMES.include? name

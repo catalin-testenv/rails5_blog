@@ -1,4 +1,6 @@
 
+# TODO: add shareable (on|off) to pages
+# TODO: in admin show registered users and link to their comments
 # TODO: make page and page_category unique per scope
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
 # TODO: find a way to not override a user theme when main blog code is updated from repo
@@ -6,8 +8,9 @@
 # TODO: ensure that ordering is respected in menu and in listings
 # TODO: maybe we should be able to make any PageCategory clickable | what should be displayed in a page category view ????
 # TODO: make possible to extract menu between levels (if one needs separate sub-menus)
-# TODO: add page_category editor
+# TODO: add tags feature
 # TODO: add more omniauth providers
+# TODO: comments will be moderated (the blog owner will be notified via email)
 # TODO: let user be able to share article on social sites
 # TODO: show formatted code on client - almost done
 # TODO: check how to generate code view from server # http://pygments.org/docs/ | https://github.com/jneen/rouge

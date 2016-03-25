@@ -6,3 +6,12 @@ en:
         other: 'Settings'
     attributes:
       setting:
+
+  setting:
+    section:
+      site: 'site'
+      admin: 'administration'
+      email: 'email'
+      global_inclusions: 'global inclusions'
+      page: 'page'
+      comments: 'comments'

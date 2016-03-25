@@ -7,5 +7,19 @@
 
 <%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title}") %>
 
+<%
+  last_group = nil
+  @resource_list.each do |resource|
+%>
 
+    <%
+      if resource.group != last_group
+    %>
+        <h3 class="admin-body-section-title"><%= t("setting.section.#{resource.group.split('|')[1]}").humanize %></h3>
+    <%
+      last_group = resource.group
+      end
+    %>
+
+<% end %>
 

@@ -91,9 +91,21 @@ LayoutRegion.create(name: 'site_header', content: '')
 
 
 Setting.destroy_all
-Setting.create(group: 0, key: 'max_comments', val: '30', kind: 'integer', cast: 'to_i', options: nil)
 
+Setting.create(group: '00|site', ordering: 0, key: 'brand_name', val: 'My Blog', kind: 'string', cast: 'to_s', options: nil)
+Setting.create(group: '00|site', ordering: 0, key: 'tag_line', val: 'motto here', kind: 'string', cast: 'to_s', options: nil)
 
+Setting.create(group: '01|admin', ordering: 0, key: 'listing_items_per_page', val: '10', kind: 'integer', cast: 'to_i', options: nil)
+
+Setting.create(group: '02|email', ordering: 0, key: 'inbox_email_address', val: '', kind: 'string', cast: 'to_s', options: nil)
+
+Setting.create(group: '03|global_inclusions', ordering: 0, key: 'global_js', val: '', kind: 'text', cast: 'to_s', options: nil)
+Setting.create(group: '03|global_inclusions', ordering: 0, key: 'global_css', val: '', kind: 'text', cast: 'to_s', options: nil)
+
+Setting.create(group: '04|page', ordering: 0, key: 'listing_blogs_per_page', val: '10', kind: 'integer', cast: 'to_i', options: nil)
+Setting.create(group: '04|page', ordering: 0, key: 'listing_comments_per_page', val: '10', kind: 'integer', cast: 'to_i', options: nil)
+
+Setting.create(group: '05|comments', ordering: 0, key: 'comments_max_per_page', val: '50', kind: 'integer', cast: 'to_i', options: nil)
 
 
 

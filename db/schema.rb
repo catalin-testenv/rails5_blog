@@ -48,11 +48,12 @@ ActiveRecord::Schema.define(version: 20160325122902) do
   end
 
   create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string  "key",     null: false
-    t.string  "val",     null: false
-    t.integer "group",   null: false
-    t.string  "kind",    null: false
-    t.string  "cast",    null: false
+    t.string  "key",      null: false
+    t.string  "val",      null: false
+    t.string  "group",    null: false
+    t.integer "ordering", null: false
+    t.string  "kind",     null: false
+    t.string  "cast",     null: false
     t.string  "options"
   end
 

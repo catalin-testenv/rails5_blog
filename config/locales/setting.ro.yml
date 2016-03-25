@@ -6,3 +6,12 @@ ro:
         other: 'Setari'
     attributes:
       setting:
+
+  setting:
+      section:
+        site: 'site'
+        admin: 'administrare'
+        email: 'email'
+        global_inclusions: 'includeri globale'
+        page: 'pagina'
+        comments: 'comentarii'
