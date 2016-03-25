@@ -1,0 +1,8 @@
+ro:
+  activerecord:
+    models:
+      setting:
+        one: 'Setare'
+        other: 'Setari'
+    attributes:
+      setting:

@@ -90,6 +90,10 @@ LayoutRegion.create(name: 'site_footer', content: '')
 LayoutRegion.create(name: 'site_header', content: '')
 
 
+Setting.destroy_all
+Setting.create(group: 0, key: 'max_comments', val: '30', kind: 'integer', cast: 'to_i', options: nil)
+
+
 
 
 
