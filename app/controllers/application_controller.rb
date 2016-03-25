@@ -1,4 +1,5 @@
 
+# TODO: remove SASS_LOAD_PATHS from .env (it seems is not needed anymore)
 # TODO: add shareable (on|off) to pages
 # TODO: in admin show registered users and link to their comments
 # TODO: make page and page_category unique per scope
