@@ -2,6 +2,10 @@ class Page < ApplicationRecord
 
   attr_accessor :active
 
+  class << self
+    delegate :max_comments, :to => Settings
+  end
+
   belongs_to :page_category, foreign_key: 'parent_id', required: false
   has_one :page_content, dependent: :destroy, inverse_of: :page
 
@@ -20,6 +24,10 @@ class Page < ApplicationRecord
     where('name LIKE ?', "%#{name}%")
   end
   include ScopeUpdatedAtConcern
+
+  # def self.max_comments
+  #   Settings.max_comments
+  # end
 
   def self.published_root_page
     found = root_page
