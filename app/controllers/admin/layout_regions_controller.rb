@@ -31,8 +31,7 @@ class Admin::LayoutRegionsController < Admin::AdminController
     respond_to do |format|
       if @resource.save
         format.html do
-          flash.now[:notice] = resource_creation_success_message(resource_instance: @resource)
-          render :edit
+          redirect_to admin_layout_regions_path, notice: resource_creation_success_message(resource_instance: @resource)
         end
       else
         format.html do
@@ -49,8 +48,7 @@ class Admin::LayoutRegionsController < Admin::AdminController
     respond_to do |format|
       if @resource.update(resource_params)
         format.html do
-          flash.now[:notice] = resource_update_success_message(resource_instance: @resource)
-          render :edit
+          redirect_to admin_layout_regions_path, notice: resource_update_success_message(resource_instance: @resource)
         end
       else
         format.html do

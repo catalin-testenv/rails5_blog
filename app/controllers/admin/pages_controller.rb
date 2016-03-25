@@ -8,9 +8,9 @@ class Admin::PagesController < Admin::AdminController
   has_scope :in_category
   include HasScopeUpdatedAtConcern
 
-
   # GET /admin/pages
   def index
+    session[admin_pages_path] = request.original_fullpath
     authorize Page
     @resource_list = list_ops_sort(policy_scope(apply_scopes(Page))).page(params[:page])
   end
@@ -39,8 +39,7 @@ class Admin::PagesController < Admin::AdminController
     respond_to do |format|
       if @resource.save
         format.html do
-          flash.now[:notice] = resource_creation_success_message(resource_instance: @resource)
-          render :edit
+          redirect_to listing_path, notice: resource_creation_success_message(resource_instance: @resource)
         end
       else
         format.html do
@@ -57,8 +56,7 @@ class Admin::PagesController < Admin::AdminController
     respond_to do |format|
       if @resource.update(resource_params)
         format.html do
-          flash.now[:notice] = resource_update_success_message(resource_instance: @resource)
-          render :edit
+          redirect_to listing_path, notice: resource_update_success_message(resource_instance: @resource)
         end
       else
         # @resource.errors[:base] << 'some error' << 'some other error'
@@ -80,13 +78,13 @@ class Admin::PagesController < Admin::AdminController
     end
     respond_to do |format|
       format.html do
-        redirect_back fallback_location: admin_pages_path, notice: resource_bulk_update_success_message
+        redirect_to listing_path, notice: resource_bulk_update_success_message
       end
     end
   rescue => e
     respond_to do |format|
       format.html do
-        redirect_back fallback_location: admin_pages_path, alert: e.message
+        redirect_to listing_path, alert: e.message
       end
     end
   end
@@ -96,7 +94,7 @@ class Admin::PagesController < Admin::AdminController
     authorize @resource
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to admin_pages_url, notice: resource_destroy_success_message(resource_instance: @resource) }
+      format.html { redirect_to listing_path, notice: resource_destroy_success_message(resource_instance: @resource) }
     end
   end
 
@@ -110,24 +108,27 @@ class Admin::PagesController < Admin::AdminController
     end
     respond_to do |format|
       format.html do
-        redirect_back fallback_location: admin_pages_path, notice: resource_bulk_destroy_success_message
+        redirect_to listing_path, notice: resource_bulk_destroy_success_message
       end
     end
   rescue => e
     respond_to do |format|
       format.html do
-        redirect_back fallback_location: admin_pages_path, alert: e.message
+        redirect_to listing_path, alert: e.message
       end
     end
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
+  def listing_path
+    session[admin_pages_path] || admin_pages_path
+  end
+
   def set_resource
     @resource = Page.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
     params
       .require(:page)

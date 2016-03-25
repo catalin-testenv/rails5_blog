@@ -8,7 +8,7 @@
 <%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.count})") %>
 
 <% index_links = [
-    {message: icon_new, path: new_admin_layout_region_path, options: {target: '_blank'}}
+    {message: icon_new, path: new_admin_layout_region_path, options: {}}
 ] %>
 
 <%= admin_body_top_links(index_links) %>
@@ -39,7 +39,7 @@
               <button class="uk-button no-background no-dimensions" onclick="event.preventDefault();"><%= icon_actions %></button>
               <div class="uk-dropdown uk-dropdown-small">
                 <ul class="uk-nav uk-nav-dropdown">
-                  <li><%= link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, edit_admin_layout_region_path(resource), target: '_blank', class: %w(secondary-link) %></li>
+                  <li><%= link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, edit_admin_layout_region_path(resource), class: %w(secondary-link) %></li>
                   <% unless resource.default? %>
                       <li><%= link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, admin_layout_region_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link) %></li>
                   <% end %>
