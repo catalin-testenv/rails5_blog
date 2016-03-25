@@ -1,4 +1,4 @@
-module MiscellaneousHelper
+module Admin::MiscellaneousHelper
 
   def admin_body_title(title)
     "<h4 class='uk-panel-title'>#{ title }</h4>".html_safe
