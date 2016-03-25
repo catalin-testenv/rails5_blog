@@ -6,7 +6,7 @@ class Admin::SettingsController < Admin::AdminController
     @resource_list = Setting.all.to_a
   end
 
-  # POST /admin/pages/bulk_update
+  # POST /admin/settings/bulk_update
   def bulk_update
     authorize Setting
     skip_policy_scope
