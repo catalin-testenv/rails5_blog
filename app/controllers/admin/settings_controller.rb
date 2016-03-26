@@ -11,7 +11,12 @@ class Admin::SettingsController < Admin::AdminController
     authorize Setting
     skip_policy_scope
 
-    Setting.update(bulk_params.keys, bulk_params.values)
+    Setting.transaction do
+      # Setting.update(bulk_params.keys, bulk_params.values)
+      bulk_params.each do |key, values|
+        Setting.find(key).update!(val: values['val'])
+      end
+    end
 
     respond_to do |format|
       format.html do

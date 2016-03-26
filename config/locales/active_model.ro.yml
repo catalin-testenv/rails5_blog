@@ -6,10 +6,10 @@ ro:
     # The values :model, :attribute and :value are always available for interpolation
     # The value :count is available when applicable. Can be used for pluralization.
     messages:
-      model_invalid: "Validation failed: %{errors}[RO]"
+      model_invalid: "Validare esuata: %{errors}"
       inclusion: "is not included in the list[RO]"
       exclusion: "is reserved[RO]"
-      invalid: "is invalid[RO]"
+      invalid: "este invalid"
       confirmation: "doesn't match %{attribute}[RO]"
       accepted: "must be accepted[RO]"
       empty: "can't be empty[RO]"

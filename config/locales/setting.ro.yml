@@ -19,7 +19,7 @@ ro:
       brand_name: 'nume brand'
       tag_line: 'slogan'
       listing_items_per_page: 'elemente afisate pe pagina de listare'
-      inbox_email_address: 'inbox email address'
+      inbox_email_address: 'adresa email'
       listing_blogs_per_page: 'articole afisate pe pagina de listare'
       listing_comments_per_page: 'comentarii afisate pe pagina'
       global_css: 'global css'

@@ -14,7 +14,7 @@ ro:
   activerecord:
     errors:
       messages:
-        record_invalid: "Validation failed: %{errors}[RO]"
+        record_invalid: "Validare nereusita: %{errors}"
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists[RO]"
           has_many: "Cannot delete record because dependent %{record} exist[RO]"

@@ -19,7 +19,7 @@ en:
       brand_name: 'brand name'
       tag_line: 'tag line'
       listing_items_per_page: 'items displayed per listing page'
-      inbox_email_address: 'inbox email address'
+      inbox_email_address: 'email address'
       listing_blogs_per_page: 'posts displayed per listing page'
       listing_comments_per_page: 'comments displayed per page'
       global_css: 'global css'
