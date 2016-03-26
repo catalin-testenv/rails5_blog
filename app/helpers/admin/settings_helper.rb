@@ -3,7 +3,7 @@ module Admin::SettingsHelper
     fields_for 'setting[]', resource do |f|
       content_tag(:div, class: %w(uk-form-row)) do
         concat(f.label(:val, class: %w(uk-form-label)) do
-          resource.key
+          t(resource.key).humanize
         end)
         concat(content_tag(:div, class: %w(uk-form-controls)) do
           case resource.kind

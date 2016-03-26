@@ -11,7 +11,6 @@ class Setting < ApplicationRecord
     global_css
     listing_blogs_per_page
     listing_comments_per_page
-    comments_max_per_page
   )
 
   validates :key, presence: true, uniqueness: true

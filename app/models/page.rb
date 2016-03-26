@@ -2,10 +2,6 @@ class Page < ApplicationRecord
 
   attr_accessor :active
 
-  class << self
-    delegate :comments_max_per_page, :to => Setting
-  end
-
   belongs_to :page_category, foreign_key: 'parent_id', required: false
   has_one :page_content, dependent: :destroy, inverse_of: :page
 

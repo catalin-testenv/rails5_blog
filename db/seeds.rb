@@ -102,10 +102,8 @@ Setting.create(group: '02|email', ordering: 0, key: 'inbox_email_address', val: 
 Setting.create(group: '03|page', ordering: 0, key: 'listing_blogs_per_page', val: '10', kind: 'enum', cast: 'to_i', options: '10|20|50|100|200|500|1000')
 Setting.create(group: '03|page', ordering: 0, key: 'listing_comments_per_page', val: '10', kind: 'enum', cast: 'to_i', options: '10|20|50|100|200|500|1000')
 
-Setting.create(group: '04|comments', ordering: 0, key: 'comments_max_per_page', val: '50', kind: 'enum', cast: 'to_i', options: '10|20|50|100|200|500|1000')
-
-Setting.create(group: '05|global_inclusions', ordering: 0, key: 'global_css', val: '.my-class {color: red;}', kind: 'text', cast: 'to_s', options: nil)
-Setting.create(group: '05|global_inclusions', ordering: 0, key: 'global_javascript', val: 'function myF() {}', kind: 'text', cast: 'to_s', options: nil)
+Setting.create(group: '04|global_inclusions', ordering: 0, key: 'global_css', val: '.my-class {color: red;}', kind: 'text', cast: 'to_s', options: nil)
+Setting.create(group: '04|global_inclusions', ordering: 0, key: 'global_javascript', val: 'function myF() {}', kind: 'text', cast: 'to_s', options: nil)
 
 
 

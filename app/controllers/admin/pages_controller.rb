@@ -12,7 +12,7 @@ class Admin::PagesController < Admin::AdminController
   def index
     session[admin_pages_path] = request.original_fullpath
     authorize Page
-    @resource_list = list_ops_sort(policy_scope(apply_scopes(Page))).page(params[:page])
+    @resource_list = list_ops_sort(policy_scope(apply_scopes(Page))).page(params[:page]).per(Setting.listing_items_per_page)
   end
 
   # GET /admin/pages/1
