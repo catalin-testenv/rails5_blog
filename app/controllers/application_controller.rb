@@ -1,25 +1,22 @@
 
 # TODO: in admin add social shareable (on|off) to pages
-# TODO: in admin show registered users and link to their comments
+# TODO: in front let user be able to share article on social sites
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
 # TODO: find a way to not override a user theme when main blog code is updated from repo
-# TODO: should be excluded from PageCategory show listing those pages for main nav?
 # TODO: ensure that ordering is respected in menu and in listings
 # TODO: maybe we should be able to make any PageCategory clickable | what should be displayed in a page category view ????
 # TODO: make possible to extract menu between levels (if one needs separate sub-menus)
 # TODO: add tags feature
 # TODO: add more omniauth providers
-# TODO: comments will be moderated (the blog owner will be notified via email)
-# TODO: let user be able to share article on social sites
 # TODO: show formatted code on client - almost done
 # TODO: check how to generate code view from server # http://pygments.org/docs/ | https://github.com/jneen/rouge
-# TODO: add TinyMCE option
+# TODO: add TinyMCE in front
 # TODO: populate admin#home with useful stuff
-# TODO: there should be a settings controller/model for some general customizations
-# TODO: implement comments
-# TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: make blog real
-# TODO: implement layout regions
+# TODO: implement comments
+# TODO: comments will be moderated (the blog owner will be notified via email)
+# TODO: in admin show registered users and link to their comments
+# TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: make unittests
 # TODO: add assets manager as an engine preferably + stuff(gallery, carousel)
 # TODO: make easy to backup/load/save entire site (db/assets)
@@ -28,8 +25,7 @@
 # TODO: improve UI
 # TODO: add robots.txt
 # TODO: check ENV hanging (assets precompile) when switching envs
-# TODO: add plugins/utils: contact_form, ...
-# TODO: add quotes module
+# TODO: add plugins/utils: contact_form, quotes...
 # TODO: check mouse events (for: menu, tabs, ...) behaviour on tablets/phones
 
 class UserContext
