@@ -31,7 +31,7 @@
         <% last_group = resource.group %>
         <% end %>
 
-        <div class="uk-width-medium-1-<%= resource.kind == 'text' ? 1 : 2 %>">
+        <div class="uk-width-medium-1-<%= resource.kind == 'text' ? '1' : '2' %>">
           <%= settings_field(resource) %>
         </div>
       <% end %>

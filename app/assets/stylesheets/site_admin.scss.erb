@@ -238,12 +238,13 @@ $button-border_:                                 $panel-title-background-color_;
     padding-right: 0px;
   }
 
-  .code-editor-area.uk-switcher {
-    padding: $code-editor-area-padding;
+  .code-editor-area {
+    padding: $code-editor-area-padding !important;
     background-color: darken($admin-body-uk-panel-background-color, 3%);
-    border-left: $tab-border-width solid $tab-active-border;
-    border-right: $tab-border-width solid $tab-active-border;
-    border-bottom: $tab-border-width solid $tab-active-border;
+    border: $tab-border-width solid $tab-active-border;
+    &.uk-switcher {
+      border-top: 0px solid $tab-active-border;
+    }
     textarea {
       border-width: 0px;
       min-height: 200px;

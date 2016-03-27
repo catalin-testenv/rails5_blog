@@ -13,7 +13,7 @@ module Admin::SettingsHelper
               f.select(:val, options_for_select(resource.options.split('|'), :selected => resource.val), {}, {class: 'uk-width'})
             when 'boolean' # checkbox
             when 'text'
-              content_tag(:div, class: '') do
+              content_tag(:div, class: 'code-editor-area') do
                 f.text_area :val, class: 'uk-width', data: {
                   'editor-ace': %Q`{"sessionOptions": {"language":"#{
                   case resource.key
