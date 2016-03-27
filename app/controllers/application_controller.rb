@@ -1,5 +1,5 @@
 
-# TODO: add shareable (on|off) to pages
+# TODO: in admin add social shareable (on|off) to pages
 # TODO: in admin show registered users and link to their comments
 # TODO: make page and page_category unique per scope
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
