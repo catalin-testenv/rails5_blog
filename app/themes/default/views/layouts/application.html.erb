@@ -12,6 +12,9 @@
     <%= stylesheet_link_tag    'site_front', media: 'all' %>
     <%= javascript_include_tag 'site_front' %>
 
+    <style><%= Setting.global_css %></style>
+    <script><%= Setting.global_javascript %></script>
+
     <style><%= yield :css %></style>
     <script><%= yield :js %></script>
   </head>

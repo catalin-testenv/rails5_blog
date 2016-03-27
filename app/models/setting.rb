@@ -7,8 +7,8 @@ class Setting < ApplicationRecord
     tag_line
     listing_items_per_page
     inbox_email_address
-    global_js
     global_css
+    global_javascript
     listing_blogs_per_page
     listing_comments_per_page
   )
