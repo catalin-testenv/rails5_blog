@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325122902) do
+ActiveRecord::Schema.define(version: 20160327111026) do
 
   create_table "layout_regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name",                     null: false
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 20160325122902) do
     t.boolean  "root_page",      default: false, null: false
   end
 
+  create_table "pages_tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "page_id", null: false
+    t.integer "tag_id",  null: false
+  end
+
   create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "key",      null: false
     t.string  "val",      null: false
@@ -55,6 +60,10 @@ ActiveRecord::Schema.define(version: 20160325122902) do
     t.string  "kind",     null: false
     t.string  "cast",     null: false
     t.string  "options"
+  end
+
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

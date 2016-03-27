@@ -4,6 +4,7 @@ class Page < ApplicationRecord
 
   belongs_to :page_category, foreign_key: 'parent_id', required: false
   has_one :page_content, dependent: :destroy, inverse_of: :page
+  has_and_belongs_to_many :tags
 
   accepts_nested_attributes_for :page_content
 
