@@ -12,7 +12,7 @@ class Admin::SettingsController < Admin::AdminController
     skip_policy_scope
 
     Setting.transaction do
-      # Setting.update(bulk_params.keys, bulk_params.values)
+      # Setting.update(bulk_params.keys, bulk_params.values) # this doesn't throw exception though
       bulk_params.each do |key, values|
         Setting.find(key).update!(val: values['val'])
       end
