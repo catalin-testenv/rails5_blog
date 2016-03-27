@@ -20,7 +20,7 @@ module FormHelper
   def form_input(f, type, name, icon, html_options={})
     capture do
       content_tag :div, class: %w(uk-form-row) do
-        concat(label_tag(name, class: %w(uk-form-label)) do
+        concat(f.label(name, class: %w(uk-form-label)) do
           if icon.present?
             icon + '&nbsp;&nbsp;'.html_safe + f.object.class.human_attribute_name(name)
           else
@@ -42,7 +42,7 @@ module FormHelper
   def form_select(f, name, icon, options, selected, select_options={})
     capture do
       content_tag :div, class: %w(uk-form-row) do
-        concat(label_tag(name, class: %w(uk-form-label)) do
+        concat(f.label(name, class: %w(uk-form-label)) do
           if icon.present?
             icon + '&nbsp;&nbsp;'.html_safe + f.object.class.human_attribute_name(name)
           else
