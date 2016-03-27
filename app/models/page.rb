@@ -7,7 +7,7 @@ class Page < ApplicationRecord
 
   accepts_nested_attributes_for :page_content
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: {scope: :page_category}
   validates :page_content, presence: true
 
   default_scope { order(:parent_id, :ordering, :updated_at) }

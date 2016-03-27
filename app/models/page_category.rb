@@ -8,7 +8,7 @@ class PageCategory < ApplicationRecord
 
   before_destroy :move_children
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: {scope: :parent}
 
   default_scope { order(:parent_id, :ordering) }
 
