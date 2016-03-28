@@ -54,6 +54,7 @@ class Admin::PagesController < Admin::AdminController
   def update
     authorize @resource
     respond_to do |format|
+      p resource_params
       if @resource.update(resource_params)
         format.html do
           redirect_to listing_path, notice: resource_update_success_message(resource_instance: @resource)
@@ -135,12 +136,12 @@ class Admin::PagesController < Admin::AdminController
       .permit(:name, :is_main_nav,
               :is_commentable,
               :published, :root_page,
-              :parent_id, :ordering,
+              :parent_id, :ordering, tags: Tag.ids.map(&:to_s),
                page_content_attributes: [
                  :id, :content, :excerpt,
                  :meta_description, :meta_css, :meta_js
                ]
-      )
+      ).tap{ |_params| _params['tags'] &&= Tag.find(_params['tags'].keys) }
   end
 
   def bulk_params

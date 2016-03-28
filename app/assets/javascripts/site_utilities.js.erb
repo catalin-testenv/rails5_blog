@@ -90,4 +90,11 @@ $(function() {
     })
   });
 
+  $('[data-removable-badge] a').each(function() {
+    $(this).click(function(e) {
+      e.preventDefault();
+      $(this).parent().remove();
+    });
+  });
+
 });

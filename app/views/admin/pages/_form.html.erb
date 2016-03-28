@@ -36,6 +36,17 @@
           </div>
         </div>
       </div>
+
+      <div class="uk-width">
+        <% f.object.tags.each do |tag| %>
+            <span data-removable-badge class="uk-badge uk-badge-success">
+              <input type="hidden" name="<%= "page[tags][#{tag.id}]" %>" value="1" />
+              <%= tag.name %>
+              <a href="" class="uk-close"></a>
+            </span>
+        <% end %>
+      </div>
+
       <%= f.fields_for :page_content do |f| %>
         <div class="uk-width uk-margin-top">
           <ul class="uk-tab" data-uk-tab="{connect:'#code-editor-area'}">
