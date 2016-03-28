@@ -1,0 +1,53 @@
+
+<% title = resource_view_listing_message(resource: Tag, count: 2) %>
+
+<% content_for :title do %>
+    <%= title %>
+<% end %>
+
+<%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.count})") %>
+
+<% index_links = [
+    {message: icon_new, path: '#edit_form', options: {data: {'show-edit-form' => 'post', 'action' => admin_tags_path, 'model-class' => Tag.name.underscore, 'values' => {'name' => ''}}}}
+] %>
+
+<%= admin_body_top_links(index_links) %>
+
+<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+
+<!-- results area -->
+
+<div>
+  <% if @resource_list.count > 0 %>
+      <ul class='uk-list'>
+        <%= @resource_list.map do |resource|
+          name = resource.name
+          update_delete_path = admin_tag_path(resource.id)
+
+          form_dialog_editable_li_as_dropdown(name, '#edit_form', update_delete_path, Tag.name.underscore, {'name' => name})
+        end.join("\n").html_safe %>
+      </ul>
+  <% end %>
+</div>
+
+<!-- hidden popup utils -->
+
+<div id="edit_form" class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <%= form_for [:admin, Tag.new], html: {class: 'uk-form uk-form-stacked custom-cc custom-cc-fa'} do |f| %>
+        <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+          <div class="uk-width">
+            <%= form_input(f, :text_field, :name, icon_title, placeholder: '...') %>
+          </div>
+          <div class="uk-width uk-margin-top">
+            <%= form_button(f, icon_save, false) %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+

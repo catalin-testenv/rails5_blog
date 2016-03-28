@@ -8,7 +8,7 @@
 <%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.count})") %>
 
 <% index_links = [
-    {message: icon_new, options: {data: {'show-edit-form' => 'post'}}}
+    {message: icon_new, path: '#edit_form', options: {data: {'show-edit-form' => 'post', 'action' => admin_page_categories_path, 'model-class' => PageCategory.name.underscore, 'values' => {'name' => '', 'ordering' => '', 'parent-id' => ''}}}}
 ] %>
 
 <%= admin_body_top_links(index_links) %>
@@ -23,7 +23,7 @@
 
 <!-- hidden popup utils -->
 
-<div id="update_form" class="uk-modal">
+<div id="edit_form" class="uk-modal">
   <div class="uk-modal-dialog">
     <a class="uk-modal-close uk-close"></a>
     <%= form_for [:admin, PageCategory.new], html: {class: 'uk-form uk-form-stacked custom-cc custom-cc-fa'} do |f| %>
@@ -49,23 +49,4 @@
   </div>
 </div>
 
-<script>
-  $('[data-show-edit-form]').each(function() {
-    $(this).click(function(e) {
-      e.preventDefault();
-      var $this = $(this);
-
-      var form =  $('form', $('#update_form'));
-      form.attr('action', $this.data('update-delete-path'));
-      $('input[name=_method]').remove();
-      form.append('<input type="hidden" name="_method" value="'+$this.data('show-edit-form')+'" />');
-
-      $('#page_category_name').val($this.data('name'));
-      $('#page_category_ordering').val($this.data('ordering'));
-      $('#page_category_parent_id').val($this.data('parent-id'));
-
-      UIkit.modal("#update_form").show();
-    })
-  });
-</script>
 

@@ -66,4 +66,28 @@ $(function() {
     });
   });
 
+  // data-show-edit-form - links which init some edit form using their html data
+  // to be used in conjunction with form_dialog_editable_li_as_dropdown helper
+  $('[data-show-edit-form]').each(function() {
+    $(this).click(function(e) {
+      e.preventDefault();
+
+      var $this = $(this);
+      var dataValues = $this.data('values');
+      var dataModelClass = $this.data('model-class');
+      var form =  $('form', $($this.attr('href')));
+
+      form.attr('action', $this.data('action'));
+      $('input[name=_method]').remove();
+      form.append('<input type="hidden" name="_method" value="'+$this.data('show-edit-form')+'" />');
+
+      for (var key in dataValues) {
+        // ex: $('#page_category_parent_id').val(dataValues['parent-id']);
+        $('#' + dataModelClass + '_' + key.replace(/-/g, '_')).val(dataValues[key]);
+      }
+
+      UIkit.modal($this.attr('href')).show();
+    })
+  });
+
 });

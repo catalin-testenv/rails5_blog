@@ -1,0 +1,9 @@
+ro:
+  activerecord:
+    models:
+      tag:
+        one: 'Eticheta'
+        other: 'Etichete'
+    attributes:
+      tag:
+        name: 'Nume'

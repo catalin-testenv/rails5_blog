@@ -26,26 +26,13 @@ module Admin::PageCategoriesHelper
     html << (_count == 0 ? "<ul class='uk-list'>" : "<ul class=''>")
 
     arr.each do |obj|
-      id = obj[:id]
       name = obj[:name]
       ordering = obj[:ordering]
       parent_id = obj[:parent_id]
       update_delete_path = obj[:update_delete_path]
       children = obj[:children]
 
-      html << content_tag(:li) do
-        %Q`
-          <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
-              <a class="secondary-link" onclick="event.preventDefault();"><span>#{ordering}: #{name}</span></a>
-              <div class="uk-dropdown uk-dropdown-small">
-                <ul class="uk-nav uk-nav-dropdown uk-padding-left-remove">
-                  <li>#{ link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, '#update_form', class: 'secondary-link font-weight-normal', data: {'show-edit-form' => 'patch', 'update-delete-path' => update_delete_path, name: name, id: id, ordering: ordering, 'parent-id' => parent_id} }</li>
-                  <li>#{ link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, admin_page_category_path(id), class: 'secondary-link font-weight-normal', method: :delete, data: { confirm: are_you_sure_message } }</li>
-                </ul>
-              </div>
-          </div>
-          `.html_safe
-      end
+      html << form_dialog_editable_li_as_dropdown("#{ordering}: #{name}", '#edit_form', update_delete_path, PageCategory.name.underscore, {'name' => name, 'ordering' => ordering, 'parent-id' => parent_id})
 
       unless children.nil? || children.length == 0
         html << content_tag(:li) do

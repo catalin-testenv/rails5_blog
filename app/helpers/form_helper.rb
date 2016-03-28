@@ -78,4 +78,26 @@ module FormHelper
     end
   end
 
+  # @param title String
+  # @param modal_target_id String
+  # @param action String
+  # @param model_class String
+  # @param values Hash
+  # to be used in conjunction with data-show-edit-form js helper
+  def form_dialog_editable_li_as_dropdown(title, modal_target_id, action, model_class, values)
+    %Q`
+    <li>
+      <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
+          <a class="secondary-link" onclick="event.preventDefault();"><span>#{title}</span></a>
+          <div class="uk-dropdown uk-dropdown-small">
+            <ul class="uk-nav uk-nav-dropdown uk-padding-left-remove">
+              <li>#{ link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, modal_target_id, class: 'secondary-link font-weight-normal', data: {'show-edit-form' => 'patch', 'action' => action, 'model-class' => model_class, 'values' => values} }</li>
+              <li>#{ link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, action, class: 'secondary-link font-weight-normal', method: :delete, data: { confirm: are_you_sure_message } }</li>
+            </ul>
+          </div>
+      </div>
+    </li>
+    `.html_safe
+  end
+
 end

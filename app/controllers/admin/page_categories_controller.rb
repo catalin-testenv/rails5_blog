@@ -57,7 +57,7 @@ class Admin::PageCategoriesController < Admin::AdminController
 
   def resource_params
     params
-      .fetch(:page_category, {})
+      .require(:page_category)
       .permit(:name, :parent_id, :ordering)
   end
 

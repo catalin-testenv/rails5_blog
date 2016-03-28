@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
     resources :layout_regions
     resources :page_categories, only: [:index, :create, :update, :destroy]
+    resources :tags, only: [:index, :create, :update, :destroy]
     resources :settings, only: [:index] do
       collection do
         post 'bulk_update'
