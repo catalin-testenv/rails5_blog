@@ -78,6 +78,14 @@ page_23 = Page.create(name: 'page 1', published: true, is_main_nav: true, root_p
 page_24 = Page.create(name: 'page 2', published: true, is_main_nav: true, root_page: '0', page_content_attributes: {content: content})
 # page_24.update(root_page: '0')
 
+Tag.destroy_all
+page_1.tags << Tag.find_or_create_by(name: 'movies')
+page_1.tags << Tag.find_or_create_by(name: 'films')
+page_2.tags << Tag.find_or_create_by(name: 'movies')
+page_2.tags << Tag.find_or_create_by(name: 'films')
+page_3.tags << Tag.find_or_create_by(name: 'movies')
+page_3.tags << Tag.find_or_create_by(name: 'films')
+
 
 LayoutRegion.destroy_all
 LayoutRegion.create(name: 'before_site_content', content: '')
