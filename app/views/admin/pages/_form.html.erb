@@ -38,10 +38,8 @@
       </div>
 
       <div class="uk-width">
-        <div class="uk-form-row">
-          <span class="uk-form-label"><%= Tag.model_name.human(count: 2) %></span>
-          <div id="page-tags" class="uk-form-controls" data-all-tags='<%= Tag.all.map.with_object({}){ |tag, h| h[tag.id] = tag.name}.to_json %>' data-page-tags='<%= f.object.tags.pluck(:id).to_json %>'>
-          </div>
+        <span class="uk-form-label"><%= Tag.model_name.human(count: 2) %></span>
+        <div id="page-tags" data-all-tags='<%= Tag.all.map.with_object({}){ |tag, h| h[tag.id] = tag.name}.to_json %>' data-page-tags='<%= f.object.tags.pluck(:id).to_json %>'>
         </div>
       </div>
 
