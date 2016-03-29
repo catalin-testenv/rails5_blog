@@ -39,7 +39,7 @@
 
       <!-- tags section is completely js driven -->
       <div class="uk-width">
-        <span class="uk-form-label"><%= Tag.model_name.human(count: 2) %></span>
+        <span class="uk-form-label"><%= icon_tag %>&nbsp;&nbsp;<%= Tag.model_name.human(count: 2) %></span>
         <div id="page-tags" data-all-tags='<%= Tag.all.map.with_object({}){ |tag, h| h[tag.id] = tag.name}.to_json %>' data-page-tags='<%= f.object.tags.pluck(:id).to_json %>'>
         </div>
       </div>

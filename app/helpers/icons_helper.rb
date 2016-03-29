@@ -68,4 +68,8 @@ module IconsHelper
     "<i class='fa fa-arrow-left #{options}'></i>".html_safe
   end
 
+  def icon_tag(options='')
+    "<i class='fa fa-tags #{options}'></i>".html_safe
+  end
+
 end
