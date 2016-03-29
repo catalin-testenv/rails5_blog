@@ -12,7 +12,6 @@
     <%= javascript_include_tag 'application' %>
 
     <%= stylesheet_link_tag    'site_admin', media: 'all' %>
-    <%= javascript_include_tag 'site_admin' %>
 
     <style><%= yield :css %></style>
     <script><%= yield :js %></script>
@@ -81,6 +80,8 @@
       </div>
     </div>
 
-  </body>
+    <%# moved here from top due to uikit firefox error => elm.body is null %>
+    <%= javascript_include_tag 'site_admin' %>
 
+  </body>
 </html>

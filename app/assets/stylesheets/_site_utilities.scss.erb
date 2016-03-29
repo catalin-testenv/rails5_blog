@@ -65,9 +65,10 @@ $ccr-height:               30px      !default;
 .custom-cc:not(#foo) input[type='checkbox'] {
   opacity: 0;
   // filter: "alpha(opacity=0)";
-  float: left;
   width: 0px;
   height: 0px;
+  position: absolute;
+  left: -99999px;
 }
 
 .custom-cc:not(#foo) input[type='radio'] + label,

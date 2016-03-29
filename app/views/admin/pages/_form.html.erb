@@ -38,13 +38,11 @@
       </div>
 
       <div class="uk-width">
-        <% f.object.tags.each do |tag| %>
-            <span data-removable-badge class="uk-badge uk-badge-success">
-              <input type="hidden" name="<%= "page[tags][#{tag.id}]" %>" value="1" />
-              <%= tag.name %>
-              <a href="" class="uk-close"></a>
-            </span>
-        <% end %>
+        <div class="uk-form-row">
+          <span class="uk-form-label"><%= Tag.model_name.human(count: 2) %></span>
+          <div id="page-tags" class="uk-form-controls" data-all-tags='<%= Tag.all.map.with_object({}){ |tag, h| h[tag.id] = tag.name}.to_json %>' data-page-tags='<%= f.object.tags.pluck(:id).to_json %>'>
+          </div>
+        </div>
       </div>
 
       <%= f.fields_for :page_content do |f| %>
@@ -83,10 +81,83 @@
         </div>
       <% end %>
 
-
       <div class="uk-width uk-margin-top">
         <%= form_button(f, icon_save, false) %>
       </div>
     </div>
 
 <% end %>
+
+<div id="available-tags" class="uk-modal" >
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+    <div class="badges">
+    </div>
+  </div>
+</div>
+
+<script>
+  'use strict';
+
+  var $pageTags = $('#page-tags');
+  var $badgesContainer =  $('.badges', $('#available-tags'));
+
+  function removeBadge(self, evt) {
+    evt.preventDefault();
+    var $self = $(self);
+    var dataPageTags = $pageTags.data('page-tags');
+    var dataId = $self.data('id');
+    // subtract id from data-page-tags
+    $pageTags.data('page-tags', dataPageTags.filter(function(id){ return id !== dataId; }));
+    $self.parent().remove();
+  }
+
+  function moveBadge(self, evt) {
+    evt.preventDefault();
+    var $self = $(self);
+    var dataId = $self.data('id');
+    var dataName = $self.data('name');
+    appendTag($pageTags, dataId, dataName, false);
+    // add id to data-page-tags
+    $pageTags.data('page-tags', $pageTags.data('page-tags').concat(dataId));
+    $self.parent().remove();
+  }
+
+  function appendTag(container, id, name, available) {
+    container.append(
+        '<span class="uk-badge page-tag">' +
+          '<input type="hidden" name="page[tags]['+id+']" value="1" />' +
+          name +
+          (available ?
+          '<a href="" data-id="'+id+'" data-name="'+name+'" onclick="moveBadge(this, event)" class="uk-close icon-add"></a>' :
+          '<a href="" data-id="'+id+'"                      onclick="removeBadge(this, event)" class="uk-close"></a>') +
+        '</span>'
+    );
+  }
+
+  $pageTags.each(function() {
+    var $this = $(this);
+    var allTags = $this.data('all-tags');
+    var pageTagIds =  $this.data('page-tags');
+    var newTagBtn = $('<span class="uk-badge page-tag" style="padding: 0px 0px 0px 0px !important;"><i class="uk-close icon-add"></i></span>');
+
+    for (var i = 0; i < pageTagIds.length; i++) {
+      var id = parseInt(pageTagIds[i]);
+      var name = allTags[id];
+      appendTag($this, id, name, false);
+    }
+
+    newTagBtn.click(function(e) {
+      e.preventDefault();
+      $badgesContainer.children().remove();
+      var pageTagIds =  $pageTags.data('page-tags'); // get the latest data Ids
+      for (var id in allTags) {
+        id = parseInt(id);
+        (pageTagIds.indexOf(id) === -1) && appendTag($badgesContainer, id, allTags[id], true);
+      }
+      UIkit.modal('#available-tags').show();
+    });
+    $this.prepend(newTagBtn);
+
+  });
+</script>

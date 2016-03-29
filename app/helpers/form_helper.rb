@@ -17,55 +17,64 @@ module FormHelper
     end
   end
 
-  def form_input(f, type, name, icon, html_options={})
+  def with_label(f, name, icon)
     capture do
       content_tag :div, class: %w(uk-form-row) do
-        concat(f.label(name, class: %w(uk-form-label)) do
-          if icon.present?
-            icon + '&nbsp;&nbsp;'.html_safe + f.object.class.human_attribute_name(name)
-          else
-            f.object.class.human_attribute_name(name)
-          end
-        end)
+        concat(form_label(f, name, icon))
         concat(content_tag(:div, class: %w(uk-form-controls)) do
-          f.send(type, name, class: 'uk-width', **html_options)
+          yield if block_given?
         end)
-        concat(f.object.errors[name].map do |e|
-          content_tag(:p, class: %w(uk-form-help-block uk-text-danger)) do
+      end
+    end
+  end
+
+  def with_errors(f, name)
+    capture do
+      f.object.errors[name].map do |e|
+        content_tag(:p, class: %w(uk-form-help-block uk-text-danger)) do
+          if block_given?
+            yield
+          else
             "#{f.object.class.human_attribute_name(name) } #{e}"
           end
-        end.join("\n").html_safe)
+        end
+      end.join("\n").html_safe
+    end
+  end
+
+  def form_label(f, name, icon, html_options={class: %w(uk-form-label)})
+    capture do
+      f.label(name, **html_options) do
+        if icon.present?
+          icon + '&nbsp;&nbsp;'.html_safe + f.object.class.human_attribute_name(name)
+        else
+          f.object.class.human_attribute_name(name)
+        end
       end
+    end
+  end
+
+  def form_input(f, type, name, icon, html_options={})
+    capture do
+      concat(with_label(f, name, icon) do
+        f.send(type, name, class: 'uk-width', **html_options)
+      end)
+      concat(with_errors(f, name))
     end
   end
 
   def form_select(f, name, icon, options, selected, select_options={})
     capture do
-      content_tag :div, class: %w(uk-form-row) do
-        concat(f.label(name, class: %w(uk-form-label)) do
-          if icon.present?
-            icon + '&nbsp;&nbsp;'.html_safe + f.object.class.human_attribute_name(name)
-          else
-            f.object.class.human_attribute_name(name)
-          end
-        end)
-        concat(content_tag(:div, class: %w(uk-form-controls)) do
-          f.select(name, options_for_select(options, :selected => selected), select_options, {class: 'uk-width'})
-        end)
-      end
+      concat(with_label(f, name, icon) do
+        f.select(name, options_for_select(options, :selected => selected), select_options, {class: 'uk-width'})
+      end)
     end
   end
 
   def form_check_box(f, name, icon)
     capture do
       concat f.check_box(name)
-      concat(f.label(name, class: 'uk-width') do
-        if icon.present?
-          icon + '&nbsp;&nbsp;'.html_safe + f.object.class.human_attribute_name(name)
-        else
-          f.object.class.human_attribute_name(name)
-        end
-      end)
+      concat(form_label(f, name, icon, class: 'uk-width'))
     end
   end
 

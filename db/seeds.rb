@@ -86,6 +86,12 @@ page_2.tags << Tag.find_or_create_by(name: 'films')
 page_3.tags << Tag.find_or_create_by(name: 'movies')
 page_3.tags << Tag.find_or_create_by(name: 'films')
 
+%w(one two three four five six seven eight nine ten
+eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen twenty
+twenty_one twenty_two twenty_four twenty_five twenty_six twenty_seven twenty_eight twenty_nine thirty).each do |tag|
+  page_1.tags << Tag.find_or_create_by(name: tag)
+end
+
 
 LayoutRegion.destroy_all
 LayoutRegion.create(name: 'before_site_content', content: '')
