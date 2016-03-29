@@ -1,4 +1,5 @@
 
+# TODO: refactor list_ops_helper like form_helper
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
