@@ -23,8 +23,7 @@
         <%= @resource_list.map do |resource|
           name = resource.name
           update_delete_path = admin_tag_path(resource.id)
-
-          form_dialog_editable_li_as_dropdown(name, '#edit_form', update_delete_path, Tag.name.underscore, {'name' => name})
+          form_dialog_editable_li_as_dropdown(name, '#edit_form', update_delete_path, Tag.name.underscore, {'name' => name}, class: 'uk-badge page-tag', style: 'padding: 0px 5px 0px 5px !important; text-align: left;')
         end.join("\n").html_safe %>
       </ul>
   <% end %>
