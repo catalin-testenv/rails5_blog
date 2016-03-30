@@ -13,7 +13,7 @@ $(function() {
     })
   });
 
-  // on submit removes fields having no value
+  // on submit skips fields having no value
   $('[data-bulk-form]').each(function() {
     $(this).submit(function(e) {
       var $form = $(this);
@@ -30,6 +30,7 @@ $(function() {
   });
 
   // bulk update/destroy form
+  // collects target checkboxes into internal hidden inputs
   $('[data-bulk-update-form], [data-bulk-destroy-form]').each(function() {
     $(this).submit(function(e) {
       // e.preventDefault();

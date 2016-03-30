@@ -1,5 +1,4 @@
 
-# TODO: refactor list_ops_helper like form_helper
 # TODO: add tags feature
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
