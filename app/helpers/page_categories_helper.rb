@@ -20,7 +20,7 @@ module PageCategoriesHelper
       end
     end
 
-    # we re-sort items to mix ordering between Page and PageCategory
+    # we re-sort items to mix ordering between Page and PageCategory (crux for tree build)
     (page_categories_all + nav_pages)
      .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
   end
@@ -98,7 +98,8 @@ module PageCategoriesHelper
         # insert in arr only top level items (Page || PageCategory)
         arr << obj
       else
-        # insert obj into its parent_id children
+        # insert obj into its parent's children
+        # it is assumed the fact that _sorted_pages_and_categories is sorted such as children always come after their parent
         ids[item.parent_id][:children] << obj
       end
     end
