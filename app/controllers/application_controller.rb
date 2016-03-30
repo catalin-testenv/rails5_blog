@@ -1,5 +1,6 @@
 
 # TODO: refactor list_ops_helper like form_helper
+# TODO: add tags feature
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
@@ -7,7 +8,7 @@
 # TODO: ensure that ordering is respected in menu and in listings
 # TODO: maybe we should be able to make any PageCategory clickable | what should be displayed in a page category view ????
 # TODO: make possible to extract menu between levels (if one needs separate sub-menus)
-# TODO: add tags feature
+# TODO: make an option in admin for menu_split and main_menu_depth and render secondary menu in sidebar ...?
 # TODO: add more omniauth providers
 # TODO: show formatted code on client - almost done
 # TODO: check how to generate code view from server # http://pygments.org/docs/ | https://github.com/jneen/rouge
@@ -16,6 +17,7 @@
 # TODO: make blog real
 # TODO: implement comments
 # TODO: comments will be moderated (the blog owner will be notified via email)
+# TODO: pages (in admin) should be able to be filtered by is_commentable, has_unpublished_comments, has_new_comments
 # TODO: in admin show registered users and link to their comments
 # TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: make unittests
