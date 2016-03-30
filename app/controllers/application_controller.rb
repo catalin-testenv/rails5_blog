@@ -1,7 +1,6 @@
 
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
-# TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?
 # TODO: find a way to not override a user theme when main blog code is updated from repo
 # TODO: ensure that ordering is respected in menu and in listings
 # TODO: maybe we should be able to make any PageCategory clickable | what should be displayed in a page category view ????
