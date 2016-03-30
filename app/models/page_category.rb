@@ -17,8 +17,9 @@ class PageCategory < ApplicationRecord
   end
 
   def move_children
-    pages.update_all(parent_id: parent.try(:id) || 0)
-    subcategories.update_all(parent_id: parent.try(:id) || 0)
+    parent_id = parent.try(:id) || 0
+    pages.update_all(parent_id: parent_id)
+    subcategories.update_all(parent_id: parent_id)
   end
 
   def has_subcategories?
