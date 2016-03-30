@@ -25,11 +25,20 @@ $link-hover-color-on-black-background:           rgba(255,255,255,0.8);
 
 $box-shadow-bottom-right:                        2px 9px 10px -9px rgba(0,0,0,.4);
 $box-shadow-bottom:                              0px 9px 10px -9px rgba(0,0,0,.4);
-$box-shadow-right-inset:                         inset -9px 0px 10px -9px rgba(0,0,0,.4);
+$box-shadow-bottom-smaller:                      0px 4px 4px -4px rgba(0,0,0,.4);
+
 $box-shadow-bottom-inset:                        inset 0px -9px 10px -9px rgba(0,0,0,.4);
 $box-shadow-top-inset:                           inset 0px 9px 10px -9px rgba(0,0,0,.4);
+$box-shadow-right-inset:                         inset -9px 0px 10px -9px rgba(0,0,0,.4);
+$box-shadow-left-inset:                          inset 9px 0px 10px -9px rgba(0,0,0,.4);
 $box-shadow-bottom-inset-smaller:                inset 0px -4px 4px -4px rgba(0,0,0,.4);
 $box-shadow-top-inset-smaller:                   inset 0px 4px 4px -4px rgba(0,0,0,.4);
+$box-shadow-right-inset-smaller:                 inset -4px 0px 4px -4px rgba(0,0,0,.4);
+$box-shadow-left-inset-smaller:                  inset 4px 0px 4px -4px rgba(0,0,0,.4);
+$box-light-bottom-inset-smaller:                 inset 0px -4px 4px -4px rgba(255,255,255,.5);
+$box-light-top-inset-smaller:                    inset 0px 4px 4px -4px rgba(255,255,255,.5);
+$box-light-right-inset-smaller:                  inset -4px 0px 4px -4px rgba(255,255,255,.5);
+$box-light-left-inset-smaller:                   inset 4px 0px 4px -4px rgba(255,255,255,.5);
 $box-shadow-material:                            0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
 
 $border-radius-small-all:                        2px;
@@ -276,6 +285,7 @@ $button-border_:                                 $panel-title-background-color_;
 @mixin hook-button() {
   color: $button-color !important;
   background-color: $light-orange;
+  box-shadow: $box-shadow-bottom-smaller;
 }
 
 @mixin hook-button-hover() {
@@ -377,6 +387,10 @@ $button-border_:                                 $panel-title-background-color_;
   line-height: normal !important;
 }
 
+.no-box-shadow {
+  box-shadow: none !important;
+}
+
 // =============== for the sake of uk utils completeness ===============
 .uk-margin-left-remove { margin-left: 0 !important; }
 .uk-margin-right-remove { margin-right: 0 !important; }
@@ -450,12 +464,14 @@ a {
 // ============== specific
 .uk-badge.page-tag {
   margin: 0px 5px 5px 0px !important;
-  background-color: $light-green !important;
+  background-color: darken($admin-body-uk-panel-background-color, 3%) !important;
   color: $nav-dropdown-color !important;
   font-size: 12px !important;
   font-weight: 500 !important;
   line-height: 20px !important;
   padding: 0px 0px 0px 5px !important;
+  cursor: default;
+  box-shadow: $box-shadow-bottom-inset-smaller, $box-shadow-right-inset-smaller, $box-light-top-inset-smaller, $box-light-left-inset-smaller;
 }
 .icon-add:after {
   content: "\f067" !important;

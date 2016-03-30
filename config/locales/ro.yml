@@ -32,6 +32,7 @@ ro:
   sign_out: 'logout'
   show: 'vizualizeaza'
   edit: 'editeaza'
+  update: 'actualizeaza'
   destroy: 'sterge'
   cancel: 'anuleaza'
   back: 'inapoi'

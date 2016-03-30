@@ -32,6 +32,7 @@ en:
   sign_out: 'logout'
   show: 'show'
   edit: 'edit'
+  update: 'update'
   destroy: 'destroy'
   cancel: 'cancel'
   back: 'back'
