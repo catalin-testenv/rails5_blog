@@ -11,7 +11,7 @@ class Page < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: :page_category}
   validates :page_content, presence: true
 
-  default_scope { order(:parent_id, :ordering, :updated_at) }
+  default_scope { order(:parent_id, :ordering) }
   scope :published, -> (val=true) { where(published: val) }
   scope :for_main_menu, -> { published.where(is_main_nav: true) }
   scope :is_main_nav, -> (val=true) { where(is_main_nav: val) }

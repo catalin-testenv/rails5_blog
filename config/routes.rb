@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :pages, only: [:show]
   resources :page_categories, only: [:show]
+  resources :tags, only: [:show]
 
   root to: 'pages#root'
 

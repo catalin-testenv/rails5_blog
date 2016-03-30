@@ -1,0 +1,18 @@
+<% content_for :title do %>
+    <%= @resource.name.titleize %>
+<% end %>
+
+<h1><%= @resource.name %></h1>
+
+<% @resource.pages.each do |item| %>
+    <div>
+      <h3><%= item.name %></h3>
+      <div><%= evaluate(item.page_content.excerpt).html_safe %></div>
+      <p><%= link_to I18n.t('read_more'), page_path(item) %></p>
+    </div>
+<% end %>
+
+
+
+
+
