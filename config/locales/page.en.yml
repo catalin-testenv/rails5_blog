@@ -14,6 +14,7 @@ en:
         parent_id: 'Category ID'
         ordering: 'Ordering'
         page_category: 'Category'
+        tags: 'Tags'
       page_content:
         excerpt: 'Excerpt'
         content: 'Content'

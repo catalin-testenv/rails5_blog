@@ -14,6 +14,7 @@ ro:
         parent_id: 'Categorie ID'
         ordering: 'Ordonare'
         page_category: 'Categorie'
+        tags: 'Etichete'
       page_content:
         excerpt: 'Rezumat'
         content: 'Continut'

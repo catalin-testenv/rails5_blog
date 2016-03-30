@@ -17,6 +17,7 @@ class Page < ApplicationRecord
   scope :is_main_nav, -> (val=true) { where(is_main_nav: val) }
   scope :is_commentable, -> (val=true) { where(is_commentable: val) }
   scope :in_category, -> (id=nil) { where(page_category: id) if id.present?}
+  scope :has_tag, -> (tag_id) { joins(:pages_tags).where(pages_tags: {tag_id: tag_id}) }
   scope :flt_name, ->(name) do
     where('name LIKE ?', "%#{name}%")
   end

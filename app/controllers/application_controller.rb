@@ -1,5 +1,6 @@
 
 # TODO: add tags feature
+# TODO: what happens if a tag is destroyed ?
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
 # TODO: find a way to dynamically load js/css per admin/site and theme |eventually put templates in DB ?

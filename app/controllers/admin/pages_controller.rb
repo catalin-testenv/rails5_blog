@@ -6,6 +6,7 @@ class Admin::PagesController < Admin::AdminController
   has_scope :is_main_nav
   has_scope :is_commentable
   has_scope :in_category
+  has_scope :has_tag
   include HasScopeUpdatedAtConcern
 
   # GET /admin/pages

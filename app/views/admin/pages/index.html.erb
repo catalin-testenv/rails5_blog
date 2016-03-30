@@ -18,7 +18,7 @@
 <!-- filters area -->
 <form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="<%= admin_pages_path %>" method="get" data-bulk-form>
   <%# declare what filters are to be used to not include them in hidden fields %>
-  <% filter_names = %w[flt_name is_main_nav published is_commentable updated_at_period in_category] %>
+  <% filter_names = %w[flt_name is_main_nav published is_commentable updated_at_period in_category has_tag] %>
   <%# preserve query string in hidden fields %>
   <% request.query_parameters.each do |k, v| %>
       <%= hidden_field_tag k, v unless filter_names.include?(k) %>
@@ -28,10 +28,15 @@
       <%= list_ops_string(Page, :name, :flt_name, icon_title, placeholder: '...') %>
     </div>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_select(Page, :page_category, :in_category, icon_page_category, page_categories_all
-          .select(&:has_any_pages?)
+      <%= list_ops_select(Page, :page_category, :in_category, icon_page_category, page_categories_all # .select(&:has_any_pages?) # too many db hits
           .collect { |p| [p.name, p.id] }
           .unshift(['...', nil], [t('root'), 0])
+          ) %>
+    </div>
+    <div class="uk-width-medium-1-2">
+      <%= list_ops_select(Page, :tags, :has_tag, icon_tag, Tag.all # .select(&:has_any_pages?) # too many db hits
+          .collect { |p| [p.name, p.id] }
+          .unshift(['...', nil])
           ) %>
     </div>
     <div class="uk-width-medium-1-1">
