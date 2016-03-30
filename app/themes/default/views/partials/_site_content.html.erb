@@ -1,6 +1,10 @@
 <%
-  sidebar_left_content = get_content_for 'sidebar_left'
-  sidebar_right_content = get_content_for 'sidebar_right'
+
+  sidebar_left_content = ''
+  sidebar_right_content = tags_menu
+
+  sidebar_left_content << layout_region_get_content_for('sidebar_left')
+  sidebar_right_content << layout_region_get_content_for('sidebar_right')
 
   main_content_class = ' class="large-12 columns" '.html_safe
   sidebar_left_class = ' style="display: none;" '.html_safe

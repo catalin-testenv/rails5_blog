@@ -21,11 +21,13 @@
   <!-- menu (small|large)  -->
   <!-- small displays on small and medium and is non sticky -->
   <div id="small_site_main_navigation" class="hide-for-large">
-    <%= page_categories_menu_html_foundation_6(options: {
+    <%= page_categories_menu_html(options: {
         wrapper_ul_class: 'vertical menu hide-for-large',
         wrapper_ul_data: 'data-accordion-menu data-options="multiOpen: false"',
         inner_ul_class: 'menu vertical nested',
-        inner_ul_data: ''
+        inner_ul_data: '',
+        active_li: 'active',
+        active_link: ''
     }).html_safe %>
   </div>
   <!-- /small displays on small and medium and is non sticky -->
@@ -34,11 +36,13 @@
   <div id="large_site_main_navigation" class="show-for-large">
     <div class="row">
       <div class="large-9 columns">
-        <%= page_categories_menu_html_foundation_6(options: {
+        <%= page_categories_menu_html(options: {
             wrapper_ul_class: 'dropdown menu show-for-large',
             wrapper_ul_data: 'data-dropdown-menu data-options=""',
             inner_ul_class: 'menu',
-            inner_ul_data: ''
+            inner_ul_data: '',
+            active_li: 'active',
+            active_link: ''
         }).html_safe %>
       </div>
       <div class="large-3 columns">

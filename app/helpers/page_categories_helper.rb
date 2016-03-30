@@ -1,11 +1,8 @@
 module PageCategoriesHelper
 
-  def _current_item_id
-    (request.env['PATH_INFO'].split('/')[-1] || Page.root_page.to_param).to_i
-  end
-
-  def _sorted_pages_and_categories
-    current_item_id = _current_item_id
+  def page_categories_and_nav_pages_sorted
+    return @page_categories_and_nav_pages_sorted if @page_categories_and_nav_pages_sorted
+    _current_item_id = current_item_id
     page_categories_all = PageCategory.all
     nav_pages = Page.for_main_menu
     # try first to get current_page from nav pages then from non nav pages in case we are viewing a non nav page
@@ -14,23 +11,21 @@ module PageCategoriesHelper
 
     # mark active items for navigation
     (page_categories_all + (current_page ? [current_page] : [])).reverse_each do |item|
-      if item.id == current_item_id
+      if item.id == _current_item_id
         item.active = true
-        current_item_id = item.parent_id
+        _current_item_id = item.parent_id
       end
     end
 
     # we re-sort items to mix ordering between Page and PageCategory (crux for tree build)
-    (page_categories_all + nav_pages)
-     .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
+    @page_categories_and_nav_pages_sorted = (page_categories_all + nav_pages)
+      .sort_by { |item| [item.parent_id.to_i, item.ordering.to_i] }
   end
 
   def breadcrumbs(all_links = true)
-    current_item_id = _current_item_id
-    sorted_pages_and_categories = _sorted_pages_and_categories
-    non_nav_page = sorted_pages_and_categories.find{ |p| p.id == current_item_id } ? nil : Page.find_by_id(current_item_id)
+    non_nav_page = page_categories_and_nav_pages_sorted.find{ |p| p.id == current_item_id } ? nil : Page.find_by_id(current_item_id)
     non_nav_page && non_nav_page.active = true
-    items = (sorted_pages_and_categories + (non_nav_page ? [non_nav_page] : [])).select(&:active)
+    items = (page_categories_and_nav_pages_sorted + (non_nav_page ? [non_nav_page] : [])).select(&:active)
 
     html ='<nav aria-label="You are here:" role="navigation"><ul class="breadcrumbs">'
 
@@ -83,7 +78,7 @@ module PageCategoriesHelper
   def page_categories_menu
     ids = {}
     # build tree
-    _sorted_pages_and_categories
+    page_categories_and_nav_pages_sorted
     .map.with_object([]) do |item, arr|
       # if item is Page let value be its path
       # else (item is a PageCategory) let value be an array
@@ -99,20 +94,24 @@ module PageCategoriesHelper
         arr << obj
       else
         # insert obj into its parent's children
-        # it is assumed the fact that _sorted_pages_and_categories is sorted such as children always come after their parent
+        # it is assumed the fact that page_categories_and_nav_pages_sorted is sorted such as children always come after their parent
         ids[item.parent_id][:children] << obj
       end
     end
   end
 
   # @return String: nested html ul/li mirroring the 'arr' tree param
-  def page_categories_menu_html_foundation_6(arr: page_categories_menu,
+  def page_categories_menu_html(arr: page_categories_menu,
                                              options: {},
                                              _count: 0)
-    defaults = {wrapper_ul_class: 'dropdown menu',
-                wrapper_ul_data: 'data-dropdown-menu',
-                inner_ul_class: 'menu',
-                inner_ul_data: ''}
+    defaults = {
+        wrapper_ul_class: '',
+        wrapper_ul_data: '',
+        inner_ul_class: '',
+        inner_ul_data: '',
+        active_li: 'active',
+        active_link: ''
+    }
     options = defaults.merge options
     html = ''
     return html if arr.length == 0
@@ -123,12 +122,13 @@ module PageCategoriesHelper
       name = obj[:name]
       link = obj[:link]
       children = obj[:children]
-      active = 'active' if obj[:active]
+      active_li = options[:active_li] if obj[:active]
+      active_link = options[:active_link] if obj[:active]
       if children.nil? || children.length == 0
         # make clickable either a Page either a PageCategory with no nav children
-        html << "<li class='#{active}'><a href='#{link}' class='page'>#{name}</a></li>"
+        html << "<li class='#{active_li}'><a href='#{link}' class='page #{active_link}'>#{name}</a></li>"
       else
-        html << "<li class='#{active}'><a href='javascript:void(0);' class='page_category'>#{name}</a>#{page_categories_menu_html_foundation_6(arr: children, options: options, _count: _count+1)}</li>"
+        html << "<li class='#{active_li}'><a href='javascript:void(0);' class='page_category #{active_link}'>#{name}</a>#{page_categories_menu_html(arr: children, options: options, _count: _count+1)}</li>"
       end
     end
     html << '</ul>'
