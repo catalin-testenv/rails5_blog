@@ -1,10 +1,15 @@
 class Page < ApplicationRecord
 
-  attr_accessor :active
+  attr_accessor :active # flag set by the outside code only in view for rendering purpose
 
   belongs_to :page_category, foreign_key: 'parent_id', required: false
+  # without inverse_of: :page, when creating a page as:
+  # Page.create(name: 'name', page_content: PageContent.new(content: 'content'))
+  # it will complain that "Page content page must exist";
+  # Error raised by PageContent that belongs_to Page which is required.
   has_one :page_content, dependent: :destroy, inverse_of: :page
   has_and_belongs_to_many :tags
+  has_many :comments, dependent: :destroy
 
   accepts_nested_attributes_for :page_content
 

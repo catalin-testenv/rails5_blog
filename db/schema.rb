@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327111026) do
+ActiveRecord::Schema.define(version: 20160331080639) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "status",                   default: 0, null: false
+    t.integer  "page_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "comments", ["page_id"], name: "index_comments_on_page_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "layout_regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name",                     null: false
@@ -79,5 +91,7 @@ ActiveRecord::Schema.define(version: 20160327111026) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "comments", "pages"
+  add_foreign_key "comments", "users"
   add_foreign_key "page_contents", "pages", name: "fk_page_id", on_delete: :cascade
 end
