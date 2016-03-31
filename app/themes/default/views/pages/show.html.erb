@@ -16,4 +16,15 @@
   <%= evaluate(@resource.page_content.content).html_safe %>
 </p>
 
+<% if @resource.comments %>
+    <ul>
+      <% @resource.comments.each do |comment| %>
+      <li>
+        <p><%= comment.user.name %><img src="<%= comment.user.image %>" /></p>
+        <p><%= comment.excerpt %></p>
+      </li>
+      <% end %>
+    </ul>
+<% end %>
+
 
