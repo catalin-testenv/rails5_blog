@@ -1,4 +1,5 @@
 
+# TODO: make window alerts prettier
 # TODO: require name on User model
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites

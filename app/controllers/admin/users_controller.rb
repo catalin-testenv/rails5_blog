@@ -2,6 +2,7 @@ class Admin::UsersController < Admin::AdminController
 
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
+  has_scope :flt_name
   include HasScopeCreatedAtConcern
 
   # GET /admin/users

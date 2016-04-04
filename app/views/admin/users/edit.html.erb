@@ -1,0 +1,25 @@
+
+<% title = resource_view_editing_message(resource_instance: @resource) %>
+
+<% content_for :title do %>
+    <%= title %>
+<% end %>
+
+<%= admin_body_title("#{icon_edit}&nbsp;&nbsp;#{title}") %>
+
+<% page_edit_links = [
+    {message: icon_list, path: admin_users_path},
+    {message: icon_destroy, path: admin_user_path(@resource),
+     options: {method: :delete, data: { confirm: are_you_sure_message }}}
+] %>
+
+<%= admin_body_top_links(page_edit_links) %>
+
+<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+
+<%= render 'form', resource: @resource %>
+
+<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
+
+<%= admin_body_bottom_links(page_edit_links) %>
+
