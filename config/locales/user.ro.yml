@@ -1,0 +1,15 @@
+ro:
+  activerecord:
+    models:
+      user:
+        one: 'Utilizator'
+        other: 'Utilizatori'
+    attributes:
+      user:
+        name: 'Nume'
+        email: 'Email'
+        provider: 'Furnizor'
+        image: 'Imagine'
+        role: 'Rol'
+        uid: 'Uid'
+

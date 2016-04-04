@@ -4,7 +4,7 @@ module ScopeUpdatedAtConcern
 
   included do
     scope :updated_at_period, -> (starting, ending) do
-      where('updated_at BETWEEN ? AND ?', starting || 50.years.ago, ending || DateTime.current)
+      where("#{self.table_name}.updated_at BETWEEN ? AND ?", starting || 50.years.ago, ending || DateTime.current)
     end
   end
 

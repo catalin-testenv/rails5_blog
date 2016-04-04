@@ -1,0 +1,95 @@
+
+<% title = resource_view_listing_message(resource: User, count: 2) %>
+
+<% content_for :title do %>
+    <%= title %>
+<% end %>
+
+<%= admin_body_title("#{icon_list}&nbsp;&nbsp;#{title} (#{@resource_list.total_count})") %>
+
+<% index_links = [
+    {message: icon_new, path: new_admin_user_path, options: {}}
+] %>
+
+<%= admin_body_top_links(index_links) %>
+
+<h3 class="admin-body-section-title uk-margin-top-remove"><%= t('filters').humanize %></h3>
+
+<!-- filters area -->
+<form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="<%= admin_users_path %>" method="get" data-bulk-form>
+  <%# declare what filters are to be used to not include them in hidden fields %>
+  <% filter_names = %w[created_at_period] %>
+  <%# preserve query string in hidden fields %>
+  <% request.query_parameters.each do |k, v| %>
+      <%= hidden_field_tag k, v unless filter_names.include?(k) %>
+  <% end %>
+  <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+    <div class="uk-width-medium-1-1">
+      <%= list_ops_datetime_range(User, :created_at, :created_at_period, icon_created_at, :starting, :ending, t('from'), t('to')) %>
+    </div>
+    <div class="uk-width-small-1-1">
+      <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+        <div class="uk-width-small-1-2">
+          <%= list_ops_submit(icon_filter, with_fake_label: false) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<h3 class="admin-body-section-title"><%= t('results').humanize %></h3>
+
+<!-- results area -->
+<div class="uk-overflow-horizontal">
+  <table class="uk-table uk-table-striped-even uk-table-hover"> <!-- uk-text-nowrap uk-table-condensed uk-table-hover -->
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= icon_image %></th>
+          <th><%= list_ops_sort_link :name, icon_title %></th>
+          <th><%= list_ops_sort_link :email, icon_email %></th>
+          <th><%= list_ops_sort_link :comments_count, icon_commenting %></th>
+          <th><%= list_ops_sort_link :created_at, icon_created_at %></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th><%= icon_image %></th>
+          <th><%= list_ops_sort_link :name, icon_title %></th>
+          <th><%= list_ops_sort_link :email, icon_email %></th>
+          <th><%= list_ops_sort_link :comments_count, icon_commenting %></th>
+          <th><%= list_ops_sort_link :created_at, icon_created_at %></th>
+        </tr>
+      </tfoot>
+
+      <tbody>
+      <% @resource_list.each do |resource| %>
+        <tr>
+          <td>
+            <div class="uk-button-dropdown uk-dropdown-close" data-uk-dropdown="{mode:'click'}">
+              <button class="uk-button no-background no-dimensions no-box-shadow" onclick="event.preventDefault();"><%= icon_actions %></button>
+              <div class="uk-dropdown uk-dropdown-small">
+                <ul class="uk-nav uk-nav-dropdown">
+                  <li><%= link_to "#{icon_edit}&nbsp;&nbsp;#{edit_message}".html_safe, edit_admin_user_path(resource), class: %w(secondary-link font-weight-normal) %></li>
+                  <li><%= link_to "#{icon_destroy}&nbsp;&nbsp;#{destroy_message}".html_safe, admin_user_path(resource), method: :delete, data: { confirm: are_you_sure_message }, class: %w(secondary-link font-weight-normal) %></li>
+                </ul>
+              </div>
+            </div>
+          </td>
+          <td><%= image_tag resource.image || image_path('icon_user_default.png'), size: '24x24', alt: "avatar for #{resource.name}" %></td>
+          <td><%= resource.name %></td>
+          <td><%= resource.email %></td>
+          <td><%= resource.comments_count %></td>
+          <td><%= resource.created_at.to_date %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>
+
+<%= paginate @resource_list %>
+
+<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
+
+<%= admin_body_bottom_links(index_links) %>

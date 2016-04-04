@@ -55,7 +55,6 @@ class Admin::PagesController < Admin::AdminController
   def update
     authorize @resource
     respond_to do |format|
-      p resource_params
       if @resource.update(resource_params)
         format.html do
           redirect_to listing_path, notice: resource_update_success_message(resource_instance: @resource)

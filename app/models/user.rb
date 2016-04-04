@@ -4,6 +4,10 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
+  # enhances User with comments_count method
+  default_scope { joins(:comments).select('users.*, count(comments.id) as comments_count').group('users.id').order(created_at: :asc) }
+  include ScopeCreatedAtConcern
+
   before_create do |user|
     user.role = :admin if User.unscoped.count == 0
   end

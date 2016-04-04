@@ -24,6 +24,10 @@ module IconsHelper
     "<i class='fa fa-comments #{options}'></i>".html_safe
   end
 
+  def icon_commenting(options='')
+    "<i class='fa fa-commenting #{options}'></i>".html_safe
+  end
+
   def icon_ordering(options='')
     "<i class='fa fa-sort-numeric-asc #{options}'></i>".html_safe
   end
@@ -34,6 +38,10 @@ module IconsHelper
 
   def icon_updated_at(options='')
     "<i class='fa fa-calendar #{options}'></i>".html_safe
+  end
+
+  def icon_created_at(options='')
+    icon_updated_at options
   end
 
   def icon_edit(options='')
@@ -70,6 +78,18 @@ module IconsHelper
 
   def icon_tag(options='')
     "<i class='fa fa-tags #{options}'></i>".html_safe
+  end
+
+  def icon_user(options='')
+    "<i class='fa fa-user #{options}'></i>".html_safe
+  end
+
+  def icon_email(options='')
+    "<i class='fa fa-envelope #{options}'></i>".html_safe
+  end
+
+  def icon_image(options='')
+    "<i class='fa fa-picture-o #{options}'></i>".html_safe
   end
 
 end

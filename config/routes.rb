@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         post 'bulk_update'
       end
     end
+    resources :users
   end
 
   resources :pages, only: [:show]
