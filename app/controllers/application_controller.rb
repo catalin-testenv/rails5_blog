@@ -1,6 +1,7 @@
 
+# TODO: add icons to the main admin navigation
+# TODO: WHY bulk_update_admin_comments/pages_path(request.query_parameters) ?
 # TODO: make window alerts prettier
-# TODO: require name on User model
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
 # TODO: find a way to not override a user theme when main blog code is updated from repo
@@ -19,6 +20,7 @@
 # TODO: pages (in admin) should be able to be filtered by is_commentable, has_unpublished_comments, has_new_comments
 # TODO: in admin show registered users and link to their comments
 # TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
+# TODO: add add_words plugin
 # TODO: make unittests
 # TODO: add assets manager as an engine preferably + stuff(gallery, carousel)
 # TODO: make easy to backup/load/save entire site (db/assets)

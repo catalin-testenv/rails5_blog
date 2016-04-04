@@ -22,6 +22,12 @@ Rails.application.routes.draw do
       end
     end
     resources :users
+    resources :comments do
+      collection do
+        post 'bulk_update'
+        delete 'bulk_destroy'
+      end
+    end
   end
 
   resources :pages, only: [:show]

@@ -20,6 +20,9 @@
   <li class="<%= 'uk-active' if controller.is_a?(Admin::UsersController) %>">
     <a href="<%= admin_users_path %>"><%= User.model_name.human(count: 2) %></a>
   </li>
+  <li class="<%= 'uk-active' if controller.is_a?(Admin::CommentsController) %>">
+    <a href="<%= admin_comments_path %>"><%= Comment.model_name.human(count: 2) %></a>
+  </li>
 </ul>
 
 

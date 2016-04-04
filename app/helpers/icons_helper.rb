@@ -92,4 +92,24 @@ module IconsHelper
     "<i class='fa fa-picture-o #{options}'></i>".html_safe
   end
 
+  def icon_content(options='')
+    "<i class='fa fa-book #{options}'></i>".html_safe
+  end
+
+  def icon_excerpt(options='')
+    icon_content options
+  end
+
+  def icon_rejected(options='')
+    "<i class='fa fa-ban #{options}'></i>".html_safe
+  end
+
+  def icon_approved(options='')
+    "<i class='fa fa-check-square-o #{options}'></i>".html_safe
+  end
+
+  def icon_to_be_moderated(options='')
+    "<i class='fa fa-clock-o #{options}'></i>".html_safe
+  end
+
 end

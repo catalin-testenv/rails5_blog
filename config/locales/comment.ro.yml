@@ -1,0 +1,10 @@
+ro:
+  activerecord:
+    models:
+      comment:
+        one: 'Comentariu'
+        other: 'Comentarii'
+    attributes:
+      comment:
+        content: 'Continut'
+        status: 'Stare'

@@ -10,6 +10,11 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true, length: { maximum: MAX_CHARS }
 
+  scope :approved, -> () { where(status: statuses[:approved]) }
+  scope :to_be_moderated, -> () { where(status: statuses[:to_be_moderated]) }
+  scope :rejected, -> () { where(status: statuses[:rejected]) }
+  include ScopeCreatedAtConcern
+
   def excerpt
     content.truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
   end
