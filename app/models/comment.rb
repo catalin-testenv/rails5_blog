@@ -13,6 +13,9 @@ class Comment < ApplicationRecord
   scope :approved, -> () { where(status: statuses[:approved]) }
   scope :to_be_moderated, -> () { where(status: statuses[:to_be_moderated]) }
   scope :rejected, -> () { where(status: statuses[:rejected]) }
+  scope :of_user, ->(name) do
+    joins(:user).where('users.name LIKE ?', App::Utils.sql_multi_like(name))
+  end
   include ScopeCreatedAtConcern
 
   def excerpt

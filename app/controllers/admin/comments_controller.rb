@@ -1,6 +1,7 @@
 class Admin::CommentsController < Admin::AdminController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
+  has_scope :of_user
   include HasScopeCreatedAtConcern
 
   # GET /admin/comments

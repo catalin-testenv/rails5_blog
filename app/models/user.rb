@@ -9,7 +9,7 @@ class User < ApplicationRecord
   # enhances User with comments_count method
   default_scope { joins('LEFT JOIN comments ON users.id = comments.user_id').select('users.*, count(comments.id) as comments_count').group('users.id').order(created_at: :asc) }
   scope :flt_name, ->(name) do
-    where('name LIKE ?', "%#{name}%")
+    where('name LIKE ?', App::Utils.sql_multi_like(name))
   end
   include ScopeCreatedAtConcern
 

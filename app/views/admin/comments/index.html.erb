@@ -18,12 +18,15 @@
 <!-- filters area -->
 <form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="<%= admin_comments_path %>" method="get" data-bulk-form>
   <%# declare what filters are to be used to not include them in hidden fields %>
-  <% filter_names = %w[created_at_period] %>
+  <% filter_names = %w[created_at_period, of_user] %>
   <%# preserve query string in hidden fields %>
   <% request.query_parameters.each do |k, v| %>
       <%= hidden_field_tag k, v unless filter_names.include?(k) %>
   <% end %>
   <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+    <div class="uk-width-medium-1-2">
+      <%= list_ops_string(Comment, :user, :of_user, icon_title, placeholder: '...') %>
+    </div>
     <div class="uk-width-medium-1-1">
       <%= list_ops_datetime_range(Comment, :created_at, :created_at_period, icon_created_at,  :starting, :ending, t('from'), t('to')) %>
     </div>

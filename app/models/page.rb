@@ -24,7 +24,7 @@ class Page < ApplicationRecord
   scope :in_category, -> (id=nil) { where(page_category: id) if id.present?}
   scope :has_tag, -> (tag_id) { joins(:pages_tags).where(pages_tags: {tag_id: tag_id}) }
   scope :flt_name, ->(name) do
-    where('name LIKE ?', "%#{name}%")
+    where('name LIKE ?', App::Utils.sql_multi_like(name))
   end
   include ScopeUpdatedAtConcern
 

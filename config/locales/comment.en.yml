@@ -8,3 +8,4 @@ en:
       comment:
         content: 'Content'
         status: 'Status'
+        user: 'User'
