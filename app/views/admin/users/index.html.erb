@@ -83,7 +83,7 @@
           <td><%= image_tag resource.image!, size: '24x24', alt: "image for #{resource.name}" %></td>
           <td><%= resource.name %></td>
           <td><%= resource.email %></td>
-          <td><%= resource.comments_count %></td>
+          <td><%= link_to resource.comments_count, admin_comments_path(from_user: resource.name), target: '_blank' %></td>
           <td><%= resource.created_at.to_date %></td>
         </tr>
       <% end %>

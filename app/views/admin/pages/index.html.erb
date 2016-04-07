@@ -153,6 +153,7 @@ examples:
           <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
           <th><%= list_ops_sort_link :published, icon_published %></th>
           <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>
+          <th><%= list_ops_sort_link :comments_count, icon_commenting %></th>
           <th><%= list_ops_sort_link :ordering, icon_ordering %></th>
           <th><%= list_ops_sort_link :parent_id, icon_page_category %></th>
           <th><%= list_ops_sort_link :updated_at, icon_updated_at %></th>
@@ -166,6 +167,7 @@ examples:
           <th><%= list_ops_sort_link :is_main_nav, icon_is_main_nav %></th>
           <th><%= list_ops_sort_link :published, icon_published %></th>
           <th><%= list_ops_sort_link :is_commentable, icon_is_commentable %></th>
+          <th><%= list_ops_sort_link :comments_count, icon_commenting %></th>
           <th><%= list_ops_sort_link :ordering, icon_ordering %></th>
           <th><%= list_ops_sort_link :parent_id, icon_page_category %></th>
           <th><%= list_ops_sort_link :updated_at, icon_updated_at %></th>
@@ -194,6 +196,7 @@ examples:
           <td><i class="fa fa-thumbs-o-<%= resource.is_main_nav ? 'up success-color' : 'down danger-color' %>"></i></td>
           <td><i class="fa fa-thumbs-o-<%= resource.published ? 'up success-color' : 'down danger-color' %>"></i></td>
           <td><i class="fa fa-thumbs-o-<%= resource.is_commentable ? 'up success-color' : 'down danger-color' %>"></i></td>
+          <td><%= link_to resource.comments_count, admin_comments_path(for_page: resource.name), target: '_blank' %></td>
           <td><%= resource.ordering %></td>
           <td><%= resource.page_category.try(:name) || t('root') %></td>
           <td><%= resource.updated_at.to_date %></td>

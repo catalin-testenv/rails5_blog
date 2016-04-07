@@ -221,6 +221,9 @@ $button-border_:                                 $panel-title-background-color_;
 }
 
 @mixin hook-table-misc() {
+  .uk-table th {
+    width: 30px; // fixes too narrow table columns
+  }
   .uk-table thead {
     background-color: lighten($admin-body-uk-panel-background-color, 0.5%);
     border-bottom: 1px solid darken($table-active-background, 1%);

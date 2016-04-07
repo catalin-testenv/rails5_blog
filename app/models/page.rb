@@ -16,7 +16,9 @@ class Page < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: :page_category}
   validates :page_content, presence: true
 
-  default_scope { order(:parent_id, :ordering) }
+  # enhances Page with comments_count method
+  # preload :page_category only helps reducing db hits in admin page listing
+  default_scope { preload(:page_category).joins('LEFT JOIN comments ON pages.id = comments.page_id').select('pages.*, count(comments.id) as comments_count').group('pages.id').order(:parent_id, :ordering) }
   scope :published, -> (val=true) { where(published: val) }
   scope :for_main_menu, -> { published.where(is_main_nav: true) }
   scope :is_main_nav, -> (val=true) { where(is_main_nav: val) }

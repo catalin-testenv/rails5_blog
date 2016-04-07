@@ -152,4 +152,9 @@ class Admin::PagesController < Admin::AdminController
      }).to_h
   end
 
+  # overrides ListOpsConcern
+  def list_ops_sortable_columns
+    Page.column_names << 'comments_count'
+  end
+
 end
