@@ -1,8 +1,5 @@
 
 # TODO: make admin menu collapsible on small devices
-# TODO: comments should be posted one per 5 minutes per user but can be updated once per minute per user / no more than total 10 comments per day
-# TODO: add user img preview to user edit and other RO details
-# TODO: add link to related comments from page and user
 # TODO: add icons to the main admin navigation
 # TODO: WHY bulk_update_admin_comments/pages_path(request.query_parameters) ?
 # TODO: make window alerts prettier
@@ -21,6 +18,7 @@
 # TODO: make blog real
 # TODO: implement comments
 # TODO: comments will be moderated (the blog owner will be notified via email)
+# TODO: comments should be posted one per 5 minutes per user but can be updated once per minute per user / no more than total 10 comments per day
 # TODO: pages (in admin) should be able to be filtered by is_commentable, has_unpublished_comments, has_new_comments
 # TODO: in admin show registered users and link to their comments
 # TODO: make possible to have iconic pictures to PageCategories and to Page(why not)

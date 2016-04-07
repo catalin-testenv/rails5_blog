@@ -169,12 +169,14 @@ examples:
                 <div>
                   <div class="uk-clearfix">
                     <div class="uk-float-left">
-                      <p><b><%= t('activerecord.attributes.user.name') %></b>: <i><%= resource.user.name %></i></p>
-                      <p><b><%= t('activerecord.attributes.user.email') %></b>: <i><%= resource.user.email %></i></p>
-                      <p><b><%= t('activerecord.attributes.user.provider') %></b>: <i><%= resource.user.provider %></i></p>
+                      <p><b><%= resource.user.class.human_attribute_name('id') %></b>: <i><%= resource.user.id %></i></p>
+                      <p><b><%= resource.user.class.human_attribute_name('name') %></b>: <i><%= resource.user.name %></i></p>
+                      <p><b><%= resource.user.class.human_attribute_name('created_at') %></b>: <i><%= resource.user.created_at.to_date %></i></p>
+                      <p><b><%= resource.user.class.human_attribute_name('email') %></b>: <i><%= resource.user.email %></i></p>
+                      <p><b><%= resource.user.class.human_attribute_name('provider') %></b>: <i><%= resource.user.provider %></i></p>
                     </div>
                     <div class="uk-float-right uk-margin-small-right">
-                      <p><%= image_tag(resource.user.image!, width: 64, alt: "image for #{resource.user.name}") %></p>
+                      <p><%= image_tag(resource.user.image!, style: 'height: 64px;', alt: "image for #{resource.user.name}") %></p>
                     </div>
                   </div>
                   <hr />

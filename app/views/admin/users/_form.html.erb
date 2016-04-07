@@ -11,7 +11,25 @@
             <%= form_input(f, :text_field, :name, icon_title) %>
           </div>
           <div class="uk-width-medium-1-2">
-            <%= form_input(f, :text_field, :image, icon_image) %>
+            <%= form_input(f, :text_field, :image, image_tag(f.object.image!, style: 'height: 20px; cursor: pointer;', data: {'uk-modal' => "{target:'#image_#{f.object.id}'}"}).html_safe) %>
+            <div id="image_<%= f.object.id %>" class="uk-modal">
+              <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <div>
+                  <div class="uk-clearfix">
+                    <div class="uk-float-left">
+                      <p><b><%= f.object.class.human_attribute_name('id') %></b>: <i><%= f.object.id %></i></p>
+                      <p><b><%= f.object.class.human_attribute_name('created_at') %></b>: <i><%= f.object.created_at.to_date %></i></p>
+                      <p><b><%= f.object.class.human_attribute_name('email') %></b>: <i><%= f.object.email %></i></p>
+                      <p><b><%= f.object.class.human_attribute_name('provider') %></b>: <i><%= f.object.provider %></i></p>
+                    </div>
+                    <div class="uk-float-right uk-margin-small-right">
+                      <p><%= image_tag(f.object.image!, style: 'height: 64px;', alt: "image for #{f.object.name}") %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
