@@ -84,6 +84,10 @@ module IconsHelper
     "<i class='fa fa-user #{options}'></i>".html_safe
   end
 
+  def icon_page(options='')
+    "<i class='fa fa-file-text-o #{options}'></i>".html_safe
+  end
+
   def icon_email(options='')
     "<i class='fa fa-envelope #{options}'></i>".html_safe
   end

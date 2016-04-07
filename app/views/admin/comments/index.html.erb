@@ -121,6 +121,8 @@ examples:
           </th>
           <th></th>
           <th><%= list_ops_sort_link :status, t('activerecord.attributes.comment.status') %></th>
+          <th><%= icon_user %></th>
+          <th><%= icon_page %></th>
           <th><%= icon_excerpt %></th>
         </tr>
       </thead>
@@ -129,6 +131,8 @@ examples:
           <th></th>
           <th></th>
           <th><%= list_ops_sort_link :status, t('activerecord.attributes.comment.status') %></th>
+          <th><%= icon_user %></th>
+          <th><%= icon_page %></th>
           <th><%= icon_excerpt %></th>
         </tr>
       </tfoot>
@@ -155,6 +159,49 @@ examples:
                         'to_be_moderated' => {icon: icon_to_be_moderated, class:''}
             } %>
           <td class="<%= statuses[resource.status][:class] %>"><%= statuses[resource.status][:icon] %></td>
+          <td>
+            <%= link_to "#comment_#{resource.id}_user", data: {'uk-modal' => ''} do
+                  image_tag(resource.user.image!, width: 24, alt: "image for #{resource.user.name}")
+                end %>
+            <div id="comment_<%= resource.id %>_user" class="uk-modal">
+              <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <div>
+                  <div class="uk-clearfix">
+                    <div class="uk-float-left">
+                      <p><b><%= t('activerecord.attributes.user.name') %></b>: <i><%= resource.user.name %></i></p>
+                      <p><b><%= t('activerecord.attributes.user.email') %></b>: <i><%= resource.user.email %></i></p>
+                      <p><b><%= t('activerecord.attributes.user.provider') %></b>: <i><%= resource.user.provider %></i></p>
+                    </div>
+                    <div class="uk-float-right uk-margin-small-right">
+                      <p><%= image_tag(resource.user.image!, width: 64, alt: "image for #{resource.user.name}") %></p>
+                    </div>
+                  </div>
+                  <hr />
+                  <p><%= link_to icon_edit, admin_user_path(resource.user), target: '_blank', class: 'secondary-link' %></p>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <%= link_to "#comment_#{resource.id}_page", class: 'secondary-link', data: {'uk-modal' => ''} do
+              icon_preview
+            end %>
+            <div id="comment_<%= resource.id %>_page" class="uk-modal">
+              <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                <div>
+                  <p><%= resource.page.name %></p>
+                  <hr />
+                  <p>
+                    <%= link_to icon_preview, page_path(resource.page), target: '_blank', class: 'secondary-link' %>
+                    &nbsp;&nbsp;&nbsp;
+                    <%= link_to icon_edit, admin_page_path(resource.page), target: '_blank', class: 'secondary-link' %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </td>
           <td><%= resource.excerpt %></td>
         </tr>
       <% end %>

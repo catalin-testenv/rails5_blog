@@ -17,7 +17,8 @@
       </div>
 
       <div class="uk-width uk-margin-top">
-        <%= form_button(f, icon_save, false) %>
+        <% data = {confirm: are_you_sure_message} if f.object.provider %>
+        <%= form_button(f, icon_save, false, data: data) %>
       </div>
     </div>
 

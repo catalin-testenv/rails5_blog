@@ -1,4 +1,8 @@
 
+# TODO: make admin menu collapsible on small devices
+# TODO: comments should be posted one per 5 minutes per user but can be updated once per minute per user / no more than total 10 comments per day
+# TODO: add user img preview to user edit and other RO details
+# TODO: add link to related comments from page and user
 # TODO: add icons to the main admin navigation
 # TODO: WHY bulk_update_admin_comments/pages_path(request.query_parameters) ?
 # TODO: make window alerts prettier
@@ -22,7 +26,7 @@
 # TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: add add_words plugin
 # TODO: make unittests
-# TODO: add assets manager as an engine preferably + stuff(gallery, carousel)
+# TODO: add assets manager as an engine preferably + stuff(gallery, carousel) - think about S3
 # TODO: make easy to backup/load/save entire site (db/assets)
 # TODO: automate as much as possible when deploying/installing
 # TODO: add help sections / document what helpers are available
@@ -31,6 +35,7 @@
 # TODO: check ENV hanging (assets precompile) when switching envs
 # TODO: add plugins/utils: contact_form, quotes...
 # TODO: check mouse events (for: menu, tabs, ...) behaviour on tablets/phones
+# TODO: how will user images be updated from their provider?
 
 class UserContext
   attr_reader :user, :ctrl

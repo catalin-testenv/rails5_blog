@@ -78,11 +78,11 @@ module FormHelper
     end
   end
 
-  def form_button(f, name, with_fake_label=true)
+  def form_button(f, name, with_fake_label=true, html_options={})
     content_tag :div, class: %w(uk-form-row) do
       with_fake_label && concat(label_tag('', '&nbsp;'.html_safe, class: %W(uk-form-label #{with_fake_label})))
       concat(content_tag(:div, class: %w(uk-form-controls)) do
-        f.button name,  class: 'uk-button uk-width'
+        f.button name,  class: 'uk-button uk-width', **html_options
       end)
     end
   end

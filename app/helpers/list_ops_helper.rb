@@ -67,9 +67,9 @@ module ListOpsHelper
 
   def list_ops_radio(model, column, input_name, icon, values)
     qp = request.query_parameters
-    cols = values.length <= 6 ? values.length : 10
+    cols = (1..6) === values.length ? values.length : 10
     content_tag :div, class: %w(uk-form-row) do
-      concat(list_ops_label(model, column, input_name, icon))
+      concat(list_ops_label(model, column, input_name.to_s + '_', icon)) # _ for html5_validation
       concat(content_tag(:div, class: %w(uk-grid uk-grid-collapse)) do
         values.each { |key, value|
           concat(content_tag(:div, class: %W(uk-width-1-#{cols})) do

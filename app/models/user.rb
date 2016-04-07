@@ -25,6 +25,11 @@ class User < ApplicationRecord
     end
   end
 
+  def image!
+    img = image
+    img.present? ? img : ActionController::Base.helpers.image_path('icon_user_default.png')
+  end
+
   def to_name
     name
   end
