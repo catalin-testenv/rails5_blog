@@ -10,12 +10,9 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true, length: { maximum: MAX_CHARS }
 
-  scope :approved, -> () { where(status: statuses[:approved]) }
-  scope :to_be_moderated, -> () { where(status: statuses[:to_be_moderated]) }
-  scope :rejected, -> () { where(status: statuses[:rejected]) }
-  scope :of_user, ->(name) do
-    joins(:user).where('users.name LIKE ?', App::Utils.sql_multi_like(name))
-  end
+  scope :has_status, -> (val=nil) { where(status: statuses[val]) if val }
+  scope :from_user, -> (name) { joins(:user).where('users.name LIKE ?', App::Utils.sql_multi_like(name)) }
+  scope :for_page, -> (name) { joins(:page).where('pages.name LIKE ?', App::Utils.sql_multi_like(name)) }
   include ScopeCreatedAtConcern
 
   def excerpt

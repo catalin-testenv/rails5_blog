@@ -1,7 +1,9 @@
 class Admin::CommentsController < Admin::AdminController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
-  has_scope :of_user
+  has_scope :from_user
+  has_scope :for_page
+  has_scope :has_status
   include HasScopeCreatedAtConcern
 
   # GET /admin/comments
@@ -127,7 +129,7 @@ class Admin::CommentsController < Admin::AdminController
   def resource_params
     params
       .require(:comment)
-      .permit(:content, :status, :page_id, :user_id)
+      .permit(:content, :status, :page_id, :user_id, :approved, :to_be_moderated, :rejected)
   end
 
   def bulk_params

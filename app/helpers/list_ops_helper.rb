@@ -65,6 +65,22 @@ module ListOpsHelper
     end
   end
 
+  def list_ops_radio(model, column, input_name, icon, values)
+    qp = request.query_parameters
+    cols = values.length <= 6 ? values.length : 10
+    content_tag :div, class: %w(uk-form-row) do
+      concat(list_ops_label(model, column, input_name, icon))
+      concat(content_tag(:div, class: %w(uk-grid uk-grid-collapse)) do
+        values.each { |key, value|
+          concat(content_tag(:div, class: %W(uk-width-1-#{cols})) do
+            concat radio_button_tag(input_name, key, (qp[input_name] || '') == key)
+            concat label_tag("#{input_name}_#{key}", value, class: %w(uk-width))
+          end)
+        }
+      end)
+    end
+  end
+
   def list_ops_datetime_range(model, column, input_name, icon,  start_key, end_key, start_label, end_label)
     qp = request.query_parameters
     list_ops_with_label(model, column, "#{input_name}[#{start_key}]", icon) do
