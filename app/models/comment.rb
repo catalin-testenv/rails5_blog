@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
 
   MAX_CHARS = 4096
   EXCERPT_LENGTH = 150
+  TO_NAME_LENGTH = 150
 
   enum status: [ :pending, :rejected, :approved ]
 
@@ -18,6 +19,10 @@ class Comment < ApplicationRecord
 
   def excerpt
     content.truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
+  end
+
+  def to_name
+    content.truncate(TO_NAME_LENGTH, omission: ' ...', separator: ' ')
   end
 
 end

@@ -16,7 +16,7 @@
 <h3 class="admin-body-section-title uk-margin-top-remove"><%= t('filters').humanize %></h3>
 
 <!-- filters area -->
-<form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="<%= admin_comments_path %>" method="get" data-bulk-form>
+<form class="uk-form uk-form-stacked custom-cc" action="<%= admin_comments_path %>" method="get" data-bulk-form>
   <%# declare what filters are to be used to not include them in hidden fields %>
   <% filter_names = %w[created_at_period from_user for_page has_status] %>
   <%# preserve query string in hidden fields %>

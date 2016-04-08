@@ -28,6 +28,16 @@ module ListOpsHelper
     end
   end
 
+  def list_ops_label_span(model, column, icon, html_options={class: %w(uk-form-label)})
+    content_tag(:span, **html_options) do
+      if icon.present?
+        icon + '&nbsp;&nbsp;'.html_safe + model.human_attribute_name(column).humanize
+      else
+        model.human_attribute_name(column).humanize
+      end
+    end
+  end
+
   def list_ops_string(model, column, input_name, icon, text_field_options={})
     qp = request.query_parameters
     list_ops_with_label(model, column, input_name, icon) do
@@ -69,7 +79,7 @@ module ListOpsHelper
     qp = request.query_parameters
     cols = (1..6) === values.length ? values.length : 10
     content_tag :div, class: %w(uk-form-row) do
-      concat(list_ops_label(model, column, input_name.to_s + '_', icon)) # _ for html5_validation
+      concat(list_ops_label_span(model, column, icon))
       concat(content_tag(:div, class: %w(uk-grid uk-grid-collapse)) do
         values.each { |key, value|
           concat(content_tag(:div, class: %W(uk-width-1-#{cols})) do

@@ -1,0 +1,22 @@
+
+<% title = resource_view_new_message(resource_instance: @resource) %>
+
+<% content_for :title do %>
+    <%= title %>
+<% end %>
+
+<%= admin_body_title("#{icon_new}&nbsp;&nbsp;#{title}") %>
+
+<% page_new_links = [
+    {message: icon_list, path: admin_comments_path}
+] %>
+
+<%= admin_body_top_links(page_new_links) %>
+
+<hr class="uk-grid-divider uk-margin-top-remove cancel-panel-box-horizontal-padding" />
+
+<%= render 'form', resource: @resource %>
+
+<hr class="uk-grid-divider cancel-panel-box-horizontal-padding" />
+
+<%= admin_body_bottom_links(page_new_links) %>

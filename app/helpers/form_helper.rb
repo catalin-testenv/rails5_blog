@@ -54,6 +54,18 @@ module FormHelper
     end
   end
 
+  def form_label_span(f, name, icon, html_options={class: %w(uk-form-label)})
+    capture do
+      content_tag(:span, **html_options) do
+        if icon.present?
+          icon + '&nbsp;&nbsp;'.html_safe + f.object.class.human_attribute_name(name)
+        else
+          f.object.class.human_attribute_name(name)
+        end
+      end
+    end
+  end
+
   def form_input(f, type, name, icon, html_options={})
     capture do
       concat(form_input_with_label(f, name, icon) do
@@ -63,13 +75,29 @@ module FormHelper
     end
   end
 
-  def form_select(f, name, icon, options, selected, select_options={})
+  def form_select(f, name, icon, options, selected, select_options={}, html_options={})
     capture do
       concat(form_input_with_label(f, name, icon) do
-        f.select(name, options_for_select(options, :selected => selected), select_options, {class: 'uk-width'})
+        f.select(name, options_for_select(options, :selected => selected), select_options, {class: 'uk-width'}.merge(html_options))
       end)
     end
   end
+
+  def form_radio(f, name, icon, values)
+    cols = (1..6) === values.length ? values.length : 10
+    content_tag :div, class: %w(uk-form-row) do
+      concat(form_label_span(f, name, icon))
+      concat(content_tag(:div, class: %w(uk-grid uk-grid-collapse)) do
+        values.each { |key, value|
+          concat(content_tag(:div, class: %W(uk-width-1-#{cols})) do
+            concat f.radio_button(name, key)
+            concat(label_tag("#{f.object.class.name.demodulize.underscore}_#{name}_#{key}", value, class: %w(uk-width)))
+          end)
+        }
+      end)
+    end
+  end
+
 
   def form_check_box(f, name, icon)
     capture do

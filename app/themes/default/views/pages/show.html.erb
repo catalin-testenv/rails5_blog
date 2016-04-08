@@ -20,8 +20,8 @@
     <ul>
       <% @resource.comments.approved.each do |comment| %>
       <li>
-        <p><%= comment.user.name %><%= image_tag comment.user.image, size: '24x24' %></p>
-        <p><%= comment.excerpt %></p>
+        <p><%= comment.user.name %><%= image_tag comment.user.image!, size: '24x24' %></p>
+        <pre><%= comment.excerpt %></pre>
       </li>
       <% end %>
     </ul>

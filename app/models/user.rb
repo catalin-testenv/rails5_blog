@@ -12,6 +12,7 @@ class User < ApplicationRecord
   scope :flt_name, ->(name) do
     where('name LIKE ?', App::Utils.sql_multi_like(name))
   end
+  scope :fake, -> { where provider: nil }
   include ScopeCreatedAtConcern
 
   before_create do |user|

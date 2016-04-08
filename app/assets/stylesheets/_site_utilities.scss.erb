@@ -44,10 +44,7 @@ $ccr-height:               30px      !default;
   background: darken($ccr-color-button, 3%);
   color: darken($ccr-color-button-text, 3%);
 }
-.ccr-state-off:after {
-  font-family: FontAwesome;
-  content: "\00a0\00a0\00a0\f088";
-}
+
 .ccr-state-on {
   background: $ccr-color-button-on;
   color: $ccr-color-button-text-on;
@@ -55,10 +52,6 @@ $ccr-height:               30px      !default;
 .ccr-state-on:hover {
   background: darken($ccr-color-button-on, 3%);
   color: darken($ccr-color-button-text-on, 3%);
-}
-.ccr-state-on:after {
-  font-family: FontAwesome;
-  content: "\00a0\00a0\00a0\f087";
 }
 
 .custom-cc:not(#foo) input[type='radio'],
@@ -80,7 +73,8 @@ $ccr-height:               30px      !default;
 
 .custom-cc.custom-cc-fa:not(#foo) input[type='radio'] + label:after,
 .custom-cc.custom-cc-fa:not(#foo) input[type='checkbox'] + label:after {
-  @extend .ccr-state-off:after;
+  font-family: FontAwesome;
+  content: "\00a0\00a0\00a0\f088";
 }
 
 .custom-cc:not(#foo) input[type='radio']:checked + label,
@@ -90,7 +84,8 @@ $ccr-height:               30px      !default;
 
 .custom-cc.custom-cc-fa:not(#foo) input[type='radio']:checked + label:after,
 .custom-cc.custom-cc-fa:not(#foo) input[type='checkbox']:checked + label:after {
-  @extend .ccr-state-on:after;
+  font-family: FontAwesome;
+  content: "\00a0\00a0\00a0\f087";
 }
 
 // ============ /form custom radio & checkbox

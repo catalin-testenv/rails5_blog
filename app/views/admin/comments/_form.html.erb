@@ -1,0 +1,42 @@
+
+<%= form_global_errors(resource, Comment) %>
+
+<%= form_for([:admin, resource], html: {class: 'edit_page uk-form uk-form-stacked custom-cc'}) do |f| %>
+
+    <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+
+      <div class="uk-width">
+        <div class="uk-grid uk-grid-small" data-uk-grid-margin>
+          <div class="uk-width-medium-1-2">
+            <% user_options = (User.fake + (resource.user && !User.fake.include?(resource.user) ? [resource.user] : [])).sort_by(&:name).collect { |u| [u.name[0..50], u.id] } %>
+            <%= form_select(f, :user_id, icon_user, user_options, resource.user.try(:id), {}, disabled: resource.persisted?) %>
+            <% if resource.persisted? # when select is disabled we have to send the hidden field %>
+                <input type="hidden" name="comment[user_id]" value="<%= f.object.user_id %>">
+            <% end %>
+          </div>
+          <div class="uk-width-medium-1-2">
+            <% page_options = Page.all.sort_by(&:name).collect { |p| [p.name[0..50], p.id] } %>
+            <%= form_select(f, :page_id, icon_page, page_options, resource.page.try(:id), {}, disabled: resource.persisted?) %>
+            <% if resource.persisted? %>
+              <input type="hidden" name="comment[page_id]" value="<%= f.object.page_id %>">
+            <% end %>
+          </div>
+          <div class="uk-width-medium-1-2">
+            <%= form_radio(f, :status, nil, {'pending' => icon_pending, 'approved' => icon_approved, 'rejected' => icon_rejected}) %>
+          </div>
+          <div class="uk-width">
+            <div class="code-editor-area">
+              <%= f.text_area :content, class: 'uk-width', data: {'editor-ace': '{"sessionOptions": {"language":"text"}}'} %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-width uk-margin-top">
+        <%= form_button(f, icon_save, false) %>
+      </div>
+    </div>
+
+<% end %>
+
+

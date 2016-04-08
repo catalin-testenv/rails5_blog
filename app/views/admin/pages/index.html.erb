@@ -16,7 +16,7 @@
 <h3 class="admin-body-section-title uk-margin-top-remove"><%= t('filters').humanize %></h3>
 
 <!-- filters area -->
-<form class="uk-form uk-form-stacked custom-cc custom-cc-fa" action="<%= admin_pages_path %>" method="get" data-bulk-form>
+<form class="uk-form uk-form-stacked custom-cc" action="<%= admin_pages_path %>" method="get" data-bulk-form>
   <%# declare what filters are to be used to not include them in hidden fields %>
   <% filter_names = %w[flt_name is_main_nav published is_commentable updated_at_period in_category has_tag] %>
   <%# preserve query string in hidden fields %>
@@ -88,7 +88,7 @@ examples:
     <input type="hidden" name="page[ids][]" value="174" />
     <input type="hidden" name="page[attrs][is_commentable]" value="1" />
 %>
-    <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin >
+    <div class="uk-grid uk-grid-small custom-cc uk-hidden bulk-update-area" data-uk-grid-margin >
       <div class="uk-width-medium-1-1">
         <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', icon_page_category, PageCategory.all.sort_by(&:name)
             .collect { |p| [p.name, p.id] }
