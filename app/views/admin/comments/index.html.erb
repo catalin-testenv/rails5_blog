@@ -25,16 +25,22 @@
   <% end %>
   <div class="uk-grid uk-grid-small" data-uk-grid-margin>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_string(Comment, :user, :from_user, icon_title, placeholder: '...') %>
+      <%= list_ops_select(Comment, :user, :from_user, icon_title, User.all.sort_by(&:name) # .select(&:has_any_pages?) # too many db hits
+          .collect { |u| [u.name[0..50] + " (#{u.comments_count})", u.id] }
+          .unshift(['...', nil])
+          ) %>
     </div>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_string(Comment, :page, :for_page, icon_title, placeholder: '...') %>
+      <%= list_ops_select(Comment, :page, :for_page, icon_title, Page.all.sort_by(&:name) # .select(&:has_any_pages?) # too many db hits
+      .collect { |p| [p.name[0..50] + " (#{p.comments_count})", p.id] }
+      .unshift(['...', nil])
+      ) %>
     </div>
     <div class="uk-width-medium-1-1">
       <%= list_ops_datetime_range(Comment, :created_at, :created_at_period, icon_created_at,  :starting, :ending, t('from'), t('to')) %>
     </div>
     <div class="uk-width-small-1-2">
-      <%= list_ops_radio(Comment, :status, :has_status, nil, {'' => t('wildcard'), 'to_be_moderated' => icon_to_be_moderated, 'approved' => icon_approved, 'rejected' => icon_rejected}) %>
+      <%= list_ops_radio(Comment, :status, :has_status, nil, {'' => t('wildcard'), 'pending' => icon_pending, 'approved' => icon_approved, 'rejected' => icon_rejected}) %>
     </div>
     <div class="uk-width-small-1-1">
       <div class="uk-grid uk-grid-small" data-uk-grid-margin>
@@ -156,7 +162,7 @@ examples:
           </td>
           <% statuses = {'approved' => {icon: icon_approved, class: 'success-color'},
                         'rejected' => {icon: icon_rejected, class: 'danger-color'},
-                        'to_be_moderated' => {icon: icon_to_be_moderated, class:''}
+                        'pending' => {icon: icon_pending, class:''}
             } %>
           <td class="<%= statuses[resource.status][:class] %>"><%= statuses[resource.status][:icon] %></td>
           <td>

@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   MAX_CHARS = 4096
   EXCERPT_LENGTH = 150
 
-  enum status: [ :to_be_moderated, :rejected, :approved ]
+  enum status: [ :pending, :rejected, :approved ]
 
   belongs_to :page, required: true
   belongs_to :user, required: true
@@ -11,9 +11,9 @@ class Comment < ApplicationRecord
   validates :content, presence: true, length: { maximum: MAX_CHARS }
 
   default_scope { preload(:page, :user) }
-  scope :has_status, -> (val=nil) { where(status: statuses[val]) if val }
-  scope :from_user, -> (name) { joins(:user).where('users.name LIKE ?', App::Utils.sql_multi_like(name)) }
-  scope :for_page, -> (name) { joins(:page).where('pages.name LIKE ?', App::Utils.sql_multi_like(name)) }
+  scope :has_status, -> (status) { where status: statuses[status] }
+  scope :from_user, -> (id) { where user: id }
+  scope :for_page, -> (id) { where page: id }
   include ScopeCreatedAtConcern
 
   def excerpt

@@ -24,18 +24,18 @@
       <%= hidden_field_tag k, v unless filter_names.include?(k) %>
   <% end %>
   <div class="uk-grid uk-grid-small" data-uk-grid-margin>
-    <div class="uk-width-medium-1-2">
+    <div class="uk-width-medium-1-1">
       <%= list_ops_string(Page, :name, :flt_name, icon_title, placeholder: '...') %>
     </div>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_select(Page, :page_category, :in_category, icon_page_category, page_categories_all # .select(&:has_any_pages?) # too many db hits
-          .collect { |p| [p.name, p.id] }
+      <%= list_ops_select(Page, :page_category, :in_category, icon_page_category, PageCategory.all.sort_by(&:name) # .select(&:has_any_pages?) # too many db hits
+          .collect { |pc| [pc.name, pc.id] }
           .unshift(['...', nil], [t('root'), 0])
           ) %>
     </div>
     <div class="uk-width-medium-1-2">
-      <%= list_ops_select(Page, :tags, :has_tag, icon_tag, Tag.all # .select(&:has_any_pages?) # too many db hits
-          .collect { |p| [p.name, p.id] }
+      <%= list_ops_select(Page, :tags, :has_tag, icon_tag, Tag.all.sort_by(&:name) # .select(&:has_any_pages?) # too many db hits
+          .collect { |t| [t.name, t.id] }
           .unshift(['...', nil])
           ) %>
     </div>
@@ -90,7 +90,7 @@ examples:
 %>
     <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-update-area" data-uk-grid-margin >
       <div class="uk-width-medium-1-1">
-        <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', icon_page_category, page_categories_all
+        <%= list_ops_select(Page, 'page_category', 'page[attrs][parent_id]', icon_page_category, PageCategory.all.sort_by(&:name)
             .collect { |p| [p.name, p.id] }
             .unshift(['...', nil], [t('root'), 0]), {class: 'uk-width'}) %>
       </div>
@@ -196,7 +196,7 @@ examples:
           <td><i class="fa fa-thumbs-o-<%= resource.is_main_nav ? 'up success-color' : 'down danger-color' %>"></i></td>
           <td><i class="fa fa-thumbs-o-<%= resource.published ? 'up success-color' : 'down danger-color' %>"></i></td>
           <td><i class="fa fa-thumbs-o-<%= resource.is_commentable ? 'up success-color' : 'down danger-color' %>"></i></td>
-          <td><%= link_to resource.comments_count, admin_comments_path(for_page: resource.name), target: '_blank' %></td>
+          <td><%= link_to resource.comments_count, admin_comments_path(for_page: resource.id), target: '_blank' %></td>
           <td><%= resource.ordering %></td>
           <td><%= resource.page_category.try(:name) || t('root') %></td>
           <td><%= resource.updated_at.to_date %></td>

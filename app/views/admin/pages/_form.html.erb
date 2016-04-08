@@ -11,7 +11,7 @@
             <%= form_input(f, :text_field, :name, icon_title) %>
           </div>
           <div class="uk-width-medium-1-2">
-            <% parent_id_options = page_categories_all.collect { |p| [p.name, p.id] }.unshift([I18n.t('root'), 0]) %>
+            <% parent_id_options = PageCategory.all.sort_by(&:name).collect { |pc| [pc.name, pc.id] }.unshift([I18n.t('root'), 0]) %>
             <%= form_select(f, :parent_id, icon_page_category, parent_id_options, resource.parent_id) %>
           </div>
           <div class="uk-width-medium-1-2">

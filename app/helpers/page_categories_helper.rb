@@ -55,10 +55,6 @@ module PageCategoriesHelper
     html << '</ul></nav>'
   end
 
-  def page_categories_all
-    PageCategory.all
-  end
-
   # @return Array: array of objects, each object being a tree
   # example [
   #   {name: gallery, link: '/some/path', children: [ # PageCategory

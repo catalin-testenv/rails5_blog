@@ -112,7 +112,7 @@ module IconsHelper
     "<i class='fa fa-check-square-o #{options}'></i>".html_safe
   end
 
-  def icon_to_be_moderated(options='')
+  def icon_pending(options='')
     "<i class='fa fa-clock-o #{options}'></i>".html_safe
   end
 

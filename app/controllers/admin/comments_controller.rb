@@ -129,7 +129,7 @@ class Admin::CommentsController < Admin::AdminController
   def resource_params
     params
       .require(:comment)
-      .permit(:content, :status, :page_id, :user_id, :approved, :to_be_moderated, :rejected)
+      .permit(:content, :status, :page_id, :user_id, :approved, :pending, :rejected)
   end
 
   def bulk_params
