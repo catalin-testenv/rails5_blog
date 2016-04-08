@@ -18,13 +18,15 @@ class Page < ApplicationRecord
 
   # enhances Page with comments_count method
   # preload :page_category only helps reducing db hits in admin page listing
-  default_scope { preload(:page_category).joins('LEFT JOIN comments ON pages.id = comments.page_id').select('pages.*, count(comments.id) as comments_count').group('pages.id').order(:parent_id, :ordering) }
+  # TODO: comments.status is for :has_comments_having_status scope
+  default_scope { preload(:page_category).joins('LEFT JOIN comments ON pages.id = comments.page_id').select('pages.*, count(comments.id) as comments_count, comments.status').group('pages.id').order(:parent_id, :ordering) }
   scope :published, -> (val=true) { where(published: val) }
   scope :for_main_menu, -> { published.where(is_main_nav: true) }
   scope :is_main_nav, -> (val=true) { where(is_main_nav: val) }
   scope :is_commentable, -> (val=true) { where(is_commentable: val) }
   scope :in_category, -> (id=nil) { where(page_category: id) if id.present?}
   scope :has_tag, -> (tag_id) { joins(:pages_tags).where(pages_tags: {tag_id: tag_id}) }
+  scope :has_comments_having_status, -> (status=nil) { having( 'comments.status = ?', status) } # TODO: finish this
   scope :flt_name, -> (name) do
     where('name LIKE ?', App::Utils.sql_multi_like(name))
   end
