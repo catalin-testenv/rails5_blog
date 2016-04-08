@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331080639) do
+ActiveRecord::Schema.define(version: 20160408081144) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.text     "content",    limit: 65535
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20160331080639) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "email",      default: "", null: false
+    t.string   "email",      default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "provider"
@@ -88,8 +88,6 @@ ActiveRecord::Schema.define(version: 20160331080639) do
     t.string   "image"
     t.integer  "role",       default: 0
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "comments", "pages"
   add_foreign_key "comments", "users"

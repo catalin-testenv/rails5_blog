@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true
+  validates :email, uniqueness: true, allow_blank: true
 
   # enhances User with comments_count method
   default_scope { joins('LEFT JOIN comments ON users.id = comments.user_id').select('users.*, count(comments.id) as comments_count').group('users.id').order(created_at: :asc) }

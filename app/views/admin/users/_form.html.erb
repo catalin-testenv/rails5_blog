@@ -19,7 +19,7 @@
                   <div class="uk-clearfix">
                     <div class="uk-float-left">
                       <p><b><%= f.object.class.human_attribute_name('id') %></b>: <i><%= f.object.id %></i></p>
-                      <p><b><%= f.object.class.human_attribute_name('created_at') %></b>: <i><%= f.object.created_at.to_date %></i></p>
+                      <p><b><%= f.object.class.human_attribute_name('created_at') %></b>: <i><%= f.object.created_at.try(:to_date) %></i></p>
                       <p><b><%= f.object.class.human_attribute_name('email') %></b>: <i><%= f.object.email %></i></p>
                       <p><b><%= f.object.class.human_attribute_name('provider') %></b>: <i><%= f.object.provider %></i></p>
                     </div>
