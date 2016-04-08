@@ -20,7 +20,6 @@
 # TODO: comments will be moderated (the blog owner will be notified via email)
 # TODO: comments should be posted one per 5 minutes per user but can be updated once per minute per user / no more than total 10 comments per day
 # TODO: pages (in admin) should be able to be filtered by is_commentable, has_unpublished_comments, has_new_comments
-# TODO: in admin show registered users and link to their comments
 # TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
 # TODO: add add_words plugin
 # TODO: make unittests
