@@ -29,6 +29,15 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.
 END
 
+comment = <<'END'
+<pre>
+preformatted
+  code
+     here
+</pre>
+<a href='http://catalinenache.com'>link</a>
+END
+
 PageCategory.destroy_all
 Page.destroy_all
 
@@ -120,7 +129,16 @@ Setting.create(group: '04|global_inclusions', ordering: 0, key: 'global_css', va
 Setting.create(group: '04|global_inclusions', ordering: 0, key: 'global_javascript', val: 'function myF() {}', kind: 'text', cast: 'to_s', options: nil)
 
 
+jon = User.find_or_create_by(name: 'Jon Doe')
+will = User.find_or_create_by(name: 'Will Smith')
 
+Comment.destroy_all
 
+10.times do |i|
+  page_1.comments.create(content: "#{i.to_s} #{comment} #{(i.to_s+' ') * 100}", user: jon)
+end
+10.times do |i|
+  page_2.comments.create(content: "#{i.to_s} #{comment} #{(i.to_s+' ') * 100}", user: will)
+end
 
 

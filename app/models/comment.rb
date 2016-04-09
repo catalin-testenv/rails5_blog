@@ -1,8 +1,7 @@
 class Comment < ApplicationRecord
 
   MAX_CHARS = 4096
-  EXCERPT_LENGTH = 150
-  TO_NAME_LENGTH = 150
+  EXCERPT_LENGTH = 60
 
   enum status: [ :pending, :rejected, :approved ]
 
@@ -17,12 +16,24 @@ class Comment < ApplicationRecord
   scope :for_page, -> (id) { where page: id }
   include ScopeCreatedAtConcern
 
+  # used in admin comment list
   def excerpt
-    content.truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
+    ActionController::Base.helpers.strip_tags(content).truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
   end
 
+  # used in front page show comment list
+  # http://stackoverflow.com/questions/4320160/is-there-an-html-safe-truncate-method-in-rails#comment-56004681
+  def content!
+    ActionController::Base.helpers.sanitize( # for tag completion
+        ActionController::Base.helpers.sanitize( # for tag/attrs permission
+            content, tags: %w|a dl ul ol li p i b pre|, attributes: %w|href|
+        )
+    )
+  end
+
+  # used in admin comment CRUD notice/alert
   def to_name
-    content.truncate(TO_NAME_LENGTH, omission: ' ...', separator: ' ')
+    excerpt
   end
 
 end

@@ -27,7 +27,7 @@ module PageCategoriesHelper
     non_nav_page && non_nav_page.active = true
     items = (page_categories_and_nav_pages_sorted + (non_nav_page ? [non_nav_page] : [])).select(&:active)
 
-    html ='<nav aria-label="You are here:" role="navigation"><ul class="breadcrumbs">'
+    html ='<nav><ul class="breadcrumbs">'
 
     items
     .map do |item|

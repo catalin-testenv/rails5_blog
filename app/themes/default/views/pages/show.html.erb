@@ -12,16 +12,16 @@
 
 <h1><%= @resource.name %></h1>
 
-<p>
-  <%= evaluate(@resource.page_content.content).html_safe %>
-</p>
+<div>
+  <%= @resource.page_content.content! %>
+</div>
 
 <% if @resource.comments.approved.any? %>
     <ul>
       <% @resource.comments.approved.each do |comment| %>
       <li>
         <p><%= comment.user.name %><%= image_tag comment.user.image!, size: '24x24' %></p>
-        <pre><%= comment.excerpt %></pre>
+        <div><%= comment.content! %></div>
       </li>
       <% end %>
     </ul>
