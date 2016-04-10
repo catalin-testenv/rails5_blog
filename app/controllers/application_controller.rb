@@ -1,5 +1,4 @@
 
-# TODO: make admin menu collapsible on small devices
 # TODO: add icons to the main admin navigation
 # TODO: WHY bulk_update_admin_comments/pages_path(request.query_parameters) ?
 # TODO: make window alerts prettier
