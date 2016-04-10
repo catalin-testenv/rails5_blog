@@ -24,6 +24,10 @@ module IconsHelper
     "<i class='fa fa-comments #{options}'></i>".html_safe
   end
 
+  def icon_comments(options='')
+    icon_is_commentable options
+  end
+
   def icon_commenting(options='')
     "<i class='fa fa-commenting #{options}'></i>".html_safe
   end
@@ -94,6 +98,18 @@ module IconsHelper
 
   def icon_image(options='')
     "<i class='fa fa-picture-o #{options}'></i>".html_safe
+  end
+
+  def icon_settings(options='')
+    "<i class='fa fa-wrench #{options}'></i>".html_safe
+  end
+
+  def icon_media(options='')
+    "<i class='fa fa-camera-retro #{options}'></i>".html_safe
+  end
+
+  def icon_layout(options='')
+    "<i class='fa fa-newspaper-o #{options}'></i>".html_safe
   end
 
   def icon_content(options='')

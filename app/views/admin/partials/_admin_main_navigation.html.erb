@@ -3,25 +3,28 @@
 
 <ul class="uk-nav uk-nav-side">
   <li class="<%= 'uk-active' if controller.is_a?(Admin::SettingsController) %>">
-    <a href="<%= admin_settings_path %>"><%= Setting.model_name.human(count: 2) %></a>
+    <a href="<%= admin_settings_path %>"><%= icon_settings 'fa-fw' %>&nbsp;&nbsp;<%= Setting.model_name.human(count: 2) %></a>
   </li>
   <li class="<%= 'uk-active' if controller.is_a?(Admin::LayoutRegionsController) %>">
-    <a href="<%= admin_layout_regions_path %>"><%= LayoutRegion.model_name.human(count: 2) %></a>
+    <a href="<%= admin_layout_regions_path %>"><%= icon_layout 'fa-fw' %>&nbsp;&nbsp;<%= LayoutRegion.model_name.human(count: 2) %></a>
   </li>
   <li class="<%= 'uk-active' if controller.is_a?(Admin::PagesController) %>">
-    <a href="<%= admin_pages_path %>"><%= Page.model_name.human(count: 2) %></a>
+    <a href="<%= admin_pages_path %>"><%= icon_page 'fa-fw' %>&nbsp;&nbsp;<%= Page.model_name.human(count: 2) %></a>
   </li>
   <li class="<%= 'uk-active' if controller.is_a?(Admin::PageCategoriesController) %>">
-    <a href="<%= admin_page_categories_path %>"><%= PageCategory.model_name.human(count: 2) %></a>
+    <a href="<%= admin_page_categories_path %>"><%= icon_page_category 'fa-fw' %>&nbsp;&nbsp;<%= PageCategory.model_name.human(count: 2) %></a>
   </li>
   <li class="<%= 'uk-active' if controller.is_a?(Admin::TagsController) %>">
-    <a href="<%= admin_tags_path %>"><%= Tag.model_name.human(count: 2) %></a>
+    <a href="<%= admin_tags_path %>"><%= icon_tag 'fa-fw' %>&nbsp;&nbsp;<%= Tag.model_name.human(count: 2) %></a>
   </li>
   <li class="<%= 'uk-active' if controller.is_a?(Admin::UsersController) %>">
-    <a href="<%= admin_users_path %>"><%= User.model_name.human(count: 2) %></a>
+    <a href="<%= admin_users_path %>"><%= icon_user 'fa-fw' %>&nbsp;&nbsp;<%= User.model_name.human(count: 2) %></a>
   </li>
   <li class="<%= 'uk-active' if controller.is_a?(Admin::CommentsController) %>">
-    <a href="<%= admin_comments_path %>"><%= Comment.model_name.human(count: 2) %></a>
+    <a href="<%= admin_comments_path %>"><%= icon_comments 'fa-fw' %>&nbsp;&nbsp;<%= Comment.model_name.human(count: 2) %></a>
+  </li>
+  <li class="">
+    <a href="#"><%= icon_media 'fa-fw' %>&nbsp;&nbsp;<%= '' %></a>
   </li>
 </ul>
 
