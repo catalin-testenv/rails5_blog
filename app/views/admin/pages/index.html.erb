@@ -82,7 +82,7 @@
 </div>
 
 <!-- bulk update form -->
-<%= form_tag bulk_update_admin_pages_path(request.query_parameters), class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => '.resources-provider', 'bulk-form' => ''} do %>
+<%= form_tag bulk_update_admin_pages_path, class: %w(uk-form uk-form-stacked), data: {'bulk-update-form' => '.resources-provider', 'bulk-form' => ''} do %>
 <%#
 examples:
     <input type="hidden" name="page[ids][]" value="174" />
@@ -121,7 +121,7 @@ examples:
 <% end %>
 
 <!-- bulk destroy form -->
-<%= form_tag bulk_destroy_admin_pages_path(request.query_parameters), method: :delete, class: %w(uk-form uk-form-stacked), data: {'bulk-destroy-form' => '.resources-provider', 'bulk-form' => ''} do %>
+<%= form_tag bulk_destroy_admin_pages_path, method: :delete, class: %w(uk-form uk-form-stacked), data: {'bulk-destroy-form' => '.resources-provider', 'bulk-form' => ''} do %>
     <div class="uk-grid uk-grid-small custom-cc custom-cc-fa uk-hidden bulk-destroy-area" data-uk-grid-margin >
       <div class="uk-width">
         <div class="uk-grid uk-grid-small bulk-destroy-area" data-uk-grid-margin>

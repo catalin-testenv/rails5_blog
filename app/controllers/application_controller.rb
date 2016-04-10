@@ -1,5 +1,4 @@
 
-# TODO: WHY bulk_update_admin_comments/pages_path(request.query_parameters) ?
 # TODO: make window alerts prettier
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
