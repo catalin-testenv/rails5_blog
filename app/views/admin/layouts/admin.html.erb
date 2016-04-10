@@ -30,6 +30,7 @@
                     <ul class="uk-subnav uk-subnav-line">
                       <li><%= link_to I18n.t('view_site').camelize, root_path %></li>
                       <li><%= link_to I18n.t('administration').camelize, admin_root_path %></li>
+                      <li class="uk-hidden-medium uk-hidden-large"><a href="#" data-uk-toggle="{target:'#admin_main_navigation_small',cls:'uk-hidden'}"><i class="fa fa-bars"></i></a></li>
                     </ul>
                 <% else %>
                     <ul class="uk-subnav uk-subnav-line">
@@ -42,7 +43,12 @@
         <!-- /admin_toggle -->
 
         <!-- admin_main_navigation -->
-        <div id="admin_main_navigation" class="uk-width-medium-1-5 uk-padding-remove">
+        <div id="admin_main_navigation_small" class="uk-width uk-padding-remove uk-hidden-medium uk-hidden-large uk-hidden">
+          <div id="main_nav" class="uk-panel uk-panel-box">
+            <%= render 'admin/partials/admin_main_navigation.html' %>
+          </div>
+        </div>
+        <div id="admin_main_navigation" class="uk-width-medium-1-5 uk-padding-remove uk-hidden-small">
           <div class="uk-panel uk-panel-box" data-uk-sticky="{media: 980}"> <%# sticky start must be equal with $breakpoint-medium %>
             <%= render 'admin/partials/admin_main_navigation.html' %>
           </div>

@@ -53,6 +53,11 @@ $breakpoint-small:                               480px;
 $breakpoint-medium:                              980px;  // was 768
 $breakpoint-large:                               1160px; // was 960
 $breakpoint-xlarge:                              1720px; // was 1220
+// following breakpoints needs to be re-calculated here !
+$breakpoint-mini-max:                            ($breakpoint-small - 1);
+$breakpoint-small-max:                           ($breakpoint-medium - 1);
+$breakpoint-medium-max:                          ($breakpoint-large - 1);
+$breakpoint-large-max:                           ($breakpoint-xlarge - 1);
 
 $utility-container-max-width:                    1180px; // was 980
 $utility-container-large-max-width:              1700px; // was 1200
@@ -161,7 +166,7 @@ $button-border_:                                 $panel-title-background-color_;
     }
   }
 
-  #admin_main_navigation & {
+  #admin_main_navigation &, #admin_main_navigation_small & {
     background-color: $panel-title-background-color_;
     box-shadow: $box-shadow-bottom-inset;
     @media (min-width: $breakpoint-medium) {
@@ -395,6 +400,11 @@ $button-border_:                                 $panel-title-background-color_;
   box-shadow: none !important;
 }
 
+@import 'bower-uikit/scss/uikit';
+@import 'bower-uikit/scss/components/datepicker';
+@import 'bower-uikit/scss/components/sticky';
+@import 'bower-uikit/scss/components/tooltip';
+
 // =============== for the sake of uk utils completeness ===============
 .uk-margin-left-remove { margin-left: 0 !important; }
 .uk-margin-right-remove { margin-right: 0 !important; }
@@ -520,11 +530,6 @@ select::-ms-expand {
 }
 // ============== /form area
 
-
-@import 'bower-uikit/scss/uikit';
-@import 'bower-uikit/scss/components/datepicker';
-@import 'bower-uikit/scss/components/sticky';
-@import 'bower-uikit/scss/components/tooltip';
 
 // ============== site utilities overrides
 $ccr-color-button-on: $light-green;
