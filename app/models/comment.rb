@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true, length: { maximum: MAX_CHARS }
 
-  default_scope { preload(:page, :user) }
+  default_scope { preload(:page, :user).order(:created_at) }
   scope :has_status, -> (status) { where status: statuses[status] }
   scope :from_user, -> (id) { where user: id }
   scope :for_page, -> (id) { where page: id }
@@ -18,7 +18,8 @@ class Comment < ApplicationRecord
 
   # used in admin comment list
   def excerpt
-    ActionController::Base.helpers.strip_tags(content).truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
+    _content = ActionController::Base.helpers.strip_tags(content)
+    _content && _content.truncate(EXCERPT_LENGTH, omission: ' ...', separator: ' ')
   end
 
   # used in front page show comment list

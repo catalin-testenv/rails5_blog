@@ -129,6 +129,7 @@ examples:
           <th><%= list_ops_sort_link :status, t('activerecord.attributes.comment.status') %></th>
           <th><%= icon_user %></th>
           <th><%= icon_page %></th>
+          <th><%= list_ops_sort_link :created_at, icon_created_at %></th>
           <th><%= icon_excerpt %></th>
         </tr>
       </thead>
@@ -139,6 +140,7 @@ examples:
           <th><%= list_ops_sort_link :status, t('activerecord.attributes.comment.status') %></th>
           <th><%= icon_user %></th>
           <th><%= icon_page %></th>
+          <th><%= list_ops_sort_link :created_at, icon_created_at %></th>
           <th><%= icon_excerpt %></th>
         </tr>
       </tfoot>
@@ -210,6 +212,7 @@ examples:
               </div>
             </div>
           </td>
+          <td><%= resource.created_at.to_date %></td>
           <td><%= resource.excerpt %></td>
         </tr>
       <% end %>
