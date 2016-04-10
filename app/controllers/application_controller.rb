@@ -1,5 +1,4 @@
 
-# TODO: make window alerts prettier
 # TODO: in admin add social shareable (on|off) to pages
 # TODO: in front let user be able to share article on social sites
 # TODO: find a way to not override a user theme when main blog code is updated from repo
@@ -16,9 +15,7 @@
 # TODO: implement comments
 # TODO: comments will be moderated (the blog owner will be notified via email)
 # TODO: comments should be posted one per 5 minutes per user but can be updated once per minute per user / no more than total 10 comments per day
-# TODO: pages (in admin) should be able to be filtered by is_commentable, has_unpublished_comments, has_new_comments
-# TODO: make possible to have iconic pictures to PageCategories and to Page(why not)
-# TODO: add add_words plugin
+# TODO: make possible to have iconic pictures to PageCategories and to Page(why not) .. after implementing mediamanager
 # TODO: make unittests
 # TODO: add assets manager as an engine preferably + stuff(gallery, carousel) - think about S3
 # TODO: make easy to backup/load/save entire site (db/assets)
@@ -27,7 +24,7 @@
 # TODO: improve UI
 # TODO: add robots.txt
 # TODO: check ENV hanging (assets precompile) when switching envs
-# TODO: add plugins/utils: contact_form, quotes...
+# TODO: add plugins/utils: contact_form, quotes..., add_words
 # TODO: check mouse events (for: menu, tabs, ...) behaviour on tablets/phones
 # TODO: how will user images be updated from their provider?
 
