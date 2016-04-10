@@ -7,8 +7,6 @@
 # TODO: make possible to extract menu between levels (if one needs separate sub-menus)
 # TODO: make an option in admin for menu_split and main_menu_depth and render secondary menu in sidebar ...?
 # TODO: add more omniauth providers
-# TODO: show formatted code on client - almost done
-# TODO: check how to generate code view from server # http://pygments.org/docs/ | https://github.com/jneen/rouge
 # TODO: add TinyMCE in front
 # TODO: populate admin#home with useful stuff
 # TODO: make blog real
