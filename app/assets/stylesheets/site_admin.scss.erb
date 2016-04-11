@@ -8,12 +8,12 @@
 
 // -------- /define variables
 $admin-body-uk-panel-background-color:           #f9f9f9;
-$light-orange:                                   #FCE8D1;
-$light-blue:                                     #d0f3ff;
-$light-green:                                    #D5F6D7;
+$light-orange: #FFDDA3;
+$light-blue: #aacbff;
+$light-green:                                    #96E99B;
 $lighter-green:                                  lighten($light-green, 5%);
-$medium-green:                                   darken($light-green, 50%);
-$dark-green:                                     darken($light-green, 65%);
+$medium-green:                                   darken($light-green, 33%);
+$dark-green:                                     darken($light-green, 50%);
 $light-red:                                      #FFF1F0;
 $medium-red:                                     #d85030;
 
@@ -323,6 +323,16 @@ $button-border_:                                 $panel-title-background-color_;
   background-color: darken($light-blue, 5%) !important;
 }
 
+.orange-button {
+  background-color: $light-orange !important;
+}
+.orange-button:hover {
+  background-color: darken($light-orange, 4%) !important;
+}
+.orange-button:active {
+  background-color: darken($light-orange, 5%) !important;
+}
+
 @mixin hook-nav-misc() {
   .uk-dropdown {
     box-shadow: $box-shadow-material;
@@ -515,7 +525,7 @@ a {
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.5);
   box-shadow: $box-shadow-top-inset-smaller, $box-shadow-bottom-inset-smaller;
 }
 // ============== /admin body
