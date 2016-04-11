@@ -189,14 +189,18 @@ $button-border_:                                 $panel-title-background-color_;
       @media (min-width: $breakpoint-medium) {
         margin-right: -$panel-box-padding;
       }
-      li.uk-active > a {
-        box-shadow:  $box-shadow-bottom;
-        @media (min-width: $breakpoint-medium) {
-          box-shadow:  $box-shadow-bottom-right;
+      li{
+        & > a {
+          @media (min-width: $breakpoint-large) {
+            border-top-left-radius: $utility-border-rounded;
+            border-bottom-left-radius: $utility-border-rounded;
+          }
         }
-        @media (min-width: $breakpoint-large) {
-          border-top-left-radius: $utility-border-rounded;
-          border-bottom-left-radius: $utility-border-rounded;
+        &.uk-active > a {
+          box-shadow:  $box-shadow-bottom;
+          @media (min-width: $breakpoint-medium) {
+            box-shadow:  $box-shadow-bottom-right;
+          }
         }
       }
     }
@@ -518,7 +522,7 @@ a {
   padding: 0px 0px 0px 5px !important;
   cursor: default;
   box-shadow: $box-shadow-bottom-inset-smaller, $box-shadow-right-inset-smaller, $box-light-top-inset-smaller, $box-light-left-inset-smaller;
-  @include text-highlight($opacity: 0.9);
+  @include text-highlight($opacity: 1);
 }
 .icon-add:after {
   content: "\f067" !important;
