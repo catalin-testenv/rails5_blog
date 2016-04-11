@@ -183,6 +183,7 @@ $button-border_:                                 $panel-title-background-color_;
       text-transform: uppercase;
     }
     .uk-nav-side {
+      @include text-highlight($opacity: 0.6);
       margin-left: 0px;
       margin-right: 0px;
       @media (min-width: $breakpoint-medium) {
@@ -219,6 +220,7 @@ $button-border_:                                 $panel-title-background-color_;
       margin-top: -$panel-box-padding;
       margin-right: -$panel-box-padding;
       padding: $panel-box-padding;
+      @include text-highlight($opacity: 0.6);
     }
   }
 
@@ -300,6 +302,7 @@ $button-border_:                                 $panel-title-background-color_;
   background-color: #eeeeee;
   box-shadow: $box-shadow-button-wp;
   border-radius: 3px;
+  @include text-highlight($opacity: 1);
 }
 
 @mixin hook-button-hover() {
@@ -337,6 +340,10 @@ $button-border_:                                 $panel-title-background-color_;
   .uk-dropdown {
     box-shadow: $box-shadow-material;
   }
+}
+
+@mixin text-highlight($opacity: 0.9) {
+  text-shadow: 1px 1px rgba(255,255,255,$opacity);
 }
 
 .uk-form-label i.fa, .uk-dropdown li > a > i.fa{
@@ -511,6 +518,7 @@ a {
   padding: 0px 0px 0px 5px !important;
   cursor: default;
   box-shadow: $box-shadow-bottom-inset-smaller, $box-shadow-right-inset-smaller, $box-light-top-inset-smaller, $box-light-left-inset-smaller;
+  @include text-highlight($opacity: 0.9);
 }
 .icon-add:after {
   content: "\f067" !important;
