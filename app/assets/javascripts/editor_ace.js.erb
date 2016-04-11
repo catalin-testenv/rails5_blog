@@ -25,10 +25,12 @@ function editor_ace_initialize(target) {
     readOnly: readOnly,
     highlightActiveLine: !readOnly,
     showFoldWidgets: !readOnly,
+    useWorker: !readOnly, // disable syntax checking on readOnly
     enableBasicAutocompletion: !readOnly, // language_tools
     enableSnippets: false, //language_tools
     enableLiveAutocompletion: !readOnly // language_tools
   }, params['editorOptions'] || {});
+
 
   var editDiv = $('<div>', {
     'class': $this.attr('class')
@@ -36,6 +38,8 @@ function editor_ace_initialize(target) {
   $this.css('display', 'none');
 
   var editor = ace.edit(editDiv[0]);
+  // hide cursor on readOnly
+  readOnly && (editor.renderer.$cursorLayer.element.style.display = "none");
   editor.$blockScrolling = Infinity; // to disable a deprecation warning
   editor.setOptions(options);
   editor.getSession().setMode('ace/mode/' + sessionOptions['language']);
