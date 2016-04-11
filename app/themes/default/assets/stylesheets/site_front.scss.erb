@@ -2,35 +2,38 @@
 @import 'foundation-sites/util/util';
 @import 'foundation-sites/foundation';
 
-// ================= colors
-
+// ================= vars
 $transparent-black: rgba(0, 0, 0, 0.9);
 $transparent-black-2: rgba(0, 0, 0, 0.95);
 
+$site-main-navigation-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .7);
+// ================= /vars
+
+
+// ================= vars overrides
+$body-font-family:                                                "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$menu-item-padding:                                               0.8rem 1.1rem;
+$titlebar-background:                                             $transparent-black-2;
+
+$dropdownmenu-background:                                         $transparent-black;
+$dropdownmenu-border:                                             1px solid black;
+$dropdownmenu-arrow-color:                                        white;
+
+$accordionmenu-arrow-color:                                       white;
+// ================= /vars overrides
+
+
+
 // ================ helpers
-
-.alert-color-text {
-  color: $alert-color !important;
-}
-
 @for $i from 1 through 25 {
   .v-space-#{$i} { height: #{$i}px; }
 }
+// ================ /helpers
+
+
 
 // ==================== main menu
-
-$menu-item-padding: 0.8rem 1.1rem;
-
-$titlebar-background: $transparent-black-2;
-
-$dropdownmenu-background: $transparent-black;
-$dropdownmenu-border: 1px solid black;
-
-$accordionmenu-arrow-color: white;
-$dropdownmenu-arrow-color: white;
-
-$site-main-navigation-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .7);
-
 [data-accordion-menu] {
   background-color: $transparent-black ;
 }
@@ -79,6 +82,9 @@ $site-main-navigation-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .7);
   margin-top: -10px;
   margin-bottom: -9px;
 }
+// ==================== /main menu
+
+
 
 // =================== tags menu
 .tags-menu-list {
@@ -99,9 +105,11 @@ $site-main-navigation-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .7);
 .tags-menu-list li.active a{
   font-weight: bold;
 }
+// =================== /tags menu
+
+
 
 // =================== callout
-
 .callout h1, .callout h2, .callout h3, .callout h4, .callout h5, .callout h6 {
   margin-bottom: 0px;
 }
@@ -111,18 +119,23 @@ $site-main-navigation-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .7);
   top: -17px;
   right: -3px;
 }
+// =================== /callout
+
+
 
 // ======================== header
-
 #site_header {
   background-color: lightgray;
 }
+// ======================== /header
+
+
 
 // ======================== footer
-
 #site_footer {
   background-color: lightgray;
 }
+// ======================== /footer
 
 @include foundation-everything;
 
