@@ -39,7 +39,9 @@ $accordionmenu-arrow-color:                                       white;
 }
 
 .no-js .title-bar, .no-js [data-accordion-menu] , .no-js [data-dropdown-menu]  {
-  display: none;
+  display: block;
+  position: absolute;
+  clip: rect(0px,0px,0px,0px);
 }
 
 #large_site_main_navigation > .row > .columns {
@@ -70,17 +72,16 @@ $accordionmenu-arrow-color:                                       white;
   background-color: transparent;
 }
 
-.menu li > img {
-  height: 40px;
-  width: 40px;
-  margin-top: 1px;
+#site_main_navigation .title-bar, #large_site_main_navigation{
+  position: relative;
 }
 
-.title-bar img {
-  height: 39px;
-  width: 39px;
-  margin-top: -10px;
-  margin-bottom: -9px;
+#site_main_navigation .title-bar img, #large_site_main_navigation img {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  width: auto;
+  height: 100%;
 }
 // ==================== /main menu
 

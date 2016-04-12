@@ -132,4 +132,12 @@ module IconsHelper
     "<i class='fa fa-clock-o #{options}'></i>".html_safe
   end
 
+  def icon_logout(options='')
+    "<i class='fa fa-sign-out #{options}'></i>".html_safe
+  end
+
+  def icon_login(options='')
+    "<i class='fa fa-sign-in #{options}'></i>".html_safe
+  end
+
 end

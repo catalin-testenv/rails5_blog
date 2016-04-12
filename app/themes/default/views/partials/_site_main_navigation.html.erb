@@ -1,17 +1,17 @@
 <div id="site_main_navigation">
   <!-- mobile bar -->
-  <div class="title-bar clearfix"  data-responsive-toggle="small_site_main_navigation" data-hide-for="large">
+  <div class="title-bar clearfix hide-for-large"  data-responsive-toggle="small_site_main_navigation" data-hide-for="large">
     <button class="menu-icon" type="button" data-toggle></button>
     <div class="title-bar-title"><%= menu_message %></div>
     <div class="small-6 column float-right">
       <% unless user_signed_in? %>
-          <%= link_to sign_in_message, new_user_session_path, class: 'float-right' %>
+          <%= link_to icon_login, new_user_session_path, class: 'float-right' %>
       <% else %>
           <%= link_to destroy_user_session_path, method: :delete, class: 'float-right',
                       data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
               <%= image_tag current_user.image, alt: current_user.name, title: current_user.name %>
               &nbsp;&nbsp;
-              <%= sign_out_message %>
+              <%= icon_logout %>
           <% end %>
       <% end %>
     </div>
@@ -46,12 +46,12 @@
         }).html_safe %>
       </div>
       <div class="large-3 columns">
-        <ul class="menu align-right">
+        <ul class="menu align-right" style="margin-right: 30px;">
           <% if controller_name != 'sessions' %>
               <% unless user_signed_in? %>
-                  <li><%= link_to sign_in_message, new_user_session_path %></li>
+                  <li><%= link_to icon_login, new_user_session_path %></li>
               <% else %>
-                  <li><%= link_to sign_out_message, destroy_user_session_path, method: :delete,
+                  <li><%= link_to icon_logout, destroy_user_session_path, method: :delete,
                                   data: { confirm: "#{current_user.name} #{are_you_sure_message}" } %></li>
                   <li><%= image_tag current_user.image, alt: current_user.name, title: current_user.name %></li>
               <% end %>
