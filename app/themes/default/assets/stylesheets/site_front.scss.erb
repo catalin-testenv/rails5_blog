@@ -1,4 +1,7 @@
 
+@import 'superfish/dist/css/superfish';
+@import './site_utils';
+
 @import 'foundation-sites/util/util';
 @import 'foundation-sites/foundation';
 
@@ -21,69 +24,16 @@ $dropdownmenu-border:                                             1px solid blac
 $dropdownmenu-arrow-color:                                        white;
 
 $accordionmenu-arrow-color:                                       white;
+
+$breakpoints: (
+    small: 0,
+    medium: $ntk_break_point_medium,
+    large: $ntk_break_point_large,
+    xlarge: 1200px,
+    xxlarge: 1440px,
+);
 // ================= /foundation vars overrides
 
-
-
-// ================ helpers
-@for $i from 1 through 25 {
-  .v-space-#{$i} { height: #{$i}px; }
-}
-// ================ /helpers
-
-
-
-// ==================== main menu
-[data-accordion-menu] {
-  background-color: $transparent-black ;
-}
-
-.no-js .title-bar, .no-js [data-accordion-menu] , .no-js [data-dropdown-menu]  {
-  display: block;
-  position: absolute;
-  clip: rect(0px,0px,0px,0px);
-}
-
-#large_site_main_navigation > .row > .columns {
-  padding-left: 0px;
-}
-
-#large_site_main_navigation  {
-  //border-top: 1px solid #c1c1c1;
-  background-color: $transparent-black;
-  //box-shadow: $site-main-navigation-shadow;
-  z-index: 100;
-}
-.title-bar {
-  //box-shadow: $site-main-navigation-shadow;
-}
-
-.title-bar a,
-.menu li > a{
-  color: white;
-}
-
-.menu li > a:hover{
-  color: $primary-color;
-}
-
-.menu li.active > a{
-  color: $primary-color;
-  background-color: transparent;
-}
-
-#site_main_navigation .title-bar, #large_site_main_navigation{
-  position: relative;
-}
-
-#site_main_navigation .title-bar img, #large_site_main_navigation img {
-  position: absolute;
-  right: 10px;
-  top: 0px;
-  width: auto;
-  height: 100%;
-}
-// ==================== /main menu
 
 
 

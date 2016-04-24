@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="ntk-no-js no-js" lang="en">
   <head>
     <title><%= content_for?(:title) ? yield(:title) : 'Untitled' %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,6 +45,10 @@
     <%= render 'partials/before_site_footer' %>
 
     <%= render 'partials/site_footer' %>
+
+    <script>
+      $('html').removeClass('ntk-no-js');
+    </script>
 
   </body>
 

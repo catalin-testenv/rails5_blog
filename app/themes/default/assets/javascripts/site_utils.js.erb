@@ -1,0 +1,26 @@
+
+
+// display toggle
+$(function(){
+  $('[data-ntk-toggle]').on('click', function(e) {
+    e.preventDefault();
+    $($(this).data('ntk-toggle')).each(function(){
+      $(this).toggleClass('ntk-hidden');
+    })
+  });
+});
+
+// ntk-accordion-menu
+$(function() {
+  var menu = $('.ntk-accordion-menu');
+  menu.find('li:has(ul) > a').on('click', function() {
+    var expander = $(this);
+    var next_ul = expander.next('ul');
+    expander.parent().siblings('li').find('ul').each(function(){
+      var current_ul = $(this);
+      // close all ul in the same level but next one
+      (next_ul[0] !== current_ul[0]) && current_ul.slideUp('fast');
+    });
+    next_ul.slideDown('fast');
+  });
+});

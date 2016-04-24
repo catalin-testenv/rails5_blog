@@ -1,70 +1,95 @@
 <div id="site_main_navigation">
   <!-- mobile bar -->
-  <div class="title-bar clearfix hide-for-large"  data-responsive-toggle="small_site_main_navigation" data-hide-for="large">
-    <button class="menu-icon" type="button" data-toggle></button>
-    <div class="title-bar-title"><%= menu_message %></div>
-    <div class="small-6 column float-right">
-      <% unless user_signed_in? %>
-          <%= link_to icon_login, new_user_session_path, class: 'float-right' %>
-      <% else %>
-          <%= link_to destroy_user_session_path, method: :delete, class: 'float-right',
-                      data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
-              <%= image_tag current_user.image, alt: current_user.name, title: current_user.name %>
-              &nbsp;&nbsp;
-              <%= icon_logout %>
+  <div class="ntk-mobile-bar">
+    <div class="row">
+      <div class="column">
+        <div class="ntk-menu-toggle ntk-float-left">
+          <button data-ntk-toggle="#small_site_main_navigation" type="button">
+            <i class="fa fa-bars"></i>&nbsp;
+            <span><%= menu_message %></span>
+          </button>
+        </div>
+        <div class="ntk-user-session ntk-float-right">
+          <% if controller_name != 'sessions' %>
+              <% unless user_signed_in? %>
+                  <%= link_to icon_login, new_user_session_path, class: 'float-right' %>
+              <% else %>
+                  <%= image_tag current_user.image, alt: current_user.name, title: current_user.name %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: '',
+                              data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
+                      &nbsp;&nbsp;
+                      <%= icon_logout %>
+                  <% end %>
+              <% end %>
           <% end %>
-      <% end %>
+        </div>
+      </div>
     </div>
   </div>
   <!-- /mobile bar -->
 
   <!-- menu (small|large)  -->
-  <!-- small displays on small and medium and is non sticky -->
-  <div id="small_site_main_navigation" class="hide-for-large">
-    <%= page_categories_menu_html(options: {
-        wrapper_ul_class: 'vertical menu',
-        wrapper_ul_data: 'data-accordion-menu data-options="multiOpen: false"',
-        inner_ul_class: 'menu vertical nested',
-        inner_ul_data: '',
-        active_li: 'active',
-        active_link: ''
-    }).html_safe %>
-  </div>
-  <!-- /small displays on small and medium and is non sticky -->
-
-  <!-- large displays on large and is sticky -->
-  <div id="large_site_main_navigation" class="show-for-large">
+  <!-- small - displays on small and medium and is non sticky -->
+  <div id="small_site_main_navigation" class="ntk-hidden">
     <div class="row">
-      <div class="large-9 columns">
+      <div class="column">
         <%= page_categories_menu_html(options: {
-            wrapper_ul_class: 'dropdown menu',
-            wrapper_ul_data: 'data-dropdown-menu data-options=""',
-            inner_ul_class: 'menu',
+            wrapper_ul_class: 'ntk-accordion-menu',
+            wrapper_ul_data: '',
+            inner_ul_class: '',
             inner_ul_data: '',
             active_li: 'active',
             active_link: ''
         }).html_safe %>
       </div>
-      <div class="large-3 columns">
-        <ul class="menu align-right" style="margin-right: 30px;">
+    </div>
+
+  </div>
+  <!-- /small -->
+
+  <!-- large - displays on large and is sticky -->
+  <div id="large_site_main_navigation">
+    <div class="row">
+      <div class="column">
+        <div class="ntk-menu ntk-float-left">
+          <%= page_categories_menu_html(options: {
+              wrapper_ul_class: 'sf-menu',
+              wrapper_ul_data: '',
+              inner_ul_class: '',
+              inner_ul_data: '',
+              active_li: 'active',
+              active_link: ''
+          }).html_safe %>
+        </div>
+        <div class="ntk-user-session ntk-float-right">
           <% if controller_name != 'sessions' %>
               <% unless user_signed_in? %>
-                  <li><%= link_to icon_login, new_user_session_path %></li>
+                  <%= link_to icon_login, new_user_session_path %>
               <% else %>
-                  <li><%= link_to icon_logout, destroy_user_session_path, method: :delete,
-                                  data: { confirm: "#{current_user.name} #{are_you_sure_message}" } %></li>
-                  <li><%= image_tag current_user.image, alt: current_user.name, title: current_user.name %></li>
+                  <%= image_tag current_user.image, alt: current_user.name, title: current_user.name %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: '',
+                              data: { confirm: "#{current_user.name} #{are_you_sure_message}" } do %>
+                      &nbsp;&nbsp;
+                      <%= icon_logout %>
+                  <% end %>
               <% end %>
           <% end %>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
-  <script>$("#large_site_main_navigation").sticky({topSpacing:0});</script>
-  <!-- /large displays on large and is sticky -->
+  <script>
+    // http://users.tpg.com.au/j_birch/plugins/superfish/options/
+    $('#large_site_main_navigation').superfish({
+      disableHI:     false,
+      cssArrows:     true,
+      delay: 100,
+    });
+    $("#large_site_main_navigation").sticky({topSpacing:0});
+  </script>
+  <!-- /large -->
   <!-- /menu (small|large) -->
 </div>
 
-
-<div class="v-space-20"></div>
+<div class="v-space-10"></div>
 
