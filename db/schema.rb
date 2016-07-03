@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20160408081144) do
 
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "content",    limit: 65535
     t.integer  "status",                   default: 0, null: false
     t.integer  "page_id"
@@ -23,18 +23,18 @@ ActiveRecord::Schema.define(version: 20160408081144) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "layout_regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "layout_regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name",                     null: false
     t.text   "content", limit: 16777215
   end
 
-  create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "page_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "name"
     t.integer "parent_id", default: 0, null: false
     t.integer "ordering",  default: 0, null: false
   end
 
-  create_table "page_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "page_contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "page_id",                           null: false
     t.text    "content",          limit: 16777215, null: false
     t.text    "excerpt",          limit: 255
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20160408081144) do
     t.index ["page_id"], name: "fk_page_id", using: :btree
   end
 
-  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                           null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -56,12 +56,12 @@ ActiveRecord::Schema.define(version: 20160408081144) do
     t.boolean  "root_page",      default: false, null: false
   end
 
-  create_table "pages_tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "pages_tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "page_id", null: false
     t.integer "tag_id",  null: false
   end
 
-  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "settings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "key",      null: false
     t.string  "val",      null: false
     t.string  "group",    null: false
@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(version: 20160408081144) do
     t.string  "options"
   end
 
-  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",      default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
