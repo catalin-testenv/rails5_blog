@@ -6,7 +6,7 @@ gem 'dotenv-rails', :require => 'dotenv/rails-now'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Authentication
-gem 'devise', '>= 4.0.0.rc1', '< 4.1'
+gem 'devise', '~> 4.2.0'
 # https://github.com/plataformatec/has_scope
 gem 'has_scope', '~> 0.7.0'
 # Omniauth gems
@@ -17,19 +17,19 @@ gem 'pundit', '~> 1.1'
 gem 'kaminari', :git => 'git://github.com/amatsuda/kaminari.git', :branch => 'master'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.beta3', '< 5.1'
+gem 'rails', '~> 5.0.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-gem 'compass-rails', '~> 3.0.1'
-gem 'font-awesome-sass', '~> 4.5.0'
+gem 'sass-rails', '~> 5.0.5'
+gem 'compass-rails', '~> 3.0.2'
+gem 'font-awesome-sass', '~> 4.6.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # https://github.com/zurb/foundation-rails
@@ -39,9 +39,9 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # Action Cable dependencies for the Redis adapter
-gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.3.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.11' # gem install bcrypt --platform=ruby
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -57,11 +57,11 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.0'
+  gem 'web-console', '~> 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # silence sprockets verbosity
-  gem 'quiet_assets'
+  # gem 'quiet_assets'
 end
 
 group :production do
